@@ -1,1 +1,1 @@
-# FHNW_ip6_Kolibri-Business-Charts
+# FHNW IP6 - Interaktive Business Charts für das Kolibri Web UI Tookit
