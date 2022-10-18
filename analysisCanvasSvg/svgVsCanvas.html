@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--suppress SpellCheckingInspection -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG Analysis</title>
+
+    <style>
+        #svg-sun {
+            position : relative;
+            left     : 20%;
+            /*-webkit-transform: translateX(-20%);*/
+            /*-ms-transform: translateX(-20%);*/
+            /*transform: translateX(-20%);*/
+        }
+    </style>
+</head>
+<body>
+<h2>
+    SVG Circle from Geeks For Geeks
+</h2>
+
+<!-- code example from geeks for geeks and o'reilly media:
+https://www.geeksforgeeks.org/difference-between-svg-and-html-5-canvas/ and
+https://oreillymedia.github.io/svg-essentials-examples/ch04/stroke-width.html
+-->
+
+<svg height="300px" id="svg-sun" viewBox="0 0 300 300" width="300px">
+
+    <!-- horizontal line -->
+    <line style="stroke-width: 5; stroke: red;" x1="100" x2="250" y1="50"
+          y2="50"/>
+    <!-- vertical line -->
+    <line style="stroke-width: 5; stroke: red;" x1="100" x2="100" y1="50"
+          y2="250"/>
+    <!-- diagonal line -->
+    <line style="stroke-width: 5; stroke: red;" x1="100" x2="250" y1="50"
+          y2="250"/>
+    <!-- circle -->
+    <circle cx="100" cy="50" fill="blue" id="blueCircle" r="50"></circle>
+
+    <!-- Erkenntnisse:
+    Achte auf die Reihenfolge der einzelnen Elemente
+    aufpassen bezüglich Startpunkt der Skalierung
+    - Aufbau relativ aufwändig
+    -->
+</svg>
+
+
+<h2>
+    Canvas Circle from Geeks For Geeks
+</h2>
+
+<!--https://www.geeksforgeeks.org/html-canvas-basics/?ref=rp
+https://www.html5canvastutorials.com/tutorials/html5-canvas-circles/
+-->
+
+<canvas height="300" id="canvas-sun" style="border:1px solid #000000;" width="300">
+</canvas>
+<script>
+    const canvasSun = document.getElementById('canvas-sun');
+    const context   = canvasSun.getContext('2d');
+    const centerX   = canvasSun.width / 2;
+    const centerY   = canvasSun.height / 2;
+    const radius    = 50;
+
+    // canvasSun.onclick = () => {
+    //     alert("the sun was clicked");
+    // }
+    canvasSun.ondblclick = () => alert("the whole suncanvas was double clicked");
+
+    // //betrifft die gesamte canvas
+    // canvasSun.onmouseover = () => {
+    //     alert("the mouse is in the galaxy");
+    // }
+
+
+    <!-- sunbeams horizontal -->
+    context.beginPath();
+    context.moveTo(centerX, centerY);
+    context.lineTo(centerX + 100, centerY + 0);
+    context.lineWidth   = 5;
+    context.strokeStyle = 'red';
+    context.stroke();
+
+    <!-- sunbeams vertical -->
+    context.beginPath();
+    context.moveTo(centerX, centerY);
+    context.lineTo(centerX + 0, centerY + 100);
+    context.lineWidth   = 5;
+    context.strokeStyle = 'red';
+    context.stroke();
+
+    <!-- sunbeams diagonal -->
+    context.beginPath();
+    context.moveTo(centerX, centerY);
+    context.lineTo(centerX + 100, centerY + 100);
+    context.lineWidth   = 5;
+    context.strokeStyle = 'red';
+    context.stroke();
+
+    <!-- sun center -->
+    context.beginPath();
+    context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+    context.fillStyle = 'blue';
+    context.fill();
+    context.lineWidth   = 5;
+    context.strokeStyle = 'black';
+    context.stroke();
+
+    //TODO: hier stimmt was nicht. help needed
+    context.onmouseover = () => {
+        if (context.isPointInPath(circle, event.offsetX, event.offsetY)) {
+            context.fillStyle = 'green';
+        }
+        alert("the mouse is in the sun");
+    };
+
+    canvas.addEventListener('mousemove', event => {
+        // Check whether point is inside circle
+        if (context.isPointInPath(circle, event.offsetX, event.offsetY)) {
+            context.fillStyle = 'green';
+        } else {
+            context.fillStyle = 'red';
+        }
+
+        // Draw circle
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.fill(circle);
+    });
+
+    //TODO: need help
+    // add event listener
+    // canvasSun.addEventListener('click', event => {
+    //     const x = event.pageX - canvasSun,
+    //           y = event.pageY - canvasSun;
+    //
+    //     // Collision detection between clicked offset and element
+    //     if (y > canvasSun.top && y < canvasSun.top + canvasSun.height
+    //         && x > canvasSun.left && x < canvasSun.left + canvasSun.width) {
+    //         alert('sun clicked');
+    //     }
+    // }, false);
+
+
+</script>
+
+<!-- Erkenntnisse:
+übersichtlicher als svg
+Achte auf die Reihenfolge der einzelnen Elemente
+Aufbau schneller erstellt als in svg
+Codeduplikate zwar schneller da, jedoch beim Refoctoring besser strukturierbar
+aufpassen bezüglich Startpunkt der Skalierung
+-->
+
+<!-- from stack overflow:
+https://stackoverflow.com/questions/9880279/how-do-i-add-a-simple-onclick-event-handler-to-a-canvas-element
+-->
+<canvas height="300" id="canvas" style="border:1px solid red;" width="300"></canvas>
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx    = canvas.getContext('2d');
+
+    // Create circle
+    const circle = new Path2D(); //To create a trackable element in HTML5 canvas you should use the new Path2D() method.
+    circle.arc(150, 75, 50, 0, 2 * Math.PI);
+    ctx.fillStyle = 'red';
+    ctx.fill(circle);
+
+    // Listen for mouse moves
+    canvas.addEventListener('mousemove', event => {
+        // Check whether point is inside circle
+        if (ctx.isPointInPath(circle, event.offsetX, event.offsetY)) {
+            ctx.fillStyle = 'green';
+        } else {
+            ctx.fillStyle = 'red';
+        }
+
+        // Draw circle
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fill(circle);
+    });
+</script>
+
+
+</body>
+</html>
