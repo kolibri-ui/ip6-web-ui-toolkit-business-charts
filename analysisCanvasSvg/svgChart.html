@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+      <!--suppress SpellCheckingInspection -->
+      <html lang="en">
+      <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet"                     href="../src/Kolibri/docs/css/kolibri-base.css">
+      <title>SVG Analysis</title>
+  <style>
+    #svg-sun {
+      position : relative;
+      left     : 10%;
+      /*-webkit-transform: translateX(-20%);*/
+      /*-ms-transform: translateX(-20%);*/
+      /*transform: translateX(-20%);*/
+    }
+  </style>
+</head>
+<body>
+<h2>
+  SVG Chart
+</h2>
+
+<!-- code example from geeks for geeks and o'reilly media:
+https://www.geeksforgeeks.org/difference-between-svg-and-html-5-canvas/ and
+https://oreillymedia.github.io/svg-essentials-examples/ch04/stroke-width.html
+-->
+
+<svg height="300px" class="svg-chart "id="svg-sun" viewBox="0 0 300px 500px" width="500px" style="border:1px solid silver;">
+
+  <!-- horizontal line -->
+  <line style="stroke-width: 3; stroke: gray;" x1="50" x2="450" y1="250"
+        y2="250"/>
+  <!-- vertical line -->
+  <line style="stroke-width: 3; stroke: gray;" x1="70" x2="70" y1="270"
+        y2="50"/>
+
+  <polyline
+          fill="none"
+          stroke="red"
+          stroke-width="3"
+          points="
+          70,250,
+          90,200
+          110,220
+          130,180,
+          150,160,
+          170,240,
+          190,130
+          210,150,
+          230,130,
+          250,120
+          270,70
+          290,50,
+          310,130
+          330,110
+          350,190
+          370,160
+          390,155
+          410,155
+          430,110">
+
+  </polyline>
+
+  <!-- Erkenntnisse:
+  Achte auf die Reihenfolge der einzelnen Elemente
+  aufpassen bezüglich Startpunkt der Skalierung
+  - Aufbau relativ aufwändig
+  -->
+</svg>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>

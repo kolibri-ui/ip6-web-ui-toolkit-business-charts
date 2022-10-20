@@ -3,8 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet"                     href="../src/Kolibri/docs/css/kolibri-base.css">
     <title>SVG Analysis</title>
-
     <style>
         #svg-sun {
             position : relative;
@@ -182,10 +182,24 @@ https://stackoverflow.com/questions/9880279/how-do-i-add-a-simple-onclick-event-
     });
 </script>
 
-
 <!-- TODO: simple line chart as SVG-->
-<h2>Simple silver SVG Chart</h2>
+<div class="chart">
+    <h2>Simple silver SVG Chart</h2>
+
+    <div class="holder" id="chartContainer">
+        <button id="silver-chart" autofocus> silver-button </button>
+    </div>
+</div>
+
+
+
+
 <svg id="simple-svg-chart"  height="300px" width="500" viewBox="0 0 300 500"  style="border:1px solid silver;" >
+    <div class="chart" id="svg-chart">
+        <button id="inside-chart-canvas" autofocus> inside </button>
+    </div>
+    <!-- horizontal line -->
+    <line style="stroke-width: 5; stroke: red;" x1="100" x2="250" y1="300" y2="50"/>
 
 </svg>
 
