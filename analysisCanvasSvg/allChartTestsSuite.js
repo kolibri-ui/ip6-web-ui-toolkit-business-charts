@@ -1,1 +1,1 @@
-import "./svgCharts/svgChartTest"
+import "./svgCharts/svgChartTest.js"

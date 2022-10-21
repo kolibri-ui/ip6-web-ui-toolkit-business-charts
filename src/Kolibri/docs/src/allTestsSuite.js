@@ -1,12 +1,10 @@
 
-// import { total }      from "./kolibri/util/test.js";
-// import { versionInfo} from "./kolibri/version.js";
 import { total }      from "./kolibri/util/test.js";
 import { versionInfo} from "./kolibri/version.js";
 
 //Kolibri Test suites
-import './examples/allExampleTestsSuite.js';
 import './kolibri/allKolibriTestsSuite.js';
+import './examples/allExampleTestsSuite.js';
 
 //Business Charts Test suites
 import '../../../../analysisCanvasSvg/allChartTestsSuite.js';
