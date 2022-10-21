@@ -23,10 +23,12 @@
             position         : relative;
             left             : 10%;
             background-color : lightgoldenrodyellow;
+            border:1px solid gold;
             /*-webkit-transform: translateX(-20%);*/
             /*-ms-transform: translateX(-20%);*/
             /*transform: translateX(-20%);*/
         }
+
     </style>
 </head>
 <body>
@@ -40,7 +42,7 @@ https://oreillymedia.github.io/svg-essentials-examples/ch04/stroke-width.html
 https://css-tricks.com/how-to-make-charts-with-svg/
 -->
 
-<!-- TODO: Tooltips, Labels, Legend, Title within SVG region, Refactoring -->
+<!-- TODO: Tooltips, Labels, Legend, Title within SVG region, Refactoring, Testing -->
 <figure>
     <figcaption>Simple Line Chart</figcaption>
     <svg height="300px" class="svg-chart" id="simple-line-chart" viewBox="0 0 300px 500px" width="500px"
@@ -128,14 +130,16 @@ https://css-tricks.com/how-to-make-charts-with-svg/
     </svg>
 </figure>
 
+<!-- sample from https://codepen.io/mdgrover/pen/eZENxO
+-->
 <figure>
     <figcaption>Simple Bar Chart</figcaption>
-    <svg height="300px" class="svg-chart" id="simple-bar-chart" viewBox="0 0 300px 500px" width="500px"
-         style="border:1px solid gold;">
+    <svg height="500" class="svg-chart" id="simple-bar-chart" viewBox="0 0 300px 500px" width="960">
 
     </svg>
-
 </figure>
+
+<script src="svgChartStarter.js" type="module"></script>
 
 </body>
 </html>
