@@ -1,0 +1,32 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(36, 1fr);
+    gap: 5px;
+    grid-template-rows: repeat(36, 2fr);
+    /*grid-template-columns: repeat(6, 1fr);*/
+
+}
+.header {
+    grid-column: 1 / 36;
+    grid-row: 1 / 8;
+}
+.toolbar {
+    grid-column: 1 / 36;
+    grid-row: 9 / 10;
+}
+.masterView {
+    grid-column: 9 / 36;
+    grid-row: 10 / 28;
+}
+.filterView {
+    grid-column: 1 / 9;
+    grid-row: 10 / 28;
+}
+.detailView {
+    grid-column: 1 / 36;
+    grid-row: 28 / 34;
+}
+.footer {
+    grid-column: 1 / 36;
+    grid-row: 34 / 36;
+}

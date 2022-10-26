@@ -22,7 +22,7 @@ function getData() {
         ['2016',50],
         ['2018',57]
     ];
-};
+}
 
 
 export class SvgChart {
