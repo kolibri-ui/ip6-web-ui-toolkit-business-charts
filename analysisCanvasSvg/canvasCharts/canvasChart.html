@@ -8,24 +8,37 @@
     <link rel="stylesheet" href="canvas.css">
     <style>
         body {
-            max-width : 42em;
-            margin    : 3em auto 3em auto;
+            margin: 50px auto;
+            /*max-width : 42em;*/
+            /*margin    : 3em auto 3em auto;*/
+            font-family: "Khand";
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
 <div class="wrapper">
-    <div class="header" style="background-color: purple">Header</div>
-    <div class="toolbar" style="background-color: blue">Toolbar</div>
-    <div class="masterView" style="background-color: lightblue">Master View
-        <canvas>
+    <div class="header">Header</div>
+    <div class="toolbar" >Toolbar</div>
+    <div class="masterView" autofocus>Master View
+        <figure>
+            <canvas id="canvasChart">
 
-        </canvas>
+            </canvas>
+        </figure>
+        <figure>
+            <canvas id="myCanvas" style="background: white;"></canvas>
+            <legend for="myCanvas"></legend>
+        </figure>
+
     </div>
-    <div class="detailView" style="background-color: greenyellow">Detail View</div>
-    <div class="filterView" style="background-color: orange">Filter View</div>
-    <div class="footer" style="background-color: yellow">Footer</div>
+    <div class="detailView">Detail View</div>
+    <div class="filterView">Filter View</div>
+    <div class="footer">Footer</div>
 </div>
+
+<!--<script src="canvasChart.js"  type="module"></script>-->
+<script src="canvasChart2.js" type="text/javascript"></script>
 
 </body>
 </html>
