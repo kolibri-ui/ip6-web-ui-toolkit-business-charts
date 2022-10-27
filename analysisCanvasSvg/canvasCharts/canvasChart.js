@@ -18,22 +18,22 @@ context.fillRect(0,0,width,height);
 
 // NOTE: calculate x and y deltas based on canvas size and maximum value
 
-const w = canvas.width-(2*radius);
-const h = canvas.height-(2*radius);
-const max = Math.max.apply(null,values);
-const dx = Math.round(w/(values.length-1));
-const dy = (h/max);
+const w = canvas.width - 2 * radius;
+const h = canvas.height - 2 * radius;
+const max = Math.max.apply(null, values);
+const dx = Math.round(w / (values.length - 1));
+const dy = h / max;
 
 // NOTE: draw lines
 
-for(let f=1; f<values.length; f++)
+for(let f=1; f < values.length; f++)
 {
-    const i = f-1;
-    const y = Math.round(values[f]*dy)+radius;
+    const i = f - 1;
+    const y = Math.round(values[f]*dy) + radius;
     //var p = Math.round(values[i]*dy);
     //var x = Math.round(i*dx);
-    const p = Math.round(values[i]*dy)+radius;
-    const x = Math.round(i*dx)+radius;
+    const p = Math.round(values[i]*dy) + radius;
+    const x = Math.round(i * dx) + radius;
     context.beginPath();
     context.strokeStyle = '#f00';
     context.strokeStyle = 'rgba(255,0,0,0.25)';

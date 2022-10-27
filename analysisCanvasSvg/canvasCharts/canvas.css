@@ -44,7 +44,7 @@
 
 /*---------------------Chart View-------------------*/
 .canvasChart {
-    margin: 0px auto;
+    margin: 0 auto;
     display: block;
     border: 1px solid black;
     padding: 10px;

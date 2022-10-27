@@ -1,8 +1,8 @@
 //Tutorial from https://code.tutsplus.com/tutorials/how-to-draw-bar-charts-using-javascript-and-html5-canvas--cms-28561
 
 const myCanvas = document.getElementById("myCanvas");
-myCanvas.width = 500;
-myCanvas.height = 500;
+myCanvas.width = 437;
+myCanvas.height = 238;
 
 let ctx;
 ctx = myCanvas.getContext("2d");
@@ -24,6 +24,7 @@ function drawBar(ctx, upperLeftCornerX, upperLeftCornerY, width, height, color){
     ctx.fillRect(upperLeftCornerX, upperLeftCornerY, width, height);
     ctx.restore();
 }
+/*
 
 //Bar Chart Data Model
 const data = {
@@ -32,6 +33,7 @@ const data = {
     "Pop": 18,
     "Jazz": 32,
 }
+*/
 
 //Bar Chart Class Component
 class BarChart {
@@ -48,7 +50,7 @@ class BarChart {
         const canvasActualHeight = this.canvas.height - this.options.padding * 2;
         const canvasActualWidth  = this.canvas.width - this.options.padding * 2;
         
-        let   gridValue    = "";
+        let   gridValue    = 0;
         
         while (gridValue <= this.maxValue) {
             const gridY = canvasActualHeight * (1 - gridValue / this.maxValue) + this.options.padding;
@@ -75,7 +77,7 @@ class BarChart {
             this.ctx.fillStyle = this.options.gridColor;
             this.ctx.textBaseline = "bottom";
             this.ctx.font = "bold 10px Arial";
-            this.ctx.fillText(gridValue, 0, gridY - 2);
+            this.ctx.fillText(gridValue.toString(), 0, gridY - 2);
             this.ctx.restore();
             
             //gridValue += this.options.gridScale;
@@ -161,10 +163,10 @@ class BarChart {
 const myBarChart = new BarChart({
     canvas: myCanvas,
     seriesName: "Vinyl records",
-    padding: 40,
+    padding: 60,
     //gridScale: 5,
     gridStep: 5,
-    gridColor: "red",
+    gridColor: "black",
     data: {
         "Classical Music": 16,
         "Alternative Rock": 12,
@@ -177,8 +179,7 @@ const myBarChart = new BarChart({
         fill: "black",
         font: {
             weight: "bold",
-            size: "18px",
-            family: "Lato"
+            size: "18px"
         }
     }
 });
