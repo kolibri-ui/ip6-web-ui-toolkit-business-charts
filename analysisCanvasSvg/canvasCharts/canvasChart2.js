@@ -1,3 +1,5 @@
+import { dom } from '../../src/Kolibri/docs/src/kolibri/util/dom.js';
+
 //Tutorial from https://code.tutsplus.com/tutorials/how-to-draw-bar-charts-using-javascript-and-html5-canvas--cms-28561
 
 const myCanvas = document.getElementById("myCanvas");
@@ -136,7 +138,12 @@ class BarChart {
     
     drawLegend() {
         let pIndex   = 0;
-        const legend = document.querySelector("legend[for='myCanvas']");
+
+        let [legend, input] = dom('<legend for="myCanvas" <input type="text" id="myCanvas" value="myValue">');
+        
+        legend = document.querySelector("legend[for='myCanvas']");
+        
+        //legend = document.querySelector("legend[for='myCanvas']");
         const ul = document.createElement("ul");
         legend.append(ul);
         
