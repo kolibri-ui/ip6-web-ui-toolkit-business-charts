@@ -7,7 +7,7 @@ import './kolibri/allKolibriTestsSuite.js';
 import './examples/allExampleTestsSuite.js';
 
 //Business Charts Test suites
-import '../../../../analysisCanvasSvg/allChartTestsSuite.js';
+import '../../../../playground/allChartTestsSuite.js';
 
 total.onChange( value => document.getElementById('grossTotal').textContent = "" + value + " tests done.");
 
