@@ -2,8 +2,12 @@
 import { total }      from "./kolibri/util/test.js";
 import { versionInfo} from "./kolibri/version.js";
 
-import '../src/examples/allExampleTestsSuite.js';
-import '../src/kolibri/allKolibriTestsSuite.js';
+//Kolibri Test suites
+import './kolibri/allKolibriTestsSuite.js';
+import './examples/allExampleTestsSuite.js';
+
+//Business Charts Test suites
+import '../../../../playground/allChartTestsSuite.js';
 
 total.onChange( value => document.getElementById('grossTotal').textContent = "" + value + " tests done.");
 
