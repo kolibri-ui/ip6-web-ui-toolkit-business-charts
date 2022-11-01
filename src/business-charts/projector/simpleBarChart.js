@@ -1,7 +1,9 @@
 // noinspection SpellCheckingInspection
 
 import { dom } from "../../Kolibri/docs/src/kolibri/util/dom.js";
-import { drawLine, drawGrid, drawRect } from "../util/chart.js";
+import { drawGrid } from "../util/chart.js";
+import { drawRect } from "../util/rectangleProjector.js";
+
 
 export {SimpleBarChart}
 

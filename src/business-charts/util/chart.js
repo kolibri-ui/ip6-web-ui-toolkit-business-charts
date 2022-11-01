@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export {drawLine, drawRect, drawGrid}
+export {drawLine, drawGrid}
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -49,30 +49,6 @@ function drawLine(
 }
 
 /**
- * A function that creates one or more bars, filled with a specific color
- * @todo Refine description for technical doc. replace "bar" with a "general form"
- * @param { CanvasRenderingContext2D } ctx
- * @param { Number } upperLeftCornerX
- * @param { Number } upperLeftCornerY
- * @param { Number } width
- * @param { Number } height
- * @param { String } color
- */
-function drawRect(
-    ctx, 
-    upperLeftCornerX, 
-    upperLeftCornerY, 
-    width, 
-    height, 
-    color
-) {
-    ctx.save();
-    ctx.fillStyle = color;
-    ctx.fillRect(upperLeftCornerX, upperLeftCornerY, width, height);
-    ctx.restore();
-}
-
-/**
  * A function that creates horizontal and vertical lines
  * @todo Refine description for technical doc.
  * @todo eliminate magic numbers
@@ -103,6 +79,52 @@ function drawGrid(
     startValueX,
     startValueY,
 ) {
+    function drawHorizontalGridLines() {
+        if (options.hasHorizontalLines === true) {
+            let lineY = y - horizontalDifference;
+            let number = startValueY + options.verticalSteps;
+
+            while (lineY > startY) {
+                drawLine(ctx, startX, lineY, width, lineY, options.secondaryLineColor);
+
+                if (options.displayNumbers === true) {
+                    ctx.save();
+                    ctx.fillStyle = options.primaryLineColor;
+                    ctx.textBaseline = "bottom";
+                    ctx.font = "bold 10px Arial";
+                    ctx.fillText(number.toString(), startX, lineY - 2);
+                    ctx.restore();
+                }
+
+                lineY -= horizontalDifference;
+                number += options.verticalSteps;
+            }
+        }
+    }
+
+    function drawVerticalGridLines() {
+        if (options.hasVerticalLines === true) {
+            let lineX = x + verticalDifference;
+            let number = startValueX + options.horizontalSteps;
+
+            while (lineX < width) {
+                drawLine(ctx, lineX, startY, lineX, height, options.secondaryLineColor);
+
+                if (options.displayNumbers === true) {
+                    ctx.save();
+                    ctx.fillStyle = options.primaryLineColor;
+                    ctx.textBaseline = "bottom";
+                    ctx.font = "bold 10px Arial";
+                    ctx.fillText(number.toString(), lineX + 2, height + 2);
+                    ctx.restore();
+                }
+
+                lineX += verticalDifference;
+                number += options.horizontalSteps;
+            }
+        }
+    }
+
     if (options.hasGrid !== true) {
         return;
     }
@@ -115,48 +137,7 @@ function drawGrid(
     
     // Ordinate
     drawLine(ctx, x, startY, x, height, options.primaryLineColor);
-
-    // Horizontal Grid Lines
-    if (options.hasHorizontalLines === true) {
-        let lineY = y - horizontalDifference;
-        let number = startValueY + options.verticalSteps;
-
-        while (lineY > startY) {
-            drawLine(ctx, startX, lineY, width, lineY, options.secondaryLineColor);
-
-            if (options.displayNumbers === true) {
-                ctx.save();
-                ctx.fillStyle = options.primaryLineColor;
-                ctx.textBaseline = "bottom";
-                ctx.font = "bold 10px Arial";
-                ctx.fillText(number.toString(), startX, lineY - 2);
-                ctx.restore();
-            }
-
-            lineY -= horizontalDifference;
-            number += options.verticalSteps;
-        }
-    }
-
-    //Vertical Grid Lines
-    if (options.hasVerticalLines === true) {
-        let lineX = x + verticalDifference;
-        let number = startValueX + options.horizontalSteps;
-
-        while (lineX < width) {
-            drawLine(ctx, lineX, startY, lineX, height, options.secondaryLineColor);
-
-            if (options.displayNumbers === true) {
-                ctx.save();
-                ctx.fillStyle = options.primaryLineColor;
-                ctx.textBaseline = "bottom";
-                ctx.font = "bold 10px Arial";
-                ctx.fillText(number.toString(), lineX + 2, height + 2);
-                ctx.restore();
-            }
-
-            lineX += verticalDifference;
-            number += options.horizontalSteps;
-        }
-    }
+    
+    drawHorizontalGridLines();
+    drawVerticalGridLines();
 }
