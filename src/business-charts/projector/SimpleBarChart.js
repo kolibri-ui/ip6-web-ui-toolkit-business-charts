@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
-import {dom} from "../../Kolibri/docs/src/kolibri/util/dom.js";
-import {drawGrid, drawRect} from "../util/chart.js";
+import { dom } from "../../Kolibri/docs/src/kolibri/util/dom.js";
+import { drawLine, drawGrid, drawRect } from "../util/chart.js";
 
 export {SimpleBarChart}
 

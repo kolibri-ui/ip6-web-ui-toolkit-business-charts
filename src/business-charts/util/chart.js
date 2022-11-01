@@ -1,5 +1,10 @@
 // noinspection SpellCheckingInspection
 
+/**
+ * @module util/chart
+ * Helper functions to create a chart
+ */
+
 export {drawLine, drawRect, drawGrid}
 
 /**
@@ -15,14 +20,25 @@ export {drawLine, drawRect, drawGrid}
  */
 
 /**
- * @param { CanvasRenderingContext2D } ctx
- * @param { Number } startX
- * @param { Number } startY
- * @param { Number } endX
- * @param { Number } endY
- * @param { String } color
+ * @summary A function that creates one or more lines in a given context.
+ * @todo discussion: should this function be a separate projector for a combi of projectors? Needed for Axis and grid creation
+ * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
+ * @param { Number } startX the x position where the line starts relative to the null point
+ * @param { Number } startY the y position where the line starts relative to the null point
+ * @param { Number } endX the x position where the line ends relative to the null point
+ * @param { Number } endY the y position where the line ends relative to the null point
+ * @param { String } color the color of the line
+ * 
+ * @example Creates Axis, grids, the line of a line chart, 
  */
-function drawLine(ctx, startX, startY, endX, endY, color) {
+function drawLine(
+    ctx, 
+    startX, 
+    startY, 
+    endX, 
+    endY, 
+    color
+) {
     ctx.save();
     ctx.strokeStyle = color;
     ctx.beginPath();
@@ -33,6 +49,8 @@ function drawLine(ctx, startX, startY, endX, endY, color) {
 }
 
 /**
+ * A function that creates one or more bars, filled with a specific color
+ * @todo Refine description for technical doc. replace "bar" with a "general form"
  * @param { CanvasRenderingContext2D } ctx
  * @param { Number } upperLeftCornerX
  * @param { Number } upperLeftCornerY
@@ -40,7 +58,14 @@ function drawLine(ctx, startX, startY, endX, endY, color) {
  * @param { Number } height
  * @param { String } color
  */
-function drawRect(ctx, upperLeftCornerX, upperLeftCornerY, width, height, color) {
+function drawRect(
+    ctx, 
+    upperLeftCornerX, 
+    upperLeftCornerY, 
+    width, 
+    height, 
+    color
+) {
     ctx.save();
     ctx.fillStyle = color;
     ctx.fillRect(upperLeftCornerX, upperLeftCornerY, width, height);
@@ -48,8 +73,10 @@ function drawRect(ctx, upperLeftCornerX, upperLeftCornerY, width, height, color)
 }
 
 /**
- *
- * @param { ChartGridOptions } options
+ * A function that creates horizontal and vertical lines
+ * @todo Refine description for technical doc.
+ * @todo eliminate magic numbers
+ * @param { ChartGridOptions } options for displaying horizontal and or vertical lines as grid
  * @param { CanvasRenderingContext2D } ctx
  * @param { Number } startX
  * @param { Number } startY
@@ -83,9 +110,13 @@ function drawGrid(
     const x = startX + offset;
     const y = startY + height - offset;
 
+    // Abscissa
     drawLine(ctx, startX, y, width, y, options.primaryLineColor);
+    
+    // Ordinate
     drawLine(ctx, x, startY, x, height, options.primaryLineColor);
 
+    // Horizontal Grid Lines
     if (options.hasHorizontalLines === true) {
         let lineY = y - horizontalDifference;
         let number = startValueY + options.verticalSteps;
@@ -107,6 +138,7 @@ function drawGrid(
         }
     }
 
+    //Vertical Grid Lines
     if (options.hasVerticalLines === true) {
         let lineX = x + verticalDifference;
         let number = startValueX + options.horizontalSteps;
