@@ -26,7 +26,7 @@ export {SimpleBarChart}
  * @returns {HTMLElement}
  * @constructor
  */
-const SimpleBarChart = (options) => {
+const SimpleBarChart = options => {
     const [canvasElement] = dom(`
         <canvas>
         </canvas>
@@ -38,11 +38,11 @@ const SimpleBarChart = (options) => {
     /** @type {CanvasRenderingContext2D} */ const context = canvasElement.getContext('2d');
     const gridX = options.padding;
     const gridY = options.padding;
-    const gridWidth = options.width - (2 * options.padding);
-    const gridHeight = options.height - (2 * options.padding);
+    const gridWidth = options.width - 2 * options.padding;
+    const gridHeight = options.height - 2 * options.padding;
     const offset = 15;
 
-    const barWidth = (gridWidth - offset) / options.data.length - (2 * options.padding);
+    const barWidth = (gridWidth - offset) / options.data.length - 2 * options.padding;
     const ratio = 20 / options.gridOptions.verticalSteps;
 
     const drawBars = () => {
@@ -55,7 +55,7 @@ const SimpleBarChart = (options) => {
 
             barX += 2* options.padding + barWidth;
         }
-    }
+    };
 
     const draw = () => {
         drawGrid(
@@ -74,9 +74,9 @@ const SimpleBarChart = (options) => {
         );
 
         drawBars();
-    }
+    };
 
     draw();
 
     return canvasElement;
-}
+};
