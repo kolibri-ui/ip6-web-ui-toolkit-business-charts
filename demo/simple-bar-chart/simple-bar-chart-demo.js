@@ -1,4 +1,4 @@
-import {SimpleBarChart} from "../../src/business-charts/projector/SimpleBarChart.js";
+import {SimpleBarChart} from "../../src/business-charts/projector/simpleBarChart.js";
 
 /** @type { Array.<BarChartDataElement> } */ const data = [{
     name: "Classical Music", value: 16,
@@ -15,11 +15,11 @@ import {SimpleBarChart} from "../../src/business-charts/projector/SimpleBarChart
     hasHorizontalLines: true,
     hasVerticalLines: false,
     displayNumbers: true,
-    horizontalSteps: 1,
-    verticalSteps: 1,
+    horizontalSteps: 5,
+    verticalSteps: 5,
     primaryLineColor: 'black',
     secondaryLineColor: 'grey'
-}
+};
 
 const simpleBarChart = SimpleBarChart(data,{
     width: 500,

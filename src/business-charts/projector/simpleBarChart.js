@@ -1,6 +1,7 @@
 // noinspection SpellCheckingInspection
 
-import {drawGrid, drawRect} from "../util/chart.js";
+import { drawGrid } from "../util/chart.js";
+import { drawRect } from "../util/rectangleProjector.js";
 
 export {SimpleBarChart}
 

@@ -1,6 +1,11 @@
 // noinspection SpellCheckingInspection
 
-export {drawLine, drawRect, drawGrid}
+/**
+ * @module util/chart
+ * Helper functions to create a chart
+ */
+
+export {drawLine, drawGrid}
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -15,14 +20,25 @@ export {drawLine, drawRect, drawGrid}
  */
 
 /**
- * @param { CanvasRenderingContext2D } ctx
- * @param { Number } startX
- * @param { Number } startY
- * @param { Number } endX
- * @param { Number } endY
- * @param { String } color
+ * @summary A function that creates one or more lines in a given context.
+ * @todo discussion: should this function be a separate projector for a combi of projectors? Needed for Axis and grid creation
+ * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
+ * @param { Number } startX the x position where the line starts relative to the null point
+ * @param { Number } startY the y position where the line starts relative to the null point
+ * @param { Number } endX the x position where the line ends relative to the null point
+ * @param { Number } endY the y position where the line ends relative to the null point
+ * @param { String } color the color of the line
+ * 
+ * @example Creates Axis, grids, the line of a line chart, 
  */
-function drawLine(ctx, startX, startY, endX, endY, color) {
+function drawLine(
+    ctx, 
+    startX, 
+    startY, 
+    endX, 
+    endY, 
+    color
+) {
     ctx.save();
     ctx.strokeStyle = color;
     ctx.beginPath();
@@ -33,23 +49,10 @@ function drawLine(ctx, startX, startY, endX, endY, color) {
 }
 
 /**
- * @param { CanvasRenderingContext2D } ctx
- * @param { Number } upperLeftCornerX
- * @param { Number } upperLeftCornerY
- * @param { Number } width
- * @param { Number } height
- * @param { String } color
- */
-function drawRect(ctx, upperLeftCornerX, upperLeftCornerY, width, height, color) {
-    ctx.save();
-    ctx.fillStyle = color;
-    ctx.fillRect(upperLeftCornerX, upperLeftCornerY, width, height);
-    ctx.restore();
-}
-
-/**
- *
- * @param { ChartGridOptions } options
+ * A function that creates horizontal and vertical lines
+ * @todo Refine description for technical doc.
+ * @todo eliminate magic numbers
+ * @param { ChartGridOptions } options for displaying horizontal and or vertical lines as grid
  * @param { CanvasRenderingContext2D } ctx
  * @param { Number } startX
  * @param { Number } startY
@@ -76,6 +79,52 @@ function drawGrid(
     startValueX,
     startValueY,
 ) {
+    function drawHorizontalGridLines() {
+        if (options.hasHorizontalLines === true) {
+            let lineY = y - horizontalDifference;
+            let number = startValueY + options.verticalSteps;
+
+            while (lineY > startY) {
+                drawLine(ctx, startX, lineY, width, lineY, options.secondaryLineColor);
+
+                if (options.displayNumbers === true) {
+                    ctx.save();
+                    ctx.fillStyle = options.primaryLineColor;
+                    ctx.textBaseline = "bottom";
+                    ctx.font = "bold 10px Arial";
+                    ctx.fillText(number.toString(), startX, lineY - 2);
+                    ctx.restore();
+                }
+
+                lineY -= horizontalDifference;
+                number += options.verticalSteps;
+            }
+        }
+    }
+
+    function drawVerticalGridLines() {
+        if (options.hasVerticalLines === true) {
+            let lineX = x + verticalDifference;
+            let number = startValueX + options.horizontalSteps;
+
+            while (lineX < width) {
+                drawLine(ctx, lineX, startY, lineX, height, options.secondaryLineColor);
+
+                if (options.displayNumbers === true) {
+                    ctx.save();
+                    ctx.fillStyle = options.primaryLineColor;
+                    ctx.textBaseline = "bottom";
+                    ctx.font = "bold 10px Arial";
+                    ctx.fillText(number.toString(), lineX + 2, height + 2);
+                    ctx.restore();
+                }
+
+                lineX += verticalDifference;
+                number += options.horizontalSteps;
+            }
+        }
+    }
+
     if (options.hasGrid !== true) {
         return;
     }
@@ -83,48 +132,12 @@ function drawGrid(
     const x = startX + offset;
     const y = startY + height - offset;
 
+    // Abscissa
     drawLine(ctx, startX, y, width, y, options.primaryLineColor);
+    
+    // Ordinate
     drawLine(ctx, x, startY, x, height, options.primaryLineColor);
-
-    if (options.hasHorizontalLines === true) {
-        let lineY = y - horizontalDifference;
-        let number = startValueY + options.verticalSteps;
-
-        while (lineY > startY) {
-            drawLine(ctx, startX, lineY, width, lineY, options.secondaryLineColor);
-
-            if (options.displayNumbers === true) {
-                ctx.save();
-                ctx.fillStyle = options.primaryLineColor;
-                ctx.textBaseline = "bottom";
-                ctx.font = "bold 10px Arial";
-                ctx.fillText(number.toString(), startX, lineY - 2);
-                ctx.restore();
-            }
-
-            lineY -= horizontalDifference;
-            number += options.verticalSteps;
-        }
-    }
-
-    if (options.hasVerticalLines === true) {
-        let lineX = x + verticalDifference;
-        let number = startValueX + options.horizontalSteps;
-
-        while (lineX < width) {
-            drawLine(ctx, lineX, startY, lineX, height, options.secondaryLineColor);
-
-            if (options.displayNumbers === true) {
-                ctx.save();
-                ctx.fillStyle = options.primaryLineColor;
-                ctx.textBaseline = "bottom";
-                ctx.font = "bold 10px Arial";
-                ctx.fillText(number.toString(), lineX + 2, height + 2);
-                ctx.restore();
-            }
-
-            lineX += verticalDifference;
-            number += options.horizontalSteps;
-        }
-    }
+    
+    drawHorizontalGridLines();
+    drawVerticalGridLines();
 }
