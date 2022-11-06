@@ -15,11 +15,18 @@ import {SimpleBarChart} from "../../src/business-charts/projector/SimpleBarChart
     hasHorizontalLines: true,
     hasVerticalLines: false,
     displayNumbers: true,
-    horizontalSteps: 5,
-    verticalSteps: 5,
+    horizontalSteps: 1,
+    verticalSteps: 1,
     primaryLineColor: 'black',
     secondaryLineColor: 'grey'
 }
 
-const simpleBarChart = SimpleBarChart({ data: data, width: 500, height: 400, padding: 5, gridOptions: gridOptions} )
+const simpleBarChart = SimpleBarChart(data,{
+    width: 500,
+    height: 400,
+    padding: 5,
+    colors: ["#a55ca5", "#67b6c7", "#bccd7a", "#eb9743"],
+    gridOptions: gridOptions
+} )
+console.log('element erstellt');
 document.getElementById('container').append(simpleBarChart);
