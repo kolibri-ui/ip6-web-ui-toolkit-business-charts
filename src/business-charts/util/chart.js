@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export {drawLine, drawGrid}
+export { drawLine, drawGrid, getNewZeroPosition }
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -141,3 +141,43 @@ function drawGrid(
     drawHorizontalGridLines();
     drawVerticalGridLines();
 }
+
+/**
+ * @typedef { Object } GridObject
+ * @description Starting point of the calculation is the Cartesian coordinate system (mathematical right-handedness).
+ * The canvas object moves in the 4th quadrant and thus has the origin x=0, y=0 in the canvas corner at the top left.
+ * @param { Number } xOrigin  Origin value on x-axis (horizontal line)
+ * @param { Number } yOrigin  Origin on y- Axis (vertical line)
+ * @param { Number } shiftX   shift right / shift left. Value is changing on x-axis
+ * @param { Number } shiftY   shift up / shift down. Value is changing on y-axis
+ * @param { Number } paddingXLeft  Space on the left side before the new x-value is calculated
+ * @param { Number } paddingXRight Space on the right side before the new x-value is calculated
+ * @param { Number } paddingYUp    Space on the upper side before the new y-value is calculated
+ * @param { Number } paddingYDown  Space on the lower side before the new y-value is calculated
+ * @return { {gx0: Number, gy0: Number} } new calculated zero point
+ */
+function getNewZeroPosition(
+    xOrigin,
+    yOrigin,
+    shiftX,
+    shiftY,
+    paddingXLeft,
+    paddingXRight,
+    paddingYUp,
+    paddingYDown
+) {
+    return { gx0: xOrigin + paddingXLeft + paddingXRight - shiftX, gy0: yOrigin + paddingYUp + paddingYDown - shiftY };
+}
+
+const gridXZeroPosition = getNewZeroPosition(
+    0,
+    0,
+    500,
+    500,
+    10,
+    10,
+    10,
+    10);
+
+console.log("new x position: " + gridXZeroPosition.gx0);
+console.log("new y position: " + gridXZeroPosition.gy0);
