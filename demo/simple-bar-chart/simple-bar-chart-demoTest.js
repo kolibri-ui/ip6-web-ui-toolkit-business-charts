@@ -1,5 +1,5 @@
-import { TestSuite } from "../../src/Kolibri/docs/src/kolibri/util/test.js";
-import {SimpleBarChart} from "../../src/business-charts/projector/simpleBarChart.js";
+import { TestSuite }      from "../../src/Kolibri/docs/src/kolibri/util/test.js";
+import { SimpleBarChart } from "../../src/business-charts/projector/simpleBarChart.js";
 
 const simpleBarChartDemoSuite = TestSuite("simpleBarChart");
 

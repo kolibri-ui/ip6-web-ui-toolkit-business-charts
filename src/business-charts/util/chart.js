@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export { drawLine, drawGrid, getNewZeroPosition }
+export { drawLine, drawGrid, getNewZeroPosition, corner, sectionHorizontal, sectionVertical }
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -146,38 +146,98 @@ function drawGrid(
  * @typedef { Object } GridObject
  * @description Starting point of the calculation is the Cartesian coordinate system (mathematical right-handedness).
  * The canvas object moves in the 4th quadrant and thus has the origin x=0, y=0 in the canvas corner at the top left.
- * @param { Number } xOrigin  Origin value on x-axis (horizontal line)
- * @param { Number } yOrigin  Origin on y- Axis (vertical line)
- * @param { Number } shiftX   shift right / shift left. Value is changing on x-axis
- * @param { Number } shiftY   shift up / shift down. Value is changing on y-axis
- * @param { Number } paddingXLeft  Space on the left side before the new x-value is calculated
- * @param { Number } paddingXRight Space on the right side before the new x-value is calculated
- * @param { Number } paddingYUp    Space on the upper side before the new y-value is calculated
- * @param { Number } paddingYDown  Space on the lower side before the new y-value is calculated
- * @return { {gx0: Number, gy0: Number} } new calculated zero point
+ * @param { Enumerator } fromCorner The section where the calculation of the new point starts
+ * @param { Enumerator } toCorner The section where the new point is lying related to the starting point
+ * @param { Number }     xOrigin  Origin value on x-axis (horizontal line)
+ * @param { Number }     yOrigin  Origin on y- Axis (vertical line)
+ * @param { Enumerator } newPointSectionHorizontal the section where the new point is, relative to the origin point
+ * @param { Enumerator } newPointSectionVertical   the section where the new point is, relative to the origin point
+ * @param { Number }     shiftRightLeft shift right / shift left of the new section. Value is changing on x-axis
+ * @param { Number }     shiftUpDown    shift up / shift down of the new section. Value is changing on y-axis
+ * @param { Number }     paddingRightLeft Space on the left /right side before the new position is calculated
+ * @param { Number }     paddingUpDown    Space on the upside / downside before the new position is calculated
+ * @return { { newXPos: Number, newYPos: Number } } new calculated point
  */
 function getNewZeroPosition(
+    fromCorner,
+    toCorner,
     xOrigin,
     yOrigin,
-    shiftX,
-    shiftY,
-    paddingXLeft,
-    paddingXRight,
-    paddingYUp,
-    paddingYDown
+    newPointSectionHorizontal,
+    newPointSectionVertical,
+    shiftRightLeft,
+    shiftUpDown,
+    paddingRightLeft,
+    paddingUpDown
 ) {
-    return { gx0: xOrigin + paddingXLeft + paddingXRight - shiftX, gy0: yOrigin + paddingYUp + paddingYDown - shiftY };
+    
+    //from up left to down right
+    if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown };
+    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown };
+    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+        return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin - paddingUpDown };
+    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+        return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown };
+    
+    //from down left to up right
+    else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown };
+    else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown };
+    else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+        return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin + paddingUpDown };
+    else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+        return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown };
+    
+    //from up right to down left
+    else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown };
+    else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown};
+    else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+        return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin - paddingUpDown };
+    else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+        return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin - paddingUpDown - shiftRightLeft};
+    
+    //from down right to up left
+    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown };
+    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown};
+    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+        return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin + paddingUpDown };
+    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+        return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin + paddingUpDown + shiftRightLeft};
 }
+const corner = {
+    UP_LEFT:    "CORNER_UP_LEFT",
+    DOWN_LEFT:  "CORNER_DOWN_LEFT",
+    UP_RIGHT:   "CORNER_UP_RIGHT",
+    DOWN_RIGHT: "CORNER_DOWN_RIGHT"
+};
 
-const gridXZeroPosition = getNewZeroPosition(
+const sectionHorizontal = {
+    SEC_HOR_UP:   "SEC_HOR_UP",
+    SEC_HOR_DOWN: "SEC_HOR_DOWN"
+};
+
+const sectionVertical = {
+    SEC_VER_LEFT:  "SEC_VER_LEFT",
+    SEC_VER_RIGHT: "SEC_VER_RIGHT"
+};
+
+const getNewPosDownLeft = getNewZeroPosition(
+    corner.UP_LEFT,
+    corner.DOWN_RIGHT,
     0,
     0,
+    sectionHorizontal.SEC_HOR_DOWN,
+    sectionVertical.SEC_VER_LEFT,
     500,
     500,
     10,
     10,
     10,
     10);
-
-console.log("new x position: " + gridXZeroPosition.gx0);
-console.log("new y position: " + gridXZeroPosition.gy0);
