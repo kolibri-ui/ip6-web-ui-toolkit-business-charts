@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export { drawLine, drawGrid, getNewZeroPosition, corner, sectionHorizontal, sectionVertical }
+export { drawLine, drawGrid, getNewZeroPosition, CORNER, SEC_HORIZONTAL, SEC_VERTICAL }
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -142,6 +142,23 @@ function drawGrid(
     drawVerticalGridLines();
 }
 
+enum CORNER {
+    UP_LEFT,
+    DOWN_LEFT,
+    UP_RIGHT,
+    DOWN_RIGHT
+}
+
+enum SEC_HORIZONTAL {
+    UP,
+    DOWN
+}
+
+enum SEC_VERTICAL {
+    LEFT,
+    RIGHT
+}
+
 /**
  * @typedef { Object } GridObject
  * @description Starting point of the calculation is the Cartesian coordinate system (mathematical right-handedness).
@@ -172,72 +189,56 @@ function getNewZeroPosition(
 ) {
     
     //from up left to down right
-    if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+    if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.UP && newPointSectionVertical.LEFT)
         return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown };
-    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.DOWN && newPointSectionVertical.LEFT)
         return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown };
-    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.UP && newPointSectionVertical.RIGHT)
         return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin - paddingUpDown };
-    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.DOWN && newPointSectionVertical.RIGHT)
         return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown };
     
-    //from down left to up right
-    else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
-        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown };
-    else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
-        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown };
-    else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
-        return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin + paddingUpDown };
-    else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
-        return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown };
-    
-    //from up right to down left
-    else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
-        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown };
-    else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
-        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown};
-    else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
-        return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin - paddingUpDown };
-    else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
-        return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin - paddingUpDown - shiftRightLeft};
-    
-    //from down right to up left
-    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
-        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown };
-    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
-        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown};
-    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
-        return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin + paddingUpDown };
-    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
-        return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin + paddingUpDown + shiftRightLeft};
+    // //from down left to up right
+    // else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+    //     return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown };
+    // else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+    //     return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown };
+    // else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+    //     return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin + paddingUpDown };
+    // else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+    //     return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown };
+    //
+    // //from up right to down left
+    // else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+    //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown };
+    // else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+    //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown};
+    // else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+    //     return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin - paddingUpDown };
+    // else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+    //     return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin - paddingUpDown - shiftRightLeft};
+    //
+    // //from down right to up left
+    // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+    //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown };
+    // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+    //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown + shiftUpDown};
+    // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+    //     return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin + paddingUpDown };
+    // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointSectionHorizontal.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+    //     return { newXPos: xOrigin - paddingRightLeft - shiftRightLeft, newYPos: yOrigin + paddingUpDown + shiftRightLeft};
 }
-const corner = {
-    UP_LEFT:    "CORNER_UP_LEFT",
-    DOWN_LEFT:  "CORNER_DOWN_LEFT",
-    UP_RIGHT:   "CORNER_UP_RIGHT",
-    DOWN_RIGHT: "CORNER_DOWN_RIGHT"
-};
 
-const sectionHorizontal = {
-    SEC_HOR_UP:   "SEC_HOR_UP",
-    SEC_HOR_DOWN: "SEC_HOR_DOWN"
-};
-
-const sectionVertical = {
-    SEC_VER_LEFT:  "SEC_VER_LEFT",
-    SEC_VER_RIGHT: "SEC_VER_RIGHT"
-};
-
-const getNewPosDownLeft = getNewZeroPosition(
-    corner.UP_LEFT,
-    corner.DOWN_RIGHT,
-    0,
-    0,
-    sectionHorizontal.SEC_HOR_DOWN,
-    sectionVertical.SEC_VER_LEFT,
-    500,
-    500,
-    10,
-    10,
-    10,
-    10);
+// const getNewPosDownLeft = getNewZeroPosition(
+//     corner.UP_LEFT,
+//     corner.DOWN_RIGHT,
+//     0,
+//     0,
+//     sectionHorizontal.SEC_HOR_DOWN,
+//     sectionVertical.SEC_VER_LEFT,
+//     500,
+//     500,
+//     10,
+//     10,
+//     10,
+//     10);
