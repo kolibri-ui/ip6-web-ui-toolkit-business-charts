@@ -142,7 +142,36 @@ function drawGrid(
     drawVerticalGridLines();
 }
 
-enum CORNER {
+/**
+ *
+ * @type {{UP_RIGHT: string, DOWN_RIGHT: string, DOWN_LEFT: string, UP_LEFT: string}}
+ */
+const CORNER = {
+    UP_LEFT :   "CORNER_UP_LEFT",
+    DOWN_LEFT:  "CORNER_DOWN_LEFT",
+    UP_RIGHT:   "CORNER_UP_RIGHT",
+    DOWN_RIGHT: "CORNER_DOWN_RIGHT"
+}
+
+/**
+ *
+ * @type {{DOWN: string, UP: string}}
+ */
+const SEC_HORIZONTAL = {
+    UP:   "SEC_HORIZONTAL_UP",
+    DOWN: "SEC_HORIZONTAL_DOWN"
+}
+
+/**
+ *
+ * @type {{LEFT: string, RIGHT: string}}
+ */
+const SEC_VERTICAL = {
+    LEFT: "SEC_VERTICAL_LEFT",
+    RIGHT: "SEC_VERTICAL_RIGHT"
+}
+
+/*enum CORNER {
     UP_LEFT,
     DOWN_LEFT,
     UP_RIGHT,
@@ -157,23 +186,23 @@ enum SEC_HORIZONTAL {
 enum SEC_VERTICAL {
     LEFT,
     RIGHT
-}
+}*/
 
 /**
  * @typedef { Object } GridObject
  * @description Starting point of the calculation is the Cartesian coordinate system (mathematical right-handedness).
  * The canvas object moves in the 4th quadrant and thus has the origin x=0, y=0 in the canvas corner at the top left.
- * @param { Enumerator } fromCorner The section where the calculation of the new point starts
- * @param { Enumerator } toCorner The section where the new point is lying related to the starting point
+ * @param { String } fromCorner The section where the calculation of the new point starts
+ * @param { String } toCorner The section where the new point is lying related to the starting point
  * @param { Number }     xOrigin  Origin value on x-axis (horizontal line)
  * @param { Number }     yOrigin  Origin on y- Axis (vertical line)
- * @param { Enumerator } newPointSectionHorizontal the section where the new point is, relative to the origin point
- * @param { Enumerator } newPointSectionVertical   the section where the new point is, relative to the origin point
+ * @param { String } newPointSectionHorizontal the section where the new point is, relative to the origin point
+ * @param { String } newPointSectionVertical   the section where the new point is, relative to the origin point
  * @param { Number }     shiftRightLeft shift right / shift left of the new section. Value is changing on x-axis
  * @param { Number }     shiftUpDown    shift up / shift down of the new section. Value is changing on y-axis
  * @param { Number }     paddingRightLeft Space on the left /right side before the new position is calculated
  * @param { Number }     paddingUpDown    Space on the upside / downside before the new position is calculated
- * @return { { newXPos: Number, newYPos: Number } } new calculated point
+ * @return { {newXPos: Number}, {newYPos: Number} } new calculated point
  */
 function getNewZeroPosition(
     fromCorner,
@@ -189,15 +218,17 @@ function getNewZeroPosition(
 ) {
     
     //from up left to down right
-    if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.UP && newPointSectionVertical.LEFT)
+    if (fromCorner === CORNER.DOWN_RIGHT && toCorner === CORNER.DOWN_RIGHT && newPointSectionHorizontal === SEC_HORIZONTAL.UP && newPointSectionVertical === SEC_VERTICAL.LEFT)
         return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown };
-    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.DOWN && newPointSectionVertical.LEFT)
+    else if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointSectionHorizontal === SEC_HORIZONTAL.DOWN && newPointSectionVertical === SEC_VERTICAL.LEFT)
         return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown };
-    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.UP && newPointSectionVertical.RIGHT)
+    else if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointSectionHorizontal === SEC_HORIZONTAL.UP && newPointSectionVertical === SEC_VERTICAL.RIGHT)
         return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin - paddingUpDown };
-    else if (fromCorner.UP_LEFT && toCorner.DOWN_RIGHT && newPointSectionHorizontal.DOWN && newPointSectionVertical.RIGHT)
+    else (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointSectionHorizontal === SEC_HORIZONTAL.DOWN && newPointSectionVertical === SEC_VERTICAL.RIGHT)
         return { newXPos: xOrigin + paddingRightLeft + shiftRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown };
-    
+    // else {
+    //     console.log("Keine passende Option");
+    // }
     // //from down left to up right
     // else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointSectionHorizontal.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
     //     return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown };
