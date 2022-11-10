@@ -144,7 +144,7 @@ function drawGrid(
 
 /**
  *
- * @type {{UP_RIGHT: string, DOWN_RIGHT: string, DOWN_LEFT: string, UP_LEFT: string}} 
+ * @type {{UP_RIGHT: string, DOWN_RIGHT: string, DOWN_LEFT: string, UP_LEFT: string}}
  * the section where the origin point is and / or the destination point should be
  * @param { UP_LEFT }    UP_LEFT the corner up left from a 2D perspective
  * @param { DOWN_LEFT }  DOWN_LEFT the corner down left from a 2D perspective
@@ -158,69 +158,63 @@ const CORNER = {
     DOWN_RIGHT: "CORNER_DOWN_RIGHT"
 };
 
-function fromUpLeftToDownRight(
-    fromCorner, 
-    toCorner, 
-    newPointPos, 
-    xOrigin, 
-    paddingRightLeft, 
-    yOrigin, 
-    paddingUpDown, 
-    drawWidth, 
-    drawHeight) {
-        if (newPointPos === CORNER.UP_LEFT)
-            return {
-                newXPos: xOrigin + paddingRightLeft,
-                newYPos: yOrigin - paddingUpDown
-            };
-        else if (newPointPos === CORNER.UP_RIGHT)
-            return {
-                newXPos: xOrigin + paddingRightLeft + drawWidth,
-                newYPos: yOrigin - paddingUpDown
-            };
-        else if (newPointPos === CORNER.DOWN_LEFT)
-            return {
-                newXPos: xOrigin + paddingRightLeft,
-                newYPos: yOrigin - paddingUpDown - drawHeight
-            };
-        else if (newPointPos === CORNER.DOWN_RIGHT)
-            return {
-                newXPos: xOrigin + paddingRightLeft + drawWidth,
-                newYPos: yOrigin - paddingUpDown - drawHeight
-            };
+function fromUpLeftToDownRight(fromCorner, toCorner, newPointPos, xOrigin, paddingRightLeft, yOrigin, paddingUpDown, drawWidth, drawHeight) {
+    if (newPointPos === CORNER.UP_LEFT)
+        return {newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown};
+    else if (newPointPos === CORNER.UP_RIGHT)
+        return {newXPos: xOrigin + paddingRightLeft + drawWidth, newYPos: yOrigin - paddingUpDown};
+    else if (newPointPos === CORNER.DOWN_LEFT)
+        return {newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown - drawHeight};
+    else if (newPointPos === CORNER.DOWN_RIGHT)
+        return {newXPos: xOrigin + paddingRightLeft + drawWidth, newYPos: yOrigin - paddingUpDown - drawHeight};
+    else return {
+            newXPos: NaN,
+            newYPos: NaN
+        };
 }
 
 function fromDownLeftToUpRight(fromCorner, toCorner, newPointPos, xOrigin, paddingRightLeft, yOrigin, paddingUpDown, drawWidth, drawHeight) {
-    // //from down left to up right
     if (newPointPos === CORNER.DOWN_LEFT)
-        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown };
+        return {newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown};
     else if (newPointPos === CORNER.UP_LEFT)
-        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown + drawHeight };
+        return {newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown + drawHeight};
     else if (newPointPos === CORNER.DOWN_RIGHT)
-        return { newXPos: xOrigin + paddingRightLeft + drawWidth, newYPos: yOrigin + paddingUpDown };
+        return {newXPos: xOrigin + paddingRightLeft + drawWidth, newYPos: yOrigin + paddingUpDown};
     else if (newPointPos === CORNER.UP_RIGHT)
-        return { newXPos: xOrigin + paddingRightLeft + drawWidth, newYPos: yOrigin + paddingUpDown + drawHeight };
-
+        return {newXPos: xOrigin + paddingRightLeft + drawWidth, newYPos: yOrigin + paddingUpDown + drawHeight};
     else return {
-        newXPos: 99999999,
-        newYPos: 99999999
-    };
+            newXPos: NaN,
+            newYPos: NaN
+        };
 }
 
 function fromUpRightDownLeft(fromCorner, toCorner, newPointPos, xOrigin, paddingRightLeft, yOrigin, paddingUpDown, drawWidth, drawHeight) {
-    //from up right to down left
     if (newPointPos === CORNER.UP_RIGHT)
-        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown };
+        return {newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown};
     else if (newPointPos === CORNER.DOWN_RIGHT)
-        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown - drawHeight};
+        return {newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown - drawHeight};
     else if (newPointPos === CORNER.UP_LEFT)
-        return { newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin - paddingUpDown };
+        return {newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin - paddingUpDown};
     else if (newPointPos === CORNER.DOWN_LEFT)
-        return { newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin - paddingUpDown - drawWidth};
-
+        return {newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin - paddingUpDown - drawWidth};
     else return {
-            newXPos: 99999999,
-            newYPos: 99999999
+            newXPos: NaN,
+            newYPos: NaN
+        };
+}
+
+function fromDownRightToUpLeft(fromCorner, toCorner, newPointPos, xOrigin, paddingRightLeft, yOrigin, paddingUpDown, drawWidth, drawHeight) {
+    if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
+        return {newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown};
+    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+        return {newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown + drawHeight};
+    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
+        return {newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin + paddingUpDown};
+    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
+        return {newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin + paddingUpDown + drawWidth};
+    else return {
+            newXPos: NaN,
+            newYPos: NaN
         };
 }
 
@@ -252,17 +246,17 @@ function getNewPointPos(
 ) {
     //from up left to down right
     if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT)
-    return fromUpLeftToDownRight(
-        fromCorner, 
-        toCorner, 
-        newPointPos, 
-        xOrigin, 
-        paddingRightLeft, 
-        yOrigin, 
-        paddingUpDown, 
-        drawWidth, 
-        drawHeight);
-    
+        return fromUpLeftToDownRight(
+            fromCorner,
+            toCorner,
+            newPointPos,
+            xOrigin,
+            paddingRightLeft,
+            yOrigin,
+            paddingUpDown,
+            drawWidth,
+            drawHeight);
+
     else if (fromCorner === CORNER.DOWN_LEFT && toCorner === CORNER.UP_RIGHT)
         return fromDownLeftToUpRight(
             fromCorner,
@@ -287,20 +281,14 @@ function getNewPointPos(
             drawWidth,
             drawHeight);
 
-
-    
-    
-    
-    
- 
-   
-    // //from down right to up left
-    // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
-    //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown };
-    // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
-    //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown + drawHeight};
-    // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
-    //     return { newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin + paddingUpDown };
-    // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
-    //     return { newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin + paddingUpDown + drawWidth};
+    else return fromDownRightToUpLeft(
+            fromCorner,
+            toCorner,
+            newPointPos,
+            xOrigin,
+            paddingRightLeft,
+            yOrigin,
+            paddingUpDown,
+            drawWidth,
+            drawHeight);
 }
