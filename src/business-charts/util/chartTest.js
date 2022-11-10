@@ -227,10 +227,10 @@ chartSuite.add("from down right to up left, new point: down right",
     assert => {
         const newPoint = getNewPointPos(
             "CORNER_DOWN_RIGHT",
-            "CORNER_DOWN_LEFT",
-            -520,
-            -520,
             "CORNER_UP_LEFT",
+            520,
+            -520,
+            "CORNER_DOWN_RIGHT",
             500,
             500,
             10,
