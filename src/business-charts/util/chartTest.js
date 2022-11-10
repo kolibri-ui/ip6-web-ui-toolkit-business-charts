@@ -241,4 +241,21 @@ chartSuite.add("from down right to up left, new point: down right",
         assert.is(newPoint.newYPos, -510);
     });
 
+chartSuite.add("from down right to up left, new point: up right",
+    assert => {
+        const newPoint = getNewPointPos(
+            "CORNER_DOWN_RIGHT",
+            "CORNER_UP_LEFT",
+            520,
+            -520,
+            "CORNER_UP_RIGHT",
+            500,
+            500,
+            10,
+            10
+        );
+
+        assert.is(newPoint.newXPos, 510);
+        assert.is(newPoint.newYPos, -10);
+    });
 chartSuite.run();
