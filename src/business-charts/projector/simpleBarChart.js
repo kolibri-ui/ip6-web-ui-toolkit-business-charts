@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
 import { dom } from "../../Kolibri/docs/src/kolibri/util/dom.js";
-import { drawGrid, getNewZeroPosition } from "../util/chart.js";
+import { drawGrid, getNewPointPos } from "../util/chart.js";
 import { drawRect } from "../util/rectangleProjector.js";
 
 
