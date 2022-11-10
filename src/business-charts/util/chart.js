@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export { drawLine, drawGrid, getNewZeroPosition, CORNER }
+export {drawLine, drawGrid, getNewZeroPosition, CORNER}
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -28,15 +28,15 @@ export { drawLine, drawGrid, getNewZeroPosition, CORNER }
  * @param { Number } endX the x position where the line ends relative to the null point
  * @param { Number } endY the y position where the line ends relative to the null point
  * @param { String } color the color of the line
- * 
- * @example Creates Axis, grids, the line of a line chart, 
+ *
+ * @example Creates Axis, grids, the line of a line chart,
  */
 function drawLine(
-    ctx, 
-    startX, 
-    startY, 
-    endX, 
-    endY, 
+    ctx,
+    startX,
+    startY,
+    endX,
+    endY,
     color
 ) {
     ctx.save();
@@ -134,10 +134,10 @@ function drawGrid(
 
     // Abscissa
     drawLine(ctx, startX, y, width, y, options.primaryLineColor);
-    
+
     // Ordinate
     drawLine(ctx, x, startY, x, height, options.primaryLineColor);
-    
+
     drawHorizontalGridLines();
     drawVerticalGridLines();
 }
@@ -147,9 +147,9 @@ function drawGrid(
  * @type {{UP_RIGHT: string, DOWN_RIGHT: string, DOWN_LEFT: string, UP_LEFT: string}}
  */
 const CORNER = {
-    UP_LEFT :   "CORNER_UP_LEFT",
-    DOWN_LEFT:  "CORNER_DOWN_LEFT",
-    UP_RIGHT:   "CORNER_UP_RIGHT",
+    UP_LEFT: "CORNER_UP_LEFT",
+    DOWN_LEFT: "CORNER_DOWN_LEFT",
+    UP_RIGHT: "CORNER_UP_RIGHT",
     DOWN_RIGHT: "CORNER_DOWN_RIGHT"
 }
 
@@ -214,19 +214,57 @@ function getNewZeroPosition(
     paddingRightLeft,
     paddingUpDown
 ) {
-    
-    //from up left to down right
-    if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointPos === CORNER.UP_LEFT)
-        return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown };
-    //else if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointPos === SEC_HORIZONTAL.DOWN && newPointSectionVertical === SEC_VERTICAL.LEFT)
-    //    return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown - drawHeight };
-    else  (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointPos === CORNER.UP_RIGHT)
-        return { newXPos: xOrigin + paddingRightLeft + drawWidth, newYPos: yOrigin - paddingUpDown };
-    //else (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointPos === SEC_HORIZONTAL.DOWN && newPointSectionVertical === SEC_VERTICAL.RIGHT)
-    //    return { newXPos: xOrigin + paddingRightLeft + drawWidth, newYPos: yOrigin - paddingUpDown - drawHeight };
+    if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT)
+        if (newPointPos === CORNER.UP_LEFT)
+            return {
+                newXPos: xOrigin + paddingRightLeft,
+                newYPos: yOrigin - paddingUpDown
+            };
+        else if (newPointPos === CORNER.DOWN_LEFT)
+            return {
+                newXPos: xOrigin + paddingRightLeft,
+                newYPos: yOrigin - paddingUpDown - drawHeight
+            };
+
+        else if (newPointPos === CORNER.UP_RIGHT)
+            return {
+                newXPos: xOrigin + paddingRightLeft + drawWidth,
+                newYPos: yOrigin - paddingUpDown
+            };
+        else return {
+                newXPos: xOrigin + paddingRightLeft + drawWidth,
+                newYPos: yOrigin - paddingUpDown - drawHeight
+            };
+
+        //from up left to down right
+        // if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointPos === CORNER.UP_LEFT)
+        //     return { 
+        //         newXPos: xOrigin + paddingRightLeft, 
+        //         newYPos: yOrigin - paddingUpDown };
+        //
+        // else if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointPos === CORNER.DOWN_LEFT)
+        //     return { 
+        //         newXPos: xOrigin + paddingRightLeft, 
+    //         newYPos: yOrigin - paddingUpDown - drawHeight };
+    //
+    // else if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointPos === CORNER.UP_RIGHT)
+    //     return {
+    //         newXPos: xOrigin + paddingRightLeft + drawWidth,
+    //         newYPos: yOrigin - paddingUpDown
+    //     };
+    //
+    // else (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointPos === CORNER.DOWN_RIGHT)
+    // return {
+    //     newXPos: xOrigin + paddingRightLeft + drawWidth,
+    //     newYPos: yOrigin - paddingUpDown - drawHeight
+    // };
     // else {
     //     console.log("Keine passende Option");
     // }
+    
+    
+    
+    
     // //from down left to up right
     // else if (fromCorner.DOWN_LEFT && toCorner.UP_RIGHT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
     //     return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin + paddingUpDown };
