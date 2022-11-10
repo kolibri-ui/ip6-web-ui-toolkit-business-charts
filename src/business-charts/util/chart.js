@@ -218,7 +218,7 @@ function getNewZeroPosition(
 ) {
     
     //from up left to down right
-    if (fromCorner === CORNER.DOWN_RIGHT && toCorner === CORNER.DOWN_RIGHT && newPointSectionHorizontal === SEC_HORIZONTAL.UP && newPointSectionVertical === SEC_VERTICAL.LEFT)
+    if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointSectionHorizontal === SEC_HORIZONTAL.UP && newPointSectionVertical === SEC_VERTICAL.LEFT)
         return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown };
     else if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT && newPointSectionHorizontal === SEC_HORIZONTAL.DOWN && newPointSectionVertical === SEC_VERTICAL.LEFT)
         return { newXPos: xOrigin + paddingRightLeft, newYPos: yOrigin - paddingUpDown - shiftUpDown };
