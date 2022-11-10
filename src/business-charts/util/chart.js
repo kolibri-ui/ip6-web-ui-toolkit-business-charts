@@ -207,6 +207,23 @@ function fromDownLeftToUpRight(fromCorner, toCorner, newPointPos, xOrigin, paddi
     };
 }
 
+function fromUpRightDownLeft(fromCorner, toCorner, newPointPos, xOrigin, paddingRightLeft, yOrigin, paddingUpDown, drawWidth, drawHeight) {
+    //from up right to down left
+    if (newPointPos === CORNER.UP_RIGHT)
+        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown };
+    else if (newPointPos === CORNER.DOWN_RIGHT)
+        return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown - drawHeight};
+    else if (newPointPos === CORNER.UP_LEFT)
+        return { newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin - paddingUpDown };
+    else if (newPointPos === CORNER.DOWN_LEFT)
+        return { newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin - paddingUpDown - drawWidth};
+
+    else return {
+            newXPos: 99999999,
+            newYPos: 99999999
+        };
+}
+
 /**
  * @typedef { Object } GridObject
  * @description Starting point of the calculation is the Cartesian coordinate system (mathematical right-handedness).
@@ -258,22 +275,25 @@ function getNewPointPos(
             drawWidth,
             drawHeight);
 
+    else if (fromCorner === CORNER.UP_RIGHT && toCorner === CORNER.DOWN_LEFT)
+        return fromUpRightDownLeft(
+            fromCorner,
+            toCorner,
+            newPointPos,
+            xOrigin,
+            paddingRightLeft,
+            yOrigin,
+            paddingUpDown,
+            drawWidth,
+            drawHeight);
+
 
     
     
     
     
  
-    // //from up right to down left
-    // else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointPos.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
-    //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown };
-    // else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
-    //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown - drawHeight};
-    // else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointPos.SEC_HOR_UP && newPointSectionVertical.SEC_VER_LEFT)
-    //     return { newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin - paddingUpDown };
-    // else if (fromCorner.UP_RIGHT && toCorner.DOWN_LEFT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
-    //     return { newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin - paddingUpDown - drawWidth};
-    //
+   
     // //from down right to up left
     // else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_RIGHT)
     //     return { newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown };
