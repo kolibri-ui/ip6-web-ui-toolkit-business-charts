@@ -295,4 +295,23 @@ chartSuite.add("from down right to up left, new point: up left",
         assert.is(newPoint.newYPos, -10);
     });
 
+//not allowed calculations
+chartSuite.add("from corner and to corner has same values",
+    assert => {
+        const newPoint = getNewPointPos(
+            "CORNER_UP_LEFT",
+            "CORNER_UP_LEFT",
+            520,
+            -520,
+            "CORNER_UP_LEFT",
+            500,
+            500,
+            10,
+            10
+        );
+
+        assert.is(newPoint.newXPos, NaN);
+        assert.is(newPoint.newYPos, NaN);
+    });
+
 chartSuite.run();
