@@ -1,5 +1,5 @@
 import {TestSuite} from "../../Kolibri/docs/src/kolibri/util/test.js";
-import {getNewZeroPosition} from "./chart.js";
+import { getNewZeroPosition } from "./chart.js";
 
 const chartSuite = TestSuite("business-charts/util/chart");
 
@@ -12,7 +12,7 @@ chartSuite.add("from up left to down right, new point: down left",
             0,
             "SEC_HORIZONTAL_DOWN",
             "SEC_VERTICAL_LEFT",
-            0,
+            500,
             500,
             10,
             10
@@ -29,9 +29,8 @@ chartSuite.add("from up left to down right, new point: up left",
             "CORNER_DOWN_RIGHT",
             0,
             0,
-            "SEC_HORIZONTAL_UP",
-            "SEC_VERTICAL_LEFT",
-            0,
+            "CORNER_UP_LEFT",
+            500,
             500,
             10,
             10
@@ -48,9 +47,8 @@ chartSuite.add("from up left to down right, new point: up right",
             "CORNER_DOWN_RIGHT",
             0,
             0,
-            "SEC_HORIZONTAL_UP",
-            "SEC_VERTICAL_RIGHT",
-            0,
+            "CORNER_UP_RIGHT",
+            500,
             500,
             10,
             10
@@ -59,5 +57,25 @@ chartSuite.add("from up left to down right, new point: up right",
         assert.is(newPoint.newXPos, 510);
         assert.is(newPoint.newYPos, -10);
     });
+
+chartSuite.add("from up left to down right, new point: down right",
+    assert => {
+        const newPoint = getNewZeroPosition(
+            "CORNER_UP_LEFT",
+            "CORNER_DOWN_RIGHT",
+            0,
+            0,
+            "CORNER_DOWN_RIGHT",
+            500,
+            500,
+            10,
+            10
+        );
+
+        assert.is(newPoint.newXPos, 510);
+        assert.is(newPoint.newYPos, -510);
+    });
+
+
 
 chartSuite.run();
