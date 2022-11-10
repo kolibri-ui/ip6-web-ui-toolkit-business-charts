@@ -188,7 +188,7 @@ function fromDownLeftToUpRight(fromCorner, toCorner, newPointPos, xOrigin, paddi
         };
 }
 
-function fromUpRightDownLeft(fromCorner, toCorner, newPointPos, xOrigin, paddingRightLeft, yOrigin, paddingUpDown, drawWidth, drawHeight) {
+function fromUpRightToDownLeft(fromCorner, toCorner, newPointPos, xOrigin, paddingRightLeft, yOrigin, paddingUpDown, drawWidth, drawHeight) {
     if (newPointPos === CORNER.UP_RIGHT)
         return {newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin - paddingUpDown};
     else if (newPointPos === CORNER.DOWN_RIGHT)
@@ -275,7 +275,7 @@ function getNewPointPos(
             drawHeight);
 
     else if (fromCorner === CORNER.UP_RIGHT && toCorner === CORNER.DOWN_LEFT)
-        return fromUpRightDownLeft(
+        return fromUpRightToDownLeft(
             fromCorner,
             toCorner,
             newPointPos,
@@ -286,6 +286,7 @@ function getNewPointPos(
             drawWidth,
             drawHeight);
 
+    //
     else return fromDownRightToUpLeft(
             fromCorner,
             toCorner,
