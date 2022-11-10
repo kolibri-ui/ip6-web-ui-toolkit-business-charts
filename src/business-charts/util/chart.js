@@ -244,7 +244,7 @@ function getNewPointPos(
     paddingRightLeft,
     paddingUpDown
 ) {
-    if ( fromCorner == toCorner )
+    if ( fromCorner === toCorner )
         return {
         newXPos: NaN,
         newYPos: NaN

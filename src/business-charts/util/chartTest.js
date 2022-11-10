@@ -310,8 +310,8 @@ chartSuite.add("from corner and to corner has same values",
             10
         );
 
-        assert.is(newPoint.newXPos, NaN);
-        assert.is(newPoint.newYPos, NaN);
+        assert.is(isNaN(newPoint.newXPos), isNaN(NaN));
+        assert.is(isNaN(newPoint.newYPos), isNaN(NaN));
     });
 
 chartSuite.run();
