@@ -244,8 +244,13 @@ function getNewPointPos(
     paddingRightLeft,
     paddingUpDown
 ) {
+    if ( fromCorner == toCorner )
+        return {
+        newXPos: NaN,
+        newYPos: NaN
+    };
     //from up left to down right
-    if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT)
+    else if (fromCorner === CORNER.UP_LEFT && toCorner === CORNER.DOWN_RIGHT)
         return fromUpLeftToDownRight(
             fromCorner,
             toCorner,
