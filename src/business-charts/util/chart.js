@@ -206,7 +206,7 @@ function fromUpRightDownLeft(fromCorner, toCorner, newPointPos, xOrigin, padding
 function fromDownRightToUpLeft(fromCorner, toCorner, newPointPos, xOrigin, paddingRightLeft, yOrigin, paddingUpDown, drawWidth, drawHeight) {
     if (newPointPos === CORNER.DOWN_RIGHT)
         return {newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown};
-    else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_UP && newPointSectionVertical.SEC_VER_RIGHT)
+    else if (newPointPos === CORNER.UP_RIGHT)
         return {newXPos: xOrigin - paddingRightLeft, newYPos: yOrigin + paddingUpDown + drawHeight};
     else if (fromCorner.DOWN_RIGHT && toCorner.UP_LEFT && newPointPos.SEC_HOR_DOWN && newPointSectionVertical.SEC_VER_LEFT)
         return {newXPos: xOrigin - paddingRightLeft - drawWidth, newYPos: yOrigin + paddingUpDown};
