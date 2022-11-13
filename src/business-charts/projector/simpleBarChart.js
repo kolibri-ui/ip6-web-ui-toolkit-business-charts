@@ -1,8 +1,8 @@
 // noinspection SpellCheckingInspection
 
-import { drawGrid } from "../util/chart.js";
-import { drawRect } from "../util/rectangleProjector.js";
-import { resizeHandler } from "../util/resizeHandler.js";
+import {drawGrid} from "../util/chart.js";
+import {drawRect} from "../util/rectangleProjector.js";
+import {resizeHandler} from "../util/resizeHandler.js";
 
 
 export {SimpleBarChart}
@@ -24,7 +24,7 @@ HTMLCanvasElement.prototype.redraw = undefined;
 
 /**
  * @typedef { Object } BarChartOptions
- * @property { !Number } width Width in pixel
+ * @property { Number } width Width in pixel
  * @property { Number } height Height in pixel
  * @property { Number } padding Padding for elements
  * @property { Array.<String> } colors Colors for bars
@@ -35,8 +35,8 @@ HTMLCanvasElement.prototype.redraw = undefined;
 /**
  * Implementation of a simple Canvas bar chart.
  * @author Valentina Giampa & Roger Kreienbühl
- * @param {BarChartOptions} options
- * @param {Array.<BarChartDataElement>} data
+ * @param {BarChartOptions} options chart-options
+ * @param {Array.<BarChartDataElement>} data data-elements to display
  * @returns {HTMLCanvasElement}
  * @constructor
  */
@@ -120,13 +120,13 @@ const SimpleBarChart = (data, options) => {
  */
 const drawBars = (context, data, options, offset, ratio, gridHeight, barWidth) => {
     let barX = options.padding * 2 + offset;
-    for(const [i, v] of data.entries()) {
+    for (const [i, v] of data.entries()) {
         const height = v.value * ratio;
         const barY = options.padding + gridHeight - offset - height;
         const color = options.colors[i % options.colors.length]
 
         drawRect(context, barX, barY, barWidth, height, color);
 
-        barX += 2* options.padding + barWidth;
+        barX += 2 * options.padding + barWidth;
     }
 }
