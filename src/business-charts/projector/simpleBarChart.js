@@ -58,8 +58,6 @@ const SimpleBarChart = (data, options) => {
      * @param {ResizeObserverEntry} entry
      */
     canvasElement.handleResize = entry => {
-        console.log(entry.target.chartOptions);
-
         let cs = window.getComputedStyle(entry.target);
         entry.target.chartOptions.width = parseInt(cs.width.replace('px', ''));
         entry.target.chartOptions.height = parseInt(cs.height.replace('px', ''));
@@ -73,7 +71,8 @@ const SimpleBarChart = (data, options) => {
      * @param {Array.<BarChartDataElement>} data
      */
     canvasElement.redraw = (data, options) => {
-        /** @type {CanvasRenderingContext2D} */ const context = document.getElementById(options.id).getContext('2d');
+        /** @type {CanvasRenderingContext2D} */
+        const context = document.getElementById(options.id).getContext('2d');
         const gridX = options.padding;
         const gridY = options.padding;
         const gridWidth = options.width - 2 * options.padding;
@@ -103,8 +102,6 @@ const SimpleBarChart = (data, options) => {
         );
     };
 
-    // canvasElement.redraw(canvasElement, data, options);
-
     return canvasElement;
 };
 
@@ -118,7 +115,15 @@ const SimpleBarChart = (data, options) => {
  * @param {Number} gridHeight
  * @param {Number} barWidth
  */
-const drawBars = (context, data, options, offset, ratio, gridHeight, barWidth) => {
+const drawBars = (
+    context,
+    data,
+    options,
+    offset,
+    ratio,
+    gridHeight,
+    barWidth
+) => {
     let barX = options.padding * 2 + offset;
     for (const [i, v] of data.entries()) {
         const height = v.value * ratio;
