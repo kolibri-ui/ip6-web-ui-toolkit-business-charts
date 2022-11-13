@@ -21,5 +21,14 @@ import {SimpleBarChart} from "../../src/business-charts/projector/simpleBarChart
     secondaryLineColor: 'grey'
 };
 
-const simpleBarChart = SimpleBarChart({ data: data, width: 500, height: 400, padding: 5, gridOptions: gridOptions} );
+const simpleBarChart = SimpleBarChart(
+    data,
+    {
+        width: 500,
+        height: 400,
+        padding: 5,
+        colors: ["#a55ca5", "#67b6c7", "#bccd7a", "#eb9743"],
+        gridOptions: gridOptions
+    }
+);
 document.getElementById('container').append(simpleBarChart);
