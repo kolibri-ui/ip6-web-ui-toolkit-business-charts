@@ -7,6 +7,15 @@ import { resizeHandler } from "../util/resizeHandler.js";
 
 export {SimpleBarChart}
 
+/** @type {Array.<BarChartDataElement>} */
+HTMLCanvasElement.prototype.data = undefined;
+/** @type {BarChartOptions} */
+HTMLCanvasElement.prototype.chartOptions = undefined;
+/** @type {Function} */
+HTMLCanvasElement.prototype.handleResize = undefined;
+/** @type {Function} */
+HTMLCanvasElement.prototype.redraw = undefined;
+
 /**
  * @typedef { Object } BarChartDataElement
  * @property { String } name Name of the data element
