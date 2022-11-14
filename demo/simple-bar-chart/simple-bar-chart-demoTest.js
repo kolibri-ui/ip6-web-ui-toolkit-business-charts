@@ -45,8 +45,6 @@ simpleBarChartDemoSuite.add("demo/simple-bar-chart/simple-bar-char-demo", assert
     
     const simpleBarChart = SimpleBarChart(data, { width: 500, height: 400, padding: 5, gridOptions: gridOptions} );
     
-    assert.is(typeof gridOptions, "ChartGridOptions");
-    assert.is(typeof data, "Array.<BarChartDataElement>");
 });
 
 simpleBarChartDemoSuite.run();
