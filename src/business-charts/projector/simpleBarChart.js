@@ -35,13 +35,13 @@ HTMLCanvasElement.prototype.redraw = undefined;
 /**
  * Implementation of a simple Canvas bar chart.
  * @author Valentina Giampa & Roger Kreienbühl
- * @param {BarChartOptions} options chart-options
- * @param {Array.<BarChartDataElement>} data data-elements to display
- * @returns {HTMLCanvasElement}
+ * @param { BarChartOptions } options chart-options
+ * @param { Array.<BarChartDataElement> } data data-elements to display
+ * @returns { HTMLCanvasElement }
  * @constructor
  */
 const SimpleBarChart = (data, options) => {
-    /** @type {HTMLCanvasElement} */ const canvasElement = document.createElement("canvas");
+    /** @type { HTMLCanvasElement } */ const canvasElement = document.createElement("canvas");
 
     options.id = options.id ?? 'bar-chart-23412543214';
 

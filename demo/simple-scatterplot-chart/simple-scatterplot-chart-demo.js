@@ -1,0 +1,1 @@
+import { SimpleScatterplotChart } from "../../src/business-charts/projector/simpleScatterplotChart.js"
