@@ -4,7 +4,9 @@ import { canvasToDomainXY, domainToCanvasXY } from "./chartFunctions.js"
 const chartFunctionsTestSuite = TestSuite("src/business-charts/utils/chartFunctions");
 
 chartFunctionsTestSuite.add("domainToCanvas", assert => {
+    //canvas value of domain null point
     /** @type { CanvasPoint2D } */ const domainNullPoint = { xValue: 300, yValue: 200 };
+    
     const xRatio = 20;
     const yRatio = 15;
 
@@ -33,15 +35,28 @@ chartFunctionsTestSuite.add("domainToCanvas", assert => {
     assert.is(resultAllZeroDomainPoint.xValue, 300);
     assert.is(resultAllZeroDomainPoint.yValue, 200);
 
+    //tests with domain null point 0,0
     /** @type { CanvasPoint2D } */ const domainNullZeroPoint = { xValue: 0, yValue: 0 };
     
-    /** @type { DomainPoint2D } */ const newDomainPoint = { xValue: 10, yValue: 8 }
+    /** @type { CanvasPoint2D } */ const newDomainPoint = { xValue: 10, yValue: 8 }
     const resultDomainPoint = domainToCanvasXY(domainNullZeroPoint, xRatio, yRatio, newDomainPoint);
     assert.is(resultDomainPoint.xValue, 200);
     assert.is(resultDomainPoint.yValue, -120);
     
-    //TODO handle xRatio = 0
-    //TODO handle yRatio = 0
+    //no ratio
+    const resultNullRatio = domainToCanvasXY(domainNullPoint, 0, 0, newDomainPoint);
+    assert.is(resultNullRatio.xValue, 300);
+    assert.is(resultNullRatio.yValue, 200);
+    
+    //negative ratio
+    const resultAllRatio = domainToCanvasXY(domainNullZeroPoint, -1, -1, newDomainPoint);
+    assert.is(resultAllRatio.xValue, -10);
+    assert.is(resultAllRatio.yValue, 8);
+
+    //neutral ratio
+    const resultOrigin = domainToCanvasXY(domainNullZeroPoint, 1, 1, newDomainPoint);
+    assert.is(resultOrigin.xValue, 10);
+    assert.is(resultOrigin.yValue, -8);
 
 })
 

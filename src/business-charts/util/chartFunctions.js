@@ -15,7 +15,7 @@ export { canvasToDomainXY, domainToCanvasXY }
 
 /**
  * 
- * @param { !CanvasPoint2D } domainNullPoint where the domain nullpoint is on canvas. always needed
+ * @param { !CanvasPoint2D } domainNullPoint canvas xValue and yValue of domain null point
  * @param { !Number } xRatio
  * @param { !Number } yRatio
  * @param { !DomainPoint2D } newDomainPoint
