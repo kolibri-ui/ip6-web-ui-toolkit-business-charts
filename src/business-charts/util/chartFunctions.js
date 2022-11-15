@@ -16,8 +16,8 @@ export { canvasToDomainXY, domainToCanvasXY }
 /**
  * 
  * @param { !CanvasPoint2D } domainNullPoint canvas xValue and yValue of domain null point
- * @param { !Number } xRatio
- * @param { !Number } yRatio
+ * @param { !Number } xRatio stretch (>1) / stow (<0) xValue from domain to canvas
+ * @param { !Number } yRatio stretch (>1) / stow (<0) yValue from domain to canvas
  * @param { !DomainPoint2D } newDomainPoint
  * @return { CanvasPoint2D }
  */
