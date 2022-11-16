@@ -16,6 +16,7 @@ export { canvasToDomainXY, domainToCanvasXY }
 /**
  * 
  * @param { !CanvasPoint2D } domainNullPoint zero point definition of the grid in the domain in canvas values
+ * //TODO other param comments?
  * @param { !Number } xRatio stretch (>1) / stow (<0) xValue from domain to canvas
  * @param { !Number } yRatio stretch (>1) / stow (<0) yValue from domain to canvas
  * @param { !DomainPoint2D } newDomainPoint domain position of the new point
@@ -41,6 +42,7 @@ const domainToCanvasXY = (
 /**
  * 
  * @param  { !CanvasPoint2D } domainNullPoint zero point definition of the grid in the domain in canvas values
+ * //TODO other param comments?
  * @param  { !Number }        xRatio xValue relation of domain and canvas
  * @param  { !Number }        yRatio yValue relation of domain and canvas
  * @param  { !CanvasPoint2D } newCanvasPoint canvas position of the new point
