@@ -78,36 +78,73 @@ chartFunctionsTestSuite.add("domainToCanvas", assert => {
 });
 
 chartFunctionsTestSuite.add("canvasToDomain", assert => {
-    /** @type { CanvasPoint2D } */ const domainNullPoint = { xValue: 0, yValue: 0 }
+    //tests when domain zero point is in the center of the grid
+    /** @type { CanvasPoint2D } */ const domainNullPoint = { xValue: -2, yValue: 1 };
+
+    const xRatio = 1;
+    const yRatio = 1;
+
+    /** @type { CanvasPoint2D } */ const newAllPositiveCanvasPoint = { xValue: 2, yValue: 4 }
+    const resultAllXYPositive = canvasToDomainXY(domainNullPoint, xRatio, yRatio, newAllPositiveCanvasPoint);
+    assert.is(resultAllXYPositive.xValue, 4);
+    assert.is(resultAllXYPositive.yValue, -3);
+
+    /** @type { CanvasPoint2D } */ const newXNegativeCanvasPoint = { xValue: -6, yValue: 4 }
+    const resultXNegative = canvasToDomainXY(domainNullPoint, xRatio, yRatio, newXNegativeCanvasPoint);
+    assert.is(resultXNegative.xValue, -4);
+    assert.is(resultXNegative.yValue, -3);
+
+    /** @type { CanvasPoint2D } */ const newYNegativeCanvasPoint = { xValue: 2, yValue: -2 }
+    const resultYNegative = canvasToDomainXY(domainNullPoint, xRatio, yRatio, newYNegativeCanvasPoint);
+    assert.is(resultYNegative.xValue, 4);
+    assert.is(resultYNegative.yValue, 3);
+
+    /** @type { CanvasPoint2D } */ const newAllNegativeCanvasPoint = { xValue: -6, yValue: -2 }
+    const resultAllXYNegative = canvasToDomainXY(domainNullPoint, xRatio, yRatio, newAllNegativeCanvasPoint);
+    assert.is(resultAllXYNegative.xValue, -4);
+    assert.is(resultAllXYNegative.yValue, 3);
+
+    //neutral ratio. test that the 4 points of a rectangle are not mirror-inverted
+    /** @type { CanvasPoint2D } */ const domainNullZeroPoint = { xValue: 0, yValue: 0 }
     const newCanvasPoint1 = { xValue: 10, yValue: -8 }
-    const resultPoint1 = canvasToDomainXY(domainNullPoint, 1, 1, newCanvasPoint1);
+    const resultPoint1 = canvasToDomainXY(domainNullZeroPoint, 1, 1, newCanvasPoint1);
     assert.is(resultPoint1.xValue, 10);
     assert.is(resultPoint1.yValue, 8);
 
     const newCanvasPoint2 = { xValue: 20, yValue: -8 }
-    const resultPoint2 = canvasToDomainXY(domainNullPoint, 1, 1, newCanvasPoint2);
+    const resultPoint2 = canvasToDomainXY(domainNullZeroPoint, 1, 1, newCanvasPoint2);
     assert.is(resultPoint2.xValue, 20);
     assert.is(resultPoint2.yValue, 8);
 
     const newCanvasPoint3 = { xValue: 10, yValue: 0 }
-    const resultPoint3 = canvasToDomainXY(domainNullPoint, 1, 1, newCanvasPoint3);
+    const resultPoint3 = canvasToDomainXY(domainNullZeroPoint, 1, 1, newCanvasPoint3);
     assert.is(resultPoint3.xValue, 10);
     assert.is(resultPoint3.yValue, 0);
 
     const newCanvasPoint4 = { xValue: 20, yValue: 0 }
-    const resultPoint4 = canvasToDomainXY(domainNullPoint, 1, 1, newCanvasPoint4);
+    const resultPoint4 = canvasToDomainXY(domainNullZeroPoint, 1, 1, newCanvasPoint4);
     assert.is(resultPoint4.xValue, 20);
     assert.is(resultPoint4.yValue, 0);
 
-    /** @type { CanvasPoint2D } */ const newDomainPoint = { xValue: 20, yValue: 8 }
-    
-    //negative ratio
-    const resultAllRatio = domainToCanvasXY(domainNullPoint, -1, -1, newDomainPoint);
-    assert.is(resultAllRatio.xValue, -20);
-    assert.is(resultAllRatio.yValue, 8);
+    //tests of positive and negative ratio
+    /** @type { CanvasPoint2D } */ const newCanvasPoint = { xValue: -20, yValue: 8 }
 
-    
-    
+    const resultAllRatioPositive = canvasToDomainXY(domainNullZeroPoint, 1, 1, newCanvasPoint);
+    assert.is(resultAllRatioPositive.xValue, -20);
+    assert.is(resultAllRatioPositive.yValue, -8);
+
+    const resultAllRatioNegative = canvasToDomainXY(domainNullZeroPoint, -1, -1, newCanvasPoint);
+    assert.is(resultAllRatioNegative.xValue, 20);
+    assert.is(resultAllRatioNegative.yValue, 8);
+
+    const resultxRatioNegative = canvasToDomainXY(domainNullZeroPoint, -1, 1, newCanvasPoint);
+    assert.is(resultxRatioNegative.xValue, 20);
+    assert.is(resultxRatioNegative.yValue, -8);
+
+    const resultyRatioNegative = canvasToDomainXY(domainNullZeroPoint, 1, -1, newCanvasPoint);
+    assert.is(resultyRatioNegative.xValue, -20);
+    assert.is(resultyRatioNegative.yValue, 8);
+
 });
 
 
