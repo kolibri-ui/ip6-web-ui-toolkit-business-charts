@@ -70,7 +70,7 @@ chartFunctionsTestSuite.add("domainToCanvas", assert => {
     const resultOrigin3 = domainToCanvasXY(domainNullZeroPointRatio, 1, 1, newDomainPoint3);
     assert.is(resultOrigin3.xValue, 10);
     assert.is(resultOrigin3.yValue, 0);
-    
+
     /** @type { CanvasPoint2D } */ const newDomainPoint4 = { xValue: 20, yValue: 0 }
     const resultOrigin4 = domainToCanvasXY(domainNullZeroPointRatio, 1, 1, newDomainPoint4);
     assert.is(resultOrigin4.xValue, 20);
@@ -105,6 +105,8 @@ chartFunctionsTestSuite.add("canvasToDomain", assert => {
     const resultAllRatio = domainToCanvasXY(domainNullPoint, -1, -1, newDomainPoint);
     assert.is(resultAllRatio.xValue, -20);
     assert.is(resultAllRatio.yValue, 8);
+
+    
     
 });
 
