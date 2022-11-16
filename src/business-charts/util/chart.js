@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export {drawLine, drawGrid, getNewPointPos, CORNER}
+export { drawPoint, drawLine, drawGrid, getNewPointPos, CORNER }
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -18,6 +18,30 @@ export {drawLine, drawGrid, getNewPointPos, CORNER}
  * @property { String } [primaryLineColor]
  * @property { String } [secondaryLineColor]
  */
+
+/**
+ *
+ * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
+ * @param { String } label label name of the point
+ * @param { Number } pointX x position where the point starts relative to the null point
+ * @param { Number } pointY y position where the point starts relative to the null point
+ * @param { String } color fill color of the point
+ * @param { Number } radius radius of the point
+ */
+const drawPoint = (
+    label,
+    ctx,
+    pointX,
+    pointY, 
+    color,
+    radius
+) => {
+    ctx.save();
+    ctx.beginPath();
+    context.arc(pointX, pointY, radius, 0 * Math.PI, 2 * Math.PI);
+    context.fill();
+    ctx.restore();
+    };
 
 /**
  * @summary A function that creates one or more lines in a given context.
@@ -297,21 +321,4 @@ function getNewPointPos(
             paddingUpDown,
             drawWidth,
             drawHeight);
-}
-
-
-/**
- *
- * @param context
- * @param data
- * @param options
- * @param offset
- * @param ratio
- * @param gridHeight
- * @param gridWidth
- * @param pointSize
- */
-const drawPoints = (context, data, options, offset, ratio, gridHeight, gridWidth, pointSize) => {
-    return;
-
 }

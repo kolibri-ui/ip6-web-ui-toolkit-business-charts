@@ -1,4 +1,4 @@
-import { drawGrid } from "../util/chart.js";
+import { drawPoint, drawGrid } from "../util/chart.js";
 import { drawRect } from "../util/rectangleProjector.js";
 
 export { SimpleScatterplotChart }
@@ -105,8 +105,10 @@ const drawPoints = (
         const height = v.value * ratio;
         const pointY = options.padding + gridHeight - offset - height;
         const color = options.colors[i % options.colors.length];
-
-        drawRect(context, pointX, pointY, pointSize, height, color);
+        
+        drawPoint(
+            context, data, options, offset, ratio, gridHeight, gridWidth, pointSize
+        );
 
         pointX += 2 * options.padding + pointSize;
     }
