@@ -15,16 +15,21 @@ export { canvasToDomainXY, domainToCanvasXY }
 
 /**
  * 
- * @param { !CanvasPoint2D } domainNullPoint canvas xValue and yValue of domain null point
+ * @param { !CanvasPoint2D } domainNullPoint zero point definition of the grid in the domain in canvas values
  * @param { !Number } xRatio stretch (>1) / stow (<0) xValue from domain to canvas
  * @param { !Number } yRatio stretch (>1) / stow (<0) yValue from domain to canvas
- * @param { !DomainPoint2D } newDomainPoint
- * @return { CanvasPoint2D }
+ * @param { !DomainPoint2D } newDomainPoint domain position of the new point
+ * @return { CanvasPoint2D } canvas position of the new domain point
  */
-const domainToCanvasXY = ( domainNullPoint, xRatio, yRatio, newDomainPoint ) => {
+const domainToCanvasXY = (
+    domainNullPoint,
+    xRatio,
+    yRatio,
+    newDomainPoint
+) => {
     /**
      *
-     * @type { CanvasPoint2D }
+     * @type   { CanvasPoint2D }
      */
     const result = {
         xValue: domainNullPoint.xValue + newDomainPoint.xValue * xRatio,
@@ -35,13 +40,18 @@ const domainToCanvasXY = ( domainNullPoint, xRatio, yRatio, newDomainPoint ) => 
 
 /**
  * 
- * @param { !CanvasPoint2D } domainNullPoint
- * @param { !Number } xRatio
- * @param { !Number } yRatio
- * @param { !CanvasPoint2D } newCanvasPoint
- * @return { DomainPoint2D }
+ * @param  { !CanvasPoint2D } domainNullPoint zero point definition of the grid in the domain in canvas values
+ * @param  { !Number }        xRatio xValue relation of domain and canvas
+ * @param  { !Number }        yRatio yValue relation of domain and canvas
+ * @param  { !CanvasPoint2D } newCanvasPoint canvas position of the new point
+ * @return { DomainPoint2D }  domain position of the new canvas point
  */
-const canvasToDomainXY = ( domainNullPoint, xRatio, yRatio, newCanvasPoint ) => {
+const canvasToDomainXY = (
+    domainNullPoint,
+    xRatio,
+    yRatio,
+    newCanvasPoint
+) => {
     /**
      * 
      * @type { DomainPoint2D }
@@ -51,5 +61,4 @@ const canvasToDomainXY = ( domainNullPoint, xRatio, yRatio, newCanvasPoint ) => 
         yValue: (domainNullPoint.yValue - newCanvasPoint.yValue ) / yRatio
     }
     return result;
-    
 }
