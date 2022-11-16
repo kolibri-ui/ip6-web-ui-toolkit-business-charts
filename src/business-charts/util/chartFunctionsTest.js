@@ -81,28 +81,28 @@ chartFunctionsTestSuite.add("canvasToDomain", assert => {
     //tests when domain zero point is in the center of the grid
     /** @type { CanvasPoint2D } */ const domainNullPoint = { xValue: -2, yValue: 1 };
 
-    const xRatio = 1;
-    const yRatio = 1;
+    const xRatio = 2;
+    const yRatio = -3;
 
     /** @type { CanvasPoint2D } */ const newAllPositiveCanvasPoint = { xValue: 2, yValue: 4 }
     const resultAllXYPositive = canvasToDomainXY(domainNullPoint, xRatio, yRatio, newAllPositiveCanvasPoint);
-    assert.is(resultAllXYPositive.xValue, 4);
-    assert.is(resultAllXYPositive.yValue, -3);
+    assert.is(resultAllXYPositive.xValue, 2);
+    assert.is(resultAllXYPositive.yValue, 1);
 
     /** @type { CanvasPoint2D } */ const newXNegativeCanvasPoint = { xValue: -6, yValue: 4 }
     const resultXNegative = canvasToDomainXY(domainNullPoint, xRatio, yRatio, newXNegativeCanvasPoint);
-    assert.is(resultXNegative.xValue, -4);
-    assert.is(resultXNegative.yValue, -3);
+    assert.is(resultXNegative.xValue, -2);
+    assert.is(resultXNegative.yValue, 1);
 
     /** @type { CanvasPoint2D } */ const newYNegativeCanvasPoint = { xValue: 2, yValue: -2 }
     const resultYNegative = canvasToDomainXY(domainNullPoint, xRatio, yRatio, newYNegativeCanvasPoint);
-    assert.is(resultYNegative.xValue, 4);
-    assert.is(resultYNegative.yValue, 3);
+    assert.is(resultYNegative.xValue, 2);
+    assert.is(resultYNegative.yValue, -1);
 
     /** @type { CanvasPoint2D } */ const newAllNegativeCanvasPoint = { xValue: -6, yValue: -2 }
     const resultAllXYNegative = canvasToDomainXY(domainNullPoint, xRatio, yRatio, newAllNegativeCanvasPoint);
-    assert.is(resultAllXYNegative.xValue, -4);
-    assert.is(resultAllXYNegative.yValue, 3);
+    assert.is(resultAllXYNegative.xValue, -2);
+    assert.is(resultAllXYNegative.yValue, -1);
 
     //neutral ratio. test that the 4 points of a rectangle are not mirror-inverted
     /** @type { CanvasPoint2D } */ const domainNullZeroPoint = { xValue: 0, yValue: 0 }
