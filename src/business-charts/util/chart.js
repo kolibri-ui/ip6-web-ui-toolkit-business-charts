@@ -298,3 +298,20 @@ function getNewPointPos(
             drawWidth,
             drawHeight);
 }
+
+
+/**
+ *
+ * @param context
+ * @param data
+ * @param options
+ * @param offset
+ * @param ratio
+ * @param gridHeight
+ * @param gridWidth
+ * @param pointSize
+ */
+const drawPoints = (context, data, options, offset, ratio, gridHeight, gridWidth, pointSize) => {
+    return;
+
+}

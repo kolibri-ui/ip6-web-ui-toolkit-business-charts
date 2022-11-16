@@ -1,42 +1,42 @@
 // noinspection SpellCheckingInspection
 
-import {drawGrid} from "../util/chart.js";
-import {drawRect} from "../util/rectangleProjector.js";
-import {resizeHandler} from "../util/resizeHandler.js";
+import { drawGrid } from "../util/chart.js";
+import { drawRect } from "../util/rectangleProjector.js";
+import { resizeHandler } from "../util/resizeHandler.js";
 
 
-export {SimpleBarChart}
+export { SimpleBarChart }
 
-/** @type {Array.<BarChartDataElement>} */
+/** @type { Array.<BarChartDataElement> } */
 HTMLCanvasElement.prototype.data = undefined;
-/** @type {BarChartOptions} */
+/** @type { BarChartOptions } */
 HTMLCanvasElement.prototype.chartOptions = undefined;
-/** @type {Function} */
+/** @type { Function } */
 HTMLCanvasElement.prototype.handleResize = undefined;
-/** @type {Function} */
+/** @type { Function } */
 HTMLCanvasElement.prototype.redraw = undefined;
 
 /**
  * @typedef { Object } BarChartDataElement
- * @property { String } name Name of the data element
- * @property { Number } value Value of the data element
+ * @property { String } name name of the data element
+ * @property { Number } value value of the data element
  */
 
 /**
  * @typedef { Object } BarChartOptions
- * @property { Number } width Width in pixel
- * @property { Number } height Height in pixel
- * @property { Number } padding Padding for elements
+ * @property { !Number } width chart width in pixel
+ * @property { !Number } height chart height in pixel
+ * @property { Number } padding padding for elements
  * @property { Array.<String> } colors Colors for bars
- * @property { String } [id] Id string (optional)
- * @property { ChartGridOptions } gridOptions Options for grid
+ * @property { String } [id] ID string (optional)
+ * @property { ChartGridOptions } gridOptions grid options
  */
 
 /**
- * Implementation of a simple Canvas bar chart.
+ * Implementation of a simple canvas bar chart.
  * @author Valentina Giampa & Roger Kreienbühl
- * @param { BarChartOptions } options chart-options
- * @param { Array.<BarChartDataElement> } data data-elements to display
+ * @param { Array.<BarChartDataElement> } data data elements to display in bar chart
+ * @param { BarChartOptions } options chart options
  * @returns { HTMLCanvasElement }
  * @constructor
  */
@@ -45,21 +45,22 @@ const SimpleBarChart = (data, options) => {
 
     options.id = options.id ?? 'bar-chart-23412543214';
 
-    canvasElement.id = options.id;
-    canvasElement.width = options.width;
+    canvasElement.id     = options.id;
+    canvasElement.width  = options.width;
     canvasElement.height = options.height;
 
     // save data and options to redraw
     canvasElement.chartOptions = options;
     canvasElement.data = data;
 
+    //TODO eliminate the use of entry.target and parseInt
     /**
      * Handle resize of canvas
-     * @param {ResizeObserverEntry} entry
+     * @param { ResizeObserverEntry } entry
      */
     canvasElement.handleResize = entry => {
-        let cs = window.getComputedStyle(entry.target);
-        entry.target.chartOptions.width = parseInt(cs.width.replace('px', ''));
+        const cs                         = window.getComputedStyle(entry.target);
+        entry.target.chartOptions.width  = parseInt(cs.width.replace('px', ''));
         entry.target.chartOptions.height = parseInt(cs.height.replace('px', ''));
         entry.target.redraw(entry.target.data, entry.target.chartOptions);
     };
@@ -71,7 +72,7 @@ const SimpleBarChart = (data, options) => {
      * @param {Array.<BarChartDataElement>} data
      */
     canvasElement.redraw = (data, options) => {
-        /** @type {CanvasRenderingContext2D} */
+        /** @type { CanvasRenderingContext2D } */
         const context = document.getElementById(options.id).getContext('2d');
         const gridX = options.padding;
         const gridY = options.padding;
@@ -79,7 +80,7 @@ const SimpleBarChart = (data, options) => {
         const gridHeight = options.height - 2 * options.padding;
         const offset = 15;
 
-        const barWidth = (gridWidth - offset) / data.length - (2 * options.padding) - 1;
+        const barWidth = (gridWidth - offset) / data.length - 2 * options.padding - 1;
         const ratio = 20 / options.gridOptions.verticalSteps;
 
         drawGrid(
@@ -128,10 +129,10 @@ const drawBars = (
     for (const [i, v] of data.entries()) {
         const height = v.value * ratio;
         const barY = options.padding + gridHeight - offset - height;
-        const color = options.colors[i % options.colors.length]
+        const color = options.colors[i % options.colors.length];
 
         drawRect(context, barX, barY, barWidth, height, color);
 
         barX += 2 * options.padding + barWidth;
     }
-}
+};
