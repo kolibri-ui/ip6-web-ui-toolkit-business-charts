@@ -32,12 +32,11 @@ const domainToCanvasXY = (
      *
      * @type   { CanvasPoint2D }
      */
-    const result = {
+    return {
         xValue: domainNullPoint.xValue + newDomainPoint.xValue * xRatio,
         yValue: domainNullPoint.yValue - newDomainPoint.yValue * yRatio
-    }
-    return result;
-}
+    };
+};
 
 /**
  * 
@@ -55,12 +54,11 @@ const canvasToDomainXY = (
     newCanvasPoint
 ) => {
     /**
-     * 
-     * @type { DomainPoint2D }
+     *
+     * @type   { DomainPoint2D }
      */
-    const result = {
-        xValue: (newCanvasPoint.xValue  - domainNullPoint.xValue) / xRatio,
-        yValue: (domainNullPoint.yValue - newCanvasPoint.yValue ) / yRatio
-    }
-    return result;
-}
+    return {
+        xValue: (newCanvasPoint.xValue - domainNullPoint.xValue) / xRatio,
+        yValue: (domainNullPoint.yValue - newCanvasPoint.yValue) / yRatio
+    };
+};
