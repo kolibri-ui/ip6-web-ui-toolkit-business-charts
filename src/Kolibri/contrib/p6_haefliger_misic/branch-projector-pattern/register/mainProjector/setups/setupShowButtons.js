@@ -13,14 +13,14 @@ export { setupShowButtons }
  * }} - All show buttons in an object
  */
 const setupShowButtons = (register, passwordInputElement, confirmPasswordInputElement) => {
-  const showPasswordButton = registerShowButtonProjector(register)
-  const showConfirmPasswordButton = registerShowButtonProjector(register)
+  const showPasswordButton = registerShowButtonProjector(register);
+  const showConfirmPasswordButton = registerShowButtonProjector(register);
 
-  showPasswordButton.onclick = () => passwordInputElement.focus()
-  showConfirmPasswordButton.onclick = () => confirmPasswordInputElement.focus()
+  showPasswordButton.onclick = () => passwordInputElement.focus();
+  showConfirmPasswordButton.onclick = () => confirmPasswordInputElement.focus();
 
   return {
     showPasswordButton,
     showConfirmPasswordButton
   }
-}
+};

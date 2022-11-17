@@ -3,10 +3,10 @@ import { loginService } from './services/loginService.js'
 
 // Creates the login component in prod mode
 
-const service = loginService()
+const service = loginService();
 
-const loginController = LoginController(service)
+const loginController = LoginController(service);
 
-LoginView(loginController, document.getElementById('login'))
+LoginView(loginController, document.getElementById('login'));
 
-loginController.addLogin()
+loginController.addLogin();

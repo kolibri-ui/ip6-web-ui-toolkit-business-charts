@@ -9,19 +9,19 @@ const Assert = () => {
     let ok = emptyStack;
 
     const equals = (actual, expected) => {
-        const result = (actual === expected);
+        const result = actual === expected;
         addTest(actual, expected, result);
     };
     const truthy = actual =>
         addTest(actual, true, actual);
 
     const churchNumberEquals = (actual, expected) => {
-        const result = (jsNum(actual) === jsNum(expected));
+        const result = jsNum(actual) === jsNum(expected);
         addTest(actual, expected, result);
     };
 
     const churchBooleanEquals = (actual, expected) => {
-        const result = (jsBool(actual) === jsBool(expected));
+        const result = jsBool(actual) === jsBool(expected);
         addTest(actual, expected, result);
     };
 
@@ -47,15 +47,15 @@ const Assert = () => {
     };
 
     const pairEquals = (actual, expected) => {
-        const p1Fst = actual(fst)
-        const p1Snd = actual(snd)
-        const p2Fst = expected(fst)
-        const p2Snd = expected(snd)
+        const p1Fst = actual(fst);
+        const p1Snd = actual(snd);
+        const p2Fst = expected(fst);
+        const p2Snd = expected(snd);
 
-        const result = p1Fst === p2Fst && p1Snd === p2Snd
+        const result = p1Fst === p2Fst && p1Snd === p2Snd;
 
         addTest(actual, expected, result);
-    }
+    };
 
     const consoleEquals = consoleType => (methodUnderTest, ...expectedConsoleLogs) => {
         const originalConsoleLogger = console[consoleType];
@@ -72,11 +72,11 @@ const Assert = () => {
 
         arrayEquals(logs, expectedConsoleLogs);
         return callback;
-    }
+    };
 
-    const consoleErrorEquals = consoleEquals('error')
+    const consoleErrorEquals = consoleEquals('error');
 
-    const consoleLogEquals = consoleEquals('log')
+    const consoleLogEquals = consoleEquals('log');
 
     return {
         getOk: () => ok,
@@ -102,9 +102,7 @@ const TestSuite = name => {
         });
     };
 
-    const report = () => {
-        renderReport(name, tests);
-    };
+    const report = () => renderReport(name, tests);
 
     return {
         add: add,
@@ -202,4 +200,4 @@ const BenchmarkTest = mutName => methodUnderTest => {
     console.log(`Call Method ${mutName} took ${time.toFixed(2)} ${timeCondition ? 'seconds' : 'milliseconds'}.`);
 
     return result;
-}
+};

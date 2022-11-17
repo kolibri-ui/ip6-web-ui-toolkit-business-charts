@@ -20,31 +20,31 @@ const setupInputElements = register => {
   const [ 
     emailInputElement, 
     emailLabelElement 
-  ] = registerEmailProjector(register, 'Email')
+  ] = registerEmailProjector(register, 'Email');
 
 
   const [ 
     passwordInputElement, 
     passwordLabelElement 
-  ] = registerPasswordProjector(register, 'Password')
+  ] = registerPasswordProjector(register, 'Password');
 
-  passwordInputElement.placeholder = 'P4$$word'
+  passwordInputElement.placeholder = 'P4$$word';
 
-  passwordInputElement.oninput = () => register.setPassword(passwordInputElement.value)
+  passwordInputElement.oninput = () => register.setPassword(passwordInputElement.value);
 
-  register.onPasswordChanged( () => passwordInputElement.value = register.getPassword() )
+  register.onPasswordChanged( () => passwordInputElement.value = register.getPassword() );
 
   
   const [ 
     confirmPasswordInputElement, 
     confirmPasswordLabelElement 
-  ] = registerPasswordProjector(register, 'Confirm Password (optional)')
+  ] = registerPasswordProjector(register, 'Confirm Password (optional)');
 
-  confirmPasswordInputElement.placeholder = 'P4$$word'
+  confirmPasswordInputElement.placeholder = 'P4$$word';
 
-  confirmPasswordInputElement.oninput = () => register.setConfirmPassword(confirmPasswordInputElement.value)
+  confirmPasswordInputElement.oninput = () => register.setConfirmPassword(confirmPasswordInputElement.value);
 
-  register.onConfirmPasswordChanged( () => confirmPasswordInputElement.value = register.getConfirmPassword() )
+  register.onConfirmPasswordChanged( () => confirmPasswordInputElement.value = register.getConfirmPassword() );
 
 
   return {
@@ -55,4 +55,4 @@ const setupInputElements = register => {
     confirmPasswordInputElement,
     confirmPasswordLabelElement,
   }
-}
+};

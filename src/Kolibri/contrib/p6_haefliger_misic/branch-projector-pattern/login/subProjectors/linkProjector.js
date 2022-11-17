@@ -9,9 +9,9 @@ export { loginLinkProjector }
  */
 const loginLinkProjector = linkText => {
 
-  const aElement = document.createElement('a')
+  const aElement = document.createElement('a');
 
-  aElement.innerHTML = linkText
+  aElement.innerHTML = linkText;
 
   return aElement
-}
+};

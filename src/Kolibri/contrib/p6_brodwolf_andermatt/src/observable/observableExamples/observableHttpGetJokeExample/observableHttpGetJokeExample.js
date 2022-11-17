@@ -17,20 +17,20 @@ const startProgram = domElements => {
     const listenerSpeak     = newListener(nValue => _ => speak(nValue(snd)));
     const listenerJokeToDom = newListener(nValue => _ => {
         const template = document.createElement('fieldset');
-        template.className = "joke"
-        template.innerHTML = `<legend>${nValue(fst)}</legend><p class="jokeText">${nValue(snd)}</p>`
+        template.className = "joke";
+        template.innerHTML = `<legend>${nValue(fst)}</legend><p class="jokeText">${nValue(snd)}</p>`;
         jokeHistory.insertAdjacentElement('afterbegin', template)
     });
 
     // create the Observable with pair data structure ("Title")("Joke")
     const jokePairObserver = Observable( pair("nobody")("tell me a joke") )
                                     (addListener)( listenerSpeak )
-                                    (addListener)( listenerJokeToDom )
+                                    (addListener)( listenerJokeToDom );
 
 
     // Jokes-API-URLs
     const jokeNorrisUrl = "https://api.chucknorris.io/jokes/random";            // jsonKey: value
-    const jokeNerdUrl   = "https://v2.jokeapi.dev/joke/Programming?type=single" // jsonKey: joke
+    const jokeNerdUrl   = "https://v2.jokeapi.dev/joke/Programming?type=single"; // jsonKey: joke
     const trumpTweetUrl = "https://www.tronalddump.io/random/quote";            // jsonKey: value
 
 
@@ -52,11 +52,11 @@ const startProgram = domElements => {
                 jokePairObserver(setValue)( Box(resp)
                                              (fmap)( JSON.parse )
                                              (fold)( x => pair( getElementByKey(joke)("name") )( x[getElementByKey(joke)("jsonKey")] )))));
-}
+};
 
 // Either all the necessary Dom-Element exist and or display all missed Element
 eitherElementsOrErrorsByFunction(eitherDomElement)("jokeHistory", "norrisBtn", "nerdyBtn", "trumpBtn")
 (err => document.body.innerHTML = Box(err)
                                     (fmap)(reduce(acc => curr => acc + "<br>" + curr )("<h1>Error</h1>"))
                                     (fold)(txt => `<div style="background: #ffcccb; padding: 10px; border-radius: 1rem"> ${txt}</div>`))
-(startProgram)
+(startProgram);

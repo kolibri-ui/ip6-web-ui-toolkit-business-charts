@@ -6,9 +6,9 @@ export { registerStrengthLineProjector }
  */
 const registerStrengthLineProjector = () => {
 
-  const divElement = document.createElement('div')
+  const divElement = document.createElement('div');
 
-  divElement.classList.add('line')
+  divElement.classList.add('line');
 
   return divElement
-}
+};

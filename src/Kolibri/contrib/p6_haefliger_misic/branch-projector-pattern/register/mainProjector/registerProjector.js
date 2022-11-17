@@ -20,11 +20,11 @@ export { registerProjector }
 const registerProjector = (registerController, rootElement, register) => {
 
   // -------------Title-------------
-  const titleElement = registerTitleProjector()
+  const titleElement = registerTitleProjector();
 
 
   // -------------Register Button-------------
-  const registerButton = registerButtonProjector(register)
+  const registerButton = registerButtonProjector(register);
 
 
   // -------------Input Elements-------------
@@ -35,56 +35,56 @@ const registerProjector = (registerController, rootElement, register) => {
     passwordLabelElement,
     confirmPasswordInputElement,
     confirmPasswordLabelElement,
-  } = setupInputElements(register)
+  } = setupInputElements(register);
 
 
   // -------------Show Password Buttons-------------
   const {
     showPasswordButton,
     showConfirmPasswordButton
-  } = setupShowButtons(register, passwordInputElement, confirmPasswordInputElement)
+  } = setupShowButtons(register, passwordInputElement, confirmPasswordInputElement);
 
 
   // -------------Notifications-------------
   const {
     emailValidityNotificiation,
     confirmPwMatchNotification
-  } = setupNotificationElements(register, emailInputElement)
+  } = setupNotificationElements(register, emailInputElement);
 
 
   // -------------Strength Lines-------------
-  const strengthLinesContainer = setupStrengthLines(register, rootElement)
+  const strengthLinesContainer = setupStrengthLines(register, rootElement);
 
 
   // -------------Criteria-------------
-  const criteriaContainer = setupCriteria(register, rootElement)
+  const criteriaContainer = setupCriteria(register, rootElement);
 
 
   // -------------Container Elements-------------
-  const emailInputContainer = containerProjector([emailInputElement, emailValidityNotificiation], 'emailInputContainer')
+  const emailInputContainer = containerProjector([emailInputElement, emailValidityNotificiation], 'emailInputContainer');
 
-  const passwordInputContainer = containerProjector([passwordInputElement, showPasswordButton], 'passwordInputContainer')
+  const passwordInputContainer = containerProjector([passwordInputElement, showPasswordButton], 'passwordInputContainer');
 
-  const confirmPasswordInputContainer = containerProjector([confirmPasswordInputElement, showConfirmPasswordButton], 'confirmPasswordInputContainer')
+  const confirmPasswordInputContainer = containerProjector([confirmPasswordInputElement, showConfirmPasswordButton], 'confirmPasswordInputContainer');
 
-  const confirmPasswordContainer = containerProjector([confirmPasswordInputContainer, confirmPwMatchNotification], 'confirmPasswordContainer')
+  const confirmPasswordContainer = containerProjector([confirmPasswordInputContainer, confirmPwMatchNotification], 'confirmPasswordContainer');
 
 
   // -------------Form Element-------------
-  const formElement = document.createElement('form')
+  const formElement = document.createElement('form');
 
 
   // -------------Setting up the HTML-------------
-  rootElement.appendChild(titleElement)
-  rootElement.appendChild(formElement)
+  rootElement.appendChild(titleElement);
+  rootElement.appendChild(formElement);
 
-  formElement.appendChild(emailLabelElement)
-  formElement.appendChild(emailInputContainer)
-  formElement.appendChild(passwordLabelElement)
-  formElement.appendChild(passwordInputContainer)
-  formElement.appendChild(strengthLinesContainer)
-  formElement.appendChild(criteriaContainer)
-  formElement.appendChild(confirmPasswordLabelElement)
-  formElement.appendChild(confirmPasswordContainer)
+  formElement.appendChild(emailLabelElement);
+  formElement.appendChild(emailInputContainer);
+  formElement.appendChild(passwordLabelElement);
+  formElement.appendChild(passwordInputContainer);
+  formElement.appendChild(strengthLinesContainer);
+  formElement.appendChild(criteriaContainer);
+  formElement.appendChild(confirmPasswordLabelElement);
+  formElement.appendChild(confirmPasswordContainer);
   formElement.appendChild(registerButton)
-}
+};

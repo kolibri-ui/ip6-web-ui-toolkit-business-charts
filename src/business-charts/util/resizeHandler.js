@@ -5,4 +5,4 @@ const resizeHandler = new ResizeObserver(entries => {
         if (entry.target.handleResize)
             entry.target.handleResize(entry);
     }
-})
+});

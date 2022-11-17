@@ -9,28 +9,28 @@ export { registerEmailProjector }
  */
 const registerEmailProjector = (register, label) => {
 
-  const inputElement = document.createElement('input')
-  inputElement.type = 'email'
-  inputElement.placeholder = 'example@mail.com'
-  inputElement.id   = label.toLowerCase()
+  const inputElement = document.createElement('input');
+  inputElement.type = 'email';
+  inputElement.placeholder = 'example@mail.com';
+  inputElement.id   = label.toLowerCase();
 
-  const labelElement = document.createElement('label')
-  labelElement.htmlFor = label.toLowerCase()
-  labelElement.innerHTML = label
+  const labelElement = document.createElement('label');
+  labelElement.htmlFor = label.toLowerCase();
+  labelElement.innerHTML = label;
 
-  inputElement.oninput = () => register.setEmail(inputElement.value)
+  inputElement.oninput = () => register.setEmail(inputElement.value);
 
-  register.onEmailChanged( () => inputElement.value = register.getEmail() )
+  register.onEmailChanged( () => inputElement.value = register.getEmail() );
 
   inputElement.addEventListener('change', () => {
-    if(!register.getEmail()) return setValidityClass(inputElement, null)
+    if(!register.getEmail()) return setValidityClass(inputElement, null);
 
-    const valid = register.getEmailValidity()
+    const valid = register.getEmailValidity();
     setValidityClass(inputElement, valid)
-  })
+  });
 
   return [ inputElement, labelElement ]
-}
+};
 
 
 /**
@@ -42,16 +42,16 @@ const registerEmailProjector = (register, label) => {
 const setValidityClass = (element, valid) => {
 
   if(null === valid) {
-    element.classList.remove('valid')
-    element.classList.remove('invalid')
+    element.classList.remove('valid');
+    element.classList.remove('invalid');
     return
   }
 
   if(valid) {
-    element.classList.add('valid')
+    element.classList.add('valid');
     element.classList.remove('invalid')
   } else {
-    element.classList.remove('valid')
+    element.classList.remove('valid');
     element.classList.add('invalid')
   }
-}
+};

@@ -16,17 +16,17 @@ const personList = [
 ];
 Object.freeze(personList);
 
-const p0 = pair(15)(personList[0])
-const p1 = pair(16)(personList[1])
-const p2 = pair(17)(personList[2])
-const p3 = pair(18)(personList[3])
-const p4 = pair(19)(personList[4])
-const testListMap = convertArrayToStack([p0, p1, p2, p3, p4])
+const p0 = pair(15)(personList[0]);
+const p1 = pair(16)(personList[1]);
+const p2 = pair(17)(personList[2]);
+const p3 = pair(18)(personList[3]);
+const p4 = pair(19)(personList[4]);
+const testListMap = convertArrayToStack([p0, p1, p2, p3, p4]);
 
-const z1 = pair(15)(5)
-const z2 = pair(16)(10)
-const z3 = pair(17)(15)
-const listMapWithNumbers = convertArrayToStack([z1,z2,z3])
+const z1 = pair(15)(5);
+const z2 = pair(16)(10);
+const z3 = pair(17)(15);
+const listMapWithNumbers = convertArrayToStack([z1,z2,z3]);
 
 listMapSuite.add("emptyListMap", assert => {
     assert.equals(jsBool(hasPre(emptyListMap)), false);
@@ -78,11 +78,11 @@ listMapSuite.add("removeByKey", assert => {
 listMapSuite.add("listMap - special keys", assert => {
     const specialKey = () => {};
 
-    const p0 = pair(n4)(personList[0])
-    const p1 = pair(id)(personList[1])
-    const p2 = pair(n0)(personList[2])
-    const p3 = pair(specialKey)(personList[3])
-    const p4 = pair(pair)(personList[4])
+    const p0 = pair(n4)(personList[0]);
+    const p1 = pair(id)(personList[1]);
+    const p2 = pair(n0)(personList[2]);
+    const p3 = pair(specialKey)(personList[3]);
+    const p4 = pair(pair)(personList[4]);
 
     const listMapWithSpecialKeys = startListMap
     (pushToStack) ( p0 )
@@ -90,7 +90,7 @@ listMapSuite.add("listMap - special keys", assert => {
     (pushToStack) ( p2 )
     (pushToStack) ( p3 )
     (pushToStack) ( p4 )
-    (id)
+    (id);
 
     assert.churchNumberEquals( size(listMapWithSpecialKeys), n5);
     assert.pairEquals(getElementByIndex(listMapWithSpecialKeys)(n1), p0);
@@ -105,7 +105,7 @@ listMapSuite.add("listMap - special keys", assert => {
     assert.equals(getElementByKey(listMapWithSpecialKeys)(specialKey), personList[3]);
     assert.equals(getElementByKey(listMapWithSpecialKeys)(pair), personList[4]);
 
-    const r1 = removeByKey(listMapWithSpecialKeys)(n4)
+    const r1 = removeByKey(listMapWithSpecialKeys)(n4);
     assert.churchNumberEquals( size(r1), n4);
     assert.equals(getElementByKey(r1)(n4), id);
 
@@ -174,7 +174,7 @@ listMapSuite.add("reduceListMap", assert => {
 
 
 listMapSuite.add("convert ListMap to Array", assert => {
-    const personObject = {firstName: 'George', lastName: "Lucas", age: 42}
+    const personObject = {firstName: 'George', lastName: "Lucas", age: 42};
 
     const lm = convertObjToListMap(personObject);
 
@@ -190,7 +190,7 @@ listMapSuite.add("convert ListMap to Array", assert => {
 });
 
 listMapSuite.add("convert Object to ListMap", assert => {
-    const obj = {a: 'HelloWorld', b: "Lambda"}
+    const obj = {a: 'HelloWorld', b: "Lambda"};
 
     const result = convertObjToListMap(obj);
 
@@ -208,15 +208,15 @@ listMapSuite.add("convert Object to ListMap", assert => {
             txt: 'Lambda',
             short: 'λ'
         }
-    }
+    };
 
     const result2 = convertObjToListMap(objWithObject);
 
     assert.churchNumberEquals(size(result2), n2);
-    assert.equals( getElementByIndex(result2)(n1)(fst), "a")
-    assert.equals( JSON.stringify(getElementByIndex(result2)(n1)(snd)), JSON.stringify({txt: 'HelloWorld', short: 'HW'}))
-    assert.equals( getElementByIndex(result2)(n2)(fst), "b")
-    assert.equals( JSON.stringify(getElementByIndex(result2)(n2)(snd)), JSON.stringify({txt: 'Lambda', short: 'λ'}))
+    assert.equals( getElementByIndex(result2)(n1)(fst), "a");
+    assert.equals( JSON.stringify(getElementByIndex(result2)(n1)(snd)), JSON.stringify({txt: 'HelloWorld', short: 'HW'}));
+    assert.equals( getElementByIndex(result2)(n2)(fst), "b");
+    assert.equals( JSON.stringify(getElementByIndex(result2)(n2)(snd)), JSON.stringify({txt: 'Lambda', short: 'λ'}));
 
 
     // Person-Constructor

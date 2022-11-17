@@ -7,6 +7,4 @@ export { setLabel }
  * @param {Attribute} attr 
  * @param {string} labelText 
  */
-const setLabel = (attr, labelText) => {
-  attr.getObs(LABEL).setValue(labelText)
-}
+const setLabel = (attr, labelText) => attr.getObs(LABEL).setValue(labelText);

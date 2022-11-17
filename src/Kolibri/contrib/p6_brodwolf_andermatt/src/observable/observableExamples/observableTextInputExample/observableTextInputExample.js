@@ -46,14 +46,14 @@ const startProgram = domElements => {
                         : textInputObservables(removeListener)(pairEle(snd)))
     )
 
-}
+};
 
 // Either all the necessary Dom-Element exist or display all missed Element
 eitherElementsOrErrorsByFunction(eitherDomElement)("inputText", "newValue", "oldValue", "sizes" )
 (err => document.body.innerHTML = Box(err)
                                     (fmap)(reduce(acc => curr => acc + "<br>" + curr )("<h1>Error</h1>"))
                                     (fold)(txt => `<div style="background: #ffcccb; padding: 10px; border-radius: 1rem">${txt}</div>`))
-(startProgram)
+(startProgram);
 
 
 
@@ -68,7 +68,7 @@ const checkElementsByFunction = f => (...elems) =>
             if (result) {
                 return acc.values.push(result);
             } else {
-                acc.values = [] // clear elements
+                acc.values = []; // clear elements
                 acc.values.push('element with id: ' + result + 'not found');
                 acc.isFailed = true;
                 return acc;

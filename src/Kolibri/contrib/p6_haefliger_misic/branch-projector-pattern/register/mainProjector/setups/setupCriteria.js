@@ -10,12 +10,12 @@ export { setupCriteria }
  */
 const setupCriteria = (register, rootElement) => {
 
-  const patterns = register.getPatterns()
-  const criteriaElements = patterns.map(pattern => registerCriteriaProjector(register, pattern.name))
+  const patterns = register.getPatterns();
+  const criteriaElements = patterns.map(pattern => registerCriteriaProjector(register, pattern.name));
 
   // Div Element which already exists in index.html
-  const criteriaContainer = rootElement.querySelector('.pw-criteria')
-  criteriaElements.forEach(element => criteriaContainer.appendChild(element))
+  const criteriaContainer = rootElement.querySelector('.pw-criteria');
+  criteriaElements.forEach(element => criteriaContainer.appendChild(element));
 
   return criteriaContainer
-}
+};

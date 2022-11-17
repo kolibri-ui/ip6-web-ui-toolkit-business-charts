@@ -57,17 +57,17 @@ boxSuite.add("box.fold", assert => {
     const result1 = Box(p)
                         (fmap)(p => p.firstName)
                         (fmap)(firstName => firstName.toUpperCase())
-                        (fold)(firstNameUpperCase => firstNameUpperCase.slice(1))
+                        (fold)(firstNameUpperCase => firstNameUpperCase.slice(1));
 
     const result2 = Box(10)
                         (fold)(num => num * 2);
 
     const result3 = Box(id)
-                        (fold)(f => f("Magic"))
+                        (fold)(f => f("Magic"));
 
 
     const result4 = Box("Hello")
-                        (fold)(s => s + " World")
+                        (fold)(s => s + " World");
 
     assert.equals(result1, "UKAS");
     assert.equals(result2, 20);
@@ -77,7 +77,7 @@ boxSuite.add("box.fold", assert => {
 
 boxSuite.add("box.chain", assert => {
     const box1 = Box(10)
-                    (chain)(num => Box(num * 2))
+                    (chain)(num => Box(num * 2));
 
     assert.equals(getContent(box1), 20);
 
@@ -87,7 +87,7 @@ boxSuite.add("box.chain", assert => {
                         (chain)(num => Box(num * 2)
                                             (fmap)(num => num + 1))
                         (chain)(num => Box(num * 3)
-                                            (fmap)(num => num + 1))
+                                            (fmap)(num => num + 1));
 
     assert.equals(getContent(box2), 40);
 
@@ -97,7 +97,7 @@ boxSuite.add("box.chain", assert => {
                         (chain)(ab => Box(ab + "c")
                                         (fmap)(abc => abc + "d"))
                         (chain)(abcd => Box(abcd + "e")
-                                        (fmap)(abcde => abcde + "f"))
+                                        (fmap)(abcde => abcde + "f"));
 
     assert.equals(getContent(box3), "abcdef");
 
@@ -106,14 +106,14 @@ boxSuite.add("box.chain", assert => {
                         (chain)(num => Box(num)
                                             (fmap)(num => num + 2)
                                             (fmap)(num => num + 3))
-                        (fmap)(num => num - 15)
+                        (fmap)(num => num - 15);
 
     assert.equals(getContent(box4), 0);
 
 
     const box5 = Box(10)
                     (chain)(num => Box(num * 2))
-                    (fold)(x => x + 5)
+                    (fold)(x => x + 5);
 
     assert.equals(box5, 25);
 });
@@ -131,7 +131,7 @@ boxSuite.add("box example", assert => {
     const result1 = nextCharForNumberString(' 64 ');
     const result2 = nextCharForNumberString(' 65 ');
 
-    assert.equals(result1, "a")
+    assert.equals(result1, "a");
     assert.equals(result2, "b")
 });
 
@@ -160,8 +160,8 @@ boxSuite.add("mapMaybe", assert => {
     assert.equals( resultFailure, "error: division by zero");
 
 
-    const resultSuccess2 = mapMaybe( Just(10) ) (x => x * 4) (() => "failed")(id)
-    const resultFailure2 = mapMaybe(     Nothing ) (x => x * 4) (() => "failed")(id)
+    const resultSuccess2 = mapMaybe( Just(10) ) (x => x * 4) (() => "failed")(id);
+    const resultFailure2 = mapMaybe(     Nothing ) (x => x * 4) (() => "failed")(id);
 
     assert.equals( resultSuccess2, 40);
     assert.equals( resultFailure2, "failed");
@@ -192,14 +192,14 @@ boxSuite.add("mapfMaybe", assert => {
                         (fmapMaybe)(p => p.firstName);
     assert.equals( getContent(mapped1)(() => "failed")(id), "lukas");
 
-    const mapped2 = mapped1(fmapMaybe)(firstName => firstName.toUpperCase())
+    const mapped2 = mapped1(fmapMaybe)(firstName => firstName.toUpperCase());
     assert.equals(getContent(mapped2)(() => "failed")(id), "LUKAS");
 
     const mapped3 = mapped2(fmapMaybe)(firstNameUpperCase => firstNameUpperCase.slice(1));
     assert.equals(getContent(mapped3)(() => "failed")(id), "UKAS");
 
 
-    const mappedNothing = Box(Nothing)(fmapMaybe)((p => p.firstName));
+    const mappedNothing = Box(Nothing)(fmapMaybe)(p => p.firstName);
     assert.equals(getContent(mappedNothing)(() => "failed")(id), "failed");
     assert.equals(getContent(mappedNothing), Nothing);
 
@@ -209,14 +209,14 @@ boxSuite.add("getContent maybeBox", assert => {
     const person = {firstName: "lukas", lastName: "Mueller"};
     const maybeJustPerson = () => Just(person);
 
-    const boxJustPerson   = Box(maybeJustPerson())
-    const justMaybePerson = getContent(boxJustPerson)
+    const boxJustPerson   = Box(maybeJustPerson());
+    const justMaybePerson = getContent(boxJustPerson);
 
     assert.equals(justMaybePerson( () => "no person" )(id), person);
 
 
     const boxNothingMaybe = Box(Nothing);
-    const nothingMaybe    = getContent(boxNothingMaybe)
+    const nothingMaybe    = getContent(boxNothingMaybe);
 
     assert.equals(nothingMaybe, Nothing);
     assert.equals(nothingMaybe( () => "no person" )(id), "no person");
@@ -264,7 +264,7 @@ boxSuite.add("maybeBox example", assert => {
             (fmap)(maybeNumber)
             (foldMaybe)(x => x *2)
                 (() => "failed")
-                (id)
+                (id);
 
     assert.equals(maybeBoxNumberTest(4), 8);
     assert.equals(maybeBoxNumberTest("bla"), "failed");
@@ -302,7 +302,7 @@ boxSuite.add("readPersonFromApi maybeBox example", assert => {
     // returns either a parsed object or Nothing
     const parseJson = object =>  object !== null ? eitherTryCatch(() => JSON.parse(object)) : Nothing;
 
-    const parseJsonWithError = _ =>  eitherTryCatch(() => JSON.parse('{"first": "Jane", last: "Doe"}'))
+    const parseJsonWithError = _ =>  eitherTryCatch(() => JSON.parse('{"first": "Jane", last: "Doe"}'));
 
 
     const getPerson1 = lastName =>
@@ -349,7 +349,7 @@ boxSuite.add("readPersonFromApi with left & right", assert => {
     const debug = x => {
         console.log(x);
         return x;
-    }
+    };
 
     const getPerson = lastName =>
         Box(readPersonFromApiWithError())
@@ -408,7 +408,7 @@ boxSuite.add("maybe.app", assert => {
 
     const res = getContent(box1)
                  (_ => 'fail')
-                 (id)
+                 (id);
 
     assert.equals(res, 15);
 
@@ -417,7 +417,7 @@ boxSuite.add("maybe.app", assert => {
 
     const res3 = getContent(box3)
                   (_ => 'fail')
-                  (id)
+                  (id);
 
     assert.equals(res3, 'fail');
 
@@ -427,7 +427,7 @@ boxSuite.add("maybe.app", assert => {
 
     const res2 = getContent(box2)
                   (_ => console.error('sdv'))
-                  (id)
+                  (id);
 
     assert.equals(res2, 24);
 });
@@ -440,7 +440,7 @@ boxSuite.add("liftA2 maybe", assert => {
 
     const res = getContent(result)
                     (_ => console.error('error'))
-                    (id)
+                    (id);
 
     assert.equals(res, 15);
 });
@@ -450,7 +450,7 @@ boxSuite.add("lazy Box evaluation", assert => {
     const notLazyResult = Box("a")
                             (fmap)(a   => a   + "b")
                             (fmap)(ab  => ab  + "c")
-                            (fold)(abc => abc + "d")
+                            (fold)(abc => abc + "d");
 
     assert.equals(notLazyResult, "abcd");
 
@@ -458,7 +458,7 @@ boxSuite.add("lazy Box evaluation", assert => {
     const lazyResult = () => Box("a")
                                 (fmap)(a   => a   + "b")
                                 (fmap)(ab  => ab  + "c")
-                                (fold)(abc => abc + "d")
+                                (fold)(abc => abc + "d");
 
     assert.equals(lazyResult(), "abcd");
 });
@@ -468,7 +468,7 @@ boxSuite.add("box with stack", assert => {
 
     const result = Box(convertArrayToStack([1,2,3,4]))
                     (fmap)(map(x => x * 2))
-                    (fold)(filter(x => x > 4))
+                    (fold)(filter(x => x > 4));
 
     assert.arrayEquals(convertStackToArray(result), [6,8]);
 });
@@ -479,7 +479,7 @@ boxSuite.add("box with Http", async assert => {
 
     const result = Box( HttpGetSync(jokeNorrisUrl) )
                     (fmap)( JSON.parse   )
-                    (fold)( x => x.value )
+                    (fold)( x => x.value );
 
     assert.true(result.length > 0);
 

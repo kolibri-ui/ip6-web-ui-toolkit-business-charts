@@ -13,7 +13,7 @@ eitherElementsOrErrorsByFunction(eitherDomElement)('firstNumInput', 'secondNumIn
     const [firstNumInput, secondNumInput, resultDivision, divisionBtn] = convertListMapToArray(result);
 
     divisionBtn.onclick = () => {
-        const [fstNum, sndNum] = [firstNumInput, secondNumInput].map(e => Number(e.value))
+        const [fstNum, sndNum] = [firstNumInput, secondNumInput].map(e => Number(e.value));
         resultDivision.textContent = getOrDefault(maybeDivision(fstNum)(sndNum))("Can't divide by zero")
     }
 

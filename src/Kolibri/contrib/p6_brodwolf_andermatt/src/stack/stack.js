@@ -103,7 +103,7 @@ const hasPre = s => not(is0(s(stackIndex)));
  * @param  {stack} s
  * @return {stack} predecessor stack of that stack
  */
-const getPreStack = s => s(stackPredecessor)
+const getPreStack = s => s(stackPredecessor);
 
 /**
  * A function that takes a stack and a value.
@@ -189,7 +189,7 @@ const reduce = reduceFn => initialValue => s => {
             const acc               = reduceFunction(preAcc)(curr);
             const preStack          = stack(stackPredecessor);
             return triple(preStack)(reduceFunction)(acc);
-        }
+        };
 
         return If( hasPre(stack) )
                 (Then( getTriple(argsTriple) ))
@@ -276,7 +276,7 @@ const eitherElementByIndex = stack => index =>
                 (_ => eitherElementByJsNumIndex (stack)(index) )
             ))
     (_ => Left(`getElementByIndex - TypError: stack value '${stack}' (${typeof stack}) is not a stack`)) // catch
-    (id) // return value
+    (id); // return value
 
 /**
  * A function that takes a stack and an index as ChurchNumber.
@@ -339,7 +339,7 @@ const getElementByJsNumIndex = s => i => {
         const stack = argsPair(fst);
         const result = pair(getPreStack(stack));
 
-        return (jsNum(getStackIndex(stack)) === i)
+        return jsNum(getStackIndex(stack)) === i
             ? result(head(stack))
             : result(argsPair(snd));
 
@@ -374,7 +374,7 @@ const getIndexOfElement = s => element => {
         return If( churchBool(head(stack) === element))
                     (Then( result(getStackIndex(stack)) ) )
                     (Else( result(argsPair(snd))        ) );
-    }
+    };
 
     const times        = succ(size(s));
     const initArgsPair = pair(s)(undefined);
@@ -383,7 +383,7 @@ const getIndexOfElement = s => element => {
              (getIndex)(initArgsPair)
            )
            (snd);
-}
+};
 
 /**
  * A function that takes a stack and an element. The function returns a maybe-Monade Just with the index (ChurchNumber) of the element from the passed stack.
@@ -394,11 +394,11 @@ const getIndexOfElement = s => element => {
  * @return {function(element:*): either} Just(withIndex) or Nothing
  */
 const maybeIndexOfElement = s => element => {
-    const result = getIndexOfElement(s)(element)
+    const result = getIndexOfElement(s)(element);
     return result === undefined
             ? Nothing
             : Just(result);
-}
+};
 
 /**
  * A function that takes a stack and an element.
@@ -526,7 +526,7 @@ const filter = filterFunction => s => {
     const filterIteration = argsPair => {
         const _stackFilter    = argsPair(fst);
         const _stack          = argsPair(snd);
-        const _nextValueStack = getPreStack(_stack)
+        const _nextValueStack = getPreStack(_stack);
         const _stackCurrValue = head(_stack);
 
         if (filterFunction(_stackCurrValue)) {
@@ -633,7 +633,7 @@ const forEach = stack => callbackFunc => {
         callbackFunc(_element, _index);
 
         return pair( getPreStack(_stack) )(_index + 1 );
-    }
+    };
 
     const iteration = p =>
         If( hasPre(p(fst)) )
@@ -673,7 +673,7 @@ const removeByIndex = stack => index => {
                 ( getPreStack(currentStack) )
                 ( result                    )
                 ( succ(currentIndex)        );
-    }
+    };
 
     const removeElementFn = stack => index => {
         const times         = size(stack);
@@ -687,7 +687,7 @@ const removeByIndex = stack => index => {
             return If(hasPre(currentStack))
                       (Then( removeByCondition(currentStack)(resultStack)(index)(currentIndex) ))
                       (Else( argsTriple                                                        ));
-        }
+        };
 
         return times
                 (iteration)
@@ -708,7 +708,7 @@ const removeByIndex = stack => index => {
             ))
     (_ => Left(`removeByIndex - TypError: stack value '${stack}' (${typeof stack}) is not a stack`)) // catch
     (id) // return value
-}
+};
 
 /**
  * Takes two stacks and concat it to one. E.g.:  concat( [1,2,3] )( [1,2,3] ) -> [1,2,3,1,2,3]
@@ -806,7 +806,7 @@ const zipWith = f => s1 => s2 => {
             ( getPreStack(s1) )
             ( getPreStack(s2) )
             ( result          );
-    }
+    };
 
     const iteration = t =>
         If( hasPre(t(firstOfTriple)) )
@@ -823,7 +823,7 @@ const zipWith = f => s1 => s2 => {
             ( emptyStack       )
         )
         (thirdOfTriple);
-}
+};
 
 /**
  * Zip (combine) two Stack to one stack of pairs
@@ -877,7 +877,7 @@ const stackEquals = s1 => s2 => {
                 ( getPreStack(s1) )
                 ( getPreStack(s2) )
                 ( result          );
-    }
+    };
 
     const iteration = t =>
         LazyIf( and( hasPre( t(firstOfTriple)) )( t(thirdOfTriple)) )

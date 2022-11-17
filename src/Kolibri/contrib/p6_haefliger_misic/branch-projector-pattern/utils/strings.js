@@ -2,15 +2,11 @@ export { padRight, padLeft }
 
 // appends blanks to the right until the string is of size extend
 // padRight :: String, Int -> String
-const padRight = (str, extend) => {
-  return "" + str + fill(str, extend);
-}
+const padRight = (str, extend) => "" + str + fill(str, extend);
 
 // appends blanks to the left until the string is of size extend
 // padLeft :: String, Int -> String
-const padLeft = (str, extend) => {
-  return "" + fill(str, extend) + str;
-}
+const padLeft = (str, extend) => "" + fill(str, extend) + str;
 
 
 const fill = (str, extend) => {
@@ -19,4 +15,4 @@ const fill = (str, extend) => {
       return "";
   }
   return " ".repeat(extend - len);
-}
+};

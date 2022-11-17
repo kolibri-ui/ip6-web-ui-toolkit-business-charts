@@ -209,7 +209,7 @@ const eitherFunction = value =>
 const maybeFunction = value =>
     eitherFunction(value)
         (_ => Nothing)
-        (_ => Just(value))
+        (_ => Just(value));
 
 /**
  * The eitherTryCatch function takes a function f that could go wrong.
@@ -225,7 +225,7 @@ const eitherTryCatch = f => {
     } catch (error) {
         return Left(error);
     }
-}
+};
 
 /**
  * The function eitherElementsOrErrorsByFunction takes a function as the first parameter and a rest parameter (JavaScript Rest Parameter) as the second parameter.

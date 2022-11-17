@@ -23,31 +23,31 @@ const speak = txt => {
     msg.rate = 1;   // From 0.1 to 10   (1)
     msg.pitch = 1;  // From 0   to 2    (1)
     speechSynthesis.speak(msg);
-}
+};
 
-const toRGBString = (r, g, b) => 'rgb(' + r + ',' + g + ',' + b + ')'
-const toHexString = (r, g, b) => "#" + toHex(r) + toHex(g) + toHex(b)
+const toRGBString = (r, g, b) => 'rgb(' + r + ',' + g + ',' + b + ')';
+const toHexString = (r, g, b) => "#" + toHex(r) + toHex(g) + toHex(b);
 const toHex = n => {
-    const hex = Math.round(n ? n : 0).toString(16)
+    const hex = Math.round(n ? n : 0).toString(16);
     return hex.length === 1 ? "0" + hex : hex
-}
+};
 
 const creatHtmlUnsubscribeToggle = ( parentElement, title, appendAsSibling = false) => {
     const template      = document.createElement('div');
     template.innerHTML = `<input type = "checkbox" id = "unSub${title}" name = "unSub${title}" style = "visibility: hidden">
-                          <label for = "unSub${title}" id="unSub${title}Label" class="unsubLabel" title="${title}">Unsubscribe ${title}</label>`
+                          <label for = "unSub${title}" id="unSub${title}Label" class="unsubLabel" title="${title}">Unsubscribe ${title}</label>`;
 
     appendAsSibling
         ? parentElement.parentNode.insertBefore( template, parentElement.nextSibling )
-        : parentElement.appendChild( template )
+        : parentElement.appendChild( template );
 
 
     const [toggleElement, labelElement] = template.children;
     return toggleElement
-}
+};
 
 const addUnSubscriberToggle = (observable, handlerName, toggleElement) => {
-    toggleElement.labels[0].textContent = (toggleElement.checked ? "Subscribe " : "UnSubscribe ") + toggleElement.labels[0].title
+    toggleElement.labels[0].textContent = (toggleElement.checked ? "Subscribe " : "UnSubscribe ") + toggleElement.labels[0].title;
 
     if (toggleElement.checked) {
         return observable(removeListener)(handlerName)
@@ -56,4 +56,4 @@ const addUnSubscriberToggle = (observable, handlerName, toggleElement) => {
     }
 
 
-}
+};

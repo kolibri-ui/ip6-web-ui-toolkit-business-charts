@@ -2,7 +2,7 @@ import { getAllUniqueGroupNames, VALID, VALUE, LABEL, EDITABLE } from '../../pre
 
 export { formProjector, pageCss }
 
-const className = 'formContent'
+const className = 'formContent';
 
 
 /**
@@ -16,32 +16,32 @@ const className = 'formContent'
  */
 const bindInput = (attribute, inputElement) => {
 
-  inputElement.oninput = () => attribute.getObs(VALUE).setValue(inputElement.value)
+  inputElement.oninput = () => attribute.getObs(VALUE).setValue(inputElement.value);
 
-  attribute.getObs(VALUE).onChange( input => inputElement.value = input)
+  attribute.getObs(VALUE).onChange( input => inputElement.value = input);
 
   attribute.getObs(VALID).onChange(
     valid => valid
       ? inputElement.classList.add(VALID)
       : inputElement.classList.remove(VALID)
-  )
+  );
 
   attribute.getObs(EDITABLE, true).onChange(
     isEditable => isEditable
       ? inputElement.readOnly = false
       : inputElement.readOnly = true
-  )
+  );
 
   attribute.getObs(LABEL).onChange(label => inputElement.title = label)
-}
+};
 
 
-let idCounter = 0
+let idCounter = 0;
 /**
  * Generates id's which can be used for input and label pairing
  * @returns {number} - The next highest counter
  */
-const nextId = () => idCounter++
+const nextId = () => idCounter++;
 
 
 /**
@@ -52,23 +52,23 @@ const nextId = () => idCounter++
  */
 const inputFieldProjector = (attributeConfig, attribute) => {
 
-  const id = nextId()
+  const id = nextId();
 
-  const labelElement   = document.createElement('label')
-  labelElement.htmlFor = id
+  const labelElement   = document.createElement('label');
+  labelElement.htmlFor = id;
 
-  const inputElement = document.createElement('input')
-  inputElement.type  = attributeConfig.type
-  inputElement.id    = id
-  if(attributeConfig.name)        inputElement.name        = attributeConfig.name
-  if(attributeConfig.placeholder) inputElement.placeholder = attributeConfig.placeholder
+  const inputElement = document.createElement('input');
+  inputElement.type  = attributeConfig.type;
+  inputElement.id    = id;
+  if(attributeConfig.name)        inputElement.name        = attributeConfig.name;
+  if(attributeConfig.placeholder) inputElement.placeholder = attributeConfig.placeholder;
 
-  attribute.getObs(LABEL).onChange(label => labelElement.textContent = label)
+  attribute.getObs(LABEL).onChange(label => labelElement.textContent = label);
 
-  bindInput(attribute, inputElement)
+  bindInput(attribute, inputElement);
 
   return [labelElement, inputElement]
-}
+};
 
 
 /**
@@ -78,15 +78,15 @@ const inputFieldProjector = (attributeConfig, attribute) => {
  */
 const fieldsetProjector = legendTitle => {
 
-  const fieldsetElement   = document.createElement('fieldset')
+  const fieldsetElement   = document.createElement('fieldset');
 
-  const legendElement     = document.createElement('legend')
-  legendElement.innerHTML = legendTitle
+  const legendElement     = document.createElement('legend');
+  legendElement.innerHTML = legendTitle;
 
-  fieldsetElement.appendChild(legendElement)
+  fieldsetElement.appendChild(legendElement);
 
   return fieldsetElement
-}
+};
 
 
 /**
@@ -96,18 +96,18 @@ const fieldsetProjector = legendTitle => {
  */
 const setupFieldsets = groupNames => {
 
-  const fieldsets = {}
+  const fieldsets = {};
 
   groupNames.forEach(groupName => {
     
-    const fieldsetElement = fieldsetProjector(groupName)
-    if(groupName) fieldsetElement.classList.add('group')
+    const fieldsetElement = fieldsetProjector(groupName);
+    if(groupName) fieldsetElement.classList.add('group');
 
     fieldsets[groupName] = fieldsetElement
-  })
+  });
 
   return fieldsets
-}
+};
 
 
 /**
@@ -117,19 +117,19 @@ const setupFieldsets = groupNames => {
  */
 const setupDatalist = listId => {
 
-  const datalistElement = document.createElement('datalist')
-  datalistElement.id = listId
+  const datalistElement = document.createElement('datalist');
+  datalistElement.id = listId;
 
-  const colors = ['Yellow', 'Red', 'Orange', 'Green']
+  const colors = ['Yellow', 'Red', 'Orange', 'Green'];
 
   colors.forEach(clr => {
-    const optionElement = document.createElement('option')
-    optionElement.value = clr
+    const optionElement = document.createElement('option');
+    optionElement.value = clr;
     datalistElement.appendChild(optionElement)
-  })
+  });
 
   return datalistElement
-}
+};
 
 
 /**
@@ -142,30 +142,30 @@ const setupDatalist = listId => {
 const formProjector = (formController, rootElement, form, attributeConfigs) => {
 
   // Set up form with a div inside it as a container around all fieldsets
-  const formElement = document.createElement('form')
+  const formElement = document.createElement('form');
   formElement.innerHTML = `
     <div class=${className}></div>
-  `
+  `;
 
   // Get that div for later appendings
-  const inputFiledsContainerElement = formElement.querySelector('.' + className)
+  const inputFiledsContainerElement = formElement.querySelector('.' + className);
 
   // Get all group names
-  const groupNames = getAllUniqueGroupNames()
+  const groupNames = getAllUniqueGroupNames();
 
-  const fieldsets = setupFieldsets(groupNames)
+  const fieldsets = setupFieldsets(groupNames);
 
   // Process through all the attributes
-  let submitElement // Used to make sure that the submit button always gets appended at the end of the form
+  let submitElement; // Used to make sure that the submit button always gets appended at the end of the form
 
   attributeConfigs.forEach(attributeConfig => {
 
-    const attribute = form[attributeConfig.id]
+    const attribute = form[attributeConfig.id];
 
-    const inputContainerElement = document.createElement('div')
-    inputContainerElement.classList.add('input-container')
+    const inputContainerElement = document.createElement('div');
+    inputContainerElement.classList.add('input-container');
 
-    const [labelElement, inputElement] = inputFieldProjector(attributeConfig, attribute)
+    const [labelElement, inputElement] = inputFieldProjector(attributeConfig, attribute);
 
     if(attributeConfig.type === 'submit') {
       inputContainerElement.appendChild(inputElement)
@@ -174,25 +174,25 @@ const formProjector = (formController, rootElement, form, attributeConfigs) => {
     }
 
     if(attributeConfig.id === 'favColor') {
-      const listName = 'favouriteColor'
-      inputElement.setAttribute('list', listName)
-      const datalistElement = setupDatalist(listName)
+      const listName = 'favouriteColor';
+      inputElement.setAttribute('list', listName);
+      const datalistElement = setupDatalist(listName);
       inputContainerElement.appendChild(datalistElement)
     }
 
-    const groupName = attribute.getGroup()
-    const fieldsetElement = fieldsets[groupName]
+    const groupName = attribute.getGroup();
+    const fieldsetElement = fieldsets[groupName];
 
-    if(attributeConfig.type === 'submit') submitElement = inputContainerElement
+    if(attributeConfig.type === 'submit') submitElement = inputContainerElement;
 
-    fieldsetElement.append(inputContainerElement)
+    fieldsetElement.append(inputContainerElement);
     inputFiledsContainerElement.appendChild(fieldsetElement)
-  })
+  });
 
-  inputFiledsContainerElement.appendChild(submitElement)
+  inputFiledsContainerElement.appendChild(submitElement);
 
   rootElement.appendChild(formElement)
-}
+};
 
 
 /**
@@ -248,4 +248,4 @@ const pageCss = `
     margin-top: 1.5rem;
     width: 180px;
   }
-`
+`;

@@ -7,9 +7,9 @@ import { setLabel } from './utils/attrLabels.js'
 export { FormController, FormView }
 
 // insert page style
-const style = document.createElement('style')
-style.innerHTML = pageCss
-document.head.appendChild(style)
+const style = document.createElement('style');
+style.innerHTML = pageCss;
+document.head.appendChild(style);
 
 /**
  * All configurations which are necessary for the attribute and the model, to correctly display the form
@@ -31,7 +31,7 @@ const ALL_ATTRIBUTE_CONFIGS = [
   { id: 'favColor',   type: 'text',  },
   { id: 'submit',     type: 'submit' },
   { id: 'place',      type: 'text'   },
-]
+];
 
 
 /**
@@ -51,61 +51,61 @@ const FormController = () => {
    */
   const FormModel = () => {
 
-    const firstNameAttr = Attribute('')
-    setLabel(firstNameAttr, 'First Name')
-    firstNameAttr.setGroup('Personalia')
+    const firstNameAttr = Attribute('');
+    setLabel(firstNameAttr, 'First Name');
+    firstNameAttr.setGroup('Personalia');
 
-    const lastNameAttr = Attribute('SomeLastName')
-    setLabel(lastNameAttr, 'Last Name')
-    lastNameAttr.setGroup('Personalia')
+    const lastNameAttr = Attribute('SomeLastName');
+    setLabel(lastNameAttr, 'Last Name');
+    lastNameAttr.setGroup('Personalia');
 
-    const eyeClrAttr = Attribute('')
-    setLabel(eyeClrAttr, 'Eye Color')
-    eyeClrAttr.setGroup('Personalia')
+    const eyeClrAttr = Attribute('');
+    setLabel(eyeClrAttr, 'Eye Color');
+    eyeClrAttr.setGroup('Personalia');
 
-    const birthDateAttr = Attribute('')
-    setLabel(birthDateAttr, 'Date of Birth')
-    birthDateAttr.setGroup('Personalia')
+    const birthDateAttr = Attribute('');
+    setLabel(birthDateAttr, 'Date of Birth');
+    birthDateAttr.setGroup('Personalia');
 
-    const meetingDateAttr = Attribute('')
-    setLabel(meetingDateAttr, 'Date')
-    meetingDateAttr.setGroup('Meeting')
+    const meetingDateAttr = Attribute('');
+    setLabel(meetingDateAttr, 'Date');
+    meetingDateAttr.setGroup('Meeting');
 
-    const meetingTimeAttr = Attribute()
-    setLabel(meetingTimeAttr, 'Time')
-    meetingTimeAttr.setGroup('Meeting')
+    const meetingTimeAttr = Attribute();
+    setLabel(meetingTimeAttr, 'Time');
+    meetingTimeAttr.setGroup('Meeting');
 
-    const numberAttr = Attribute('')
-    setLabel(numberAttr, 'Number')
+    const numberAttr = Attribute('');
+    setLabel(numberAttr, 'Number');
 
-    const colorAttr = Attribute()
-    setLabel(colorAttr, 'Color')
+    const colorAttr = Attribute();
+    setLabel(colorAttr, 'Color');
 
-    const rangeAttr = Attribute()
-    setLabel(rangeAttr, 'Range')
+    const rangeAttr = Attribute();
+    setLabel(rangeAttr, 'Range');
 
-    const phoneAttr = Attribute()
-    setLabel(phoneAttr, 'Phone')
+    const phoneAttr = Attribute();
+    setLabel(phoneAttr, 'Phone');
 
-    const radio1Attr = Attribute('')
-    setLabel(radio1Attr, 'Radio 1')
+    const radio1Attr = Attribute('');
+    setLabel(radio1Attr, 'Radio 1');
 
-    const radio2Attr = Attribute('')
-    setLabel(radio2Attr, 'Radio 2')
+    const radio2Attr = Attribute('');
+    setLabel(radio2Attr, 'Radio 2');
 
-    const favColorAttr = Attribute('')
-    setLabel(favColorAttr, 'Fav. Color')
-    favColorAttr.setGroup('Meeting')
+    const favColorAttr = Attribute('');
+    setLabel(favColorAttr, 'Fav. Color');
+    favColorAttr.setGroup('Meeting');
 
-    const submitAttr = Attribute('Submit this form')
-    setLabel(submitAttr, '')
+    const submitAttr = Attribute('Submit this form');
+    setLabel(submitAttr, '');
 
-    const placeAttr = Attribute('')
-    setLabel(placeAttr, 'Place')
-    placeAttr.setGroup('Meeting')
+    const placeAttr = Attribute('');
+    setLabel(placeAttr, 'Place');
+    placeAttr.setGroup('Meeting');
 
-    numberAttr.setValidator( input => input.length >= 3 )
-    phoneAttr.setValidator( input => /[0-9]{3}-[0-9]{2}-[0-9]{3}/.test(input) )
+    numberAttr.setValidator( input => input.length >= 3 );
+    phoneAttr.setValidator( input => /[0-9]{3}-[0-9]{2}-[0-9]{3}/.test(input) );
 
     return {
       firstname:  firstNameAttr,
@@ -124,25 +124,25 @@ const FormController = () => {
       submit:     submitAttr,
       place:      placeAttr,
     }
-  }
+  };
 
-  const formModel = ObservableList([])
+  const formModel = ObservableList([]);
 
   /**
    * Adds a new form to the form model
    * @returns {object} - The form model
    */
   const addForm = () => {
-    const newForm = FormModel()
-    formModel.add(newForm)
+    const newForm = FormModel();
+    formModel.add(newForm);
     return newForm
-  }
+  };
 
   return {
     onFormAdd: formModel.onAdd,
     addForm:   addForm,
   }
-}
+};
 
 
 /**
@@ -152,7 +152,7 @@ const FormController = () => {
  */
 const FormView = (FormController, rootElement) => {
 
-  const render = form => formProjector(FormController, rootElement, form, ALL_ATTRIBUTE_CONFIGS)
+  const render = form => formProjector(FormController, rootElement, form, ALL_ATTRIBUTE_CONFIGS);
 
   FormController.onFormAdd(render)
-}
+};

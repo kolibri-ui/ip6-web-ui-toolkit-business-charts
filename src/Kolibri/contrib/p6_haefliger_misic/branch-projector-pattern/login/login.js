@@ -27,22 +27,21 @@ const LoginController = service => {
    */
   const Login = () => {
     
-    const emailAttr        = Attribute('')
-    const pwAttr           = Attribute('')
-    const formAttr         = Attribute(false)  // Checks whether all inputs of the login form are valid
-    const loginSuccessAttr = Attribute(false)  // True if a login attempt is successful
-    const notificationAttr = Attribute('')     // Notification message for the user upon login attempt
+    const emailAttr        = Attribute('');
+    const pwAttr           = Attribute('');
+    const formAttr         = Attribute(false);  // Checks whether all inputs of the login form are valid
+    const loginSuccessAttr = Attribute(false);  // True if a login attempt is successful
+    const notificationAttr = Attribute('');     // Notification message for the user upon login attempt
 
-    const updateFormValidity = () => {
-      emailAttr.getObs(VALID).getValue() && pwAttr.getObs(VALUE).getValue()
+    const updateFormValidity = () =>
+        emailAttr.getObs(VALID).getValue() && pwAttr.getObs(VALUE).getValue()
         ? formAttr.getObs(VALID).setValue(true)
-        : formAttr.getObs(VALID).setValue(false)
-    }
+        : formAttr.getObs(VALID).setValue(false);
 
-    emailAttr.getObs(VALID).onChange( updateFormValidity )
-    pwAttr   .getObs(VALUE).onChange( updateFormValidity )
+    emailAttr.getObs(VALID).onChange( updateFormValidity );
+    pwAttr   .getObs(VALUE).onChange( updateFormValidity );
 
-    emailAttr.setValidator( input => /.+@.+\..+/.test(input) )
+    emailAttr.setValidator( input => /.+@.+\..+/.test(input) );
 
     return {
       getFormValidity:           formAttr.getObs(VALID).getValue,
@@ -66,26 +65,26 @@ const LoginController = service => {
       getNotification:           notificationAttr.getObs(VALUE).getValue,
       setNotification:           notificationAttr.getObs(VALUE).setValue,
     }
-  }
+  };
   
-  const loginModel = ObservableList([])
+  const loginModel = ObservableList([]);
 
   /**
    * Adds a new login to the login model
    * @returns {object} - The login model and its externally avalaible attribute functions
    */
   const addLogin = () => {
-    const newLogin = Login()
-    loginModel.add(newLogin)
+    const newLogin = Login();
+    loginModel.add(newLogin);
     return newLogin
-  }
+  };
 
   return {
     onLoginAdd: loginModel.onAdd,
     addLogin:   addLogin,
   }
 
-}
+};
 
 /**
  * Renders the login component as soon as a new login is being added
@@ -94,7 +93,7 @@ const LoginController = service => {
  */
 const LoginView = (loginController, rootElement) => {
 
-  const render = login => loginProjector(loginController, rootElement, login)
+  const render = login => loginProjector(loginController, rootElement, login);
 
   loginController.onLoginAdd(render)
-}
+};

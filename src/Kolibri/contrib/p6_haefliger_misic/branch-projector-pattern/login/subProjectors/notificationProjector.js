@@ -7,7 +7,7 @@ export { loginNotificationProjector }
  */
  const loginNotificationProjector = () => {
 
-  const pElement = document.createElement('p')  
+  const pElement = document.createElement('p');
 
   return pElement
-}
+};

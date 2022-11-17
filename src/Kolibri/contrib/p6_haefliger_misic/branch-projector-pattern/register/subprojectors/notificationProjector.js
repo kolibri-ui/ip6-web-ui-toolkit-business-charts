@@ -8,11 +8,11 @@ export { registerNotificationProjector }
  */
 const registerNotificationProjector = ({ onNotificationChange, getNotification }) => {
 
-  const pElement = document.createElement('p')
+  const pElement = document.createElement('p');
 
   onNotificationChange(
     () => pElement.innerHTML = getNotification()
-  )
+  );
 
   return pElement
-}
+};

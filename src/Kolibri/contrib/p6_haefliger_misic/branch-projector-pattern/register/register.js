@@ -31,14 +31,14 @@ const RegisterController = () => {
    */
   const Register = () => {
 
-    const emailAttr = Attribute('')
-    const pwAttr = Attribute('')
-    const confirmPwAttr = Attribute('')
-    const formAttr = Attribute('')
-    const showPwBtnAttr = Attribute(false)
-    const emailValidNotificationAttr = Attribute('')
-    const confirmPwMatchNotificationAttr = Attribute('')
-    const pwStrenghtAttr = Attribute(0)
+    const emailAttr = Attribute('');
+    const pwAttr = Attribute('');
+    const confirmPwAttr = Attribute('');
+    const formAttr = Attribute('');
+    const showPwBtnAttr = Attribute(false);
+    const emailValidNotificationAttr = Attribute('');
+    const confirmPwMatchNotificationAttr = Attribute('');
+    const pwStrenghtAttr = Attribute(0);
     const patternsAttr = Attribute([
       {
         name: 'lowercase',
@@ -65,26 +65,26 @@ const RegisterController = () => {
         regex: /^.{6,}/,
         isFulfilled: false
       },
-    ])
+    ]);
 
     const updateFormValidity = () => {
-      const isValid = emailAttr.getObs(VALID).getValue() && pwAttr.getObs(VALID).getValue()
+      const isValid = emailAttr.getObs(VALID).getValue() && pwAttr.getObs(VALID).getValue();
       formAttr.getObs(VALID).setValue(isValid)
-    }
+    };
 
-    emailAttr.getObs(VALID).onChange( updateFormValidity )
-    pwAttr   .getObs(VALID).onChange( updateFormValidity )
+    emailAttr.getObs(VALID).onChange( updateFormValidity );
+    pwAttr   .getObs(VALID).onChange( updateFormValidity );
 
-    emailAttr.setValidator( input => /.+@.+\..+/.test(input) )
+    emailAttr.setValidator( input => /.+@.+\..+/.test(input) );
 
     pwAttr.setValidator( input => {
 
       // Checking the input by the patterns
       
-      const setPatternsAttr = patternsAttr.getObs(VALUE).setValue
+      const setPatternsAttr = patternsAttr.getObs(VALUE).setValue;
 
       patternsAttr.getObs(VALUE).getValue().forEach(pattern => {
-        const oldPAtternsArray = patternsAttr.getObs(VALUE).getValue()
+        const oldPAtternsArray = patternsAttr.getObs(VALUE).getValue();
 
         pattern.regex.test(input)
           ? setPatternsAttr( oldPAtternsArray.map(
@@ -97,17 +97,17 @@ const RegisterController = () => {
                 ? {...pattern, isFulfilled: false} 
                 : patternItem
           ))
-      })
+      });
 
-      confirmPwAttr.setValidator( input => input === pwAttr.getObs(VALUE).getValue())
+      confirmPwAttr.setValidator( input => input === pwAttr.getObs(VALUE).getValue());
 
-      const amountOfFulfilledPatterns = patternsAttr.getObs(VALUE).getValue().filter(pattern => pattern.isFulfilled).length
+      const amountOfFulfilledPatterns = patternsAttr.getObs(VALUE).getValue().filter(pattern => pattern.isFulfilled).length;
 
-      pwStrenghtAttr.getObs(VALUE).setValue(amountOfFulfilledPatterns)
+      pwStrenghtAttr.getObs(VALUE).setValue(amountOfFulfilledPatterns);
 
 
       return amountOfFulfilledPatterns === patternsAttr.getObs(VALUE).getValue().length
-    })
+    });
 
     return {
       getFormValidity:                      formAttr.getObs(VALID).getValue,
@@ -142,26 +142,26 @@ const RegisterController = () => {
       setPatterns:                          patternsAttr.getObs(VALUE).setValue,
       onPatternsChanged:                    patternsAttr.getObs(VALUE).onChange,
     }  
-  }
+  };
 
-  const registerModel = ObservableList([])
+  const registerModel = ObservableList([]);
 
   /**
    * Adds a new Register to the login model
    * @returns {object} - The register model and its externally avalaible attribute functions
    */
   const addRegister = () => {
-    const newRegister = Register()
-    registerModel.add(newRegister)
+    const newRegister = Register();
+    registerModel.add(newRegister);
     return newRegister
-  }
+  };
 
   return {
     onRegisterAdd: registerModel.onAdd,
     addRegister:   addRegister,
   }
   
-}
+};
 
 /**
  * Renders the register component as soon as a new register is being added
@@ -170,7 +170,7 @@ const RegisterController = () => {
  */
 const RegisterView = (RegisterController, rootElement) => {
   
-  const render = register => registerProjector(RegisterController, rootElement, register)
+  const render = register => registerProjector(RegisterController, rootElement, register);
 
   RegisterController.onRegisterAdd(render)
-}
+};

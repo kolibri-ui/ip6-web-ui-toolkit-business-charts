@@ -12,19 +12,18 @@ const loginService = () => {
    * @param {string} url 
    * @param {string} email 
    * @param {string} password 
-   * @returns {promise} returns either a simulated returned data (which holds a token in case of a success) or a rejected promise
+   * @returns {promise} returns either a simulated returned data (which holds a token in case of a success) or a
+   *     rejected promise
    */
-  const loginAttempt = (email, password) => {
-    return email === 'example@mail.com' && password === 'P4$$word'
-      ? new Promise((resolve, reject) => {
+  const loginAttempt = (email, password) =>
+      email === 'example@mail.com' && password === 'P4$$word'
+      ? new Promise((resolve, reject) =>
           resolve({
-            token: '1234'
-          })
-        })
-      : Promise.reject(405)
-  }
+              token: '1234'
+          }))
+      : Promise.reject(405);
 
   return {
     loginAttempt
   }
-}
+};

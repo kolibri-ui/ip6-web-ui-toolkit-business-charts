@@ -21,16 +21,16 @@ const nonEmptyStack = push(push(push(emptyStack)(0))(1))(2);
 const stackWithNumbers = push(push(push(nonEmptyStack)(33))(34))(35);
 
 const createTestStackWithNElements = n => {
-    let testArray = []
+    let testArray = [];
     for (let i = 0; i < n; i++) {
         testArray.push(i);
     }
 
     return convertArrayToStack(testArray);
-}
+};
 
 stackSuite.add("emptyStack", assert => {
-    const s1 = push(emptyStack)(12)
+    const s1 = push(emptyStack)(12);
 
     assert.equals(jsBool(hasPre(emptyStack)), false);
     assert.equals((pop(emptyStack))(fst), id);
@@ -38,7 +38,7 @@ stackSuite.add("emptyStack", assert => {
     assert.equals(size(emptyStack), n0);
     assert.equals(head(emptyStack), id);
     assert.equals(emptyStack, emptyStack);
-    assert.equals(pop((s1))(fst), emptyStack);
+    assert.equals(pop(s1)(fst), emptyStack);
 });
 
 stackSuite.add("hasPre", assert => {
@@ -347,11 +347,11 @@ stackSuite.add("for / foreach loop - stack implementation", assert => {
 });
 
 stackSuite.add("performance test: for/foreach loop - stack implementation", assert => {
-    const testStack = createTestStackWithNElements(200)
+    const testStack = createTestStackWithNElements(200);
 
     const callbackFunc = (elem, i) => {
         //console.log(`elem: ${elem}, index: ${i}`);
-    }
+    };
 
     const result = BenchmarkTest('for/foreach loop - stack implementation')(() =>  forEach(testStack)(callbackFunc));
 });
@@ -361,57 +361,57 @@ stackSuite.add("performance test: for/foreach loop - old stack implementation", 
     const testStack = createTestStackWithNElements(200);
     const callbackFunc = (elem, i) => {
         //console.log(`elem: ${elem}, index: ${i}`);
-    }
+    };
 
     const result = BenchmarkTest('for/foreach loop - old stack implementation')(() => forEachOld(testStack)(callbackFunc));
 });
 
 stackSuite.add("removeByIndex", assert => {
     const elements = convertArrayToStack(["Hello", "Haskell", "you", "Rock", "the", "World"]);
-    const result = removeByIndex(elements)(2) // "Haskell"
+    const result = removeByIndex(elements)(2); // "Haskell"
 
     assert.arrayEquals(convertStackToArray(result), ["Hello", "you", "Rock", "the", "World"]);
     assert.churchNumberEquals(size(result), n5);
 
-    const resultEndIndex = removeByIndex(result)(5) // "World"
+    const resultEndIndex = removeByIndex(result)(5); // "World"
     assert.arrayEquals(convertStackToArray(resultEndIndex), ["Hello", "you", "Rock", "the"]);
     assert.churchNumberEquals(size(resultEndIndex), n4);
 
-    const resultStartIndex = removeByIndex(resultEndIndex)(1) // "Hello"
+    const resultStartIndex = removeByIndex(resultEndIndex)(1); // "Hello"
     assert.arrayEquals(convertStackToArray(resultStartIndex), ["you", "Rock", "the"]);
     assert.churchNumberEquals(size(resultStartIndex), n3);
 
 
-    const resultToEmptyStack = removeByIndex(removeByIndex(removeByIndex(resultStartIndex)(1))(1))(1)
+    const resultToEmptyStack = removeByIndex(removeByIndex(removeByIndex(resultStartIndex)(1))(1))(1);
     assert.arrayEquals(convertStackToArray(resultToEmptyStack), []);
     assert.churchNumberEquals(size(resultToEmptyStack), n0);
 
-    const resultEmpty = removeByIndex(emptyStack)(4)
+    const resultEmpty = removeByIndex(emptyStack)(4);
     assert.arrayEquals(convertStackToArray(resultEmpty), []);
     assert.churchNumberEquals(size(resultEmpty), n0);
 
-    const resultNotAvailableIndex = removeByIndex(elements)(42) // not existing Index
+    const resultNotAvailableIndex = removeByIndex(elements)(42); // not existing Index
     assert.arrayEquals(convertStackToArray(resultNotAvailableIndex), ["Hello", "Haskell", "you", "Rock", "the", "World"]);
     assert.churchNumberEquals(size(resultNotAvailableIndex), n6);
 
     // same with ChurchNumbers
-    const resultEndIndexCN = removeByIndex(result)(n5) // "World"
+    const resultEndIndexCN = removeByIndex(result)(n5); // "World"
     assert.arrayEquals(convertStackToArray(resultEndIndexCN), ["Hello", "you", "Rock", "the"]);
     assert.churchNumberEquals(size(resultEndIndexCN), n4);
 
-    const resultStartIndexCN = removeByIndex(resultEndIndexCN)(n1) // "Hello"
+    const resultStartIndexCN = removeByIndex(resultEndIndexCN)(n1); // "Hello"
     assert.arrayEquals(convertStackToArray(resultStartIndexCN), ["you", "Rock", "the"]);
     assert.churchNumberEquals(size(resultStartIndexCN), n3);
 
-    const resultToEmptyStackCN = removeByIndex(removeByIndex(removeByIndex(resultStartIndex)(n1))(n1))(n1)
+    const resultToEmptyStackCN = removeByIndex(removeByIndex(removeByIndex(resultStartIndex)(n1))(n1))(n1);
     assert.arrayEquals(convertStackToArray(resultToEmptyStackCN), []);
     assert.churchNumberEquals(size(resultToEmptyStackCN), n0);
 
-    const resultEmptyCN = removeByIndex(emptyStack)(n4)
+    const resultEmptyCN = removeByIndex(emptyStack)(n4);
     assert.arrayEquals(convertStackToArray(resultEmptyCN), []);
     assert.churchNumberEquals(size(resultEmptyCN), n0);
 
-    const resultNotAvailableIndexCN = removeByIndex(elements)(n9) // not existing Index
+    const resultNotAvailableIndexCN = removeByIndex(elements)(n9); // not existing Index
     assert.arrayEquals(convertStackToArray(resultNotAvailableIndexCN), ["Hello", "Haskell", "you", "Rock", "the", "World"]);
     assert.churchNumberEquals(size(resultNotAvailableIndexCN), n6);
 });
@@ -592,79 +592,79 @@ stackSuite.add("zipWith", assert => {
 stackSuite.add("stackEquals", assert => {
     const s1 = convertArrayToStack([1, 2, 3]);
     const s2 = convertArrayToStack([1, 2, 4]);
-    const r1 = stackEquals(s1)(s2)
+    const r1 = stackEquals(s1)(s2);
     assert.churchBooleanEquals(r1, False);
 
     const s3 = convertArrayToStack([1, 2, 3]);
     const s4 = convertArrayToStack([1, 2, 3]);
-    const r2 = stackEquals(s3)(s4)
+    const r2 = stackEquals(s3)(s4);
     assert.churchBooleanEquals(r2, True);
 
     const s5 = convertArrayToStack([0, 2, 3]);
     const s6 = convertArrayToStack([1, 2, 3]);
-    const r3 = stackEquals(s5)(s6)
+    const r3 = stackEquals(s5)(s6);
     assert.churchBooleanEquals(r3, False);
 
-    const r4 = stackEquals(emptyStack)(emptyStack)
+    const r4 = stackEquals(emptyStack)(emptyStack);
     assert.churchBooleanEquals(r4, True);
 
     const s9 = convertArrayToStack([0]);
     const s10 = convertArrayToStack([1]);
-    const r5 = stackEquals(s9)(s10)
+    const r5 = stackEquals(s9)(s10);
     assert.churchBooleanEquals(r5, False);
 
     const s11 = convertArrayToStack([1]);
     const s12 = convertArrayToStack([1]);
-    const r6 = stackEquals(s11)(s12)
+    const r6 = stackEquals(s11)(s12);
     assert.churchBooleanEquals(r6, True);
 
     const s13 = convertArrayToStack([1, 2, 3]);
     const s14 = convertArrayToStack([1, 2]);
-    const r7 = stackEquals(s13)(s14)
+    const r7 = stackEquals(s13)(s14);
     assert.churchBooleanEquals(r7, False);
 
     const s15 = convertArrayToStack([1, 2]);
     const s16 = convertArrayToStack([1, 2, 3]);
-    const r8 = stackEquals(s15)(s16)
+    const r8 = stackEquals(s15)(s16);
     assert.churchBooleanEquals(r8, False);
 });
 
 stackSuite.add("maybe-/getIndexOfElement ", assert => {
     const stackWithNumbers = convertArrayToStack([0, 11, 22, 33]);
 
-    assert.equals( maybeIndexOfElement(stackWithNumbers)(-1), Nothing)
-    assert.equals( getIndexOfElement(stackWithNumbers)(-1), undefined)
-    assert.churchNumberEquals( getIndexOfElement(stackWithNumbers)(0), n1)
-    assert.churchNumberEquals( maybeIndexOfElement(stackWithNumbers)(0)("not found")(id), n1)
-    assert.churchNumberEquals( getIndexOfElement(stackWithNumbers)(11),n2)
-    assert.churchNumberEquals( getIndexOfElement(stackWithNumbers)(22),n3)
-    assert.churchNumberEquals( getIndexOfElement(stackWithNumbers)(33),n4)
-    assert.equals( getIndexOfElement(stackWithNumbers)(44), undefined)
+    assert.equals( maybeIndexOfElement(stackWithNumbers)(-1), Nothing);
+    assert.equals( getIndexOfElement(stackWithNumbers)(-1), undefined);
+    assert.churchNumberEquals( getIndexOfElement(stackWithNumbers)(0), n1);
+    assert.churchNumberEquals( maybeIndexOfElement(stackWithNumbers)(0)("not found")(id), n1);
+    assert.churchNumberEquals( getIndexOfElement(stackWithNumbers)(11),n2);
+    assert.churchNumberEquals( getIndexOfElement(stackWithNumbers)(22),n3);
+    assert.churchNumberEquals( getIndexOfElement(stackWithNumbers)(33),n4);
+    assert.equals( getIndexOfElement(stackWithNumbers)(44), undefined);
 
 
     const stackWithStrings = convertArrayToStack(["a", "b", "c"]);
 
-    assert.churchNumberEquals( getIndexOfElement(stackWithStrings)("a"), n1)
-    assert.churchNumberEquals( getIndexOfElement(stackWithStrings)("b"), n2)
-    assert.churchNumberEquals( getIndexOfElement(stackWithStrings)("c"), n3)
+    assert.churchNumberEquals( getIndexOfElement(stackWithStrings)("a"), n1);
+    assert.churchNumberEquals( getIndexOfElement(stackWithStrings)("b"), n2);
+    assert.churchNumberEquals( getIndexOfElement(stackWithStrings)("c"), n3);
     assert.equals( getIndexOfElement(stackWithStrings)("xx"), undefined)
 });
 
 stackSuite.add("containsElement ", assert => {
     const stackWithNumbers = convertArrayToStack([0, 11, 22, 33]);
 
-    assert.churchBooleanEquals( containsElement(stackWithNumbers)(-1), False)
-    assert.churchBooleanEquals( containsElement(stackWithNumbers)(0), True)
-    assert.churchBooleanEquals( containsElement(stackWithNumbers)(11),True)
-    assert.churchBooleanEquals( containsElement(stackWithNumbers)(22),True)
-    assert.churchBooleanEquals( containsElement(stackWithNumbers)(33),True)
-    assert.churchBooleanEquals( containsElement(stackWithNumbers)(44), False)
+    assert.churchBooleanEquals( containsElement(stackWithNumbers)(-1), False);
+    assert.churchBooleanEquals( containsElement(stackWithNumbers)(0), True);
+    assert.churchBooleanEquals( containsElement(stackWithNumbers)(11),True);
+    assert.churchBooleanEquals( containsElement(stackWithNumbers)(22),True);
+    assert.churchBooleanEquals( containsElement(stackWithNumbers)(33),True);
+    assert.churchBooleanEquals( containsElement(stackWithNumbers)(44), False);
 
     const stackWithStrings = convertArrayToStack(["a", "b", "c"]);
 
-    assert.churchBooleanEquals( containsElement(stackWithStrings)("a"), True)
-    assert.churchBooleanEquals( containsElement(stackWithStrings)("b"), True)
-    assert.churchBooleanEquals( containsElement(stackWithStrings)("c"), True)
+    assert.churchBooleanEquals( containsElement(stackWithStrings)("a"), True);
+    assert.churchBooleanEquals( containsElement(stackWithStrings)("b"), True);
+    assert.churchBooleanEquals( containsElement(stackWithStrings)("c"), True);
     assert.churchBooleanEquals( containsElement(stackWithStrings)("xx"), False)
 });
 

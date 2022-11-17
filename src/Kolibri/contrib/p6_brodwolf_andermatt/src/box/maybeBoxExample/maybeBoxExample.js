@@ -7,11 +7,11 @@ const openSite = () =>{
     } else {
         return showLogin()
     }
-}
+};
 const openSite = () =>
     eitherNotNullAndUndefined(current_user)
     (_ => showLogin())
-    (_ => renderPage(current_user))
+    (_ => renderPage(current_user));
 
 const gerPrefs = user => {
     if(user.premium){
@@ -19,14 +19,14 @@ const gerPrefs = user => {
     } else {
         return defaultPrefs
     }
-}
+};
 const getPrefs = user =>
     eitherTruthy(user.premium)
     (_ => defaultPrefs)
     (_ => Box(user.premium)
             (mapf)(u => u.preferences)
             (fold)(prefs => loadPrefs(prefs))
-    )
+    );
 
 
 const streetName = user => {
@@ -43,7 +43,7 @@ const streetName = user => {
         }
     }
     return "no street"
-}
+};
 
 
 const streetName = user =>
@@ -53,7 +53,7 @@ const streetName = user =>
         (chainMaybe)(s => maybeNotNullAndUndefined(s.name))
         (foldMaybe)(n => n.toUpperCase())
     (_ => "no street")
-    (id)
+    (id);
 
 const user = {
     firstName: "Donald",
@@ -65,13 +65,13 @@ const user = {
             nr: 10
         }
     }
-}
+};
 
 
 const concatUniq = (x, ys) => {
-    const found = ys.filter(y => y === x)[0]
+    const found = ys.filter(y => y === x)[0];
     return found ? ys : ys.concat(x)
-}
+};
 
 const parseDbUrl = cfg => {
     try{
@@ -82,7 +82,7 @@ const parseDbUrl = cfg => {
     }catch (e){
         return null
     }
-}
+};
 
 const parseDbUrl = cfg =>
     tryCatch(() => Box(cfg)
@@ -91,4 +91,4 @@ const parseDbUrl = cfg =>
                     (foldMaybe)(id)
     )
     (_ => null)
-    (u => u.match("/salkfjasldkjf"))
+    (u => u.match("/salkfjasldkjf"));

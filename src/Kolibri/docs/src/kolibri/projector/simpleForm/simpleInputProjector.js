@@ -51,7 +51,7 @@ const projectInput =
         console.error("no inputController in input projector."); // be defensive
         return;
     }
-    const id = formClassName + "-id-" + (counter++);
+    const id = formClassName + "-id-" + counter++;
     // create view
     const elements = dom(`
         <label for="${id}"></label>

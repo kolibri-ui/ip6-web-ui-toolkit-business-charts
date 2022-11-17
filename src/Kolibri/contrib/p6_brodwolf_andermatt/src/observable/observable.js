@@ -23,7 +23,7 @@ export {Observable, addListener, setValue, getValue, removeListenerByKey, remove
  * @return {function(value:*): function(obsFn:function): function(obsFn:function)} a Observable-Function
  */
 const observableBody = listeners => value => obsFn =>
-    obsFn(listeners)(value)
+    obsFn(listeners)(value);
 
 /**
  * initialValue -> observableBody ;
@@ -59,7 +59,7 @@ const Observable = initialValue =>
 const setValue = listeners => oldValue => newValue => {
     forEach(listeners)((listener, _) => (listener(snd))(newValue)(oldValue));
     return observableBody(listeners)(newValue);
-}
+};
 
 /**
  * listeners -> value -> value ;
@@ -93,9 +93,9 @@ const getValue = listeners => value => value;
  *                          (addListener)( listenerNewValueToElement )
  */
 const addListener = listeners => value => newListener => {
-    newListener(snd)(value)(value)
+    newListener(snd)(value)(value);
     return observableBody(push(listeners)(newListener))(value);
-}
+};
 
 /**
  * listeners -> value -> listenerKey ;
@@ -224,7 +224,7 @@ const getListenerKey = listener => listener(fst);
  * @function
  */
 const logListenersToConsole = listeners => _ =>
-    forEach(listeners)((element, index) => console.log( 'element at: ' + index + ': ' + showPair(typeof (element) === 'object' ? JSON.stringify(element) : element) ));
+    forEach(listeners)((element, index) => console.log( 'element at: ' + index + ': ' + showPair(typeof element === 'object' ? JSON.stringify(element) : element) ));
 
 /*
     Listener-Functions

@@ -15,15 +15,15 @@ const setup = () => {
     dummyDomElem2.setAttribute('id', 'test2');
     document.body.appendChild(dummyDomElem);
     document.body.appendChild(dummyDomElem2);
-}
+};
 
 const tearDown = () => {
-    const dummyDomElem = document.getElementById('test')
-    const dummyDomElem2 = document.getElementById('test2')
+    const dummyDomElem = document.getElementById('test');
+    const dummyDomElem2 = document.getElementById('test2');
 
     dummyDomElem.remove();
     dummyDomElem2.remove();
-}
+};
 
 maybeSuite.add("Nothing", assert => {
     assert.equals( Nothing(() => 12)(() => 15), 12);
@@ -33,9 +33,9 @@ maybeSuite.add("Nothing", assert => {
 });
 
 maybeSuite.add("Just", assert => {
-    assert.equals( Just(10)((val => val + 10))(val => val + 20), 30);
-    assert.equals( Just(10)((_ => true))(_ => false), false);
-    assert.equals( Just(id)((f => f(false)))(f => f(true)), true);
+    assert.equals( Just(10)(val => val + 10)(val => val + 20), 30);
+    assert.equals( Just(10)(_ => true)(_ => false), false);
+    assert.equals( Just(id)(f => f(false))(f => f(true)), true);
 });
 
 maybeSuite.add("maybeElement", assert => {
@@ -60,35 +60,35 @@ maybeSuite.add("eitherJsNumOrOther", assert => {
 });
 
 maybeSuite.add("maybeDomElement", assert => {
-    setup()
+    setup();
     assert.equals( eitherDomElement("test")(_ => "Nothing")(_ => "Just"), "Just");
     assert.equals( eitherDomElement("Not a Number")(_ => "Nothing")(_ => "Just"), "Nothing");
     tearDown()
 });
 
 maybeSuite.add("getDomElement", assert => {
-    setup()
+    setup();
     assert.equals(getDomElement("test"), dummyDomElem);
 
-    const elementNotExistName = "elementNotExist"
-    const methodUnderTest = () => getDomElement(elementNotExistName)
-    assert.consoleErrorEquals(methodUnderTest, `no element exist with id: ${elementNotExistName}`)
+    const elementNotExistName = "elementNotExist";
+    const methodUnderTest = () => getDomElement(elementNotExistName);
+    assert.consoleErrorEquals(methodUnderTest, `no element exist with id: ${elementNotExistName}`);
 
     tearDown()
 });
 
 maybeSuite.add("getDomElements", assert => {
-    setup()
+    setup();
     assert.arrayEquals( getDomElements("test", "test"), [dummyDomElem, dummyDomElem]);
 
-    const elementNotExistName = "elementNotExist"
-    const methodUnderTest = () => getDomElements(elementNotExistName, "test")
-    assert.consoleErrorEquals(methodUnderTest, `no element exist with id: ${elementNotExistName}`)
+    const elementNotExistName = "elementNotExist";
+    const methodUnderTest = () => getDomElements(elementNotExistName, "test");
+    assert.consoleErrorEquals(methodUnderTest, `no element exist with id: ${elementNotExistName}`);
     tearDown();
 });
 
 maybeSuite.add("getOrDefault", assert => {
-    setup()
+    setup();
     assert.equals( getOrDefault(eitherNumber(5))(0), 5);
     assert.equals( getOrDefault(eitherNumber("NaN"))(42), 42);
     assert.equals( getOrDefault(eitherNumber("5"))(42), 42);
@@ -158,10 +158,10 @@ maybeSuite.add("maybeElementsByFunction", assert => {
 });
 
 maybeSuite.add("either try catch", assert => {
-    const result1 = eitherTryCatch(() => {throw "random error"})
-    const result2 = eitherTryCatch(() => 10)
-    const result3 = eitherTryCatch(() => "Hello")
-    const result4 = eitherTryCatch(() => {throw new TypeError("failed")})
+    const result1 = eitherTryCatch(() => {throw "random error"});
+    const result2 = eitherTryCatch(() => 10);
+    const result3 = eitherTryCatch(() => "Hello");
+    const result4 = eitherTryCatch(() => {throw new TypeError("failed")});
 
 
     assert.equals( result1(id)(id), "random error");

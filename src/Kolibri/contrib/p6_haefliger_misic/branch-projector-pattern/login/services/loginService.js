@@ -21,7 +21,7 @@ const loginService = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ email, password })
-    }
+    };
   
     return fetch(url, request)
       .then(res => {
@@ -31,9 +31,9 @@ const loginService = () => {
         return Promise.reject(res.status);
       })
       .catch(err => err)
-  }
+  };
 
   return { 
     loginAttempt
   }
-}
+};

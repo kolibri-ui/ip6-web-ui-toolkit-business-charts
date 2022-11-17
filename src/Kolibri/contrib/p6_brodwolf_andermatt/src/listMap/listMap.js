@@ -127,10 +127,10 @@ const getElementByKey = listMap => key => {
 
     const getElement = argsPair => {
         const stack             = argsPair(fst);
-        const predecessorStack  = (stack)(stackPredecessor);
+        const predecessorStack  = stack(stackPredecessor);
         const currentKeyValPair = head(stack);
 
-      return (currentKeyValPair(fst) === key)
+      return currentKeyValPair(fst) === key
         ? pair(predecessorStack)( currentKeyValPair(snd) )
         : pair(predecessorStack)( argsPair(snd)          );
     };
@@ -165,7 +165,7 @@ const removeByKey = listMap => key => {
                                        : push( resultStack )( pair(currentKey)(currentElement) );
 
         return pair( getPreStack(currentStack) )( result );
-    }
+    };
 
     const iteration = argsPair =>
         If( hasPre(argsPair(fst)) )
@@ -177,7 +177,7 @@ const removeByKey = listMap => key => {
                 (iteration)
                 (pair(reversedStack)(emptyListMap) )
             )(snd);
-}
+};
 
 /**
  *  A function that takes an ListMap, takes the values (ignore the keys) and converts it into an array and returns the array.

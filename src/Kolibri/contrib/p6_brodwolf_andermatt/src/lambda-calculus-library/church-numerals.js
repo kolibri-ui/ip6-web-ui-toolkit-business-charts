@@ -160,7 +160,7 @@ const gt = Blackbird(not)(leq);
  * @param  {churchNumber} n
  * @return {function(k:churchNumber): churchBoolean} n / k
  */
-const max = n => k => gt(n)(k)(n)(k)
+const max = n => k => gt(n)(k)(n)(k);
 
 /**
  * min of two Church-Numbers
@@ -169,4 +169,4 @@ const max = n => k => gt(n)(k)(n)(k)
  * @param  {churchNumber} n
  * @return {function(k:churchNumber): churchBoolean} n / k
  */
-const min = n => k => leq(n)(k)(n)(k)
+const min = n => k => leq(n)(k)(n)(k);

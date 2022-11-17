@@ -516,7 +516,7 @@ const gt = Blackbird(not)(leq);
  * @param  {churchNumber} n
  * @return {function(k:churchNumber): churchBoolean} n / k
  */
-const max = n => k => gt(n)(k)(n)(k)
+const max = n => k => gt(n)(k)(n)(k);
 
 /**
  * min of two Church-Numbers
@@ -525,7 +525,7 @@ const max = n => k => gt(n)(k)(n)(k)
  * @param  {churchNumber} n
  * @return {function(k:churchNumber): churchBoolean} n / k
  */
-const min = n => k => leq(n)(k)(n)(k)
+const min = n => k => leq(n)(k)(n)(k);
 
 /*
 -----  Calculator
@@ -723,7 +723,7 @@ const hasPre = s => not(is0(s(stackIndex)));
  * @param  {stack} s
  * @return {stack} predecessor stack of that stack
  */
-const getPreStack = s => s(stackPredecessor)
+const getPreStack = s => s(stackPredecessor);
 
 /**
  * A function that takes a stack and a value.
@@ -809,7 +809,7 @@ const reduce = reduceFn => initialValue => s => {
             const acc               = reduceFunction(preAcc)(curr);
             const preStack          = stack(stackPredecessor);
             return triple(preStack)(reduceFunction)(acc);
-        }
+        };
 
         return If( hasPre(stack) )
         (Then( getTriple(argsTriple) ))
@@ -896,7 +896,7 @@ const eitherElementByIndex = stack => index =>
                 (_ => eitherElementByJsNumIndex (stack)(index) )
             ))
     (_ => Left(`getElementByIndex - TypError: stack value '${stack}' (${typeof stack}) is not a stack`)) // catch
-        (id) // return value
+        (id); // return value
 
 /**
  * A function that takes a stack and an index as ChurchNumber.
@@ -959,7 +959,7 @@ const getElementByJsNumIndex = s => i => {
         const stack = argsPair(fst);
         const result = pair(getPreStack(stack));
 
-        return (jsNum(getStackIndex(stack)) === i)
+        return jsNum(getStackIndex(stack)) === i
             ? result(head(stack))
             : result(argsPair(snd));
 
@@ -994,7 +994,7 @@ const getIndexOfElement = s => element => {
         return If( churchBool(head(stack) === element))
         (Then( result(getStackIndex(stack)) ) )
         (Else( result(argsPair(snd))        ) );
-    }
+    };
 
     const times        = succ(size(s));
     const initArgsPair = pair(s)(undefined);
@@ -1003,7 +1003,7 @@ const getIndexOfElement = s => element => {
         (getIndex)(initArgsPair)
     )
     (snd);
-}
+};
 
 /**
  * A function that takes a stack and an element. The function returns a maybe-Monade Just with the index (ChurchNumber) of the element from the passed stack.
@@ -1014,11 +1014,11 @@ const getIndexOfElement = s => element => {
  * @return {function(element:*): either} Just(withIndex) or Nothing
  */
 const maybeIndexOfElement = s => element => {
-    const result = getIndexOfElement(s)(element)
+    const result = getIndexOfElement(s)(element);
     return result === undefined
         ? Nothing
         : Just(result);
-}
+};
 
 /**
  * A function that takes a stack and an element.
@@ -1146,7 +1146,7 @@ const filter = filterFunction => s => {
     const filterIteration = argsPair => {
         const _stackFilter    = argsPair(fst);
         const _stack          = argsPair(snd);
-        const _nextValueStack = getPreStack(_stack)
+        const _nextValueStack = getPreStack(_stack);
         const _stackCurrValue = head(_stack);
 
         if (filterFunction(_stackCurrValue)) {
@@ -1253,7 +1253,7 @@ const forEach = stack => callbackFunc => {
         callbackFunc(_element, _index);
 
         return pair( getPreStack(_stack) )(_index + 1 );
-    }
+    };
 
     const iteration = p =>
         If( hasPre(p(fst)) )
@@ -1293,7 +1293,7 @@ const removeByIndex = stack => index => {
         ( getPreStack(currentStack) )
         ( result                    )
         ( succ(currentIndex)        );
-    }
+    };
 
     const removeElementFn = stack => index => {
         const times         = size(stack);
@@ -1307,7 +1307,7 @@ const removeByIndex = stack => index => {
             return If(hasPre(currentStack))
             (Then( removeByCondition(currentStack)(resultStack)(index)(currentIndex) ))
             (Else( argsTriple                                                        ));
-        }
+        };
 
         return times
         (iteration)
@@ -1328,7 +1328,7 @@ const removeByIndex = stack => index => {
             ))
     (_ => Left(`removeByIndex - TypError: stack value '${stack}' (${typeof stack}) is not a stack`)) // catch
         (id) // return value
-}
+};
 
 /**
  * Takes two stacks and concat it to one. E.g.:  concat( [1,2,3] )( [1,2,3] ) -> [1,2,3,1,2,3]
@@ -1426,7 +1426,7 @@ const zipWith = f => s1 => s2 => {
         ( getPreStack(s1) )
         ( getPreStack(s2) )
         ( result          );
-    }
+    };
 
     const iteration = t =>
         If( hasPre(t(firstOfTriple)) )
@@ -1443,7 +1443,7 @@ const zipWith = f => s1 => s2 => {
         ( emptyStack       )
     )
     (thirdOfTriple);
-}
+};
 
 /**
  * Zip (combine) two Stack to one stack of pairs
@@ -1497,7 +1497,7 @@ const stackEquals = s1 => s2 => {
         ( getPreStack(s1) )
         ( getPreStack(s2) )
         ( result          );
-    }
+    };
 
     const iteration = t =>
         LazyIf( and( hasPre( t(firstOfTriple)) )( t(thirdOfTriple)) )
@@ -1646,10 +1646,10 @@ const getElementByKey = listMap => key => {
 
     const getElement = argsPair => {
         const stack             = argsPair(fst);
-        const predecessorStack  = (stack)(stackPredecessor);
+        const predecessorStack  = stack(stackPredecessor);
         const currentKeyValPair = head(stack);
 
-        return (currentKeyValPair(fst) === key)
+        return currentKeyValPair(fst) === key
             ? pair(predecessorStack)( currentKeyValPair(snd) )
             : pair(predecessorStack)( argsPair(snd)          );
     };
@@ -1684,7 +1684,7 @@ const removeByKey = listMap => key => {
             : push( resultStack )( pair(currentKey)(currentElement) );
 
         return pair( getPreStack(currentStack) )( result );
-    }
+    };
 
     const iteration = argsPair =>
         If( hasPre(argsPair(fst)) )
@@ -1696,7 +1696,7 @@ const removeByKey = listMap => key => {
         (iteration)
         (pair(reversedStack)(emptyListMap) )
     )(snd);
-}
+};
 
 /**
  *  A function that takes an ListMap, takes the values (ignore the keys) and converts it into an array and returns the array.
@@ -1760,7 +1760,7 @@ const logListMapToConsole = listMap =>
  * @return {function(value:*): function(obsFn:function): function(obsFn:function)} a Observable-Function
  */
 const observableBody = listeners => value => obsFn =>
-    obsFn(listeners)(value)
+    obsFn(listeners)(value);
 
 /**
  * initialValue -> observableBody ;
@@ -1796,7 +1796,7 @@ const Observable = initialValue =>
 const setValue = listeners => oldValue => newValue => {
     forEach(listeners)((listener, _) => (listener(snd))(newValue)(oldValue));
     return observableBody(listeners)(newValue);
-}
+};
 
 /**
  * listeners -> value -> value ;
@@ -1830,9 +1830,9 @@ const getValue = listeners => value => value;
  *                          (addListener)( listenerNewValueToElement )
  */
 const addListener = listeners => value => newListener => {
-    newListener(snd)(value)(value)
+    newListener(snd)(value)(value);
     return observableBody(push(listeners)(newListener))(value);
-}
+};
 
 /**
  * listeners -> value -> listenerKey ;
@@ -1961,7 +1961,7 @@ const getListenerKey = listener => listener(fst);
  * @function
  */
 const logListenersToConsole = listeners => _ =>
-    forEach(listeners)((element, index) => console.log( 'element at: ' + index + ': ' + showPair(typeof (element) === 'object' ? JSON.stringify(element) : element) ));
+    forEach(listeners)((element, index) => console.log( 'element at: ' + index + ': ' + showPair(typeof element === 'object' ? JSON.stringify(element) : element) ));
 
 /*
     Listener-Functions
@@ -2183,7 +2183,7 @@ const eitherFunction = value =>
 const maybeFunction = value =>
     eitherFunction(value)
     (_ => Nothing)
-    (_ => Just(value))
+    (_ => Just(value));
 
 /**
  * The eitherTryCatch function takes a function f that could go wrong.
@@ -2199,7 +2199,7 @@ const eitherTryCatch = f => {
     } catch (error) {
         return Left(error);
     }
-}
+};
 
 /**
  * The function eitherElementsOrErrorsByFunction takes a function as the first parameter and a rest parameter (JavaScript Rest Parameter) as the second parameter.
@@ -2333,7 +2333,7 @@ const fold  = x => f => f(x);
  *  (chain)(num => Box(num * 3)
  *                  (fmap)(num => num + 1))   // { 64 }
  */
-const chain = x => f => g => g((f(x)(id)));
+const chain = x => f => g => g(f(x)(id));
 
 /**
  * The app function is used to apply a boxed function (function in a box) to a boxed value.
@@ -2365,7 +2365,7 @@ const app = x => f => g => g(f(fmap)(x)(id));
  *  ( Box("Lannister") );
  */
 const liftA2 = f => fx => fy =>
-    fx(fmap)(f)(app)(fy)
+    fx(fmap)(f)(app)(fy);
 
 /**
  * getContent is used to unpack the content out of a "box".
@@ -2398,7 +2398,7 @@ const getContent = b => b(id);
 const debug = x => {
     console.log(x);
     return x;
-}
+};
 
 /**
  * Using the box with the Maybe Type
@@ -2506,15 +2506,15 @@ const pureMaybe = f => Just(f);
 const HttpGet = url => callback => {
     const xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = () =>
-        (xmlHttp.readyState > 1 && xmlHttp.readyState < 4)
-            ? (xmlHttp.status < 200 || xmlHttp.status >= 300)                            ? xmlHttp.abort()                : () => console.log("not readystate: " + xmlHttp.readyState)
-            : (xmlHttp.readyState === 4 && xmlHttp.status >= 200 && xmlHttp.status <300) ? callback(xmlHttp.responseText) : () => console.error("error fetch data")
+        xmlHttp.readyState > 1 && xmlHttp.readyState < 4
+            ? xmlHttp.status < 200 || xmlHttp.status >= 300                            ? xmlHttp.abort()                : () => console.log("not readystate: " + xmlHttp.readyState)
+            : xmlHttp.readyState === 4 && xmlHttp.status >= 200 && xmlHttp.status <300 ? callback(xmlHttp.responseText) : () => console.error("error fetch data");
 
     xmlHttp.open("GET", url, true);
     xmlHttp.timeout = 30 * 1000;                     //30 seconds
     xmlHttp.ontimeout = () => console.error("timeout after 30 seconds");
     xmlHttp.send();
-}
+};
 
 /**
  * HttpGet function can be used to request synchronous data from a web server.
@@ -2531,4 +2531,4 @@ const HttpGetSync = url => {
     xmlHttp.open( "GET", url, false ); // false for synchronous request
     xmlHttp.send( );
     return xmlHttp.responseText;
-}
+};

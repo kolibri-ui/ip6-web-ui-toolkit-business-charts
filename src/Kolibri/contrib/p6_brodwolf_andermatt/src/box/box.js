@@ -69,7 +69,7 @@ const fold  = x => f => f(x);
  *  (chain)(num => Box(num * 3)
  *                  (fmap)(num => num + 1))   // { 64 }
  */
-const chain = x => f => g => g((f(x)(id)));
+const chain = x => f => g => g(f(x)(id));
 
 /**
  * The app function is used to apply a boxed function (function in a box) to a boxed value.
@@ -101,7 +101,7 @@ const app = x => f => g => g(f(fmap)(x)(id));
  *  ( Box("Lannister") );
  */
 const liftA2 = f => fx => fy =>
-        fx(fmap)(f)(app)(fy)
+        fx(fmap)(f)(app)(fy);
 
 /**
  * getContent is used to unpack the content out of a "box".
@@ -134,7 +134,7 @@ const getContent = b => b(id);
 const debug = x => {
     console.log(x);
     return x;
-}
+};
 
 /**
  * Using the box with the Maybe Type

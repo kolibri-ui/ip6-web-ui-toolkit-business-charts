@@ -11,33 +11,33 @@ export { registerCriteriaProjector }
  */
 const registerCriteriaProjector = (register, label) => {
 
-  const pElement    = document.createElement('p')
-  const divElement = document.createElement('div')
+  const pElement    = document.createElement('p');
+  const divElement = document.createElement('div');
 
-  pElement.classList.add(label.replace(/ /g, '')) // Remove whitespaces to add class 
-  divElement.classList.add('cross-default')
+  pElement.classList.add(label.replace(/ /g, '')); // Remove whitespaces to add class
+  divElement.classList.add('cross-default');
 
-  pElement.appendChild(divElement)
+  pElement.appendChild(divElement);
   pElement.innerHTML = `
     <div></div>
     ${label}
-  `
-  pElement.querySelector('div').replaceWith(divElement)
+  `;
+  pElement.querySelector('div').replaceWith(divElement);
 
   register.onPatternsChanged( patterns => {
 
-    const thisPattern = patterns.filter(pattern => pattern.name === label)[0]
+    const thisPattern = patterns.filter(pattern => pattern.name === label)[0];
 
     if(!register.getPassword()) { // If Password field is empty, reset all colors and icons
-      toggleColor(pElement, null)
-      toggleIconClass(divElement, null)
+      toggleColor(pElement, null);
+      toggleIconClass(divElement, null);
       return
     }
 
     // Set color according to the fulfilled status
-    toggleColor(pElement, thisPattern.isFulfilled)
+    toggleColor(pElement, thisPattern.isFulfilled);
     toggleIconClass(divElement, thisPattern.isFulfilled)
-  })
+  });
 
   return pElement
-}
+};

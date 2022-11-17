@@ -8,16 +8,14 @@ export { loginShowButtonProjector }
  */
  const loginShowButtonProjector = login => {
 
-  const inputElement = document.createElement('input')
-  inputElement.type = 'button'
-  inputElement.classList.add('secondary')
-  inputElement.innerHTML = 'show'
+  const inputElement = document.createElement('input');
+  inputElement.type = 'button';
+  inputElement.classList.add('secondary');
+  inputElement.innerHTML = 'show';
 
-  inputElement.onclick = () => {
-    login.setPwVisibility(!login.getPwVisibility())
-  }
+  inputElement.onclick = () => login.setPwVisibility(!login.getPwVisibility());
 
-  login.onPwVisibilityChanged( () => inputElement.value = login.getPwVisibility() ? 'hide' : 'show')
+  login.onPwVisibilityChanged( () => inputElement.value = login.getPwVisibility() ? 'hide' : 'show');
 
   return inputElement
-}
+};
