@@ -1,5 +1,5 @@
 //util tests
-import "./util/chartTest.js"
+import "./util/chartFunctionsTest.js"
 import "./util/geometryFunctionsTest.js"
 
 //projector tests

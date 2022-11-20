@@ -1,5 +1,5 @@
-import {TestSuite} from "../../Kolibri/docs/src/kolibri/util/test.js";
-import {getNewPointPos} from "./chart.js";
+import {TestSuite}      from "../../Kolibri/docs/src/kolibri/util/test.js";
+import {getNewPointPos} from "./chartFunctions.js";
 
 const chartSuite = TestSuite("business-charts/util/chart");
 

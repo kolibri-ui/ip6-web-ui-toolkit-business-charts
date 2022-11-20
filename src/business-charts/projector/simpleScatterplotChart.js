@@ -1,4 +1,4 @@
-import { drawPoint, drawGrid } from "../util/chart.js";
+import { drawPoint, drawGrid } from "../util/chartFunctions.js";
 
 export { SimpleScatterplotChart }
 
