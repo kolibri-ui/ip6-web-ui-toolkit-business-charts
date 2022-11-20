@@ -1,5 +1,5 @@
-import { TestSuite }      from "../../Kolibri/docs/src/kolibri/util/test.js";
-import { canvasToDomainXY, domainToCanvasXY } from "./chartFunctions.js"
+import { TestSuite }                          from "../../Kolibri/docs/src/kolibri/util/test.js";
+import { canvasToDomainXY, domainToCanvasXY } from "./geometryFunctions.js"
 
 const chartFunctionsTestSuite = TestSuite("src/business-charts/utils/chartFunctions");
 
