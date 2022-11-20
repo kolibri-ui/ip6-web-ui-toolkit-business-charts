@@ -1,5 +1,4 @@
 import { drawPoint, drawGrid } from "../util/chart.js";
-import { drawRect } from "../util/rectangleProjector.js";
 
 export { SimpleScatterplotChart }
 
@@ -47,7 +46,7 @@ const SimpleScatterplotChart = ( data, options ) => {
     canvasElement.data = data;
 
     /** @type { CanvasRenderingContext2D } */
-    const context = document.getElementById(options.id).getContext('2d');
+    const context = canvasElement.getContext('2d');
     const gridX = options.padding;
     const gridY = options.padding;
     const gridWidth = options.width - 2 * options.padding;
