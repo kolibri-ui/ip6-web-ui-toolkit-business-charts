@@ -1,7 +1,6 @@
 // noinspection SpellCheckingInspection
 
-import { drawGrid } from "../util/chartFunctions.js";
-import { drawRect } from "../util/rectangleProjector.js";
+import { drawGrid, drawRect }      from "../util/chartFunctions.js";
 import { resizeHandler } from "../util/resizeHandler.js";
 
 

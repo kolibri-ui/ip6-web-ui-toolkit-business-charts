@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export { drawPoint, drawLine, drawGrid }
+export { drawPoint, drawLine, drawRect, drawGrid }
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -38,7 +38,7 @@ const drawPoint = (
 ) => {
     ctx.save();
     ctx.beginPath();
-    context.arc(pointX, pointY, radius, 0 * Math.PI, 2 * Math.PI);
+    context.arc(pointX, pointY, radius, 0, 2 * Math.PI);
     context.fill();
     ctx.restore();
     };
@@ -69,6 +69,30 @@ function drawLine(
     ctx.moveTo(startX, startY);
     ctx.lineTo(endX, endY);
     ctx.stroke();
+    ctx.restore();
+}
+
+/**
+ * A function that creates one or more bars, filled with a specific color
+ * @todo Refine description for technical doc. replace "bar" with a "general form"
+ * @param { CanvasRenderingContext2D } ctx
+ * @param { Number } upperLeftCornerX
+ * @param { Number } upperLeftCornerY
+ * @param { Number } width
+ * @param { Number } height
+ * @param { String } color
+ */
+function drawRect(
+    ctx,
+    upperLeftCornerX,
+    upperLeftCornerY,
+    width,
+    height,
+    color
+) {
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.fillRect(upperLeftCornerX, upperLeftCornerY, width, height);
     ctx.restore();
 }
 
