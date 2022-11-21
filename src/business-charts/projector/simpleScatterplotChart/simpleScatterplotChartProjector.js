@@ -7,13 +7,6 @@ import { domainToCanvasXY } from "../../util/geometryFunctions.js";
 export { SimpleScatterplotChart, redrawScatterplot }
 
 /**
- * @typedef { Object } ScatterplotChartDataElement
- * @property { String }  name name of the data element
- * @property { !Number } xValue value on the horizontal Axis of the data element
- * @property { !Number } yValue value on the vertical Axis of the data element
- */
-
-/**
  * @typedef { Object } ScatterplotChartOptions
  * @property { !Number } width chart width in pixel
  * @property { !Number } height chart height in pixel

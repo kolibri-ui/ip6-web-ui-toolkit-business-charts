@@ -1,6 +1,6 @@
 // noinspection SpellCheckingInspection
 
-import { SimpleScatterplotChart } from "../../src/business-charts/projector/simpleScatterplotChart/simpleScatterplotChart.js";
+import { SimpleScatterplotChart } from "../../src/business-charts/projector/simpleScatterplotChart/simpleScatterplotChartProjector.js";
 
 /** @type { Array.<ScatterplotChartDataElement> } */ const data = [{
     name: '1', xValue: -4, yValue: 3,

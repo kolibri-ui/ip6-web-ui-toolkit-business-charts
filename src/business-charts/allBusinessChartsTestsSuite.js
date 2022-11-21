@@ -3,7 +3,7 @@ import "./util/chartFunctionsTest.js"
 import "./util/geometryFunctionsTest.js"
 
 //projector tests
-import "./projector/simpleScatterplotChart/simpleScatterplotChartTest.js"
+import "./projector/simpleScatterplotChart/simpleScatterplotChartProjectorTest.js"
 
 //demo tests
 import "../../demo/simple-bar-chart/simple-bar-chart-demoTest.js"
