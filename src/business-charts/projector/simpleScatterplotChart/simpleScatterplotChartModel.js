@@ -6,6 +6,8 @@ import {
     Y_RATIO
 } from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 
+export { SimpleScatterplotChartModel }
+
 /**
  * @typedef { Object } ScatterplotChartDataElement
  * @property { String }  name name of the data element
