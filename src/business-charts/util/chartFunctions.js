@@ -20,40 +20,36 @@ export { drawPoint, drawLine, drawRect, drawGrid }
  */
 
 /**
- *
+ * Function to draw a point to a canvas context.
  * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
- * @param { String } label label name of the point
  * @param { Number } pointX x position where the point starts relative to the null point
  * @param { Number } pointY y position where the point starts relative to the null point
  * @param { String } color fill color of the point
  * @param { Number } radius radius of the point
  */
 const drawPoint = (
-    label,
     ctx,
     pointX,
-    pointY, 
+    pointY,
     color,
     radius
 ) => {
     ctx.save();
+    ctx.fillStyle = color;
     ctx.beginPath();
-    context.arc(pointX, pointY, radius, 0, 2 * Math.PI);
-    context.fill();
+    ctx.arc(pointX, pointY, radius, 0, 2 * Math.PI);
+    ctx.fill();
     ctx.restore();
     };
 
 /**
- * @summary A function that creates one or more lines in a given context.
- * @todo discussion: should this function be a separate projector for a combi of projectors? Needed for Axis and grid creation
+ * Function to draw a line to a canvas context.
  * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
  * @param { Number } startX the x position where the line starts relative to the null point
  * @param { Number } startY the y position where the line starts relative to the null point
  * @param { Number } endX the x position where the line ends relative to the null point
  * @param { Number } endY the y position where the line ends relative to the null point
  * @param { String } color the color of the line
- *
- * @example Creates Axis, grids, the line of a line chart,
  */
 function drawLine(
     ctx,
@@ -73,8 +69,7 @@ function drawLine(
 }
 
 /**
- * A function that creates one or more bars, filled with a specific color
- * @todo Refine description for technical doc. replace "bar" with a "general form"
+ * Function to draw a rectangle to a canvas context.
  * @param { CanvasRenderingContext2D } ctx
  * @param { Number } upperLeftCornerX
  * @param { Number } upperLeftCornerY

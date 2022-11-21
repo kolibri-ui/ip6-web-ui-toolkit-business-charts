@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 import { SimpleScatterplotChart } from "../../src/business-charts/projector/simpleScatterplotChart.js";
 
 /** @type { Array.<ScatterplotChartDataElement> } */ const data = [{
@@ -10,22 +12,26 @@ import { SimpleScatterplotChart } from "../../src/business-charts/projector/simp
     name: '4', xValue: 4, yValue: -3,
 },];
 
-/** @type { ChartGridOptions }*/ const gridOptions = {
-    hasGrid: true,
-    hasHorizontalLines: true,
-    hasVerticalLines: true,
-    displayNumbers: true,
-    horizontalSteps: 10,
-    verticalSteps: 10,
-    primaryLineColor: 'black',
-    secondaryLineColor: 'grey'
+/** @type { CanvasPoint2D } */
+const nullPoint = { xValue: 255, yValue: 300 };
+
+/** @type { GridOptions }*/
+const gridOptions = {
+    nullPoint: nullPoint,
+    canvasWidth: 500,
+    canvasHeight: 500,
+    xRatio: 20,
+    yRatio: 20,
+    xEvery: 5,
+    yEvery: 1,
+    drawOuterTicks: true
 };
 
 const simpleScatterplotChart = SimpleScatterplotChart(
     data,
     {
-        width: 100,
-        height: 100,
+        width: 500,
+        height: 500,
         padding: 5,
         colors: ["#a55ca5", "#67b6c7", "#bccd7a", "#eb9743"],
         gridOptions: gridOptions

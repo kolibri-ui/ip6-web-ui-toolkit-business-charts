@@ -1,4 +1,8 @@
-import { drawPoint, drawGrid } from "../util/chartFunctions.js";
+// noinspection SpellCheckingInspection
+
+import { drawPoint }        from "../util/chartFunctions.js";
+import { drawGrid }         from "../util/chartGridFunctions.js";
+import { domainToCanvasXY } from "../util/geometryFunctions.js";
 
 export { SimpleScatterplotChart }
 
@@ -21,7 +25,7 @@ HTMLCanvasElement.prototype.chartOptions = undefined;
  * @property { Number } [padding=0] padding padding for elements
  * @property { Array.<String> } colors Colors for points
  * @property { String } [id] ID string (optional)
- * @property { ChartGridOptions } gridOptions grid options
+ * @property { GridOptions } gridOptions grid options
  */
 
 /**
@@ -41,74 +45,33 @@ const SimpleScatterplotChart = ( data, options ) => {
     canvasElement.width  = options.width;
     canvasElement.height = options.height;
 
-    // save data and options to redraw
-    canvasElement.chartOptions = options;
-    canvasElement.data = data;
-
     /** @type { CanvasRenderingContext2D } */
     const context = canvasElement.getContext('2d');
-    const gridX = options.padding;
-    const gridY = options.padding;
-    const gridWidth = options.width - 2 * options.padding;
-    const gridHeight = options.height - 2 * options.padding;
-    const offset = 15;
 
-    const pointSize = 20;
-    const ratio = 20 / options.gridOptions.verticalSteps;
-
-    drawGrid(
-        options.gridOptions,
-        context,
-        gridX,
-        gridY,
-        offset,
-        gridWidth,
-        gridHeight,
-        options.padding,
-        20,
-        20,
-        0,
-        0
-    );
-
-    drawPoints(
-        context, data, options, offset, ratio, gridHeight, gridWidth, pointSize
-    );
+    drawGrid(context, options.gridOptions);
+    drawScatterplotPoints(context, data, options, 3);
 
     return canvasElement;
 };
 
 /**
  *
- * @param { CanvasRenderingContext2D } context
- * @param { ScatterplotChartOptions } options
+ * @param { CanvasRenderingContext2D } ctx
  * @param {Array.<ScatterplotChartDataElement>} data
- * @param {Number} offset
- * @param {Number} ratio
- * @param {Number} gridHeight
- * @param {Number} gridWidth
+ * @param { ScatterplotChartOptions } options
  * @param {Number} pointSize
  */
-const drawPoints = (
-    context,
+const drawScatterplotPoints = (
+    ctx,
     data,
     options,
-    offset,
-    ratio,
-    gridHeight,
-    gridWidth,
     pointSize
 ) => {
-    let pointX = options.padding * 2 + offset;
-    for (const [i, v] of data.entries()) {
-        const height = v.value * ratio;
-        const pointY = options.padding + gridHeight - offset - height;
-        const color = options.colors[i % options.colors.length];
-        
-        drawPoint(
-            context, data, options, offset, ratio, gridHeight, gridWidth, pointSize
-        );
+    for (const v of data.entries()) {
+        const point = domainToCanvasXY(options.gridOptions.nullPoint, options.gridOptions.xRatio, options.gridOptions.yRatio, v);
 
-        pointX += 2 * options.padding + pointSize;
+        drawPoint(
+            ctx, point.xValue, point.yValue, '#FF0000', pointSize
+        );
     }
 };
