@@ -1,4 +1,4 @@
-import { SimpleBarChart } from "../../src/business-charts/projector/simpleBarChart.js";
+import { SimpleBarChart } from "../../src/business-charts/projector/simpleBarChart/simpleBarChart.js";
 
 /** @type { Array.<BarChartDataElement> } */ const data = [{
     name: "Classical Music", value: 16,

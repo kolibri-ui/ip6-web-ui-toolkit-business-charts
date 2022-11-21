@@ -1,5 +1,5 @@
-import { TestSuite }      from "../../src/Kolibri/docs/src/kolibri/util/test.js";
-import {SimpleScatterplotChart } from "../../src/business-charts/projector/simpleScatterplotChart.js";
+import { TestSuite }             from "../../src/Kolibri/docs/src/kolibri/util/test.js";
+import {SimpleScatterplotChart } from "../../src/business-charts/projector/simpleScatterplotChart/simpleScatterplotChart.js";
 
 const simpleScatterplotChartDemoSuite = TestSuite("simpleScatterplotChart");
 

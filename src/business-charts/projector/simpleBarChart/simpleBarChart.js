@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
-import { drawGrid, drawRect }      from "../util/chartFunctions.js";
-import { resizeHandler } from "../util/resizeHandler.js";
+import { drawGrid, drawRect } from "../../util/chartFunctions.js";
+import { resizeHandler }      from "../../util/resizeHandler.js";
 
 
 export { SimpleBarChart }

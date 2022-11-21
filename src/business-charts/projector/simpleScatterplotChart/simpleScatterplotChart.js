@@ -1,8 +1,8 @@
 // noinspection SpellCheckingInspection
 
-import { drawPoint }        from "../util/chartFunctions.js";
-import { drawGrid }         from "../util/chartGridFunctions.js";
-import { domainToCanvasXY } from "../util/geometryFunctions.js";
+import { drawPoint }        from "../../util/chartFunctions.js";
+import { drawGrid }         from "../../util/chartGridFunctions.js";
+import { domainToCanvasXY } from "../../util/geometryFunctions.js";
 
 export { SimpleScatterplotChart, redrawScatterplot }
 

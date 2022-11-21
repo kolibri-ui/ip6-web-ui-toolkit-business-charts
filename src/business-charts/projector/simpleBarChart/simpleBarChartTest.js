@@ -1,4 +1,4 @@
-import { TestSuite } from "../../Kolibri/docs/src/kolibri/util/test.js";
+import { TestSuite }      from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import { SimpleBarChart } from "./simpleBarChart.js";
 
 const simpleBarChartSuite = TestSuite("src/business-charts/projector/simpleBarChart");
