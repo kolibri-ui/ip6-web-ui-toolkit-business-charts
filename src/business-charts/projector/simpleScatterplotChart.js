@@ -67,7 +67,7 @@ const drawScatterplotPoints = (
     options,
     pointSize
 ) => {
-    for (const v of data.entries()) {
+    for (const v of data) {
         const point = domainToCanvasXY(options.gridOptions.nullPoint, options.gridOptions.xRatio, options.gridOptions.yRatio, v);
 
         drawPoint(
