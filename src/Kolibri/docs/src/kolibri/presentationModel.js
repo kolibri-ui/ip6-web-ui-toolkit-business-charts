@@ -8,10 +8,11 @@ import { id }         from "./stdlib.js";
 export { Attribute, QualifiedAttribute,
          presentationModelFromAttributeNames,
          valueOf, readQualifierValue,
-         VALID, VALUE, EDITABLE, LABEL, NAME, TYPE }
+         VALID, VALUE, EDITABLE, LABEL, NAME, TYPE,
+         X_RATIO, Y_RATIO }
 
 /**
- * @typedef {'value'|'valid'|'editable'|'label'|'name'|'type'} ObservableTypeString
+ * @typedef {'value'|'valid'|'editable'|'label'|'name'|'type'|'xRatio'|'yRatio'} ObservableTypeString
  * Feel free to extend this type with new unique type strings as needed for your application.
  */
 
@@ -21,6 +22,10 @@ export { Attribute, QualifiedAttribute,
 /** @type ObservableTypeString */ const LABEL    = "label";
 /** @type ObservableTypeString */ const NAME     = "name";
 /** @type ObservableTypeString */ const TYPE     = "type"; // HTML input types: text, number, checkbox, etc.
+
+// Observable type strings for Charts
+/** @type ObservableTypeString */ const X_RATIO  = "xRatio";
+/** @type ObservableTypeString */ const Y_RATIO  = "yRatio";
 
 /**
  * Convenience function to read the current state of the attribute's VALUE observable for the given attribute.
