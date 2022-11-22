@@ -26,7 +26,7 @@ export { SimpleScatterplotController, SimpleAttributeScatterplotController }
  *
  * @param { ScatterplotChartDataElement } data
  * @param { SimpleScatterplotAttributes } options
- * @returns { SimpleScatterplotController }
+ * @returns { Array<SimpleScatterplotController> }
  * @constructor
  */
 const SimpleScatterplotController = (data, options) => {
@@ -55,3 +55,4 @@ const SimpleAttributeScatterplotController = attribute => ({
     onXRatioChanged: attribute.getObs(X_RATIO).onChange,
     onYRatioChanged: attribute.getObs(Y_RATIO).onChange
 });
+
