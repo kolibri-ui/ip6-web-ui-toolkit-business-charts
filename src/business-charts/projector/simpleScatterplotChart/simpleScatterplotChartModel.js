@@ -13,6 +13,17 @@ export { SimpleScatterplotChartModel }
  * @property { String }  name name of the data element
  * @property { !Number } xValue value on the horizontal Axis of the data element
  * @property { !Number } yValue value on the vertical Axis of the data element
+ * @example
+ * const data = [{
+ *         name: '1', xValue: -4, yValue: 3,
+ *     }, {
+ *         name: '2', xValue: 4, yValue: 3,
+ *     }, {
+ *         name: '3', xValue: -4, yValue: -3,
+ *     }, {
+ *         name: '4', xValue: 4, yValue: -3,
+ *     },];
+ *
  */
 
 /**
@@ -20,6 +31,12 @@ export { SimpleScatterplotChartModel }
  * @property { Array.<ScatterplotChartDataElement> } data
  * @property { Number } xRatio
  * @property { Number } yRatio
+ * @example
+ *  const model = SimpleScatterplotModel({
+ *      data: data,
+ *      xRatio: 10,
+ *      yRatio: 20
+ *  });
  */
 
 /**
