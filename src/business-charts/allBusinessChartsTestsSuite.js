@@ -9,6 +9,7 @@ import "./projector/simpleScatterplotChart/simpleScatterplotChartProjectorTest.j
 import "./projector/simpleScatterplotChart/simpleScatterplotChartModelTest.js"
 
 //controller tests
+import "./projector/simpleScatterplotChart/simpleScatterplotChartControllerTest.js"
 
 //demo tests
 import "../../demo/simple-bar-chart/simple-bar-chart-demoTest.js"

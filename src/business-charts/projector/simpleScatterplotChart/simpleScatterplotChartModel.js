@@ -23,7 +23,6 @@ export { SimpleScatterplotChartModel }
  *     }, {
  *         name: '4', xValue: 4, yValue: -3,
  *     },];
- *
  */
 
 /**
@@ -41,8 +40,12 @@ export { SimpleScatterplotChartModel }
 
 /**
  *
+ */
+
+/**
+ *
  * @param { SimpleScatterplotChartModel }
- * @returns {AttributeType<*>}
+ * @returns { AttributeType<*> }
  * @constructor
  */
 const SimpleScatterplotChartModel = ({ data, xRatio, yRatio }) => {
@@ -51,4 +54,4 @@ const SimpleScatterplotChartModel = ({ data, xRatio, yRatio }) => {
     scatterplotAttr.getObs(Y_RATIO).setValue(yRatio);
 
     return /** AttributeType<T> */ scatterplotAttr;
-}
+};
