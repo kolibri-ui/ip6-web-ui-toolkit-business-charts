@@ -9,7 +9,9 @@ export { Attribute, QualifiedAttribute,
          presentationModelFromAttributeNames,
          valueOf, readQualifierValue,
          VALID, VALUE, EDITABLE, LABEL, NAME, TYPE,
-         X_RATIO, Y_RATIO }
+         FILTERED_DATA, X_RATIO, Y_RATIO, X_EVERY, Y_EVERY,
+         CANVAS_WIDTH, CANVAS_HEIGHT, DOMAIN_NULL_POINT,
+         DRAW_OUTER_TICKS, COLORS }
 
 /**
  * @typedef {'value'|'valid'|'editable'|'label'|'name'|'type'|'xRatio'|'yRatio'} ObservableTypeString
@@ -24,8 +26,16 @@ export { Attribute, QualifiedAttribute,
 /** @type ObservableTypeString */ const TYPE     = "type"; // HTML input types: text, number, checkbox, etc.
 
 // Observable type strings for Charts
+/** @type ObservableTypeString */ const FILTERED_DATA  = "filteredData";
 /** @type ObservableTypeString */ const X_RATIO  = "xRatio";
 /** @type ObservableTypeString */ const Y_RATIO  = "yRatio";
+/** @type ObservableTypeString */ const X_EVERY  = "xEvery";
+/** @type ObservableTypeString */ const Y_EVERY  = "yEvery";
+/** @type ObservableTypeString */ const CANVAS_WIDTH = "canvasWidth";
+/** @type ObservableTypeString */ const CANVAS_HEIGHT = "canvasWidth";
+/** @type ObservableTypeString */ const DOMAIN_NULL_POINT = "domainNullPoint";
+/** @type ObservableTypeString */ const DRAW_OUTER_TICKS = "drawOuterTicks";
+/** @type ObservableTypeString */ const COLORS = "colors";
 
 /**
  * Convenience function to read the current state of the attribute's VALUE observable for the given attribute.
