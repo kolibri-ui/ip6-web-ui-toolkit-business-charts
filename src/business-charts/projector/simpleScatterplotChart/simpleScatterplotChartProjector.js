@@ -71,8 +71,8 @@ const drawScatterplot = (
     data,
     options
 ) => {
-    drawGrid(context, options.gridOptions);
-    drawScatterplotPoints(context, data, options, 3);
+    drawGrid(ctx, options.gridOptions);
+    drawScatterplotPoints(ctx, data, options, 3);
 }
 
 /**
