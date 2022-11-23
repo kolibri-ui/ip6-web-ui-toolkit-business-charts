@@ -22,13 +22,13 @@ export {
 
 /**
  * @typedef { Object } SimpleScatterplotChartOptions
- * @property { String } [id] ID string (optional)
+ * @property { ?String } id ID string (optional)
  * @property { Number } [canvasWidth] width of the canvas
  * @property { Number } [canvasHeight] height of the canvas
  * @property { Number } [xEvery] value to define which ticks should be drawn for x-axis
  * @property { Number } [yEvery] value to define which ticks should be drawn for y-axis
  * @property { Boolean } [drawOuterTicks] indicates if outer ticks should be dawn
- * @property { Array.<String> } [colors] Colors for points
+ * @property { Array<String> } [colors] Colors for points
  */
 
 /**
@@ -56,9 +56,9 @@ const SimpleScatterplotController = (data, options) => {
         ...SimpleAttributeScatterplotController(SimpleScatterplotChartModel(
             { data }
         ))
-    }
+    };
 
-    if (options.canvasWidth) {
+    if (undefined === options.canvasWidth) {
         controller.setWidth(options.canvasWidth);
     }
     if (options.canvasHeight) {
@@ -70,7 +70,7 @@ const SimpleScatterplotController = (data, options) => {
 
 /**
  *
- * @param attribute
+ * @param { AttributeType<ScatterplotChartDataElement> } attribute
  * @returns { SimpleScatterplotControllerType }
  * @constructor
  */
