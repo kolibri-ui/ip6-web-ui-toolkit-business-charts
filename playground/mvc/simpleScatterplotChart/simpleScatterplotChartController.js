@@ -9,7 +9,7 @@ import { SimpleScatterplotChartModel } from "./simpleScatterplotChartModel.js";
 export { SimpleScatterplotController, SimpleAttributeScatterplotController }
 
 /**
- * @typedef { Object } SimpleScatterplotControllerType<T>
+ * @typedef { Object } SimplePlaygroundScatterplotControllerType<T>
  // * @property { data: ScatterplotChartDataElement } setData
  * @property { () => Array<T> }  getData
  * @property { Number }          setXRatio
@@ -40,7 +40,7 @@ const SimpleScatterplotController = (data, options) => (
 /**
  *
  * @param attribute
- * @returns { SimpleScatterplotControllerType<T> }
+ * @returns { SimplePlaygroundScatterplotControllerType<T> }
  * @constructor
  */
 const SimpleAttributeScatterplotController = attribute => ({

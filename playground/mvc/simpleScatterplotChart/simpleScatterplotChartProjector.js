@@ -7,7 +7,7 @@ import { domainToCanvasXY } from "../../../src/business-charts/util/geometryFunc
 export { SimpleScatterplotChart, redrawScatterplot }
 
 /**
- * @typedef { Object } ScatterplotChartOptions
+ * @typedef { Object } PlaygroundScatterplotChartOptions
  * @property { !Number } width chart width in pixel
  * @property { !Number } height chart height in pixel
  * @property { Array.<String> } colors Colors for points
@@ -18,7 +18,7 @@ export { SimpleScatterplotChart, redrawScatterplot }
 /**
  * Implementation of a simple canvas bar chart.
  * @author Valentina Giampa & Roger Kreienbühl
- * @param { Array.<ScatterplotChartDataElement> } data data elements to display in scatterplot chart
+ * @param { Array.<PlaygroundScatterplotChartDataElement> } data data elements to display in scatterplot chart
  * @param { ScatterplotChartOptions } options size, padding, style of the chart and grid options
  * @return { HTMLCanvasElement }
  * @constructor
@@ -43,7 +43,7 @@ const SimpleScatterplotChart = (data, options) => {
 /**
  *
  * @param { CanvasRenderingContext2D } ctx
- * @param { Array.<ScatterplotChartDataElement> } data
+ * @param { Array.<PlaygroundScatterplotChartDataElement> } data
  * @param { ScatterplotChartOptions } options
  * @param {Number} pointSize
  */

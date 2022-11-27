@@ -9,7 +9,7 @@ import {
 export { SimpleScatterplotChartModel }
 
 /**
- * @typedef { Object } ScatterplotChartDataElement
+ * @typedef { Object } PlaygroundScatterplotChartDataElement
  * @property { String }  name name of the data element
  * @property { !Number } xValue value on the horizontal Axis of the data element
  * @property { !Number } yValue value on the vertical Axis of the data element
@@ -26,8 +26,8 @@ export { SimpleScatterplotChartModel }
  */
 
 /**
- * @typedef { Object } SimpleScatterplotAttributes
- * @property { Array.<ScatterplotChartDataElement> } data
+ * @typedef { Object } SimplePlaygroundScatterplotAttributes
+ * @property { Array.<PlaygroundScatterplotChartDataElement> } data
  * @property { Number } xRatio
  // * @property { Number } yRatio
  * @example
@@ -44,7 +44,7 @@ export { SimpleScatterplotChartModel }
 
 /**
  *
- * @param { SimpleScatterplotChartModel }
+ * @param { SimplePlaygroundScatterplotAttributes }
  * @returns { AttributeType<*> }
  * @constructor
  */
