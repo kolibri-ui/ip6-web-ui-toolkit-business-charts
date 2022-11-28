@@ -14,7 +14,12 @@ export { Attribute, QualifiedAttribute,
          DRAW_OUTER_TICKS, COLORS }
 
 /**
- * @typedef {'value'|'valid'|'editable'|'label'|'name'|'type'|'xRatio'|'yRatio'} ObservableTypeString
+ * @typedef {
+ *      'value'|'valid'|'editable'|'label'|'name'|'type'|
+ *      'filteredData'|'elementId'|'xRatio'|'yRatio'|
+ *      'xEvery'|'yEvery'|'canvasWidth'|'canvasWidth'|'domainNullPoint'|
+ *      'drawOuterTicks'|'colors'
+ * } ObservableTypeString
  * Feel free to extend this type with new unique type strings as needed for your application.
  */
 
