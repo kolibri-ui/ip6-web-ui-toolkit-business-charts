@@ -14,8 +14,3 @@ import "./projector/simpleScatterplotChart/simpleScatterplotChartControllerTest.
 //demo tests
 import "../../demo/simple-bar-chart/simple-bar-chart-demoTest.js"
 import "../../demo/simple-scatterplot-chart/simple-scatterplot-chart-demoTest.js"
-
-//playground tests
-import "../../playground/mvc/simpleScatterplotChart/simpleScatterplotChartModelTest.js"
-import "../../playground/mvc/simpleScatterplotChart/simpleScatterplotChartProjectorTest.js"
-import "../../playground/mvc/simpleScatterplotChart/simpleScatterplotChartControllerTest.js"
