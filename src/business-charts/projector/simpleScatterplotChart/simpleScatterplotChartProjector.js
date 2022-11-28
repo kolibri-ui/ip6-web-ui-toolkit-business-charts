@@ -27,10 +27,7 @@ export {
 const SimpleScatterplotChart = (controller) => {
     /** @type { HTMLCanvasElement } */ const canvasElement = document.createElement("canvas");
 
-    // TODO: get id from controller
-    const id = 'scatterplot-chart-43412543219';
-
-    canvasElement.id     = id;
+    canvasElement.id     = controller.getId();
     canvasElement.width  = controller.getWidth();
     canvasElement.height = controller.getHeight();
 

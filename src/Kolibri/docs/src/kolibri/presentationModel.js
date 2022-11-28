@@ -9,7 +9,7 @@ export { Attribute, QualifiedAttribute,
          presentationModelFromAttributeNames,
          valueOf, readQualifierValue,
          VALID, VALUE, EDITABLE, LABEL, NAME, TYPE,
-         FILTERED_DATA, X_RATIO, Y_RATIO, X_EVERY, Y_EVERY,
+         FILTERED_DATA, ELEMENT_ID, X_RATIO, Y_RATIO, X_EVERY, Y_EVERY,
          CANVAS_WIDTH, CANVAS_HEIGHT, DOMAIN_NULL_POINT,
          DRAW_OUTER_TICKS, COLORS }
 
@@ -27,6 +27,7 @@ export { Attribute, QualifiedAttribute,
 
 // Observable type strings for Charts
 /** @type ObservableTypeString */ const FILTERED_DATA  = "filteredData";
+/** @type ObservableTypeString */ const ELEMENT_ID  = "elementId";
 /** @type ObservableTypeString */ const X_RATIO  = "xRatio";
 /** @type ObservableTypeString */ const Y_RATIO  = "yRatio";
 /** @type ObservableTypeString */ const X_EVERY  = "xEvery";

@@ -11,8 +11,9 @@ import {
     DOMAIN_NULL_POINT,
     DRAW_OUTER_TICKS,
     FILTERED_DATA,
-    COLORS
-}                                      from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
+    COLORS,
+    ELEMENT_ID
+} from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 import { SimpleScatterplotChartModel } from "./simpleScatterplotChartModel.js";
 
 export {
@@ -36,6 +37,8 @@ export {
  * @property { () => Array<ScatterplotChartDataElement> }               getData
  * @property { (data: Array<ScatterplotChartDataElement>) => void }     setFilteredData
  * @property { () => Array<ScatterplotChartDataElement> }               getFilteredData
+ * @property { (String) => void }                                       setId
+ * @property { () => String }                                           getId
  * @property { (Number) => void }                                       setXRatio
  * @property { () => Number }                                           getXRatio
  * @property { (Number) => void }                                       setYRatio
@@ -125,6 +128,8 @@ const SimpleAttributeScatterplotController = attribute => ({
     // data filtered ord unfiltered for drawing
     setFilteredData   : attribute.getObs(FILTERED_DATA).setValue,
     getFilteredData   : attribute.getObs(FILTERED_DATA).getValue,
+    setId             : attribute.getObs(ELEMENT_ID).setValue,
+    getId             : attribute.getObs(ELEMENT_ID).getValue,
     setXRatio         : attribute.getObs(X_RATIO).setValue,
     getXRatio         : attribute.getObs(X_RATIO).getValue,
     setYRatio         : attribute.getObs(Y_RATIO).setValue,
