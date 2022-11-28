@@ -4,7 +4,10 @@ import { drawPoint }        from "../../util/chartFunctions.js";
 import { drawGrid }         from "../../util/chartGridFunctions.js";
 import { domainToCanvasXY } from "../../util/geometryFunctions.js";
 
-export { SimpleScatterplotChart, redrawScatterplot }
+export {
+    SimpleScatterplotChart,
+    redrawScatterplot
+}
 
 /**
  * @typedef { Object } ScatterplotChartOptions
@@ -18,24 +21,44 @@ export { SimpleScatterplotChart, redrawScatterplot }
 /**
  * Implementation of a simple canvas bar chart.
  * @author Valentina Giampa & Roger Kreienbühl
- * @param { Array.<ScatterplotChartDataElement> } data data elements to display in scatterplot chart
- * @param { ScatterplotChartOptions } options size, padding, style of the chart and grid options
+ * @param { SimpleScatterplotControllerType } controller
  * @return { HTMLCanvasElement }
- * @constructor
  */
-const SimpleScatterplotChart = (data, options) => {
+const SimpleScatterplotChart = (controller) => {
     /** @type { HTMLCanvasElement } */ const canvasElement = document.createElement("canvas");
 
-    options.id = options.id ?? 'scatterplot-chart-43412543219';
+    // TODO: get id from controller
+    const id = 'scatterplot-chart-43412543219';
 
-    canvasElement.id     = options.id;
-    canvasElement.width  = options.width;
-    canvasElement.height = options.height;
+    canvasElement.id     = id;
+    canvasElement.width  = controller.getWidth();
+    canvasElement.height = controller.getHeight();
 
     /** @type { CanvasRenderingContext2D } */
     const context = canvasElement.getContext('2d');
 
-    drawScatterplot(context, data, options);
+    const getOptions = () => {
+        /** @type { ScatterplotChartOptions } */
+        return {
+            width      : controller.getWidth(),
+            height     : controller.getHeight(),
+            colors     : controller.getColors(),
+            gridOptions: {
+                nullPoint     : controller.getDomainNullPoint(),
+                canvasWidth   : controller.getWidth(),
+                canvasHeight  : controller.getHeight(),
+                xRatio        : controller.getXRatio(),
+                yRatio        : controller.getYRatio(),
+                xEvery        : controller.getXEvery(),
+                yEvery        : controller.getYEvery(),
+                drawOuterTicks: controller.getDrawOuterTicks(),
+            }
+        }
+    };
+
+    // TODO: register callback functions
+
+    drawScatterplot(context, controller.getFilteredData(), getOptions());
 
     return canvasElement;
 };

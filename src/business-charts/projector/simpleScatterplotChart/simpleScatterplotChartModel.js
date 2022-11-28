@@ -36,27 +36,19 @@ export { SimpleScatterplotChartModel }
 /**
  * @typedef { Object } SimpleScatterplotAttributes
  * @property { Array.<ScatterplotChartDataElement> } data
- * @property { Number } xRatio
- * @property { Number } yRatio
- * @property { Number } xEvery
- * @property { Number } yEvery
- * @property { Number } canvasWidth
- * @property { Number } canvasHeight
- *
- * @example
- *  const model = SimpleScatterplotModel({
- *      data: data,
- *      xRatio: 10,
- *      yRatio: 20
- *  });
+ * @property { ?Number } xRatio
+ * @property { ?Number } yRatio
+ * @property { ?Number } xEvery
+ * @property { ?Number } yEvery
+ * @property { ?Number } canvasWidth
+ * @property { ?Number } canvasHeight
+ * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be dawn
+ * @property { ?Array<String> } colors Colors for points
  */
 
-/**
- *
- */
 
 /**
- *
+ * TODO: add id to model
  * @param { SimpleScatterplotAttributes }
  * @returns { AttributeType<*> }
  * @constructor
@@ -75,13 +67,13 @@ const SimpleScatterplotChartModel = ({
                                      }) => {
     const scatterplotAttr = Attribute(data);
     scatterplotAttr.getObs(FILTERED_DATA).setValue(data);
-    scatterplotAttr.getObs(X_RATIO).setValue(xRatio ?? 1);
-    scatterplotAttr.getObs(Y_RATIO).setValue(yRatio ?? 1);
+    scatterplotAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
+    scatterplotAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
     scatterplotAttr.getObs(X_EVERY).setValue(xEvery ?? 1);
     scatterplotAttr.getObs(Y_EVERY).setValue(yEvery ?? 1);
     scatterplotAttr.getObs(CANVAS_WIDTH).setValue(canvasWidth ?? 600);
     scatterplotAttr.getObs(CANVAS_HEIGHT).setValue(canvasHeigt ?? 400);
-    scatterplotAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 300, yValue: 200 });
+    scatterplotAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 200, yValue: 200 });
     scatterplotAttr.getObs(DRAW_OUTER_TICKS).setValue(drawOuterTicks ?? false);
     scatterplotAttr.getObs(COLORS).setValue(colors ?? [ "#a55ca5", "#67b6c7", "#bccd7a", "#eb9743" ]);
 

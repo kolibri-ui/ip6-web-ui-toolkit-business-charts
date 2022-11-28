@@ -12,7 +12,7 @@ import {
     DRAW_OUTER_TICKS,
     FILTERED_DATA,
     COLORS
-} from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
+}                                      from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 import { SimpleScatterplotChartModel } from "./simpleScatterplotChartModel.js";
 
 export {
@@ -23,22 +23,37 @@ export {
 /**
  * @typedef { Object } SimpleScatterplotChartOptions
  * @property { ?String } id ID string (optional)
- * @property { Number } [canvasWidth] width of the canvas
- * @property { Number } [canvasHeight] height of the canvas
- * @property { Number } [xEvery] value to define which ticks should be drawn for x-axis
- * @property { Number } [yEvery] value to define which ticks should be drawn for y-axis
- * @property { Boolean } [drawOuterTicks] indicates if outer ticks should be dawn
- * @property { Array<String> } [colors] Colors for points
+ * @property { ?Number } canvasWidth width of the canvas
+ * @property { ?Number } canvasHeight height of the canvas
+ * @property { ?Number } xEvery value to define which ticks should be drawn for x-axis
+ * @property { ?Number } yEvery value to define which ticks should be drawn for y-axis
+ * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be dawn
+ * @property { ?Array<String> } colors Colors for points
  */
 
 /**
+ * TODO: add all callback functions to typedef
  * @typedef { Object } SimpleScatterplotControllerType
- * @property { data: ScatterplotChartDataElement } setData
- * @property { () => Array<ScatterplotChartDataElement> }  getData
- * @property { Number }          setXRatio
- * @property { void }            getXRatio
- * @property { Number }          setYRatio
- * @property { void }            getYRatio
+ * @property { () => Array<ScatterplotChartDataElement> }       getData
+ * @property { (data: Array<ScatterplotChartDataElement>) => void }   setFilteredData
+ * @property { () => Array<ScatterplotChartDataElement> }       getFilteredData
+ * @property { (Number) => void }                               setXRatio
+ * @property { () => Number }                                   getXRatio
+ * @property { (Number) => void }                               setYRatio
+ * @property { () => Number }                                   getYRatio
+ * @property { (Number) => void }                               setXEvery
+ * @property { () => Number }                                   getXEvery
+ * @property { (Number) => void }                               setYEvery
+ * @property { () => Number }                                   getYEvery
+ * @property { (Number) => void }                               setWidth
+ * @property { () => Number }                                   getWidth
+ * @property { (Number) => void }                               setHeight
+ * @property { () => Number }                                   getHeight
+ * @property { () => Array<String> }                            getColors
+ * @property { (CanvasPoint2D) => void }                        setDomainNullPoint
+ * @property { () => CanvasPoint2D }                            getDomainNullPoint
+ * @property { (Boolean) => void }                              setDrawOuterTicks
+ * @property { () => Boolean }                                  getDrawOuterTicks
  * @property { (callback: onDataChangeCallback<ScatterplotChartDataElement>) => void } onDataChanged
  * @property { (callback: onXRatioChangeCallback<Number>) => void } onXRatioChanged
  * @property { (callback: onYRatioChangeCallback<Number>) => void } onXRatioChanged
@@ -47,54 +62,82 @@ export {
 /**
  *
  * @param { ScatterplotChartDataElement } data
- * @param { SimpleScatterplotChartOptions } options
+ * @param { ?SimpleScatterplotChartOptions } options
  * @returns { Array<SimpleScatterplotController> }
  * @constructor
  */
 const SimpleScatterplotController = (data, options) => {
-    const controller = {
+    /** @type { SimpleScatterplotAttributes } */
+    const dataOpts = { data };
+
+    if (options !== undefined) {
+        if (typeof options.canvasWidth === 'number' && options.canvasWidth > 0) {
+            dataOpts.canvasWidth = options.canvasWidth;
+        }
+
+        if (typeof options.canvasHeight === 'number' && options.canvasHeight > 0) {
+            dataOpts.canvasHeight = options.canvasHeight;
+        }
+
+        if (typeof options.xEvery === 'number' && options.xEvery > 0) {
+            dataOpts.xEvery = options.xEvery;
+        }
+
+        if (typeof options.yEvery === 'number' && options.yEvery > 0) {
+            dataOpts.yEvery = options.yEvery;
+        }
+
+        if (typeof options.drawOuterTicks === 'boolean') {
+            dataOpts.drawOuterTicks = options.drawOuterTicks;
+        }
+
+        if (Array.isArray(options.colors) && options.colors.length > 0) {
+            dataOpts.colors = options.colors;
+        }
+    }
+
+    // TODO: Calculate xRatio and yRatio
+    // TODO: Calculate domainNullPoint
+
+    return {
         ...SimpleAttributeScatterplotController(SimpleScatterplotChartModel(
-            { data }
+            dataOpts
         ))
     };
-
-    if (undefined === options.canvasWidth) {
-        controller.setWidth(options.canvasWidth);
-    }
-    if (options.canvasHeight) {
-        controller.setHeight(options.canvasHeight);
-    }
-
-    return controller;
 };
 
 /**
  *
- * @param { AttributeType<ScatterplotChartDataElement> } attribute
+ * @param { AttributeType<*> } attribute
  * @returns { SimpleScatterplotControllerType }
  * @constructor
  */
 const SimpleAttributeScatterplotController = attribute => ({
-    getData                 : attribute.getObs(VALUE).getValue,
-    setFilteredData         : attribute.getObs(FILTERED_DATA).setValue,
-    getFilteredData         : attribute.getObs(FILTERED_DATA).getValue,
-    setXRatio               : attribute.getObs(X_RATIO).setValue,
-    getXRatio               : attribute.getObs(X_RATIO).getValue,
-    setYRatio               : attribute.getObs(Y_RATIO).setValue,
-    getYRatio               : attribute.getObs(Y_RATIO).getValue,
-    setXEvery               : attribute.getObs(X_EVERY).setValue,
-    getXEvery               : attribute.getObs(X_EVERY).getValue,
-    setYEvery               : attribute.getObs(Y_EVERY).setValue,
-    getYEvery               : attribute.getObs(Y_EVERY).getValue,
-    setWidth                : attribute.getObs(CANVAS_WIDTH).setValue,
-    getWidth                : attribute.getObs(CANVAS_WIDTH).getValue,
-    setHeight               : attribute.getObs(CANVAS_HEIGHT).setValue,
-    getHeight               : attribute.getObs(CANVAS_HEIGHT).getValue,
-    setDomainNullPoint      : attribute.getObs(DOMAIN_NULL_POINT).setValue,
-    getDomainNullPoint      : attribute.getObs(DOMAIN_NULL_POINT).getValue,
-    setDrawOuterTicks       : attribute.getObs(DRAW_OUTER_TICKS).setValue,
-    getDrawOuterTicks       : attribute.getObs(DRAW_OUTER_TICKS).getValue,
-    getColors               : attribute.getObs(COLORS).getValue,
+    // initial data, should not change
+    getData: attribute.getObs(VALUE).getValue,
+
+    // data filtered ord unfiltered for drawing
+    setFilteredData   : attribute.getObs(FILTERED_DATA).setValue,
+    getFilteredData   : attribute.getObs(FILTERED_DATA).getValue,
+    setXRatio         : attribute.getObs(X_RATIO).setValue,
+    getXRatio         : attribute.getObs(X_RATIO).getValue,
+    setYRatio         : attribute.getObs(Y_RATIO).setValue,
+    getYRatio         : attribute.getObs(Y_RATIO).getValue,
+    setXEvery         : attribute.getObs(X_EVERY).setValue,
+    getXEvery         : attribute.getObs(X_EVERY).getValue,
+    setYEvery         : attribute.getObs(Y_EVERY).setValue,
+    getYEvery         : attribute.getObs(Y_EVERY).getValue,
+    setWidth          : attribute.getObs(CANVAS_WIDTH).setValue,
+    getWidth          : attribute.getObs(CANVAS_WIDTH).getValue,
+    setHeight         : attribute.getObs(CANVAS_HEIGHT).setValue,
+    getHeight         : attribute.getObs(CANVAS_HEIGHT).getValue,
+    setDomainNullPoint: attribute.getObs(DOMAIN_NULL_POINT).setValue,
+    getDomainNullPoint: attribute.getObs(DOMAIN_NULL_POINT).getValue,
+    setDrawOuterTicks : attribute.getObs(DRAW_OUTER_TICKS).setValue,
+    getDrawOuterTicks : attribute.getObs(DRAW_OUTER_TICKS).getValue,
+    getColors         : attribute.getObs(COLORS).getValue,
+
+    // change events
     onFilteredDataChanged   : attribute.getObs(FILTERED_DATA).onChange,
     onXRatioChanged         : attribute.getObs(X_RATIO).onChange,
     onYRatioChanged         : attribute.getObs(Y_RATIO).onChange,
