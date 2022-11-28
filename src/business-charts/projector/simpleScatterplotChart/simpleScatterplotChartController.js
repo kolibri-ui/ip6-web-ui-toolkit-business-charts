@@ -32,31 +32,37 @@ export {
  */
 
 /**
- * TODO: add all callback functions to typedef
  * @typedef { Object } SimpleScatterplotControllerType
- * @property { () => Array<ScatterplotChartDataElement> }       getData
- * @property { (data: Array<ScatterplotChartDataElement>) => void }   setFilteredData
- * @property { () => Array<ScatterplotChartDataElement> }       getFilteredData
- * @property { (Number) => void }                               setXRatio
- * @property { () => Number }                                   getXRatio
- * @property { (Number) => void }                               setYRatio
- * @property { () => Number }                                   getYRatio
- * @property { (Number) => void }                               setXEvery
- * @property { () => Number }                                   getXEvery
- * @property { (Number) => void }                               setYEvery
- * @property { () => Number }                                   getYEvery
- * @property { (Number) => void }                               setWidth
- * @property { () => Number }                                   getWidth
- * @property { (Number) => void }                               setHeight
- * @property { () => Number }                                   getHeight
- * @property { () => Array<String> }                            getColors
- * @property { (CanvasPoint2D) => void }                        setDomainNullPoint
- * @property { () => CanvasPoint2D }                            getDomainNullPoint
- * @property { (Boolean) => void }                              setDrawOuterTicks
- * @property { () => Boolean }                                  getDrawOuterTicks
- * @property { (callback: onDataChangeCallback<ScatterplotChartDataElement>) => void } onDataChanged
- * @property { (callback: onXRatioChangeCallback<Number>) => void } onXRatioChanged
- * @property { (callback: onYRatioChangeCallback<Number>) => void } onXRatioChanged
+ * @property { () => Array<ScatterplotChartDataElement> }               getData
+ * @property { (data: Array<ScatterplotChartDataElement>) => void }     setFilteredData
+ * @property { () => Array<ScatterplotChartDataElement> }               getFilteredData
+ * @property { (Number) => void }                                       setXRatio
+ * @property { () => Number }                                           getXRatio
+ * @property { (Number) => void }                                       setYRatio
+ * @property { () => Number }                                           getYRatio
+ * @property { (Number) => void }                                       setXEvery
+ * @property { () => Number }                                           getXEvery
+ * @property { (Number) => void }                                       setYEvery
+ * @property { () => Number }                                           getYEvery
+ * @property { (Number) => void }                                       setWidth
+ * @property { () => Number }                                           getWidth
+ * @property { (Number) => void }                                       setHeight
+ * @property { () => Number }                                           getHeight
+ * @property { () => Array<String> }                                    getColors
+ * @property { (CanvasPoint2D) => void }                                setDomainNullPoint
+ * @property { () => CanvasPoint2D }                                    getDomainNullPoint
+ * @property { (Boolean) => void }                                      setDrawOuterTicks
+ * @property { () => Boolean }                                          getDrawOuterTicks
+ *
+ * @property { (callback: onFilteredDataChangeCallback<Array<ScatterplotChartDataElement>>) => void }  onFilteredDataChanged
+ * @property { (callback: onXRatioChangeCallback<Number>) => void }                             onXRatioChanged
+ * @property { (callback: onYRatioChangeCallback<Number>) => void }                             onYRatioChanged
+ * @property { (callback: onXEveryChangeCallback<Number>) => void }                             onXEveryChanged
+ * @property { (callback: onYRatioChangeCallback<Number>) => void }                             onYEveryChanged
+ * @property { (callback: onWidthChangeCallback<Number>) => void }                              onWidthChanged
+ * @property { (callback: onHeightChangeCallback<Number>) => void }                             onHeightChanged
+ * @property { (callback: onDomainNullPointChangeCallback<CanvasPoint2D>) => void }             onDomainNullPointChanged
+ * @property { (callback: onDrawOuterTicksChangeCallback<Boolean>) => void }                    onDrawOuterTicksChanged
  */
 
 /**
