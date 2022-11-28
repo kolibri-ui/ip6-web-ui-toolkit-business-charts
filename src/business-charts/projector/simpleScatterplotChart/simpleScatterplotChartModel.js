@@ -52,6 +52,7 @@ export { SimpleScatterplotChartModel }
 
 
 /**
+ * TODO: pointSize as configurable parameter
  * @param { SimpleScatterplotAttributes } options
  * @returns { AttributeType<*> }
  * @constructor
