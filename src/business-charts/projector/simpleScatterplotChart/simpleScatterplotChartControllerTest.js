@@ -3,6 +3,12 @@ import { SimpleScatterplotController }            from "./simpleScatterplotChart
 
 const SimpleScatterplotControllerSuite = TestSuite("src/business-charts/projector/simpleScatterplotChartController");
 
+/*
+   Tests that the x and y ratios must change when
+      - the canvas changes its width or height (in px)
+      - the x or y-axis changes its lower or upper bound
+   and any observer of these ratios gets notified.
+ */
 SimpleScatterplotControllerSuite.add("value change", assert => {
     const data = [{ name: "A", xValue: 4, yValue: -4
           }
@@ -40,11 +46,11 @@ SimpleScatterplotControllerSuite.add("data change", assert => {
     assert.is(controller.getData(), data); //das stimmt wahrscheinlich nicht...
 
     let found = false;
-    controller.onDataChanged( () => found = true );
+    controller.onFilteredDataChanged( () => found = true );
     assert.is(found, true);
 
     found = false;
-    controller.setData(55);
+    controller.setFilteredData(55);
     assert.is(controller.getData(), 55); //das stimmt wahrscheinlich nicht...
     assert.is(found, true);
 });

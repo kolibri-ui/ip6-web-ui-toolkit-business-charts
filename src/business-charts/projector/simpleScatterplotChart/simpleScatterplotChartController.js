@@ -70,9 +70,9 @@ export {
 
 /**
  *
- * @param { ScatterplotChartDataElement } data
- * @param { ?SimpleScatterplotChartOptions } options
- * @returns { Array<SimpleScatterplotController> }
+ * @param   { ScatterplotChartDataElement }    data
+ * @param   { ?SimpleScatterplotChartOptions } options
+ * @returns { SimpleScatterplotControllerType }
  * @constructor
  */
 const SimpleScatterplotController = (data, options) => {
