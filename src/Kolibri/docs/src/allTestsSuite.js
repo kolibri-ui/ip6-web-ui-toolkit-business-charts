@@ -2,13 +2,8 @@
 import { total }      from "./kolibri/util/test.js";
 import { versionInfo} from "./kolibri/version.js";
 
-//Kolibri Test suites
-//TODO Uncomment after the work is done
-// import './kolibri/allKolibriTestsSuite.js';
-// import './examples/allExampleTestsSuite.js';
-
-//Business Charts Test suites
-import '../../../business-charts/allBusinessChartsTestsSuite.js';
+import '../src/examples/allExampleTestsSuite.js';
+import '../src/kolibri/allKolibriTestsSuite.js';
 
 total.onChange( value => document.getElementById('grossTotal').textContent = "" + value + " tests done.");
 

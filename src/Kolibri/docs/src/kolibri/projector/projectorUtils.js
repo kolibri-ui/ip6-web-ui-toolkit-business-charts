@@ -24,7 +24,7 @@ const timeStringToMinutes = timeString => {
  * @return { String } - format "hh:mm"
  */
 const totalMinutesToTimeString = totalMinutes => {
-    const hour   = totalMinutes / 60 | 0; // div
+    const hour   = (totalMinutes / 60) | 0; // div
     const minute = totalMinutes % 60;
     return String(hour).padStart(2, "0") + ":" + String(minute).padStart(2, "0");
 };

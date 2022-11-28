@@ -38,11 +38,11 @@ arraySuite.add("remove", assert => {
 });
 
 arraySuite.add("times", assert => {
-    assert.is(  0.times().eq([]),     true);
+    assert.is(  (0).times().eq([]),     true);
     assert.is( (-1).times().eq([]),     true);
-    assert.is( 1.times().eq([0]),    true);
-    assert.is( 10.times().eq([0,1,2,3,4,5,6,7,8,9]), true);
-    assert.is(  5.times(x=>x*x).eq([0,1,4,9,16]), true);
+    assert.is( ( 1).times().eq([0]),    true);
+    assert.is( (10).times().eq([0,1,2,3,4,5,6,7,8,9]), true);
+    assert.is(  (5).times(x=>x*x).eq([0,1,4,9,16]), true);
     let counter = 0;
     "5".times( _ => counter++); // also works from strings. Mapping can side-effect.
     assert.is(counter, 5);
@@ -58,11 +58,11 @@ arraySuite.add("sum", assert => {
     assert.is( [].sum(), 0);
     assert.is( [1].sum(), 1);
     assert.is( ["1"].sum(), 1);
-    assert.is( 10.times().sum(), 9 * 10 / 2);
+    assert.is( (10).times().sum(), 9 * 10 / 2);
     assert.is( [1].sum(Number), 1);
     assert.is( ["1"].sum(Number), 1);
-    assert.is( 10.times().sum(Number), 9 * 10 / 2);
-    assert.is( 3.times().sum(n => n*n), 0 + 1 + 4);
+    assert.is( (10).times().sum(Number), 9 * 10 / 2);
+    assert.is( (3).times().sum(n => n*n), 0 + 1 + 4);
 });
 
 arraySuite.run();
