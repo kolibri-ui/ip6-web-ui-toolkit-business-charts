@@ -4,7 +4,7 @@ import { drawPoint }        from "../../../src/business-charts/util/chartFunctio
 import { drawGrid }         from "../../../src/business-charts/util/chartGridFunctions.js";
 import { domainToCanvasXY } from "../../../src/business-charts/util/geometryFunctions.js";
 
-export { SimpleScatterplotChart, redrawScatterplot }
+export { SimplePlaygroundScatterplotChart, redrawPlaygroundScatterplot }
 
 /**
  * @typedef { Object } PlaygroundScatterplotChartOptions
@@ -23,7 +23,7 @@ export { SimpleScatterplotChart, redrawScatterplot }
  * @return { HTMLCanvasElement }
  * @constructor
  */
-const SimpleScatterplotChart = (data, options) => {
+const SimplePlaygroundScatterplotChart = (data, options) => {
     /** @type { HTMLCanvasElement } */ const canvasElement = document.createElement("canvas");
 
     options.id = options.id ?? 'scatterplot-chart-43412543219';
@@ -81,7 +81,7 @@ const drawScatterplot = (
  * @param { Array.<ScatterplotChartDataElement> } data
  * @param { ScatterplotChartOptions } options
  */
-const redrawScatterplot = (
+const redrawPlaygroundScatterplot = (
     ctx,
     data,
     options,

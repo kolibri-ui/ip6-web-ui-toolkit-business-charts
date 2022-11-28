@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
-import { TestSuite }              from "../../../src/Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleScatterplotChart } from "./simpleScatterplotChartProjector.js";
+import { TestSuite }                        from "../../../src/Kolibri/docs/src/kolibri/util/test.js";
+import { SimplePlaygroundScatterplotChart } from "./simpleScatterplotChartProjector.js";
 
 const simpleScatterplotChartSuite = TestSuite("/playground/mvc/simpleScatterplotChartProjector");
 
