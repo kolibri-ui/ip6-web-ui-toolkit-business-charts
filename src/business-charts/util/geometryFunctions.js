@@ -1,5 +1,13 @@
-
-export { canvasToDomainXY, domainToCanvasXY }
+export {
+    xDomainToCanvas,
+    yDomainToCanvas,
+    xCanvasToDomain,
+    yCanvasToDomain,
+    pointDomainToCanvas,
+    pointCanvasToDomain,
+    canvasToDomainXY,
+    domainToCanvasXY
+}
 
 /**
  * @typedef { Object } CanvasPoint2D
@@ -14,7 +22,80 @@ export { canvasToDomainXY, domainToCanvasXY }
  */
 
 /**
- * 
+ *
+ * @param { Number } width canvas width
+ * @param { Number } xMin minimum of domain x
+ * @param { Number } xMax maximum of domain x
+ * @param { Number } domainX xValue of domain
+ * @returns { Number } xValue calculated on canvas
+ */
+const xDomainToCanvas = (width, xMin, xMax, domainX) => ((width / (xMax - xMin)) * (domainX - xMin));
+
+/**
+ *
+ * @param { Number } height canvas height
+ * @param { Number } yMin minimum of domain y
+ * @param { Number } yMax maximum of domain y
+ * @param { Number } domainY yValue of domain
+ * @returns { Number } yValue calculated on canvas
+ */
+const yDomainToCanvas = (height, yMin, yMax, domainY) => ((height / (yMax - yMin)) * (yMax - domainY));
+
+/**
+ *
+ * @param { Number } width canvas width
+ * @param { Number } xMin minimum of domain x
+ * @param { Number } xMax maximum of domain x
+ * @param { Number } canvasX xValue of canvas
+ * @returns { Number } xValue calculated on domain
+ */
+const xCanvasToDomain = (width, xMin, xMax, canvasX) => (canvasX / (width / (xMax - xMin)) + xMin);
+
+/**
+ *
+ * @param { Number } height canvas height
+ * @param { Number } yMin minimum of domain y
+ * @param { Number } yMax maximum of domain y
+ * @param { Number } canvasY yValue of canvas
+ * @returns { Number } yValue calculated on domain
+ */
+const yCanvasToDomain = (height, yMin, yMax, canvasY) => (yMax - (canvasY / (height / (yMax - yMin))));
+
+
+/**
+ *
+ * @param { Number } width canvas width
+ * @param { Number } height canvas height
+ * @param { Number } xMin minimum of domain x
+ * @param { Number } xMax maximum of domain x
+ * @param { Number } yMin minimum of domain y
+ * @param { Number } yMax maximum of domain y
+ * @param { DomainPoint2D } point domain position of the new point
+ * @return { CanvasPoint2D } canvas position of the new domain point
+ */
+const pointDomainToCanvas = (width, height, xMin, xMax, yMin, yMax, point) => ({
+    xValue: xDomainToCanvas(width, xMin, xMax, point.xValue),
+    yValue: yDomainToCanvas(height, yMin, yMax, point.yValue)
+});
+
+/**
+ *
+ * @param { Number } width canvas width
+ * @param { Number } height canvas height
+ * @param { Number } xMin minimum of domain x
+ * @param { Number } xMax maximum of domain x
+ * @param { Number } yMin minimum of domain y
+ * @param { Number } yMax maximum of domain y
+ * @param { CanvasPoint2D } point canvas position of the new point
+ * @return { DomainPoint2D } domain position of the new domain point
+ */
+const pointCanvasToDomain = (width, height, xMin, xMax, yMin, yMax, point) => ({
+    xValue: xCanvasToDomain(width, xMin, xMax, point.xValue),
+    yValue: yCanvasToDomain(height, yMin, yMax, point.yValue)
+});
+
+/**
+ *
  * @param { !CanvasPoint2D } domainNullPoint zero point definition of the grid in the domain in canvas values
  * //TODO other param comments?
  * @param { !Number } xRatio stretch (>1) / stow (<0) xValue from domain to canvas
@@ -39,7 +120,7 @@ const domainToCanvasXY = (
 };
 
 /**
- * 
+ *
  * @param  { !CanvasPoint2D } domainNullPoint zero point definition of the grid in the domain in canvas values
  * //TODO other param comments?
  * @param  { !Number }        xRatio xValue relation of domain and canvas
