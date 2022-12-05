@@ -11,7 +11,7 @@ export { Attribute, QualifiedAttribute,
          VALID, VALUE, EDITABLE, LABEL, NAME, TYPE,
          FILTERED_DATA, ELEMENT_ID, X_RATIO, Y_RATIO, X_EVERY, Y_EVERY,
          CANVAS_WIDTH, CANVAS_HEIGHT, DOMAIN_NULL_POINT,
-         DRAW_OUTER_TICKS, COLORS }
+         DRAW_OUTER_TICKS, COLORS, X_MIN, X_MAX, Y_MIN, Y_MAX }
 
 /**
  * @typedef {
@@ -42,6 +42,11 @@ export { Attribute, QualifiedAttribute,
 /** @type ObservableTypeString */ const DOMAIN_NULL_POINT = "domainNullPoint";
 /** @type ObservableTypeString */ const DRAW_OUTER_TICKS = "drawOuterTicks";
 /** @type ObservableTypeString */ const COLORS = "colors";
+
+/** @type ObservableTypeString */ const X_MIN = "xMin";
+/** @type ObservableTypeString */ const X_MAX = "xMax";
+/** @type ObservableTypeString */ const Y_MIN = "yMin";
+/** @type ObservableTypeString */ const Y_MAX = "yMax";
 
 /**
  * Convenience function to read the current state of the attribute's VALUE observable for the given attribute.
