@@ -2,7 +2,13 @@
 
 import { drawPoint }        from "../../util/chartFunctions.js";
 import { drawGrid }         from "../../util/chartGridFunctions.js";
-import { domainToCanvasXY } from "../../util/geometryFunctions.js";
+import {
+    calcXRatio,
+    calcYRatio,
+    domainToCanvasXY,
+    pointDomainToCanvas
+} from "../../util/geometryFunctions.js";
+import { generateId }       from "../../util/functions.js";
 
 export {
     SimpleScatterplotChart
@@ -26,9 +32,9 @@ export {
 const SimpleScatterplotChart = (controller) => {
     /** @type { HTMLCanvasElement } */ const canvasElement = document.createElement("canvas");
 
-    canvasElement.id     = controller.getId();
-    canvasElement.width  = controller.getWidth();
-    canvasElement.height = controller.getHeight();
+    canvasElement.id     = generateId('scatterplot');
+    canvasElement.width  = 500;
+    canvasElement.height = 400;
 
     /** @type { CanvasRenderingContext2D } */
     const context = canvasElement.getContext('2d');
@@ -38,21 +44,43 @@ const SimpleScatterplotChart = (controller) => {
      * @returns {{gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: Number, xRatio: Number, yRatio: Number, xEvery: Number, drawOuterTicks: Boolean, canvasHeight: Number, yEvery: Number}, width: Number, colors: Array<String>, height: Number}}
      */
     const getOptions = () => {
+        let { width, height } = canvasElement.getBoundingClientRect();
+        width = width === 0 ? 500 : width;
+        height = height === 0 ? 400 : height;
+
+        const xMin = controller.xMin.getValue();
+        const xMax = controller.xMax.getValue();
+        const yMin = controller.yMin.getValue();
+        const yMax = controller.yMax.getValue();
+
+        const nullPoint = pointDomainToCanvas(
+            width,
+            height,
+            xMin,
+            xMax,
+            yMin,
+            yMax,
+            { xValue: 0, yValue: 0 },
+        );
+
+        const xRatio = calcXRatio(width, xMin, xMax);
+        const yRatio = calcYRatio(height, yMin, yMax);
+
         /** @type { ScatterplotChartOptions } */
         return {
-            width      : controller.getWidth(),
-            height     : controller.getHeight(),
-            colors     : controller.getColors(),
+            width,
+            height,
+            colors     : controller.getOptions().colors,
             pointSize  : 3,
             gridOptions: {
-                nullPoint     : controller.getDomainNullPoint(),
-                canvasWidth   : controller.getWidth(),
-                canvasHeight  : controller.getHeight(),
-                xRatio        : controller.getXRatio(),
-                yRatio        : controller.getYRatio(),
-                xEvery        : controller.getXEvery(),
-                yEvery        : controller.getYEvery(),
-                drawOuterTicks: controller.getDrawOuterTicks(),
+                nullPoint     : nullPoint,
+                canvasWidth   : width,
+                canvasHeight  : height,
+                xRatio,
+                yRatio,
+                xEvery        : controller.getOptions().xEvery,
+                yEvery        : controller.getOptions().yEvery,
+                drawOuterTicks: controller.getOptions().drawOuterTicks,
             }
         }
     };
@@ -107,7 +135,7 @@ const SimpleScatterplotChart = (controller) => {
 
     // TODO: register callback functions
 
-    drawScatterplot(context, controller.getFilteredData(), getOptions());
+    drawScatterplot(context, controller.getData(), getOptions());
 
     return canvasElement;
 };
