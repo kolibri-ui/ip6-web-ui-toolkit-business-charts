@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <title>MVC Scatterplot Chart</title>
     <link rel="stylesheet" href="../../src/Kolibri/docs/css/kolibri-base.css">
+    <link rel="stylesheet" href="../../src/Kolibri/docs/css/kolibri-light-colors.css">
     <link rel="stylesheet" href="mvcScatterplotDemo.css">
 </head>
 <body>
 <div class="wrapper">
-    <div class="box header">Header</div>
+    <div class="working-section"></div>
+    <div class="header">
+        <h1>Kolibri Business Chart</h1>
+        <div class="subtitle"><h3>Simple Scatterplot</h3></div>
+    </div>
+    <div class="kolibri-logo-anim"><div class="kolibri-logo"></div></div>
+    <div class="box toolbar-top">Toolbar</div>
     <div class="box yAxis">y-axis</div>
-    <div class="box chart">chart
+    <div class="box chart">
+        <div class="container" id="container">
+        </div>
+
+        <script src="../../demo/simple-scatterplot-chart/simple-scatterplot-chart-demo.js" type="module"></script>
     </div>
     <div class="box space">space</div>
     <div class="box xAxis">x-axis</div>
+    <div class="box toolbar-bottom-left">Toolbar-left</div>
+    <div class="box toolbar-bottom-middle">Toolbar-middle</div>
+    <div class="box toolbar-bottom-right">Toolbar-right</div>
     <div class="box footer">Footer</div>
 </div>
 
