@@ -1,0 +1,44 @@
+.container * {
+    outline: 1px solid red;
+}
+
+.container {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, max-content);
+}
+
+.yAxis {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chart {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.xAxis {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#x-axis-min-dimension,
+#x-axis-max-dimension,
+#y-axis-min-dimension,
+#y-axis-max-dimension {
+    margin: 5px;
+}
+
+
+#canvas {
+    background-color: var(--kb-color-hsl-blue-100);
+}
+

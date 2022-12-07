@@ -16,7 +16,14 @@
     </div>
     <div class="kolibri-logo-anim"><div class="kolibri-logo"></div></div>
     <div class="box toolbar-top">
-        <form action="mvcScatterplotDemo.html">
+        <label for="chart-choice">Choose another Chart</label>
+        <input list="chart-list" id="chart-choice" name="chart-choice">
+        <datalist id="chart-list">
+            <option value="Bar Chart"></option>
+            <option value="Line Chart"></option>
+            <option selected value="Scatterplot Chart"></option>
+        </datalist>
+        <form action="mvcScatterplotDemo.html" id="chart-selector">
             <label>Select other Chart
                 <select name="data-colors">
                     <option>
@@ -44,7 +51,7 @@
 
         <script src="../../demo/simple-scatterplot-chart/simple-scatterplot-chart-demo.js" type="module"></script>
     </div>
-    <div class="box space">space</div>
+    <div class="box space"></div>
     <div class="box xAxis">x-axis dimension
     <form action="mvcScatterplotDemo.html">
         from <input type="number" id="x-axis-min-dimension" name="x-axis-min-dimension" min="-10" max="20">
@@ -75,7 +82,7 @@
     </div>
     <div class="box toolbar-bottom-right">
         <button type="button">Switch data randomly</button> or resize window</div>
-    <div class="box footer">Footer</div>
+    <div class="box footer"></div>
 </div>
 
 <script src="mvcScatterplotDemo.js" type="module"></script>
