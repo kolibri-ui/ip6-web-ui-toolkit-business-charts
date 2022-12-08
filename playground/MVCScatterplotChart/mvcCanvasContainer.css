@@ -1,9 +1,10 @@
+
 .container * {
     outline: 1px solid red;
+    margin: 0px;
 }
 
 .container {
-    margin: 10px;
     display: grid;
     grid-template-columns: repeat(2, min-content);
     grid-template-rows: repeat(2, max-content);
@@ -15,6 +16,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#canvas {
+    background-color: var(--kb-color-hsl-blue-100);
+    display: block;
 }
 
 .chart {
@@ -35,10 +41,6 @@
 #y-axis-min-dimension,
 #y-axis-max-dimension {
     margin: 5px;
-}
 
-
-#canvas {
-    background-color: var(--kb-color-hsl-blue-100);
 }
 
