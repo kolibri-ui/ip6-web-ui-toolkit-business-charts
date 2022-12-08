@@ -1,6 +1,4 @@
-
 .container * {
-    outline: 1px solid red;
     margin: 0px;
 }
 
@@ -16,16 +14,20 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
 }
 
 #canvas {
-    background-color: var(--kb-color-hsl-blue-100);
+    background-color: var(--kb-color-rgb-white);
+    outline: 1px solid var(--kb-color-hsl-purple-200);
     display: block;
+
 }
 
 .chart {
     grid-column: 2;
     grid-row: 1;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
 }
 
 .xAxis {
@@ -34,6 +36,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+}
+#x-axis-min-dimension,
+#x-axis-max-dimension,
+#y-axis-min-dimension,
+#y-axis-max-dimension, select {
+    background: transparent;
+    border: none;
 }
 
 #x-axis-min-dimension,
@@ -41,6 +51,9 @@
 #y-axis-min-dimension,
 #y-axis-max-dimension {
     margin: 5px;
-
+    background-color: var(--kb-color-rgb-white);
+    outline: 1px solid var(--kb-color-hsl-purple-200);
 }
+
+
 
