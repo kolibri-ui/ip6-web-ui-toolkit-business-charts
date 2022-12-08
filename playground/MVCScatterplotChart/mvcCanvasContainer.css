@@ -1,3 +1,8 @@
+:root {
+    --golden-section-width: 70vw;
+    --golden-section-height: var(--golden-section-width) / 1.618;
+}
+
 .container * {
     margin: 0px;
 }
@@ -18,10 +23,11 @@
 }
 
 #canvas {
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
     background-color: var(--kb-color-rgb-white);
     outline: 1px solid var(--kb-color-hsl-purple-200);
     display: block;
-
 }
 
 .chart {
@@ -38,6 +44,7 @@
     justify-content: space-between;
     outline: 1px solid var(--kb-color-hsl-purple-200);
 }
+
 #x-axis-min-dimension,
 #x-axis-max-dimension,
 #y-axis-min-dimension,
@@ -54,6 +61,3 @@
     background-color: var(--kb-color-rgb-white);
     outline: 1px solid var(--kb-color-hsl-purple-200);
 }
-
-
-
