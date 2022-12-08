@@ -29,7 +29,7 @@ export {
  * @param { SimpleScatterplotControllerType } controller
  * @return { HTMLCanvasElement }
  */
-const SimpleScatterplotChart = (controller) => {
+const SimpleScatterplotChart = controller => {
     /** @type { HTMLCanvasElement } */ const canvasElement = document.createElement("canvas");
 
     canvasElement.id     = generateId('scatterplot');
@@ -116,7 +116,7 @@ const SimpleScatterplotChart = (controller) => {
     ) => {
         drawGrid(ctx, options.gridOptions);
         drawScatterplotPoints(ctx, data, options);
-    }
+    };
 
     /**
      *
@@ -131,7 +131,7 @@ const SimpleScatterplotChart = (controller) => {
     ) => {
         ctx.clearRect(0, 0, options.width, options.height);
         drawScatterplot(ctx, data, options);
-    }
+    };
 
     // TODO: register callback functions
 

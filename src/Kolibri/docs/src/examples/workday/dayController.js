@@ -100,7 +100,7 @@ const DayController = () => {
  * @param  { Number } minutes
  * @return { Number } - value between 0 and 24 * 60
  */
-const minMaxValuesConverter = minutes => Math.max( 0, (Math.min(minutes, 24 * 60)));
+const minMaxValuesConverter = minutes => Math.max( 0, Math.min(minutes, 24 * 60));
 
 /**
  * The lunch break must be at least 40 minutes. Otherwise, we set the end of the lunch break back, which might

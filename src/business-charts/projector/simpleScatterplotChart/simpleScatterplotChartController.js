@@ -41,7 +41,7 @@ export {
  * @return { ScatterplotOptionsModelType }
  * @constructor
  */
-const ScatterplotOptionsModel = (opts) => {
+const ScatterplotOptionsModel = opts => {
     const options = Attribute(opts);
     return /** @type { ScatterplotOptionsModelType } */ { options };
 };
@@ -58,7 +58,7 @@ const ScatterplotOptionsModel = (opts) => {
  * @return { DataModelType }
  * @constructor
  */
-const DataModel = (dataArray) => {
+const DataModel = dataArray => {
     const data = Attribute(dataArray);
     return /** @type { DataModelType } */ { data };
 };

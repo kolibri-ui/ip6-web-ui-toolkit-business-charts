@@ -44,7 +44,7 @@ const drawGrid = (
     if (options.drawOuterTicks === true) {
         drawOuterTicks(ctx, options)
     }
-}
+};
 
 /**
  * Function to draw the lines of the grid
@@ -71,7 +71,7 @@ const drawGridLines = (
         options.canvasHeight,
         '#000000'
     );
-}
+};
 
 /**
  * Function to draw the ticks of the grid
@@ -83,7 +83,7 @@ const drawGridTicks = (
     options
 ) => {
     let xTick = options.nullPoint.xValue % (options.xRatio * options.xEvery);
-    xTick     = xTick < 0 ? xTick + (options.xRatio * options.xEvery) : xTick;
+    xTick     = xTick < 0 ? xTick + options.xRatio * options.xEvery : xTick;
 
     for (let i = 0; i < options.canvasWidth; i++) {
         /** @type { CanvasPoint2D } */
@@ -95,11 +95,11 @@ const drawGridTicks = (
             TICK_ORIENTATION.DOWN
         );
 
-        xTick += (options.xRatio * options.xEvery);
+        xTick += options.xRatio * options.xEvery;
     }
 
     let yTick = options.nullPoint.yValue % (options.yRatio * options.yEvery);
-    yTick     = yTick < 0 ? yTick + (options.yRatio * options.yEvery) : yTick;
+    yTick     = yTick < 0 ? yTick + options.yRatio * options.yEvery : yTick;
 
     for (let i = 0; i < options.canvasHeight; i++) {
         /** @type { CanvasPoint2D } */
@@ -111,9 +111,9 @@ const drawGridTicks = (
             TICK_ORIENTATION.LEFT
         );
 
-        yTick += (options.yRatio * options.yEvery);
+        yTick += options.yRatio * options.yEvery;
     }
-}
+};
 
 /**
  * Function to draw the ticks of the grid
@@ -125,7 +125,7 @@ const drawOuterTicks = (
     options
 ) => {
     let xTick = options.nullPoint.xValue % (options.xRatio * options.xEvery);
-    xTick     = xTick < 0 ? xTick + (options.xRatio * options.xEvery) : xTick;
+    xTick     = xTick < 0 ? xTick + options.xRatio * options.xEvery : xTick;
 
     for (let i = 0; i < options.canvasWidth; i++) {
         /** @type { CanvasPoint2D } */
@@ -145,11 +145,11 @@ const drawOuterTicks = (
             TICK_ORIENTATION.UP
         );
 
-        xTick += (options.xRatio * options.xEvery);
+        xTick += options.xRatio * options.xEvery;
     }
 
     let yTick = options.nullPoint.yValue % (options.yRatio * options.yEvery);
-    yTick     = yTick < 0 ? yTick + (options.yRatio * options.yEvery) : yTick;
+    yTick     = yTick < 0 ? yTick + options.yRatio * options.yEvery : yTick;
 
     for (let i = 0; i < options.canvasHeight; i++) {
         /** @type { CanvasPoint2D } */
@@ -169,9 +169,9 @@ const drawOuterTicks = (
             TICK_ORIENTATION.LEFT
         );
 
-        yTick += (options.yRatio * options.yEvery);
+        yTick += options.yRatio * options.yEvery;
     }
-}
+};
 
 /**
  * Function to draw a tick on a canvas context
@@ -198,5 +198,5 @@ const drawTick = (
             drawLine(ctx, position.xValue, position.yValue, position.xValue + 5, position.yValue, '#000000');
             break;
     }
-}
+};
 

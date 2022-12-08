@@ -97,7 +97,7 @@ const drawAxisTicks = (orientation, axisContainer) => {
         ticks.appendChild(tick);
     }
     axisContainer.appendChild(ticks);
-}
+};
 
 const drawAxisLabels = (orientation, axisContainer) => {
     const lables = document.createElementNS(SVG_NAMESPACE, "g");
@@ -131,7 +131,7 @@ const drawAxisLabels = (orientation, axisContainer) => {
         lables.appendChild(label);
     }
     axisContainer.appendChild(lables);
-}
+};
 
 const drawAxis = (orientation, axisContainer) => {
     axisContainer.classList.add("axis", orientation);

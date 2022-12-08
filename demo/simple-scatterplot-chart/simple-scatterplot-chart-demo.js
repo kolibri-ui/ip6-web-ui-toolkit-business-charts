@@ -41,6 +41,6 @@ import { SimpleScatterplotController } from "../../src/business-charts/projector
 
 const controller = SimpleScatterplotController(
     data
-)
+);
 
 document.getElementById('container').append(SimpleScatterplotChart(controller));

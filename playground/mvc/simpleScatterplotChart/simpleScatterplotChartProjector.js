@@ -73,7 +73,7 @@ const drawScatterplot = (
 ) => {
     drawGrid(ctx, options.gridOptions);
     drawScatterplotPoints(ctx, data, options, 3);
-}
+};
 
 /**
  *
@@ -88,4 +88,4 @@ const redrawPlaygroundScatterplot = (
 ) => {
     ctx.clearRect(0, 0, options.width, options.height);
     drawScatterplot(ctx, data, options);
-}
+};

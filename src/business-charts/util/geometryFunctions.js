@@ -30,7 +30,7 @@ export {
  * @param { Number } xMax maximum of domain x
  * @returns { Number }
  */
-const calcXRatio = (width, xMin, xMax) => (width / (xMax - xMin));
+const calcXRatio = (width, xMin, xMax) => width / (xMax - xMin);
 
 /**
  *
@@ -39,7 +39,7 @@ const calcXRatio = (width, xMin, xMax) => (width / (xMax - xMin));
  * @param { Number } yMax maximum of domain y
  * @returns { Number }
  */
-const calcYRatio = (height, yMin, yMax) => (height / (yMax - yMin));
+const calcYRatio = (height, yMin, yMax) => height / (yMax - yMin);
 
 /**
  *
@@ -49,7 +49,7 @@ const calcYRatio = (height, yMin, yMax) => (height / (yMax - yMin));
  * @param { Number } domainX xValue of domain
  * @returns { Number } xValue calculated on canvas
  */
-const xDomainToCanvas = (width, xMin, xMax, domainX) => (calcXRatio(width, xMin, xMax) * (domainX - xMin));
+const xDomainToCanvas = (width, xMin, xMax, domainX) => calcXRatio(width, xMin, xMax) * (domainX - xMin);
 
 /**
  *
@@ -59,7 +59,7 @@ const xDomainToCanvas = (width, xMin, xMax, domainX) => (calcXRatio(width, xMin,
  * @param { Number } domainY yValue of domain
  * @returns { Number } yValue calculated on canvas
  */
-const yDomainToCanvas = (height, yMin, yMax, domainY) => (calcYRatio(height, yMin, yMax) * (yMax - domainY));
+const yDomainToCanvas = (height, yMin, yMax, domainY) => calcYRatio(height, yMin, yMax) * (yMax - domainY);
 
 /**
  *
@@ -69,7 +69,7 @@ const yDomainToCanvas = (height, yMin, yMax, domainY) => (calcYRatio(height, yMi
  * @param { Number } canvasX xValue of canvas
  * @returns { Number } xValue calculated on domain
  */
-const xCanvasToDomain = (width, xMin, xMax, canvasX) => (canvasX / (width / (xMax - xMin)) + xMin);
+const xCanvasToDomain = (width, xMin, xMax, canvasX) => canvasX / (width / (xMax - xMin)) + xMin;
 
 /**
  *
@@ -79,7 +79,7 @@ const xCanvasToDomain = (width, xMin, xMax, canvasX) => (canvasX / (width / (xMa
  * @param { Number } canvasY yValue of canvas
  * @returns { Number } yValue calculated on domain
  */
-const yCanvasToDomain = (height, yMin, yMax, canvasY) => (yMax - (canvasY / (height / (yMax - yMin))));
+const yCanvasToDomain = (height, yMin, yMax, canvasY) => yMax - canvasY / (height / (yMax - yMin));
 
 
 /**

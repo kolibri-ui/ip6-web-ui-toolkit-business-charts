@@ -96,3 +96,13 @@ body {
     grid-column: 1 / 8;
     grid-row: 9 / 10;
 }
+
+.title {
+    display: block;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
