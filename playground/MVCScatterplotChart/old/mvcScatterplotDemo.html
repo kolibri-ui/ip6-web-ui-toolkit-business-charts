@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>MVC Scatterplot Chart</title>
-    <link rel="stylesheet" href="../../src/Kolibri/docs/css/kolibri-base.css">
-    <link rel="stylesheet" href="../../src/Kolibri/docs/css/kolibri-light-colors.css">
+    <link rel="stylesheet" href="../../../src/Kolibri/docs/css/kolibri-base.css">
+    <link rel="stylesheet" href="../../../src/Kolibri/docs/css/kolibri-light-colors.css">
     <link rel="stylesheet" href="mvcScatterplotDemo.css">
 </head>
 <body>
@@ -23,23 +23,21 @@
             <option value="Line Chart"></option>
             <option selected value="Scatterplot Chart"></option>
         </datalist>
-        <form action="mvcScatterplotDemoSicherung.html" id="chart-selector">
+        <form action="mvcScatterplotDemo.html" id="chart-selector">
             <label>Select other Chart
                 <select name="data-colors">
-                    <option>
-                        Bar Chart
-                    </option>
-                    <option>
-                        Line Chart
-                    </option>
-                    <option selected>
-                        Scatterplot Chart
-                    </option>
+                    <option>Bar Chart</option>
+                    <option>Line Chart</option>
+                    <option selected>Scatterplot Chart</option>
                 </select>
             </label>
         </form>
     </div>
-    <div class="box yAxis">y-axis dimension
+
+    <div w3-include-html="mvcCanvasContainer.html"> hello </div>
+
+    <!-- Start of chart working section -->
+    <!--<div class="box yAxis">y-axis dimension
         <br>
         to <input type="number" id="y-axis-max-dimension" name="y-axis-min-dimension" min="-3" max="9">
         <br>
@@ -56,20 +54,16 @@
     <form action="mvcScatterplotDemoSicherung.html">
         from <input type="number" id="x-axis-min-dimension" name="x-axis-min-dimension" min="-10" max="20">
         to <input type="number" id="x-axis-max-dimension" name="x-axis-max-dimension" min="-10" max="20">
-    </form></div>
+    </form></div>-->
+    <!-- End of chart working section -->
+
     <div class="box toolbar-bottom-left">
-        <form action="mvcScatterplotDemoSicherung.html">
+        <form action="mvcScatterplotDemo.html">
             <label>Color for data series
                 <select name="data-colors">
-                    <option>
-                        purple
-                    </option>
-                    <option>
-                        blue
-                    </option>
-                    <option>
-                        pink
-                    </option>
+                    <option>purple</option>
+                    <option>blue</option>
+                    <option>pink</option>
                 </select>
             </label>
         </form>
@@ -85,7 +79,9 @@
     <div class="box footer"></div>
 </div>
 
-<script src="mvcScatterplotDemo.js" type="module"></script>
+
+<script src="../mvcScatterplotDemo.js" type="module"></script>
+<script src="includeHTML.js" type="module"></script>
 
 </body>
 </html>
