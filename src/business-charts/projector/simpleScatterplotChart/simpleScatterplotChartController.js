@@ -117,7 +117,6 @@ const SimpleScatterplotController = (dataArray, opts) => {
     });
 
     return {
-        data,
         xMin,
         xMax,
         yMin,
