@@ -159,8 +159,6 @@ const SimpleScatterplotChart = controller => {
         canvasElement.width = options.width;
         canvasElement.height = options.height;
 
-        console.log(options.width + " " + options.height);
-
         redrawScatterplot(canvasElement, controller.getData(), options);
     });
     resizeHandler.observe(canvasElement);
