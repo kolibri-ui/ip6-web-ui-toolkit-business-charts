@@ -54,10 +54,59 @@ body {
     display: flow;
 }
 .button {
-    color: red;
+    color: var(--kb-color-hsl-purple-700);
+    font-size: var(--font-size-textXS);
+    background-color: var(--kb-hsla-secondary-bg);
+    border-radius: 0;
+    border: none;
+}
+.button:hover {
+    color: var(--kb-hsla-primary-bg);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.4s;
+}
+.button:active {
+    color: var(--kb-color-rgb-pink-300);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.1s;
 }
 .selector {
-    color: red;
+    color: var(--kb-rgb-primary-accent);
+    font-size: var(--font-size-textXS);
+}
+.option {
+    font-size: var(--font-size-textXS);
+}
+.top {
+    padding: 5px;
+    grid-column: 1 / 8;
+    grid-row: 2 / 3;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    background-color: var(--kb-color-hsl-white);
+}
+
+.bottom {
+    padding: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    background-color: var(--kb-color-hsl-white);
+}
+
+/****************** color picker ********************/
+.left {
+    outline: none;
+    background-color: transparent;
+}
+.color-picker {
+    font-size: var(--font-size-textXS);
+}
+
+/****************** slider ********************/
+.middle {
+    outline: none;
+    background-color: transparent;
 }
 /* based on https://nikitahl.com/style-range-input-css#css-selectors-for-the-range-input */
 input[type="range"] {
@@ -74,12 +123,12 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     border-radius: 50%;
-    background: #ff4500;
+    background: var(--kb-rgb-primary-accent);
     cursor: ew-resize;
-    box-shadow: 0 0 2px 0 #555;
+    box-shadow: var(--kolibri-box-shadow);/** 0 0 2px 0 #555; */
     transition: background .5ms ease-in-out;
 }
 
@@ -90,29 +139,6 @@ input[type=range]::-webkit-slider-runnable-track  {
     background: transparent;
 }
 
-.top {
-    padding: 5px;
-    grid-column: 1 / 8;
-    grid-row: 2 / 3;
-    outline: 1px solid var(--kb-color-hsl-purple-200);
-    background-color: var(--kb-color-hsl-white);
-}
-.bottom {
-    padding: 5px;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    outline: 1px solid var(--kb-color-hsl-purple-200);
-    background-color: var(--kb-color-hsl-white);
-}
-.left {
-    outline: none;
-    background-color: transparent;
-}
-.middle {
-    outline: none;
-    background-color: transparent;
-}
 .right {
     outline: none;
     background-color: transparent;
