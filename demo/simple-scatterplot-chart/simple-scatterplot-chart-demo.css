@@ -53,6 +53,43 @@ body {
 .toolbar {
     display: flow;
 }
+.button {
+    color: red;
+}
+.selector {
+    color: red;
+}
+/* based on https://nikitahl.com/style-range-input-css#css-selectors-for-the-range-input */
+input[type="range"] {
+    -webkit-appearance: none;
+    margin-right: 15px;
+    width: 200px;
+    height: 7px;
+    background: var(--kolibri-color-shadow);
+    border-radius: 5px;
+    background-image: linear-gradient(var(--kolibri-color-neutral), var(--kolibri-color-neutral));
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #ff4500;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background .5ms ease-in-out;
+}
+
+input[type=range]::-webkit-slider-runnable-track  {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
 .top {
     padding: 5px;
     grid-column: 1 / 8;
