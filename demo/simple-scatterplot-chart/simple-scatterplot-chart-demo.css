@@ -1,7 +1,7 @@
 /****************** header section ********************/
 :root {
     --golden-section-width: 70vw;
-    --golden-section-height: var(--golden-section-width) / 1.618;
+    --golden-section-height: calc(var(--golden-section-width) / 1.618);
 }
 
 html {
@@ -104,6 +104,11 @@ body {
     background-color: var(--kb-color-rgb-lavender-200);
 }
 
+
+.scatterplot-canvas {
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+}
 
 
 

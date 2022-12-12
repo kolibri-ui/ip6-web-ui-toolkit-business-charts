@@ -56,6 +56,7 @@ const SimpleScatterplotChart = controller => {
      */
     const getOptions = () => {
         let { width, height } = canvasElement.getBoundingClientRect();
+
         width = width === 0 ? 500 : width;
         height = height === 0 ? 400 : height;
 
@@ -131,26 +132,39 @@ const SimpleScatterplotChart = controller => {
 
     /**
      *
-     * @param { CanvasRenderingContext2D } ctx
+     * @param { HTMLCanvasElement } element
      * @param { Array.<ScatterplotChartDataElement> } data
      * @param { ScatterplotChartOptions } options
      */
     const redrawScatterplot = (
-        ctx,
+        element,
         data,
         options,
     ) => {
+        const ctx = element.getContext('2d');
         ctx.clearRect(0, 0, options.width, options.height);
         drawScatterplot(ctx, data, options);
     };
 
-    controller.xMin.onValueChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
-    controller.xMax.onValueChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
-    controller.yMin.onValueChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
-    controller.yMax.onValueChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
-    controller.onDataChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
-    controller.onPointSizeChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
-    controller.onColorChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
+    controller.xMin.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+    controller.xMax.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+    controller.yMin.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+    controller.yMax.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+    controller.onDataChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+    controller.onPointSizeChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+    controller.onColorChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+
+    const resizeHandler = new ResizeObserver((_) => {
+        const options = getOptions();
+        canvasElement.width = options.width;
+        canvasElement.height = options.height;
+
+        console.log(options.width + " " + options.height);
+
+        redrawScatterplot(canvasElement, controller.getData(), options);
+    });
+    resizeHandler.observe(canvasElement);
+    controller.setResizeHandler(resizeHandler);
 
     drawScatterplot(context, controller.getData(), getOptions());
 
