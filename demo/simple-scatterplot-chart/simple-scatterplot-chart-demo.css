@@ -3,7 +3,6 @@
     --golden-section-width: 70vw;
     --golden-section-height: calc(var(--golden-section-width) / 1.618);
 }
-
 html {
     box-sizing: border-box;
     margin: 0;
@@ -11,14 +10,12 @@ html {
 *, *:before, *:after {
     box-sizing: inherit;
 }
-
 .header {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 5px;
 }
-
 .title h1 {
     font-style: inherit;
     /*color: var(--kolibri-color-output);     too bright */
@@ -27,7 +24,6 @@ html {
     margin: 0;
     padding-bottom: 5px;
 }
-
 .subtitle h3 {
     font-style: inherit;
     /*color: var(--kolibri-color-output);     too bright */
@@ -35,22 +31,18 @@ html {
     letter-spacing: 0.06em;
     margin: 0;
 }
-
 .title {
     display: block;
     margin: 0;
 }
-
 .kolibri-logo-anim {
     grid-column: 7 / 8;
     grid-row: 0 / 1;
 }
-
 .kolibri-logo {
     height: 100px;
     align-content: end;
 }
-
 body {
     display: flex;
     flex-direction: column;
@@ -61,7 +53,6 @@ body {
 .toolbar {
     display: flow;
 }
-
 .top {
     padding: 5px;
     grid-column: 1 / 8;
@@ -69,8 +60,6 @@ body {
     outline: 1px solid var(--kb-color-hsl-purple-200);
     background-color: var(--kb-color-hsl-white);
 }
-
-
 .bottom {
     padding: 5px;
     display: flex;
@@ -79,7 +68,6 @@ body {
     outline: 1px solid var(--kb-color-hsl-purple-200);
     background-color: var(--kb-color-hsl-white);
 }
-
 .left {
     outline: none;
     background-color: transparent;
@@ -97,26 +85,20 @@ body {
 /* based on https://css-tricks.com/couple-takes-sticky-footer/ */
 .footer {
     padding: 5px;
-    position:absolute;
     bottom: 0;
     width: 100%;
     flex-shrink: 0;
     background-color: var(--kb-color-rgb-lavender-200);
+    position: sticky;
+    z-index: 10;
 }
 
-
-.scatterplot-canvas {
-    width: var(--golden-section-width);
-    height: var(--golden-section-height);
+/****************** scatterplot chart ********************/
+.container .chart-container .scatterplot-canvas {
+    position: relative;
 }
 
-
-
-
-
-
-
-.chart-container {
+.container .chart-container {
     flex: 1 0 auto;
     display: grid;
     grid-template-columns: repeat(2, min-content);
@@ -128,6 +110,10 @@ body {
 
 /****************** chart section ********************/
 .scatterplot-canvas {
+    position: absolute;
+    z-index: 10;
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
     grid-column: 2;
     grid-row: 1;
     outline: 1px solid var(--kb-color-hsl-purple-200);
@@ -143,7 +129,6 @@ body {
     outline: 1px solid var(--kb-color-hsl-purple-200);
     box-shadow: var(--kolibri-box-shadow);
 }
-
 .x-axis {
     grid-column: 2;
     grid-row: 2;
