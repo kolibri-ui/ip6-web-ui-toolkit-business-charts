@@ -16,7 +16,6 @@ export {
  * @property { ?Number } xEvery value to define which ticks should be drawn for x-axis
  * @property { ?Number } yEvery value to define which ticks should be drawn for y-axis
  * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be dawn
- * @property { ?Array<String> } colors Colors for points
  */
 
 /**
@@ -120,7 +119,6 @@ const SimpleScatterplotController = (dataArray, opts) => {
             xEvery: 1,
             yEvery: 1,
             drawOuterTicks: true,
-            colors: [ "#a55ca5", "#67b6c7", "#bccd7a", "#eb9743" ]
         }
     }
     const { data } = DataModel(dataArray);
