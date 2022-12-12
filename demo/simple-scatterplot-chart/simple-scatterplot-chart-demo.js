@@ -44,3 +44,31 @@ const controller = SimpleScatterplotController(
 );
 
 document.getElementById('container').append(SimpleScatterplotChart(controller));
+
+const dataButton = document.getElementById("data-point-random-data");
+dataButton.onclick = (_) => {
+    /** @type { Array<ScatterplotChartDataElement> } */
+    const dataArray = [];
+    const xMin = controller.xMin.getValue();
+    const xMax = controller.xMax.getValue();
+    const yMin = controller.yMin.getValue();
+    const yMax = controller.yMax.getValue();
+
+    for (let i = xMin; i <= xMax; i++) {
+        dataArray.push({
+            name: '',
+            xValue: i,
+            yValue: Math.floor(Math.random() * (yMax - yMin + 1) + yMin)
+        })
+    }
+
+    controller.setData(dataArray);
+};
+
+const pointSizeSlider = document.getElementById("data-point-size");
+pointSizeSlider.value = controller.getPointSize();
+pointSizeSlider.onchange = (_) => controller.setPointSize(pointSizeSlider.value);
+
+const colorPicker = document.getElementById("data-point-color");
+colorPicker.value = controller.getColor();
+colorPicker.onchange = (_) => controller.setColor(colorPicker.value);

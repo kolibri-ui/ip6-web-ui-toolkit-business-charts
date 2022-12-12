@@ -1,14 +1,15 @@
 // noinspection SpellCheckingInspection
 
-import { drawPoint }        from "../../util/chartFunctions.js";
-import { drawGrid }         from "../../util/chartGridFunctions.js";
+import { drawPoint }               from "../../util/chartFunctions.js";
+import { drawGrid }                from "../../util/chartGridFunctions.js";
 import {
     calcXRatio,
     calcYRatio,
     domainToCanvasXY,
     pointDomainToCanvas
-} from "../../util/geometryFunctions.js";
-import { generateId }       from "../../util/functions.js";
+}                                  from "../../util/geometryFunctions.js";
+import { generateId }              from "../../util/functions.js";
+import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
 
 export {
     SimpleScatterplotChart
@@ -18,7 +19,7 @@ export {
  * @typedef { Object } ScatterplotChartOptions
  * @property { !Number } width chart width in pixel
  * @property { !Number } height chart height in pixel
- * @property { Array.<String> } colors Colors for points
+ * @property { String } color Color for points
  * @property { !Number } pointSize size of scatterplot points
  * @property { GridOptions } gridOptions grid options
  */
@@ -30,11 +31,21 @@ export {
  * @return { HTMLCanvasElement }
  */
 const SimpleScatterplotChart = controller => {
+    /** @type { HTMLDivElement } */
+    const chartElement = document.createElement("div");
+    chartElement.classList.add("chart-container");
+
+    const xAxisBar = AxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
+    const yAxisBar = AxisControlBarProjector("Y_AXIS", { min: controller.yMin, max: controller.yMax });
+
     /** @type { HTMLCanvasElement } */ const canvasElement = document.createElement("canvas");
 
     canvasElement.id     = generateId('scatterplot');
+    canvasElement.classList.add('scatterplot-canvas');
     canvasElement.width  = 500;
     canvasElement.height = 400;
+
+    chartElement.append(yAxisBar, canvasElement, xAxisBar);
 
     /** @type { CanvasRenderingContext2D } */
     const context = canvasElement.getContext('2d');
@@ -70,8 +81,8 @@ const SimpleScatterplotChart = controller => {
         return {
             width,
             height,
-            colors     : controller.getOptions().colors,
-            pointSize  : 3,
+            color      : controller.getColor(),
+            pointSize  : controller.getPointSize(),
             gridOptions: {
                 nullPoint     : nullPoint,
                 canvasWidth   : width,
@@ -99,7 +110,7 @@ const SimpleScatterplotChart = controller => {
         for (const v of data) {
             const point = domainToCanvasXY(options.gridOptions.nullPoint, options.gridOptions.xRatio, options.gridOptions.yRatio, v);
 
-            drawPoint(ctx, point.xValue, point.yValue, options.colors[0], options.pointSize);
+            drawPoint(ctx, point.xValue, point.yValue, options.color, options.pointSize);
         }
     };
 
@@ -133,9 +144,15 @@ const SimpleScatterplotChart = controller => {
         drawScatterplot(ctx, data, options);
     };
 
-    // TODO: register callback functions
+    controller.xMin.onValueChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
+    controller.xMax.onValueChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
+    controller.yMin.onValueChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
+    controller.yMax.onValueChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
+    controller.onDataChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
+    controller.onPointSizeChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
+    controller.onColorChanged(() => redrawScatterplot(context, controller.getData(), getOptions()));
 
     drawScatterplot(context, controller.getData(), getOptions());
 
-    return canvasElement;
+    return chartElement;
 };

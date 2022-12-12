@@ -1,0 +1,150 @@
+/****************** header section ********************/
+:root {
+    --golden-section-width: 70vw;
+    --golden-section-height: var(--golden-section-width) / 1.618;
+}
+
+html {
+    box-sizing: border-box;
+    margin: 0;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.title h1 {
+    font-style: inherit;
+    /*color: var(--kolibri-color-output);     too bright */
+    color: var(--kb-color-hsl-purple-700);
+    letter-spacing: 0.06em;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.subtitle h3 {
+    font-style: inherit;
+    /*color: var(--kolibri-color-output);     too bright */
+    color: var(--kb-color-hsl-purple-700);
+    letter-spacing: 0.06em;
+    margin: 0;
+}
+
+.title {
+    display: block;
+    margin: 0;
+}
+
+.kolibri-logo-anim {
+    grid-column: 7 / 8;
+    grid-row: 0 / 1;
+}
+
+.kolibri-logo {
+    height: 100px;
+    align-content: end;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/****************** toolbar section ********************/
+.toolbar {
+    display: flow;
+}
+
+.top {
+    padding: 5px;
+    grid-column: 1 / 8;
+    grid-row: 2 / 3;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    background-color: var(--kb-color-hsl-white);
+}
+
+
+.bottom {
+    padding: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    background-color: var(--kb-color-hsl-white);
+}
+
+.left {
+    outline: none;
+    background-color: transparent;
+}
+.middle {
+    outline: none;
+    background-color: transparent;
+}
+.right {
+    outline: none;
+    background-color: transparent;
+}
+
+/****************** footer section ********************/
+/* based on https://css-tricks.com/couple-takes-sticky-footer/ */
+.footer {
+    padding: 5px;
+    position:absolute;
+    bottom: 0;
+    width: 100%;
+    flex-shrink: 0;
+    background-color: var(--kb-color-rgb-lavender-200);
+}
+
+
+
+
+
+
+
+
+.chart-container {
+    flex: 1 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, max-content);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    justify-content:center;
+}
+
+/****************** chart section ********************/
+.scatterplot-canvas {
+    grid-column: 2;
+    grid-row: 1;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+}
+
+/****************** axis section ********************/
+.y-axis {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--kolibri-box-shadow);
+}
+
+.x-axis {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--kolibri-box-shadow);
+}

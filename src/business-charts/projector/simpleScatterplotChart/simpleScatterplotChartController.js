@@ -21,12 +21,20 @@ export {
 
 /**
  * @typedef { Object } SimpleScatterplotControllerType
- * @property { SimpleInputControllerType } xMin
- * @property { SimpleInputControllerType } xMax
- * @property { SimpleInputControllerType } yMin
- * @property { SimpleInputControllerType } yMax
- * @property { () => Array<ScatterplotChartDataElement> }               getData
- * @property { () => SimpleScatterplotChartOptions }                    getOptions
+ * @property { SimpleInputControllerType }                                                      xMin
+ * @property { SimpleInputControllerType }                                                      xMax
+ * @property { SimpleInputControllerType }                                                      yMin
+ * @property { SimpleInputControllerType }                                                      yMax
+ * @property { (data: Array<ScatterplotChartDataElement>) => void }                             setData
+ * @property { () => Array<ScatterplotChartDataElement> }                                       getData
+ * @property { (Number) => void }                                                               setPointSize
+ * @property { () => Number }                                                                   getPointSize
+ * @property { (String) => void }                                                               setColor
+ * @property { () => String }                                                                   getColor
+ * @property { () => SimpleScatterplotChartOptions }                                            getOptions
+ * @property { (callback: onValueChangeCallback<Array<ScatterplotChartDataElement>>)  => void } onDataChanged
+ * @property { (callback: onValueChangeCallback<Number>)  => void }                             onPointSizeChanged
+ * @property { (callback: onValueChangeCallback<String>)  => void }                             onColorChanged
  */
 
 /**
@@ -64,6 +72,40 @@ const DataModel = dataArray => {
 };
 
 /**
+ * @typedef PointSizeModelType
+ * @property { AttributeType<Number> } size point size
+ */
+
+/**
+ *
+ * @private
+ * @pure
+ * @return { PointSizeModelType }
+ * @constructor
+ */
+const PointSizeModel = pointSize => {
+    const size = Attribute(pointSize);
+    return /** @type { PointSizeModelType } */ { size };
+};
+
+/**
+ * @typedef ColorModelType
+ * @property { AttributeType<String> } color data point color
+ */
+
+/**
+ *
+ * @private
+ * @pure
+ * @return { ColorModelType }
+ * @constructor
+ */
+const ColorModel = colorString => {
+    const color = Attribute(colorString);
+    return /** @type { ColorModelType } */ { color };
+};
+
+/**
  *
  * @param   { Array<ScatterplotChartDataElement> }  dataArray
  * @param   { ?SimpleScatterplotChartOptions }      opts
@@ -71,6 +113,8 @@ const DataModel = dataArray => {
  * @constructor
  */
 const SimpleScatterplotController = (dataArray, opts) => {
+    // TODO: id model
+
     if (opts === undefined) {
         opts = {
             xEvery: 1,
@@ -81,6 +125,8 @@ const SimpleScatterplotController = (dataArray, opts) => {
     }
     const { data } = DataModel(dataArray);
     const { options } = ScatterplotOptionsModel(opts);
+    const { size } = PointSizeModel(3);
+    const { color } = ColorModel("#a55ca5");
 
     const xMinimum = dataArray.reduce((prev, curr) => prev < curr.xValue ? prev : curr.xValue) - 1;
     const xMaximum = dataArray.reduce((prev, curr) => prev > curr.xValue ? prev : curr.xValue) + 1;
@@ -121,7 +167,15 @@ const SimpleScatterplotController = (dataArray, opts) => {
         xMax,
         yMin,
         yMax,
-        getData: data.getObs(VALUE).getValue,
-        getOptions: options.getObs(VALUE).getValue,
+        setData:            data.getObs(VALUE).setValue,
+        getData:            data.getObs(VALUE).getValue,
+        setPointSize:       size.getObs(VALUE).setValue,
+        getPointSize:       size.getObs(VALUE).getValue,
+        setColor:           color.getObs(VALUE).setValue,
+        getColor:           color.getObs(VALUE).getValue,
+        getOptions:         options.getObs(VALUE).getValue,
+        onDataChanged:      data.getObs(VALUE).onChange,
+        onPointSizeChanged: size.getObs(VALUE).onChange,
+        onColorChanged:     color.getObs(VALUE).onChange
     };
 };

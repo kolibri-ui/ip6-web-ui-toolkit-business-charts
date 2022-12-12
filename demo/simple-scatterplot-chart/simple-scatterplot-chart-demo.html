@@ -4,15 +4,66 @@
     <meta charset="UTF-8">
     <title>Kolibri Simple Scatterplot Chart Demo</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/kolibri.png"/>
+    <link rel="stylesheet"                     href="../../src/Kolibri/docs/css/kolibri-base.css">
+    <link rel="stylesheet"                     href="../../src/Kolibri/docs/css/kolibri-light-colors.css">
     <link rel="stylesheet"                     href="./simple-scatterplot-chart-demo.css"/>
-    <style>
-        body {
-        }
-    </style>
 </head>
 <body>
 
-<div class="container" id="container">
+<!-- header ----------------------------------------------------->
+<div class="header">
+    <div class="title h1">
+        <h1>Kolibri Business Chart</h1>
+        <div class="subtitle h3">
+            <h3>Simple Scatterplot</h3>
+        </div>
+    </div>
+    <div class="kolibri-logo-anim">
+        <div class="kolibri-logo">
+        </div>
+    </div>
+</div>
+
+<div class="interaction-section"> <!-- includes chart section, top & bottom toolbar -->
+
+    <!-- top toolbar ------------------------------------------------->
+    <div class="toolbar top">
+        <form id="chart-selector">
+            <label>Select other Chart
+                <select name="data-colors">
+                    <option>Bar Chart</option>
+                    <option>Line Chart</option>
+                    <option selected>Scatterplot Chart</option>
+                </select>
+            </label>
+        </form>
+    </div>
+
+    <div class="container" id="container">
+    </div>
+
+    <!-- bottom toolbar ---------------------------------------------->
+    <div class="toolbar bottom">
+        <div class="toolbar bottom left">
+            <label for="data-point-color">Color of data points </label>
+            <input type="color" id="data-point-color">
+        </div>
+        <div class="toolbar bottom middle">
+            <div class="slide-container">
+                <label for="data-point-size">Size of data points </label>
+                <input type="range" min="1" max="10" class="slider" id="data-point-size">
+            </div>
+        </div>
+        <div class="toolbar bottom right">
+            <button type="button" id="data-point-random-data">Switch data randomly</button> or resize window
+        </div>
+    </div>
+
+</div> <!-- End of interaction section -->
+
+<!-- footer ------------------------------------------------------>
+<div class="footer">
+    made by Roger Kreienb&uumlhl and Valentina Giampa
 </div>
 
 <script src="./simple-scatterplot-chart-demo.js" type="module"></script>
