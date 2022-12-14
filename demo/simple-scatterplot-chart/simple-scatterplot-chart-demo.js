@@ -46,7 +46,7 @@ const controller = SimpleScatterplotController(
 document.getElementById('container').append(SimpleScatterplotChart(controller));
 
 const dataButton = document.getElementById("data-point-random-data");
-dataButton.onclick = (_) => {
+dataButton.onclick = _ => {
     /** @type { Array<ScatterplotChartDataElement> } */
     const dataArray = [];
     const xMin = controller.xMin.getValue();
@@ -67,8 +67,8 @@ dataButton.onclick = (_) => {
 
 const pointSizeSlider = document.getElementById("data-point-size");
 pointSizeSlider.value = controller.getPointSize();
-pointSizeSlider.onchange = (_) => controller.setPointSize(pointSizeSlider.value);
+pointSizeSlider.onchange = _ => controller.setPointSize(pointSizeSlider.value);
 
 const colorPicker = document.getElementById("data-point-color");
 colorPicker.value = controller.getColor();
-colorPicker.onchange = (_) => controller.setColor(colorPicker.value);
+colorPicker.onchange = _ => controller.setColor(colorPicker.value);
