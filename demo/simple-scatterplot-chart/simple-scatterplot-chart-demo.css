@@ -74,9 +74,7 @@ body {
     /*color: var(--kb-color-hsl-purple-700);*/
     font-size: var(--font-size-textXS);
 }
-.option {
-    background-color: red;
-}
+
 .top {
     padding: 5px;
     grid-column: 1 / 8;
@@ -138,9 +136,6 @@ body {
 /* Style items (options): */
 .select-items {
     position: absolute;
-    /*background-color: var(--kb-color-rgb-lavender-100);*/
-    /*color: var(--kb-color-hsl-purple-700);*/
-    /*background-color: var(--kb-hsla-secondary-bg);*/
     color: var(--kb-color-hsl-purple-700);
     background-color: var(--kb-color-hsl-purple-200);
     top: 100%;
@@ -226,6 +221,11 @@ input[type=range]::-webkit-slider-runnable-track  {
 }
 
 /****************** scatterplot chart ********************/
+.chart-container {
+    --axis-inner-margin: 0.5em;
+    --axis-width-height: 4em;
+}
+
 .container .chart-container .scatterplot-canvas {
     position: relative;
 }
@@ -259,7 +259,6 @@ input[type=range]::-webkit-slider-runnable-track  {
     flex-direction: column;
     justify-content: space-between;
     outline: 1px solid var(--kb-color-hsl-purple-200);
-    box-shadow: var(--kolibri-box-shadow);
 }
 .x-axis {
     grid-column: 2;
@@ -268,5 +267,21 @@ input[type=range]::-webkit-slider-runnable-track  {
     flex-wrap: wrap;
     justify-content: space-between;
     outline: 1px solid var(--kb-color-hsl-purple-200);
-    box-shadow: var(--kolibri-box-shadow);
+}
+
+.chart-container label {
+    display: none;
+}
+
+.chart-container input {
+    max-width: var(--axis-width-height);
+}
+
+.x-axis input {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin);
+    /* input height always 1em */
+}
+
+.y-axis input {
+    margin: var(--axis-inner-margin);
 }
