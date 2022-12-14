@@ -209,9 +209,16 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 50%;
     background: var(--kb-rgb-primary-accent);
     /*cursor: ew-resize;*/
-    cursor: pointer;;
+    cursor: grab;
     box-shadow: var(--kolibri-box-shadow);/** 0 0 2px 0 #555; */
     transition: background .5ms ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    background: var(--kb-rgb-primary-accent);
+    height: 22px;
+    width: 22px;
+    cursor: grabbing;
 }
 
 input[type=range]::-webkit-slider-runnable-track  {
