@@ -1,5 +1,6 @@
 /****************** header section ********************/
 :root {
+    color-scheme: light;
     --golden-section-width: 70vw;
     --golden-section-height: calc(var(--golden-section-width) / 1.618);
 }
@@ -51,7 +52,7 @@ body {
 
 /****************** toolbar section ********************/
 .toolbar {
-    display: flow;
+    display: flex;
 }
 
 .top {
@@ -90,7 +91,7 @@ body {
 }
 
 /****************** item selection ********************/
-/********/
+/**** Sample 1 ****/
 .chart-selector-form {
     margin: 0.5em;
     position: relative;
@@ -108,12 +109,8 @@ body {
     background-size: 2em;
 }
 
-/********/
 
-
-
-
-
+/**** Sample 2 ****/
 /* code snippet from https://www.w3schools.com/howto/howto_custom_select.asp */
 /* The container must be positioned relative: */
 .custom-select {
@@ -287,6 +284,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     padding-top: 10px;
     padding-bottom: 20px;
     justify-content:center;
+    grid-gap: 1px;
 }
 
 /****************** chart section ********************/
