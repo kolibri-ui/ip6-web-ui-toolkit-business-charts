@@ -29,14 +29,15 @@
     <!-- top toolbar ------------------------------------------------->
     <div class="toolbar top">
         <!-- code snippet from https://www.w3schools.com/howto/howto_custom_select.asp -->
+        <!-- for demo purpose only -->
         <div class="custom-select" style="width:200px;">
             <select>
                 <label>Select other Chart
-<!--                <option value="0">Select other chart:</option>-->
                 <option value="1">Bar Chart</option>
                 <option value="2">Line Chart</option>
                 <option value="3" autofocus>Scatterplot Chart</option>
                 </label>
+
                 <script>
                     let x, i, j, l, ll, selElmnt, a, b, c;
                     /* Look for any elements with the class "custom-select": */
@@ -124,17 +125,17 @@
     </div>
 
 
-<!--    <div class="toolbar top">-->
-<!--        <form id="chart-selector">-->
-<!--            <label>Select other Chart-->
-<!--                <select name="data-colors" class="selector">-->
-<!--                    <option value="0">Bar Chart</option>-->
-<!--                    <option value="1">Line Chart</option>-->
-<!--                    <option selected value="2">Scatterplot Chart</option>-->
-<!--                </select>-->
-<!--            </label>-->
-<!--        </form>-->
-<!--    </div>-->
+    <div class="toolbar top">
+        <form class="chart-selector-form" id="chart-selector">
+            <label>Select other Chart
+                <select name="data-colors" class="chart-selector">
+                    <option value="0">Bar Chart</option>
+                    <option value="1">Line Chart</option>
+                    <option selected value="2">Scatterplot Chart</option>
+                </select>
+            </label>
+        </form>
+    </div>
 
     <!-- chart section ----------------------------------------------->
     <div class="container" id="container">

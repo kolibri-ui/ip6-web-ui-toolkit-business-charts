@@ -90,6 +90,30 @@ body {
 }
 
 /****************** item selection ********************/
+/********/
+.chart-selector-form {
+    margin: 0.5em;
+    position: relative;
+    font-family: inherit;
+}
+.chart-selector-form select {
+    font-family: inherit;
+    margin-bottom: 0.25em;
+    font-size: var(--font-size-textXS);
+    color: var(--kb-rgb-primary-dark);
+    background-color: var(--kb-color-hsl-blue-100);
+    border-radius: 0;
+    border: none;
+    padding: 0.25em;
+    background-size: 2em;
+}
+
+/********/
+
+
+
+
+
 /* code snippet from https://www.w3schools.com/howto/howto_custom_select.asp */
 /* The container must be positioned relative: */
 .custom-select {
@@ -217,8 +241,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     transition: 0.1s;
 }
 .selector {
-    /*color: var(--kb-color-hsl-purple-700);*/
-    font-size: var(--font-size-textXS);
+    /*font-size: var(--font-size-textXS);*/
 }
 
 /****************** footer section ********************/
