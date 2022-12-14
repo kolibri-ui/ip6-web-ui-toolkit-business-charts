@@ -55,18 +55,19 @@ body {
 }
 .button {
     font-size: var(--font-size-textXS);
-    color: var(--kb-color-hsl-purple-700);
-    background-color: var(--kb-hsla-secondary-bg);
+    color: var(--kb-rgb-primary-dark);
+    background-color: var(--kb-color-hsl-blue-100);
     border-radius: 0;
     border: none;
+    padding: 0.5em;
 }
 .button:hover {
-    color: var(--kb-hsla-primary-bg);
+    color: var(--kb-color-hsl-blue-100);
     background-color: var(--kb-rgb-primary-dark);
     transition: 0.4s;
 }
 .button:active {
-    color: var(--kb-color-rgb-pink-300);
+    color: var(--kb-color-rgb-purple-200);
     background-color: var(--kb-rgb-primary-dark);
     transition: 0.1s;
 }
@@ -90,6 +91,7 @@ body {
     justify-content: space-between;
     outline: 1px solid var(--kb-color-hsl-purple-200);
     background-color: var(--kb-color-hsl-white);
+    align-items: center;
 }
 
 /****************** item selection ********************/
@@ -224,6 +226,12 @@ input[type=range]::-webkit-slider-runnable-track  {
 .chart-container {
     --axis-inner-margin: 0.5em;
     --axis-width-height: 4em;
+
+    /* TODO wontfix: set shadow on chart-container instead of the axes*/
+    --y-axis-shadow: -4px 4px  8px 1px var(--kolibri-color-shadow),
+                     -20px 6px 20px -20px var(--kolibri-color-shadow);
+    --x-axis-shadow: -8px 4px  8px 1px var(--kolibri-color-shadow),
+                     -20px 6px 20px -20px var(--kolibri-color-shadow);
 }
 
 .container .chart-container .scatterplot-canvas {
@@ -259,6 +267,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     flex-direction: column;
     justify-content: space-between;
     outline: 1px solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--y-axis-shadow);
 }
 .x-axis {
     grid-column: 2;
@@ -267,6 +276,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     flex-wrap: wrap;
     justify-content: space-between;
     outline: 1px solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--x-axis-shadow);
 }
 
 .chart-container label {
