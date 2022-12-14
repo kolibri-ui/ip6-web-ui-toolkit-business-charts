@@ -53,28 +53,6 @@ body {
 .toolbar {
     display: flow;
 }
-.button {
-    font-size: var(--font-size-textXS);
-    color: var(--kb-rgb-primary-dark);
-    background-color: var(--kb-color-hsl-blue-100);
-    border-radius: 0;
-    border: none;
-    padding: 0.5em;
-}
-.button:hover {
-    color: var(--kb-color-hsl-blue-100);
-    background-color: var(--kb-rgb-primary-dark);
-    transition: 0.4s;
-}
-.button:active {
-    color: var(--kb-color-rgb-purple-200);
-    background-color: var(--kb-rgb-primary-dark);
-    transition: 0.1s;
-}
-.selector {
-    /*color: var(--kb-color-hsl-purple-700);*/
-    font-size: var(--font-size-textXS);
-}
 
 .top {
     padding: 5px;
@@ -92,6 +70,23 @@ body {
     outline: 1px solid var(--kb-color-hsl-purple-200);
     background-color: var(--kb-color-hsl-white);
     align-items: center;
+}
+
+.left {
+    outline: none;
+    background-color: transparent;
+    padding-right: 1em;
+}
+
+.middle {
+    outline: none;
+    background-color: transparent;
+    padding-right: 1em;
+}
+
+.right {
+    outline: none;
+    background-color: transparent;
 }
 
 /****************** item selection ********************/
@@ -160,19 +155,14 @@ body {
 }
 
 /****************** color picker ********************/
-.left {
-    outline: none;
-    background-color: transparent;
-}
 .color-picker {
     font-size: var(--font-size-textXS);
+    padding-right: 0.5em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
 }
 
 /****************** slider ********************/
-.middle {
-    outline: none;
-    background-color: transparent;
-}
 /* based on https://nikitahl.com/style-range-input-css#css-selectors-for-the-range-input */
 input[type="range"] {
     -webkit-appearance: none;
@@ -188,6 +178,8 @@ input[type="range"] {
 
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
     height: 25px;
     width: 25px;
     border-radius: 50%;
@@ -205,9 +197,28 @@ input[type=range]::-webkit-slider-runnable-track  {
     background: transparent;
 }
 
-.right {
-    outline: none;
-    background-color: transparent;
+/****************** switch data button ********************/
+.button {
+    font-size: var(--font-size-textXS);
+    color: var(--kb-rgb-primary-dark);
+    background-color: var(--kb-color-hsl-blue-100);
+    border-radius: 0;
+    border: none;
+    padding: 0.5em;
+}
+.button:hover {
+    color: var(--kb-color-hsl-blue-100);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.4s;
+}
+.button:active {
+    color: var(--kb-color-rgb-purple-200);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.1s;
+}
+.selector {
+    /*color: var(--kb-color-hsl-purple-700);*/
+    font-size: var(--font-size-textXS);
 }
 
 /****************** footer section ********************/
