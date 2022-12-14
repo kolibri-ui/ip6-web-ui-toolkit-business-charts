@@ -351,3 +351,7 @@ input[type=range]::-webkit-slider-runnable-track  {
 .y-axis input {
     margin: var(--axis-inner-margin);
 }
+
+.chart-container {
+    /*outline: 1px solid red;*/
+}

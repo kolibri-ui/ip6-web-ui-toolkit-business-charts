@@ -127,15 +127,37 @@
 
 
     <div class="toolbar top">
-        <form class="chart-selector-form" id="chart-selector">
-            <label>Select other Chart
-                <select name="data-colors" class="chart-selector">
-                    <option value="0">Bar Chart</option>
-                    <option value="1">Line Chart</option>
-                    <option selected value="2">Scatterplot Chart</option>
-                </select>
-            </label>
-        </form>
+        <div class="toolbar top left">
+            <label class="axis-ticks" for="data-point-color">Color of axis-ticks </label>
+            <input type="color" id="axis-ticks-color">
+        </div>
+        <div class="toolbar top middle">
+            <div class="slide-container">
+                <label for="data-point-size">Size of axis ticks </label>
+                <input type="range" name="rangeInput" value= "5" min="5" max="15" class="slider"
+                       id="axis-ticks-size" oninput="this.nextElementSibling.value = this.value">
+                <output>5</output>
+
+                <!-- code snippet from https://stackoverflow.com/questions/10004723/html5-input-type-range-show-range-value -->
+                <!--                <div style="position:relative; margin:auto; width:90%">-->
+                <!--                    <span style="position:absolute; color:red; border:1px solid blue; min-width:100px;">-->
+                <!--                        <span id="myValue"></span>-->
+                <!--                    </span>-->
+                <!--                    <input type="range" id="myRange" max="15" min="5" style="width:100%">-->
+                <!--                </div>-->
+            </div>
+        </div>
+        <div class="toolbar top right">
+            <form class="chart-selector-form" id="chart-selector">
+                <label>Select other Chart
+                    <select name="data-colors" class="chart-selector">
+                        <option value="0">Bar Chart</option>
+                        <option value="1">Line Chart</option>
+                        <option selected value="2">Scatterplot Chart</option>
+                    </select>
+                </label>
+            </form>
+        </div>
     </div>
 
     <!-- chart section ----------------------------------------------->

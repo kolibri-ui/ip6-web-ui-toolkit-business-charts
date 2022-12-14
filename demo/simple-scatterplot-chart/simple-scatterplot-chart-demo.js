@@ -72,3 +72,7 @@ pointSizeSlider.onchange = _ => controller.setPointSize(pointSizeSlider.value);
 const colorPicker = document.getElementById("data-point-color");
 colorPicker.value = controller.getColor();
 colorPicker.onchange = _ => controller.setColor(colorPicker.value);
+
+// const axisTicksSlider = document.getElementById("axis-ticks-size");
+// axisTicksSlider.value = controller.getTickSize();
+// axisTicksSlider.onchange = _ => controller.setTickSize(axisTicksSlider.value);
