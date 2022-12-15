@@ -65,6 +65,8 @@ body {
 .toolbar {
     display: flex;
     min-width: fit-content;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
 }
 
 .top {
@@ -109,12 +111,11 @@ body {
 .chart-selector-form {
     margin: 0.5em;
     position: relative;
-    font-family: var(--font-sans-serif);
 }
 .chart-selector-form select {
     font-family: inherit;
     margin-bottom: 0.25em;
-    font-size: var(--font-size-textXS);
+    font-size: inherit;
     color: var(--kb-rgb-primary-dark);
     background-color: var(--kb-color-hsl-blue-100);
     border-radius: 0;
@@ -132,6 +133,7 @@ body {
     font-family: inherit;
     min-width: max-content;
     padding-right: 0.5em;
+    color: var(--kb-color-hsl-purple-700);
 }
 .custom-select select {
     display: none; /*hide original SELECT element: */
@@ -185,10 +187,6 @@ body {
 
 .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
-    /*color: var(--kb-color-hsl-purple-700);*/
-    /*background-color: var(--kb-color-rgb-lavender-100);*/
-    /*color: var(--kb-hsla-primary-bg);*/
-    /*background-color: var(--kb-rgb-primary-dark);*/
 }
 
 /****************** color picker ********************/
