@@ -398,7 +398,3 @@ input[type=range]::-webkit-slider-runnable-track  {
 .chart-container {
     /*outline: 1px solid red;*/
 }
-
-canvas {
-    image-rendering: crisp-edges;
-}
