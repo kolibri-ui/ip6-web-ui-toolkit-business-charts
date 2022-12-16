@@ -62,8 +62,8 @@ function drawLine(
     ctx.save();
     ctx.strokeStyle = color;
     ctx.beginPath();
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(endX, endY);
+    ctx.moveTo(Math.round(startX), Math.round(startY));
+    ctx.lineTo(Math.round(endX), Math.round(endY));
     ctx.stroke();
     ctx.restore();
 }

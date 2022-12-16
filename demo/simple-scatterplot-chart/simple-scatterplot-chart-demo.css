@@ -265,7 +265,8 @@ input[type=range]::-webkit-slider-runnable-track  {
     display: flex;
     align-items: flex-end;
     padding: 5px;
-    min-height: 4em;
+    min-height: calc(var(--font-size-textXS));
+    max-height: calc(var(--font-size-textL));
     vertical-align: baseline;
     bottom: 0;
     /*width: 100%;*/
@@ -396,4 +397,8 @@ input[type=range]::-webkit-slider-runnable-track  {
 
 .chart-container {
     /*outline: 1px solid red;*/
+}
+
+canvas {
+    image-rendering: crisp-edges;
 }
