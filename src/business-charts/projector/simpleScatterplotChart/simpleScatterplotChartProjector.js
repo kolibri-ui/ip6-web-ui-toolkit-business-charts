@@ -153,8 +153,6 @@ const SimpleScatterplotChart = controller => {
     controller.yMin.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
     controller.yMax.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
     controller.onDataChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
-    controller.onPointSizeChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
-    controller.onColorChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
 
     const resizeHandler = new ResizeObserver((_) => {
         const options = getOptions();
@@ -165,8 +163,7 @@ const SimpleScatterplotChart = controller => {
     });
     resizeHandler.observe(canvasElement);
 
-    const styleChangeHandler = new MutationObserver((mut) => {
-        console.log(mut);
+    const styleChangeHandler = new MutationObserver((_) => {
         const options = getOptions();
         redrawScatterplot(canvasElement, controller.getData(), options);
     });
