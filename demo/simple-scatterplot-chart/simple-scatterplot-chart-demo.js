@@ -66,9 +66,7 @@ dataButton.onclick = (_) => {
 };
 
 const pointSizeSlider = document.getElementById("data-point-size");
-pointSizeSlider.value = controller.getPointSize();
-pointSizeSlider.onchange = (_) => controller.setPointSize(pointSizeSlider.value);
+pointSizeSlider.onchange = (_) => document.querySelector(".scatterplot-canvas").style.setProperty("--data-point-size", pointSizeSlider.value);
 
 const colorPicker = document.getElementById("data-point-color");
-colorPicker.value = controller.getColor();
-colorPicker.onchange = (_) => controller.setColor(colorPicker.value);
+colorPicker.onchange = (_) => document.querySelector(".scatterplot-canvas").style.setProperty("--data-point-color", colorPicker.value);

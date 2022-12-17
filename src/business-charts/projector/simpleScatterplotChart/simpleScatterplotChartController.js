@@ -31,6 +31,7 @@ export {
  * @property { (String) => void }                                                               setColor
  * @property { () => String }                                                                   getColor
  * @property { (ResizeObserver) => void }                                                       setResizeHandler
+ * @property { (MutationObserver) => void }                                                     setStyleChangeHandler
  * @property { () => SimpleScatterplotChartOptions }                                            getOptions
  * @property { (callback: onValueChangeCallback<Array<ScatterplotChartDataElement>>)  => void } onDataChanged
  * @property { (callback: onValueChangeCallback<Number>)  => void }                             onPointSizeChanged
@@ -106,23 +107,6 @@ const ColorModel = colorString => {
 };
 
 /**
- * @typedef ResizeHandlerModelType
- * @property { AttributeType<ResizeObserver> } resizeHandler resize handler
- */
-
-/**
- *
- * @private
- * @pure
- * @return { ResizeHandlerModelType }
- * @constructor
- */
-const ResizeHandlerModel = handler => {
-    const resizeHandler = Attribute(handler);
-    return /** @type { ResizeHandlerModelType } */ { resizeHandler };
-};
-
-/**
  *
  * @param   { Array<ScatterplotChartDataElement> }  dataArray
  * @param   { ?SimpleScatterplotChartOptions }      opts
@@ -143,7 +127,6 @@ const SimpleScatterplotController = (dataArray, opts) => {
     const { options } = ScatterplotOptionsModel(opts);
     const { size } = PointSizeModel(3);
     const { color } = ColorModel("#a55ca5");
-    const { resizeHandler } = ResizeHandlerModel();
 
     const xMinimum = dataArray.reduce((prev, curr) => prev < curr.xValue ? prev : curr.xValue) - 1;
     const xMaximum = dataArray.reduce((prev, curr) => prev > curr.xValue ? prev : curr.xValue) + 1;
@@ -184,16 +167,15 @@ const SimpleScatterplotController = (dataArray, opts) => {
         xMax,
         yMin,
         yMax,
-        setData:            data.getObs(VALUE).setValue,
-        getData:            data.getObs(VALUE).getValue,
-        setPointSize:       size.getObs(VALUE).setValue,
-        getPointSize:       size.getObs(VALUE).getValue,
-        setColor:           color.getObs(VALUE).setValue,
-        getColor:           color.getObs(VALUE).getValue,
-        getOptions:         options.getObs(VALUE).getValue,
-        setResizeHandler:   resizeHandler.getObs(VALUE).setValue,
-        onDataChanged:      data.getObs(VALUE).onChange,
-        onPointSizeChanged: size.getObs(VALUE).onChange,
-        onColorChanged:     color.getObs(VALUE).onChange
+        setData:               data.getObs(VALUE).setValue,
+        getData:               data.getObs(VALUE).getValue,
+        setPointSize:          size.getObs(VALUE).setValue,
+        getPointSize:          size.getObs(VALUE).getValue,
+        setColor:              color.getObs(VALUE).setValue,
+        getColor:              color.getObs(VALUE).getValue,
+        getOptions:            options.getObs(VALUE).getValue,
+        onDataChanged:         data.getObs(VALUE).onChange,
+        onPointSizeChanged:    size.getObs(VALUE).onChange,
+        onColorChanged:        color.getObs(VALUE).onChange
     };
 };

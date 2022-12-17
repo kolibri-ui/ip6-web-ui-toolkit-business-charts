@@ -56,6 +56,8 @@ const SimpleScatterplotChart = controller => {
      */
     const getOptions = () => {
         let { width, height } = canvasElement.getBoundingClientRect();
+        const pointSize = Number(getComputedStyle(canvasElement).getPropertyValue("--data-point-size"));
+        const pointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
 
         width = width === 0 ? 500 : width;
         height = height === 0 ? 400 : height;
@@ -82,8 +84,8 @@ const SimpleScatterplotChart = controller => {
         return {
             width,
             height,
-            color      : controller.getColor(),
-            pointSize  : controller.getPointSize(),
+            color      : pointColor,
+            pointSize  : pointSize,
             gridOptions: {
                 nullPoint     : nullPoint,
                 canvasWidth   : width,
@@ -162,7 +164,13 @@ const SimpleScatterplotChart = controller => {
         redrawScatterplot(canvasElement, controller.getData(), options);
     });
     resizeHandler.observe(canvasElement);
-    controller.setResizeHandler(resizeHandler);
+
+    const styleChangeHandler = new MutationObserver((mut) => {
+        console.log(mut);
+        const options = getOptions();
+        redrawScatterplot(canvasElement, controller.getData(), options);
+    });
+    styleChangeHandler.observe(canvasElement, { attributes: true, attributeFilter: ["style"] });
 
     drawScatterplot(context, controller.getData(), getOptions());
 
