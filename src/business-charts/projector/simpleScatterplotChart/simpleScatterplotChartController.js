@@ -154,7 +154,8 @@ const SimpleScatterplotController = (dataArray, opts) => {
         name : "y_min",
         type : "number"
     });
-    /** @type {SimpleInputControllerType<Number>} */
+    /** @type {SimpleInputControllerType<Number>} 
+     * @param { name } name */
     const yMax = SimpleInputController({
         value: yMaximum,
         label: "Y-Maximum",

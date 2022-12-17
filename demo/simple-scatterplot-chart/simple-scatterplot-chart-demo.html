@@ -28,38 +28,170 @@
 
     <!-- top toolbar ------------------------------------------------->
     <div class="toolbar top">
-        <form id="chart-selector">
-            <label>Select other Chart
-                <select name="data-colors">
-                    <option>Bar Chart</option>
-                    <option>Line Chart</option>
-                    <option selected>Scatterplot Chart</option>
-                </select>
-            </label>
-        </form>
+        <!-- code snippet from https://www.w3schools.com/howto/howto_custom_select.asp -->
+        <!-- for demo purpose only -->
+        <div class="custom-select" style="width:200px;">
+            <select name="data-colors" class="chart-selector">
+                <label>Select other Chart
+                    <option value="0">Choose another chart: </option>
+                    <option value="1">Bar Chart</option>
+                    <option value="2">Line Chart</option>
+                    <option autofocus value="3">Scatterplot Chart</option>
+                </label>
+
+                <script>
+                    let x, i, j, l, ll, selElmnt, a, b, c;
+                    /* Look for any elements with the class "custom-select": */
+                    x = document.getElementsByClassName("custom-select");
+                    l = x.length;
+                    for (i = 0; i < l; i++) {
+                        selElmnt = x[i].getElementsByTagName("select")[0];
+                        ll = selElmnt.length;
+                        /* For each element, create a new DIV that will act as the selected item: */
+                        a = document.createElement("DIV");
+                        a.setAttribute("class", "select-selected");
+                        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+                        x[i].appendChild(a);
+                        /* For each element, create a new DIV that will contain the option list: */
+                        b = document.createElement("DIV");
+                        b.setAttribute("class", "select-items select-hide");
+                        for (j = 1; j < ll; j++) {
+                            /* For each option in the original select element,
+                             create a new DIV that will act as an option item: */
+                            c = document.createElement("DIV");
+                            c.innerHTML = selElmnt.options[j].innerHTML;
+                            c.addEventListener("click", function(e) {
+                                /* When an item is clicked, update the original select box,
+                                 and the selected item: */
+                                let y, i, k, s, h, sl, yl;
+                                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                                sl = s.length;
+                                h = this.parentNode.previousSibling;
+                                for (i = 0; i < sl; i++) {
+                                    if (s.options[i].innerHTML == this.innerHTML) {
+                                        s.selectedIndex = i;
+                                        h.innerHTML = this.innerHTML;
+                                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                                        yl = y.length;
+                                        for (k = 0; k < yl; k++) {
+                                            y[k].removeAttribute("class");
+                                        }
+                                        this.setAttribute("class", "same-as-selected");
+                                        break;
+                                    }
+                                }
+                                h.click();
+                            });
+                            b.appendChild(c);
+                        }
+                        x[i].appendChild(b);
+                        a.addEventListener("click", function(e) {
+                            /* When the select box is clicked, close any other select boxes,
+                             and open/close the current select box: */
+                            e.stopPropagation();
+                            closeAllSelect(this);
+                            this.nextSibling.classList.toggle("select-hide");
+                            this.classList.toggle("select-arrow-active");
+                        });
+                    }
+
+                    function closeAllSelect(elmnt) {
+                        /* A function that will close all select boxes in the document,
+                         except the current select box: */
+                        let x, y, i, xl, yl, arrNo = [];
+                        x = document.getElementsByClassName("select-items");
+                        y = document.getElementsByClassName("select-selected");
+                        xl = x.length;
+                        yl = y.length;
+                        for (i = 0; i < yl; i++) {
+                            if (elmnt == y[i]) {
+                                arrNo.push(i)
+                            } else {
+                                y[i].classList.remove("select-arrow-active");
+                            }
+                        }
+                        for (i = 0; i < xl; i++) {
+                            if (arrNo.indexOf(i)) {
+                                x[i].classList.add("select-hide");
+                            }
+                        }
+                    }
+
+                    /* If the user clicks anywhere outside the select box,
+                     then close all select boxes: */
+                    document.addEventListener("click", closeAllSelect);
+                </script>
+            </select>
+        </div>
     </div>
 
+
+    <div class="toolbar top">
+        <div class="toolbar top left">
+            <label class="axis-ticks" for="data-point-color">Color of axis-ticks </label>
+            <input type="color" id="axis-ticks-color">
+        </div>
+        <div class="toolbar top middle">
+            <div class="slide-container">
+                <label for="data-point-size">Size of axis ticks </label>
+                <input type="range" name="rangeInput" value= "5" min="5" max="15" class="slider"
+                       id="axis-ticks-size" oninput="this.nextElementSibling.value = this.value">
+                <output>5</output>
+
+                <!-- code snippet from https://stackoverflow.com/questions/10004723/html5-input-type-range-show-range-value -->
+                <!--                <div style="position:relative; margin:auto; width:90%">-->
+                <!--                    <span style="position:absolute; color:red; border:1px solid blue; min-width:100px;">-->
+                <!--                        <span id="myValue"></span>-->
+                <!--                    </span>-->
+                <!--                    <input type="range" id="myRange" max="15" min="5" style="width:100%">-->
+                <!--                </div>-->
+            </div>
+        </div>
+        <div class="toolbar top right">
+            <form class="chart-selector-form" id="chart-selector">
+                <label>Select other Chart
+                    <select name="data-colors" class="chart-selector">
+                        <option value="0">Bar Chart</option>
+                        <option value="1">Line Chart</option>
+                        <option selected value="2">Scatterplot Chart</option>
+                    </select>
+                </label>
+            </form>
+        </div>
+    </div>
+
+    <!-- chart section ----------------------------------------------->
     <div class="container" id="container">
     </div>
 
     <!-- bottom toolbar ---------------------------------------------->
     <div class="toolbar bottom">
         <div class="toolbar bottom left">
-            <label for="data-point-color">Color of data points </label>
+            <label class="color-picker" for="data-point-color">Color of data points </label>
             <input type="color" id="data-point-color">
         </div>
         <div class="toolbar bottom middle">
             <div class="slide-container">
                 <label for="data-point-size">Size of data points </label>
-                <input type="range" min="1" max="10" class="slider" id="data-point-size">
+                <input type="range" name="rangeInput" value= "5" min="5" max="15" class="slider"
+                       id="data-point-size" oninput="this.nextElementSibling.value = this.value">
+                <output>5</output>
+
+                <!-- code snippet from https://stackoverflow.com/questions/10004723/html5-input-type-range-show-range-value -->
+<!--                <div style="position:relative; margin:auto; width:90%">-->
+<!--                    <span style="position:absolute; color:red; border:1px solid blue; min-width:100px;">-->
+<!--                        <span id="myValue"></span>-->
+<!--                    </span>-->
+<!--                    <input type="range" id="myRange" max="15" min="5" style="width:100%">-->
+<!--                </div>-->
             </div>
         </div>
         <div class="toolbar bottom right">
-            <button type="button" id="data-point-random-data">Switch data randomly</button>&nbsp;or resize window
+            <button type="button" class ="button" id="data-point-random-data">Switch data randomly</button>&nbsp;or resize window
         </div>
     </div>
 
-</div> <!-- End of interaction section -->
+</div>
 
 <!-- footer ------------------------------------------------------>
 <div class="footer">
@@ -67,6 +199,25 @@
 </div>
 
 <script src="./simple-scatterplot-chart-demo.js" type="module"></script>
+
+<!-- code snippet from https://stackoverflow.com/questions/10004723/html5-input-type-range-show-range-value -->
+<!--<script type="text/javascript" charset="utf-8">-->
+<!--    const myRange = document.querySelector('#myRange');-->
+<!--    const myValue = document.querySelector('#myValue');-->
+<!--    const myUnits = 'myUnits';-->
+<!--    const off = myRange.offsetWidth / (parseInt(myRange.max) - parseInt(myRange.min));-->
+<!--    const px = ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetParent.offsetWidth / 2);-->
+
+<!--    myValue.parentElement.style.left = px + 'px';-->
+<!--    myValue.parentElement.style.top = myRange.offsetHeight + 'px';-->
+<!--    myValue.innerHTML = myRange.value + ' ' + myUnits;-->
+
+<!--    myRange.oninput =function(){-->
+<!--        const px          = ((myRange.valueAsNumber - parseInt(myRange.min)) * off) - (myValue.offsetWidth / 2);-->
+<!--        myValue.innerHTML = myRange.value + ' ' + myUnits;-->
+<!--        myValue.parentElement.style.left = px + 'px';-->
+<!--    };-->
+<!--</script>-->
 
 </body>
 </html>

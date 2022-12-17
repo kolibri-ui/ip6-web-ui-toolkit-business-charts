@@ -10,47 +10,47 @@ import {
     yDomainToCanvas
 } from "./geometryFunctions.js"
 
-const chartFunctionsTestSuite = TestSuite("src/business-charts/utils/chartFunctions");
+const geometryFunctionsTestSuite = TestSuite("src/business-charts/utils/geometryFunctions");
 
-chartFunctionsTestSuite.add("xDomainToCanvas", assert => {
+geometryFunctionsTestSuite.add("xDomainToCanvas", assert => {
     const result = xDomainToCanvas(500, 0, 12, 6);
 
     assert.is(result, 250);
 });
 
-chartFunctionsTestSuite.add("yDomainToCanvas", assert => {
+geometryFunctionsTestSuite.add("yDomainToCanvas", assert => {
     const result = yDomainToCanvas(400, 0, 10, 5);
 
     assert.is(result, 200);
 });
 
-chartFunctionsTestSuite.add("xCanvasToDomain", assert => {
+geometryFunctionsTestSuite.add("xCanvasToDomain", assert => {
     const result = xCanvasToDomain(500, 0, 12, 250);
 
     assert.is(result, 6);
 });
 
-chartFunctionsTestSuite.add("yCanvasToDomain", assert => {
+geometryFunctionsTestSuite.add("yCanvasToDomain", assert => {
     const result = yCanvasToDomain(400, 0, 10, 200);
 
     assert.is(result, 5);
 });
 
-chartFunctionsTestSuite.add("pointDomainToCanvas", assert => {
+geometryFunctionsTestSuite.add("pointDomainToCanvas", assert => {
     const result = pointDomainToCanvas(500, 400, 0, 12, 0, 10, { xValue: 6, yValue: 5 });
 
     assert.is(result.xValue, 250);
     assert.is(result.yValue, 200);
 });
 
-chartFunctionsTestSuite.add("pointCanvasToDomain", assert => {
+geometryFunctionsTestSuite.add("pointCanvasToDomain", assert => {
     const result = pointCanvasToDomain(500, 400, 0, 12, 0, 10, { xValue: 250, yValue: 200 });
 
     assert.is(result.xValue, 6);
     assert.is(result.yValue, 5);
 });
 
-chartFunctionsTestSuite.add("domainToCanvas, positive and negative values", assert => {
+geometryFunctionsTestSuite.add("domainToCanvas, positive and negative values", assert => {
     //canvas value of domain null point
     /** @type { CanvasPoint2D } */ const domainNullPoint = { xValue: 300, yValue: 200 };
 
@@ -83,7 +83,7 @@ chartFunctionsTestSuite.add("domainToCanvas, positive and negative values", asse
     assert.is(resultAllZeroDomainPoint.yValue, 200);
 });
 
-chartFunctionsTestSuite.add("domainToCanvas, zero ratio, zero domain null point", assert => {
+geometryFunctionsTestSuite.add("domainToCanvas, zero ratio, zero domain null point", assert => {
     //canvas value of domain null point
     /** @type { CanvasPoint2D } */ const domainNullPoint = { xValue: 300, yValue: 200 };
 
@@ -103,7 +103,7 @@ chartFunctionsTestSuite.add("domainToCanvas, zero ratio, zero domain null point"
     assert.is(resultDomainPoint.yValue, -120);
 });
 
-chartFunctionsTestSuite.add("domainToCanvas, tests of positive and negative ratio", assert => {
+geometryFunctionsTestSuite.add("domainToCanvas, tests of positive and negative ratio", assert => {
     /** @type { CanvasPoint2D } */ const domainNullZeroPoint = { xValue: 0, yValue: 0 };
     /** @type { CanvasPoint2D } */ const newDomainPoint      = { xValue: 10, yValue: 8 };
     const xRatio                                             = 20;
@@ -140,7 +140,7 @@ chartFunctionsTestSuite.add("domainToCanvas, tests of positive and negative rati
     assert.is(resultOrigin4.yValue, 0);
 });
 
-chartFunctionsTestSuite.add("canvasToDomain, domain zero point is in the center of grid", assert => {
+geometryFunctionsTestSuite.add("canvasToDomain, domain zero point is in the center of grid", assert => {
     /** @type { CanvasPoint2D } */ const domainNullPoint = { xValue: -2, yValue: 1 };
 
     const xRatio = 2;
@@ -167,7 +167,7 @@ chartFunctionsTestSuite.add("canvasToDomain, domain zero point is in the center 
     assert.is(resultAllXYNegative.yValue, -1);
 });
 
-chartFunctionsTestSuite.add("canvasToDomain, rectangle is not mirror-inverted", assert => {
+geometryFunctionsTestSuite.add("canvasToDomain, rectangle is not mirror-inverted", assert => {
     /** @type { CanvasPoint2D } */ const domainNullZeroPoint = { xValue: 0, yValue: 0 };
     const newCanvasPoint1                                    = { xValue: 10, yValue: -8 };
     const resultPoint1                                       = canvasToDomainXY(domainNullZeroPoint, 1, 1, newCanvasPoint1);
@@ -190,7 +190,7 @@ chartFunctionsTestSuite.add("canvasToDomain, rectangle is not mirror-inverted", 
     assert.is(resultPoint4.yValue, 0);
 });
 
-chartFunctionsTestSuite.add("canvasToDomain, tests of positive and negative ratio", assert => {
+geometryFunctionsTestSuite.add("canvasToDomain, tests of positive and negative ratio", assert => {
     /** @type { CanvasPoint2D } */ const domainNullZeroPoint = { xValue: 0, yValue: 0 };
     /** @type { CanvasPoint2D } */ const newCanvasPoint      = { xValue: -20, yValue: 8 };
 
@@ -211,4 +211,4 @@ chartFunctionsTestSuite.add("canvasToDomain, tests of positive and negative rati
     assert.is(resultYRatioNegative.yValue, 8);
 });
 
-chartFunctionsTestSuite.run();
+geometryFunctionsTestSuite.run();
