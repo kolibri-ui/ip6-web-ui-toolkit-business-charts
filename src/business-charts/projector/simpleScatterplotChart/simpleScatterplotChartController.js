@@ -119,6 +119,14 @@ const SimpleScatterplotController = (dataArray, opts) => {
         type : "number"
     });
 
+    const minMaxX = minMaxRule(xMin, xMax);
+    const minMaxY = minMaxRule(yMin, yMax);
+
+    xMin.onValueChanged(() => minMaxX());
+    xMax.onValueChanged(() => minMaxX());
+    yMin.onValueChanged(() => minMaxY());
+    yMax.onValueChanged(() => minMaxY());
+
     return {
         xMin,
         xMax,
@@ -129,4 +137,20 @@ const SimpleScatterplotController = (dataArray, opts) => {
         getOptions:            options.getObs(VALUE).getValue,
         onDataChanged:         data.getObs(VALUE).onChange,
     };
+};
+
+/**
+ * Rule to prevent, that max value is less or equal to min value
+ * @param min { SimpleInputControllerType<Number> }
+ * @param max { SimpleInputControllerType<Number> }
+ * @returns {(function(): void)|*}
+ */
+const minMaxRule = (min, max) => () => {
+    console.log('change');
+    const minValue = min.getValue();
+    const maxValue = max.getValue();
+
+    if (maxValue <= minValue) {
+        max.setValue(minValue + 1);
+    }
 };
