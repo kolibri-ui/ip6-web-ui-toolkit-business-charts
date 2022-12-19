@@ -1,0 +1,424 @@
+/****************** header section ********************/
+:root {
+    color-scheme: light;
+    --golden-section-width: 70vw;
+    --golden-section-height: calc(var(--golden-section-width) / 1.618);
+
+    --all-borders: 1px;
+}
+html {
+    box-sizing: border-box;
+    margin: 0;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    min-height: min-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.title h1 {
+    font-style: inherit;
+    /*color: var(--kolibri-color-output);     too bright */
+    color: var(--kb-color-hsl-purple-700);
+    letter-spacing: 0.06em;
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.subtitle h3 {
+    font-style: inherit;
+    /*color: var(--kolibri-color-output);     too bright */
+    color: var(--kb-color-hsl-purple-700);
+    letter-spacing: 0.06em;
+    margin: 0;
+}
+.title {
+    display: block;
+    margin: 0;
+}
+.kolibri-logo-anim {
+    grid-column: 7 / 8;
+    grid-row: 0 / 1;
+}
+.kolibri-logo {
+    height: 100px;
+    align-content: end;
+}
+
+/****************** interaction section ********************/
+.interaction-section {
+    flex: 1;
+}
+
+/****************** toolbar section ********************/
+.toolbar {
+    display: flex;
+    min-width: fit-content;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+}
+
+.top {
+    padding: 0.5em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    background-color: var(--kb-color-hsl-white);
+    align-items: center;
+}
+
+.bottom {
+    padding: 0.5em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    background-color: var(--kb-color-hsl-white);
+    align-items: center;
+}
+
+.left {
+    outline: none;
+    background-color: transparent;
+    padding-right: 1em;
+}
+
+.middle {
+    outline: none;
+    background-color: transparent;
+    padding-right: 1em;
+}
+
+.right {
+    outline: none;
+    background-color: transparent;
+    padding-right: 0.5em;
+    min-width: fit-content;
+}
+
+/****************** item selection ********************/
+/**** Sample 1 ****/
+.chart-selector-form {
+    margin: 0.5em;
+    position: relative;
+}
+.chart-selector-form select {
+    font-family: inherit;
+    margin-bottom: 0.25em;
+    font-size: inherit;
+    color: var(--kb-rgb-primary-dark);
+    background-color: var(--kb-color-hsl-blue-100);
+    border-radius: 0;
+    border: none;
+    padding: 0.25em;
+    background-size: 2em;
+}
+
+
+/**** Sample 2 ****/
+/* code snippet from https://www.w3schools.com/howto/howto_custom_select.asp */
+/* The container must be positioned relative: */
+.custom-select {
+    position: relative;
+    font-family: inherit;
+    min-width: max-content;
+    padding-right: 0.5em;
+    color: var(--kb-color-hsl-purple-700);
+}
+.custom-select select {
+    display: none; /*hide original SELECT element: */
+}
+.select-selected {
+    background-color: var(--kb-hsla-secondary-bg);
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+    /*color: var(--kb-color-hsl-purple-700);*/
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+    position: absolute;
+    color: var(--kb-color-hsl-purple-700);
+    background-color: var(--kb-color-hsl-purple-200);
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/****************** color picker ********************/
+.color-picker {
+    font-size: var(--font-size-textXS);
+    padding-right: 0.5em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+/****************** slider ********************/
+/* based on https://nikitahl.com/style-range-input-css#css-selectors-for-the-range-input */
+input[type="range"] {
+    -webkit-appearance: none;
+    margin-right: 15px;
+    width: 200px;
+    height: 7px;
+    background: var(--kolibri-color-shadow);
+    border-radius: 5px;
+    background-image: linear-gradient(var(--kolibri-color-neutral), var(--kolibri-color-neutral));
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: var(--kb-rgb-primary-accent);
+    /*cursor: ew-resize;*/
+    cursor: grab;
+    box-shadow: var(--kolibri-box-shadow);/** 0 0 2px 0 #555; */
+    transition: background .5ms ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    background: var(--kb-rgb-primary-accent);
+    height: 22px;
+    width: 22px;
+    cursor: grabbing;
+}
+
+input[type=range]::-webkit-slider-runnable-track  {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+}
+
+/****************** switch data button ********************/
+.button {
+    font-size: var(--font-size-textXS);
+    color: var(--kb-rgb-primary-dark);
+    background-color: var(--kb-color-hsl-blue-100);
+    border-radius: 0;
+    border: none;
+    padding: 0.5em;
+}
+.button:hover {
+    color: var(--kb-color-hsl-blue-100);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.4s;
+}
+.button:active {
+    color: var(--kb-color-rgb-purple-200);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.1s;
+}
+
+/****************** footer section ********************/
+/* based on https://css-tricks.com/couple-takes-sticky-footer/ */
+.footer {
+    display: flex;
+    align-items: flex-end;
+    padding: 5px;
+    min-height: calc(var(--font-size-textXS));
+    max-height: calc(var(--font-size-textL));
+    vertical-align: baseline;
+    bottom: 0;
+    /*width: 100%;*/
+    flex-shrink: 0;
+    background-color: var(--kb-color-rgb-lavender-200);
+    position: sticky;
+    z-index: 10;
+}
+
+
+.scatterplot-canvas {
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+}
+
+
+
+
+
+
+
+/****************** ---------- scatterplot chart ---------- ********************/
+.chart-container {
+    --axis-inner-margin: 0.5em;
+    --axis-width-height: 4em;
+
+    /* TODO wontfix: set shadow on chart-container instead of the axes*/
+    --y-axis-shadow: -4px 4px  8px 1px var(--kolibri-color-shadow),
+    -20px 6px 20px -20px var(--kolibri-color-shadow);
+    --x-axis-shadow: -8px 4px  8px 1px var(--kolibri-color-shadow),
+    -20px 6px 20px -20px var(--kolibri-color-shadow);
+}
+
+.container .chart-container .scatterplot-canvas {
+    position: relative;
+}
+
+.container .chart-container {
+    flex: 1 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, max-content);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    justify-content:center;
+    grid-gap: var(--all-borders);
+}
+
+/****************** chart section ********************/
+.scatterplot-canvas {
+    position: absolute;
+    z-index: 10;
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+    grid-column: 2;
+    grid-row: 1;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+
+/****************** axis section ********************/
+.y-axis {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--y-axis-shadow);
+}
+
+.x-axis {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--x-axis-shadow);
+}
+
+.chart-container label {
+    display: none;
+}
+
+.chart-container input {
+    max-width: var(--axis-width-height);
+}
+
+.x-axis input {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 3 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+}
+
+.y-axis input {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 3 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+}
+
+.x-axis input:focus {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 3 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+    outline: 3px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 1px;
+}
+
+.y-axis input:focus {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 3 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+    outline: 3px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 1px;
+}
+
+.x-axis input:invalid {
+    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);
+}
+
+.x-axis input:invalid {
+    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);
+}
+
+.x-axis input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+
+}
+
+.x-axis input:-webkit-autofill {
+
+}
+
+.chart-container {
+    /*outline: 1px solid red;*/
+}
+
+
+
+
+
+
+
+/****************** ---------- Line Chart ---------- ********************/
