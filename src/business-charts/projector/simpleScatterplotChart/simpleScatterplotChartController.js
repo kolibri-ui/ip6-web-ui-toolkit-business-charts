@@ -146,11 +146,11 @@ const SimpleScatterplotController = (dataArray, opts) => {
  * @returns {(function(): void)|*}
  */
 const minMaxRule = (min, max) => () => {
-    console.log('change');
-    const minValue = min.getValue();
-    const maxValue = max.getValue();
+    const minValue = Number(min.getValue());
+    const maxValue = Number(max.getValue());
 
     if (maxValue <= minValue) {
-        max.setValue(minValue + 1);
+        const newValue = minValue + 1;
+        max.setValue(newValue);
     }
 };
