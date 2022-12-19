@@ -46,7 +46,7 @@ export { SimpleScatterplotChartModel }
  * @property { ?Number } canvasWidth
  * @property { ?Number } canvasHeight
  * @property { ?CanvasPoint2D } domainNullPoint
- * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be dawn
+ * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be drawn
  * @property { ?Array<String> } colors Colors for points
  */
 
@@ -82,6 +82,7 @@ const SimpleScatterplotChartModel = ({
     scatterplotAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 200, yValue: 200 });
     scatterplotAttr.getObs(DRAW_OUTER_TICKS).setValue(drawOuterTicks ?? false);
     scatterplotAttr.getObs(COLORS).setValue(colors ?? [ "#a55ca5", "#67b6c7", "#bccd7a", "#eb9743" ]);
+    //TODO use kolibri colors as default value
 
     return /** AttributeType<*> */ scatterplotAttr;
 };
