@@ -7,10 +7,11 @@ import "./projector/simpleScatterplotChart/simpleScatterplotChartProjectorTest.j
 
 //model tests
 import "./projector/simpleScatterplotChart/simpleScatterplotChartModelTest.js"
-import "./projector/simpleLineChart/simpleLineChartModelTest.js"
+// import "./projector/simpleLineChart/simpleLineChartModelTest.js"
 
 //controller tests
 import "./projector/simpleScatterplotChart/simpleScatterplotChartControllerTest.js"
+import "./projector/simpleLineChart/simpleLineChartControllerTest.js"
 
 //demo tests
 import "../../demo/simple-bar-chart/simple-bar-chart-demoTest.js"

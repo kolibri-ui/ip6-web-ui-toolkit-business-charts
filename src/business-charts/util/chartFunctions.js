@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export { drawPoint, drawLine, drawRect, drawGrid }
+export { drawPoint, drawLine, drawRect } //TODO 2 functions drawGrid available (chartFunctions.js and chartGridFrunctions.js).
 
 /**
  * @typedef { Object } ChartGridOptions

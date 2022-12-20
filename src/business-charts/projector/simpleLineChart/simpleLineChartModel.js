@@ -47,7 +47,7 @@ export { SimpleLineChartModel }
  * @property { ?Number } canvasHeight
  * @property { ?CanvasPoint2D } domainNullPoint
  * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be drawn
- * @property { ?Array<String> } colors Colors for lines
+ * @property { ?Array<String> } colors Colors for points //TODO change for line chart
  */
 
 /**
@@ -73,8 +73,8 @@ const SimpleLineChartModel = ({
     lineChartAttr.getObs(ELEMENT_ID).setValue(id ?? generateId('line-chart'));
     lineChartAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
     lineChartAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
-    lineChartAttr.getObs(X_EVERY).setValue(xEvery ?? 1);
-    lineChartAttr.getObs(Y_EVERY).setValue(yEvery ?? 1);
+    lineChartAttr.getObs(X_EVERY).setValue(xEvery ?? 10);
+    lineChartAttr.getObs(Y_EVERY).setValue(yEvery ?? 10);
     lineChartAttr.getObs(CANVAS_WIDTH).setValue(canvasWidth ?? 600);
     lineChartAttr.getObs(CANVAS_HEIGHT).setValue(canvasHeight ?? 400);
     lineChartAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 200, yValue: 200 });

@@ -1,28 +1,34 @@
 // noinspection SpellCheckingInspection
 
-import { SimpleLineChart } from "../../src/business-charts/projector/simpleLineChart/";
-import { SimpleLineChartController } from "../../src/business-charts/projector/simpleLineChart/";
+import { SimpleLineChart }           from "../../src/business-charts/projector/simpleLineChart/simpleLineChartProjector.js";
+import { SimpleLineChartController } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartController.js";
 
+//TODO Unit Tests that input fields are bigger than the biggest input value
+//TODO Unit Tests that all data values are displayed in the canvas
+//TODO Axes are still not visible in canvas
+//TODO Ticks are still not visible in canvas
+//TODO GridLines are still not visible in canvas
 /** @type { Array<LineChartDataElement> } */ const data = [{
-    name: 'A', xValue: 0, yValue: 0,
+    name: 'A', xValue: 0, yValue: 20,
 }, {
-    name: 'B', xValue: 1, yValue: 1,
+    name: 'B', xValue: 1, yValue: 99,
 }, {
-    name: 'C', xValue: 2, yValue: 5,
+    name: 'C', xValue: 2, yValue: 200,
 }, {
-    name: 'D', xValue: 3, yValue: 2,
+    name: 'D', xValue: 3, yValue: 150,
 }, {
-    name: 'E', xValue: 4, yValue: 5,
+    name: 'E', xValue: 4, yValue: -5,
 }, {
-    name: 'F', xValue: 5, yValue: 1,
+    name: 'F', xValue: 55, yValue: 1,
 }, {
-    name: 'G', xValue: 6, yValue: 7,
+    name: 'G', xValue: -6, yValue: -27,
 },];
 
 const controller = SimpleLineChartController(
     data
 );
 
+//append Projector
 document.getElementById('container').append(SimpleLineChart(controller));
 
 const dataButton = document.getElementById("data-point-random-data");
@@ -41,6 +47,16 @@ dataButton.onclick = (_) => {
             yValue: Math.floor(Math.random() * (yMax - yMin + 1) + yMin )
         })
     }
-    
+
     controller.setData(dataArray);
 };
+
+//TODO change for line chart
+const pointSizeSlider = document.getElementById("data-point-size");
+pointSizeSlider.value = Number(getComputedStyle(document.querySelector(".line-chart-canvas")).getPropertyValue("--data-point-size"));
+pointSizeSlider.nextElementSibling.value = pointSizeSlider.value;
+pointSizeSlider.onchange = (_) => document.querySelector(".line-chart-canvas").style.setProperty("--data-point-size", pointSizeSlider.value);
+
+const colorPicker = document.getElementById("data-point-color");
+colorPicker.value = getComputedStyle(document.querySelector(".line-chart-canvas")).getPropertyValue("--data-point-color").trim();
+colorPicker.onchange = (_) => document.querySelector(".line-chart-canvas").style.setProperty("--data-point-color", colorPicker.value);

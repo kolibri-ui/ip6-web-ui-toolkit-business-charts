@@ -422,3 +422,9 @@ input[type=range]::-webkit-slider-runnable-track  {
 
 
 /****************** ---------- Line Chart ---------- ********************/
+.line-chart-canvas {
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+}
