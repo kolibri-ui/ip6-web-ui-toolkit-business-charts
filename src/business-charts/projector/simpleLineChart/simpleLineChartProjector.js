@@ -1,8 +1,8 @@
 // noinspection SpellCheckingInspection
 
 //TODO 2 functions drawGrid available (chartFunctions.js and chartGridFrunctions.js).
-import { drawPoint }               from "../../util/chartFunctions.js";
-import { drawGrid }                from "../../util/chartGridFunctions.js";
+import { drawLine, drawPoint } from "../../util/chartFunctions.js";
+import { drawGrid }            from "../../util/chartGridFunctions.js";
 import { 
     calcXRatio, 
     calcYRatio, 
@@ -119,8 +119,9 @@ const SimpleLineChart = controller => {
                 options.gridOptions.yRatio,
                 v
             );
-            drawPoint(ctx, point.xValue, point.yValue, options.color, options.pointSize);
-            //TODO change for line chart
+            //TODO fix bug drawLine from DomainNullPoint
+            drawLine(ctx, 0,0,100,100, options.color )
+            //drawPoint(ctx, point.xValue, point.yValue, options.color, options.pointSize);
         }
     };
 
