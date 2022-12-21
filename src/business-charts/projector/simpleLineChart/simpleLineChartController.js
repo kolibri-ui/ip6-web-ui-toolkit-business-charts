@@ -6,7 +6,8 @@ import {
 }                                      from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 import { SimpleInputController }       from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputController.js";
 
-export { SimpleLineChartController }
+export { SimpleLineChartController, 
+    DataModel, LineChartOptionsModel } //for test purposes only
 
 /**
  * @typedef { Object } SimpleLineChartOptions
@@ -149,19 +150,3 @@ const minMaxRule = (min, max) => () => {
         max.setValue(newValue);
     }
 };
-
-// /**
-//  * @description Rule to prevent, that max value is less or equal to min value
-//  * @param min { SimpleInputControllerType<Number> }
-//  * @param max { SimpleInputControllerType<Number> }
-//  * @return {(function(): void)|*}
-//  */
-// const minMaxRule = (min, max) => () => {
-//     const minValue = Number(min.getValue());
-//     const maxValue = Number(max.getValue());
-//
-//     if(maxValue <= minValue) {
-//         const newValue = minValue + 1;
-//         max.setValue(newValue);
-//     }
-// };

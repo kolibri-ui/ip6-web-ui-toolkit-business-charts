@@ -92,8 +92,8 @@ const SimpleLineChart = controller => {
             color       : pointColor, //TODO change for line chart
             pointSize   : pointSize, //TODO change for line chart
             gridOptions : {
-                nullPoint   :   nullPoint,
-                canvasWidth :  width,
+                nullPoint   : nullPoint,
+                canvasWidth : width,
                 canvasHeight: height,
                 xRatio,
                 yRatio,
