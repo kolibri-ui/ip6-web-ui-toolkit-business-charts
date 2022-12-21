@@ -1,18 +1,39 @@
-import { TestSuite } from "../../../Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleLineChartController, DataModel, LineChartOptionsModel } from "./simpleLineChartController.js";
-import {
-    SimpleFormController
-} from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleFormController.js";
-import {
-    SimpleInputController
-} from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputController.js";
-import {
-    VALUE
-} from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
+import { TestSuite }                   from "../../../Kolibri/docs/src/kolibri/util/test.js";
+import { SimpleLineChartController }   from "./simpleLineChartController.js";
+import { SimpleScatterplotController } from "../simpleScatterplotChart/simpleScatterplotChartController.js";
 
 const SimpleLineChartControllerTestSuite = TestSuite("src/business-charts/projector/simpleLineChartController");
 
-SimpleLineChartControllerTestSuite.add("getData and getOptions, set xMin, xMax, yMin, yMax", assert => {
+SimpleLineChartControllerTestSuite.add("options and data change line chart", assert => {
+    /** @type { Array.<LineChartDataElement> } */
+    const data = [
+        { name: "A", xValue: 4, yValue: -4 },
+        { name: "B", xValue: 88, yValue: -88 }
+    ];
+
+    const xEvery         = 10;
+    const yEvery         = 20;
+    const drawOuterTicks = false;
+    const options = { xEvery, yEvery, drawOuterTicks };
+
+    const controller     = SimpleLineChartController(
+        data, options);
+
+    //check that data values are set
+    let foundData = false;
+    controller.onDataChanged( () => foundData = true );
+    assert.is(foundData, true);
+    
+    assert.is(controller.getOptions().xEvery, 10);
+    assert.is(controller.getOptions().yEvery, 20);
+    assert.is(controller.getOptions().drawOuterTicks, false);
+
+    assert.is(controller.getData().at(1).name, "B");
+    assert.is(controller.getData().at(1).xValue, 88);
+    assert.is(controller.getData().at(1).yValue, -88);
+
+});
+SimpleLineChartControllerTestSuite.add("xMin, xMax, yMin, yMax", assert => {
     /** @type { Array.<LineChartDataElement> } */ const data = [{
         name: 'A', xValue: 0, yValue: 8,
     }, {
@@ -61,9 +82,9 @@ SimpleLineChartControllerTestSuite.add("getData and getOptions, set xMin, xMax, 
     assert.is(controller.getData().reverse().at(0).name, "A");
     assert.is(controller.getData().reverse().at(0).name, "g");
     assert.is(controller.getData().reverse().at(1).name, "B");
-    assert.is(controller.getOptions().xEvery, 1); //default data
-    assert.is(controller.getOptions().xEvery, 1); //default data
-    assert.is(controller.getOptions().drawOuterTicks, true);
+    assert.is(controller.getOptions().xEvery, 1); //default value
+    assert.is(controller.getOptions().xEvery, 1); //default value
+    assert.is(controller.getOptions().drawOuterTicks, true); //default value
 
     assert.is(controller.xMin.getValue(), -3);
     assert.is(controller.xMax.getValue(), 18);
@@ -71,5 +92,4 @@ SimpleLineChartControllerTestSuite.add("getData and getOptions, set xMin, xMax, 
     assert.is(controller.yMax.getValue(), 155);
 
 });
-
 SimpleLineChartControllerTestSuite.run();

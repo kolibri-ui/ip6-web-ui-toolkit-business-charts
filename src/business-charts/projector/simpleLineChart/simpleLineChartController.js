@@ -81,7 +81,8 @@ const SimpleLineChartController = ( dataArray, opts ) => {
     const { data } = DataModel(dataArray);
     const { options } = LineChartOptionsModel(opts);
 
-    const xMinimum = dataArray.reduce((prev, curr) => prev < curr.xValue ? prev : curr.xValue) - 0;
+    //TODO add offset +1, -1, adapt Unit Tests of the controller
+    const xMinimum = dataArray.reduce((prev, curr) => prev < curr.xValue ? prev : curr.xValue) - 0; 
     const xMaximum = dataArray.reduce((prev, curr) => prev > curr.xValue ? prev : curr.xValue) + 0;
     const yMinimum = dataArray.reduce((prev, curr) => prev < curr.yValue ? prev : curr.yValue) - 0;
     const yMaximum = dataArray.reduce((prev, curr) => prev > curr.yValue ? prev : curr.yValue) + 0;
@@ -128,9 +129,9 @@ const SimpleLineChartController = ( dataArray, opts ) => {
         xMax,
         yMin,
         yMax,
-        setData: data.getObs(VALUE).setValue,
-        getData: data.getObs(VALUE).getValue,
-        getOptions: options.getObs(VALUE).getValue,
+        setData:       data.getObs(VALUE).setValue,
+        getData:       data.getObs(VALUE).getValue,
+        getOptions:    options.getObs(VALUE).getValue,
         onDataChanged: data.getObs(VALUE).onChange,
     };
 };
