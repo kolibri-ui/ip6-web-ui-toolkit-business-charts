@@ -6,7 +6,7 @@ import { SimpleLineChartController } from "../../src/business-charts/projector/s
 //TODO Unit Tests that input fields are bigger than the biggest input value
 //TODO Unit Tests that all data values are displayed in the canvas
 //TODO GridLines are still not visible in canvas
-/** @type { Array<LineChartDataElement> } */ const data = [{
+/** @type { Array.<LineChartDataElement> } */ const data = [{
     name: 'A', xValue: 0, yValue: 0,
 }, {
     name: 'B', xValue: 10, yValue: 10,
@@ -44,8 +44,8 @@ dataButton.onclick = (_) => {
             name: '',
             xValue: i,
             yValue: Math.floor(Math.random() * (yMax - yMin + 1) + yMin )
-        });
-    };
+        })
+    }
 
     controller.setData(dataArray);
 };

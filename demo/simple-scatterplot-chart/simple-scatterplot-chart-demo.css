@@ -279,12 +279,12 @@ input[type=range]::-webkit-slider-runnable-track  {
 }
 
 
-.scatterplot-canvas {
-    --data-point-size: 10;
-    --data-point-color: #a55ca5;
-    width: var(--golden-section-width);
-    height: var(--golden-section-height);
-}
+/*.scatterplot-canvas {*/
+/*    --data-point-size: 10;*/
+/*    --data-point-color: #a55ca5;*/
+/*    width: var(--golden-section-width);*/
+/*    height: var(--golden-section-height);*/
+/*}*/
 
 
 
@@ -308,6 +308,10 @@ input[type=range]::-webkit-slider-runnable-track  {
     position: relative;
 }
 
+.container .chart-container .line-chart-canvas {
+    position: relative;
+}
+
 .container .chart-container {
     flex: 1 0 auto;
     display: grid;
@@ -321,10 +325,25 @@ input[type=range]::-webkit-slider-runnable-track  {
 
 /****************** chart section ********************/
 .scatterplot-canvas {
-    position: absolute;
-    z-index: 10;
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
     width: var(--golden-section-width);
     height: var(--golden-section-height);
+
+    position: absolute;
+    z-index: 10;
+    grid-column: 2;
+    grid-row: 1;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+.line-chart-canvas {
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+
+    position: absolute;
+    z-index: 10;
     grid-column: 2;
     grid-row: 1;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
@@ -395,22 +414,22 @@ input[type=range]::-webkit-slider-runnable-track  {
     outline-offset: 1px;
 }
 
-.x-axis input:invalid {
-    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);
-}
+/*.x-axis input:invalid {*/
+/*    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);*/
+/*}*/
 
-.x-axis input:invalid {
-    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);
-}
+/*.y-axis input:invalid {*/
+/*    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);*/
+/*}*/
 
-.x-axis input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+/*.x-axis input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {*/
 
-}
+/*}*/
 
-.x-axis input:-webkit-autofill {
+/*.x-axis input:-webkit-autofill {*/
 
-}
+/*}*/
 
-.chart-container {
-    /*outline: 1px solid red;*/
-}
+/*.chart-container {*/
+/*    !*outline: 1px solid red;*!*/
+/*}*/
