@@ -68,11 +68,13 @@ const DataModel = dataArray => {
  * @constructor
  */
 const SimpleLineChartController = ( dataArray, opts ) => {
+    // TODO: id model
+
     if (opts === undefined) {
         opts = {
             xEvery: 1,
             yEvery: 1,
-            drawOuterTicks: true
+            drawOuterTicks: true,
         }
     }
     const { data } = DataModel(dataArray);
@@ -119,8 +121,7 @@ const SimpleLineChartController = ( dataArray, opts ) => {
     xMax.onValueChanged( () => minMaxX());
     yMin.onValueChanged( () => minMaxY());
     yMax.onValueChanged( () => minMaxY());
-
-
+    
     return {
         xMin,
         xMax,
@@ -129,22 +130,38 @@ const SimpleLineChartController = ( dataArray, opts ) => {
         setData: data.getObs(VALUE).setValue,
         getData: data.getObs(VALUE).getValue,
         getOptions: options.getObs(VALUE).getValue,
-        onDataChanged: data.getObs(VALUE).onChange
+        onDataChanged: data.getObs(VALUE).onChange,
     };
 };
 
 /**
  * @description Rule to prevent, that max value is less or equal to min value
- * @param { SimpleInputControllerType<Number> } min
- * @param { SimpleInputControllerType<Number> } max
- * @return {(function(): void)|*}
+ * @param min { SimpleInputControllerType<Number> }
+ * @param max { SimpleInputControllerType<Number> }
+ * @returns {(function(): void)|*}
  */
 const minMaxRule = (min, max) => () => {
     const minValue = Number(min.getValue());
     const maxValue = Number(max.getValue());
 
-    if(maxValue <= minValue) {
+    if (maxValue <= minValue) {
         const newValue = minValue + 1;
         max.setValue(newValue);
     }
 };
+
+// /**
+//  * @description Rule to prevent, that max value is less or equal to min value
+//  * @param min { SimpleInputControllerType<Number> }
+//  * @param max { SimpleInputControllerType<Number> }
+//  * @return {(function(): void)|*}
+//  */
+// const minMaxRule = (min, max) => () => {
+//     const minValue = Number(min.getValue());
+//     const maxValue = Number(max.getValue());
+//
+//     if(maxValue <= minValue) {
+//         const newValue = minValue + 1;
+//         max.setValue(newValue);
+//     }
+// };

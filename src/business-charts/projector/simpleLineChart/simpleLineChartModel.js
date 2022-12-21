@@ -36,7 +36,7 @@ export { SimpleLineChartModel }
  */
 
 /**
- * @typedef { Object } LineChartAttributes
+ * @typedef { Object } SimpleLineChartAttributes
  * @property { Array<LineChartDataElement> } data
  * @property { ?String } id
  * @property { ?Number } xRatio
@@ -50,8 +50,10 @@ export { SimpleLineChartModel }
  * @property { ?Array<String> } colors Colors for points //TODO change for line chart
  */
 
+
 /**
- * @param { LineChartAttributes } options
+ * TODO: pointSize as configurable parameter
+ * @param { SimpleLineChartAttributes } options
  * @return { AttributeType<*> }
  * @constructor
  */
@@ -80,6 +82,7 @@ const SimpleLineChartModel = ({
     lineChartAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 200, yValue: 200 });
     lineChartAttr.getObs(DRAW_OUTER_TICKS).setValue(drwawOuterTicks ?? false);
     lineChartAttr.getObs(COLORS).setValue(colors ?? [ "#a55ca5", "#67b6c7", "#bccd7a", "#eb9743" ]);
+    //TODO use kolibri colors as default value
 
     return /** AttributeType<*> */ lineChartAttr;
 };
