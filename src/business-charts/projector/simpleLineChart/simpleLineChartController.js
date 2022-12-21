@@ -60,7 +60,6 @@ const DataModel = dataArray => {
     return /** @type DataModelType */ { data };
 };
 
-
 /**
  *
  * @param { Array<LineChartDataElement> } dataArray

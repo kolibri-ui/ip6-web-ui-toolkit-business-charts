@@ -5,8 +5,6 @@ import { SimpleLineChartController } from "../../src/business-charts/projector/s
 
 //TODO Unit Tests that input fields are bigger than the biggest input value
 //TODO Unit Tests that all data values are displayed in the canvas
-//TODO Axes are still not visible in canvas
-//TODO Ticks are still not visible in canvas
 //TODO GridLines are still not visible in canvas
 /** @type { Array<LineChartDataElement> } */ const data = [{
     name: 'A', xValue: 0, yValue: 0,
