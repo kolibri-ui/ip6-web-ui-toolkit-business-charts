@@ -71,8 +71,8 @@ const DataModel = dataArray => {
 const SimpleLineChartController = ( dataArray, opts ) => {
     if (opts === undefined) {
         opts = {
-            xEvery: 10,
-            yEvery: 10,
+            xEvery: 1,
+            yEvery: 1,
             drawOuterTicks: true
         }
     }

@@ -9,20 +9,21 @@ import { SimpleLineChartController } from "../../src/business-charts/projector/s
 //TODO Ticks are still not visible in canvas
 //TODO GridLines are still not visible in canvas
 /** @type { Array<LineChartDataElement> } */ const data = [{
-    name: 'A', xValue: 0, yValue: 20,
+    name: 'A', xValue: 0, yValue: 0,
 }, {
-    name: 'B', xValue: 1, yValue: 99,
+    name: 'B', xValue: 10, yValue: 10,
 }, {
-    name: 'C', xValue: 2, yValue: 200,
+    name: 'C', xValue: 20, yValue: 0,
 }, {
-    name: 'D', xValue: 3, yValue: 150,
+    name: 'D', xValue: 30, yValue: 30,
 }, {
-    name: 'E', xValue: 4, yValue: -5,
+    name: 'E', xValue: 40, yValue: 0,
 }, {
-    name: 'F', xValue: 55, yValue: 1,
+    name: 'F', xValue: 50, yValue: 50,
 }, {
-    name: 'G', xValue: -6, yValue: -27,
-},];
+    name: 'G', xValue: 60, yValue: 0,
+},
+];
 
 const controller = SimpleLineChartController(
     data
@@ -45,8 +46,8 @@ dataButton.onclick = (_) => {
             name: '',
             xValue: i,
             yValue: Math.floor(Math.random() * (yMax - yMin + 1) + yMin )
-        })
-    }
+        });
+    };
 
     controller.setData(dataArray);
 };

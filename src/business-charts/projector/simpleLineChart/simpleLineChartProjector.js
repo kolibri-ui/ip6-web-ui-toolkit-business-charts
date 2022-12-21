@@ -52,7 +52,9 @@ const SimpleLineChart = controller => {
 
     /**
      *
-     * @return {{pointSize: number, color: string, gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: number, xRatio: Number, yRatio: Number, xEvery: (number|Number|?Number|*), drawOuterTicks: (Boolean|?Boolean|*), canvasHeight: number, yEvery: (number|Number|?Number|*)}, width: number, height: number}}
+     * @return {{pointSize: number, color: string, gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: number, xRatio:
+     *     Number, yRatio: Number, xEvery: (number|Number|?Number|*), drawOuterTicks: (Boolean|?Boolean|*),
+     *     canvasHeight: number, yEvery: (number|Number|?Number|*)}, width: number, height: number}}
      */
     const getOptions = () => {
         let { width, height } = canvasElement.getBoundingClientRect();
@@ -112,16 +114,26 @@ const SimpleLineChart = controller => {
         data,
         options
     ) => {
-        for (const v of data) {
-            const point = domainToCanvasXY(
+        for (let i = 0; i < data.length-1; i++) {
+            let pointFromPosition = i;
+            const pointToPosition = pointFromPosition + 1;
+            const pointFrom       = domainToCanvasXY(
                 options.gridOptions.nullPoint,
                 options.gridOptions.xRatio,
                 options.gridOptions.yRatio,
-                v
-            );
-            //TODO fix bug drawLine from DomainNullPoint
-            drawLine(ctx, 0,0,100,100, options.color )
-            //drawPoint(ctx, point.xValue, point.yValue, options.color, options.pointSize);
+                data[pointFromPosition]);
+            
+            for (let j = i; j < data.length; j++) {
+                const pointTo = domainToCanvasXY(
+                    options.gridOptions.nullPoint,
+                    options.gridOptions.xRatio,
+                    options.gridOptions.yRatio,
+                    data[pointToPosition]);
+                
+            
+            drawLine(ctx, pointFrom.xValue, pointFrom.yValue, pointTo.xValue, pointTo.yValue, options.color);
+                pointFromPosition++;
+            }
         }
     };
 
