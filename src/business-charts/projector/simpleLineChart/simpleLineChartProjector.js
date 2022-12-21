@@ -1,6 +1,5 @@
 // noinspection SpellCheckingInspection
 
-//TODO 2 functions drawGrid available (chartFunctions.js and chartGridFrunctions.js).
 import { drawLine, drawPoint } from "../../util/chartFunctions.js";
 import { drawGrid }            from "../../util/chartGridFunctions.js";
 import { 
@@ -27,7 +26,6 @@ export { SimpleLineChart }
  * @author Valentina Giampa & Roger Kreienbühl
  * @param { SimpleLineChartControllerType } controller
  * @return { HTMLCanvasElement }
- * @constructor
  */
 const SimpleLineChart = controller => {
     /** @type { HTMLDivElement } */
@@ -50,11 +48,16 @@ const SimpleLineChart = controller => {
     /** @type { CanvasRenderingContext2D } */
     const context = canvasElement.getContext('2d');
 
+    // /**
+    //  *
+    //  * @returns {{pointSize: number, color: string, gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: number, xRatio:
+    //  *     Number, yRatio: Number, xEvery: (number|Number|?Number|*), drawOuterTicks: (Boolean|?Boolean|*),
+    //  *     canvasHeight: number, yEvery: (number|Number|?Number|*)}, width: number, height: number}}
+    //  */
+    
     /**
      *
-     * @return {{pointSize: number, color: string, gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: number, xRatio:
-     *     Number, yRatio: Number, xEvery: (number|Number|?Number|*), drawOuterTicks: (Boolean|?Boolean|*),
-     *     canvasHeight: number, yEvery: (number|Number|?Number|*)}, width: number, height: number}}
+     * @returns {{gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: Number, xRatio: Number, yRatio: Number, xEvery: Number, drawOuterTicks: Boolean, canvasHeight: Number, yEvery: Number}, width: Number, colors: Array<String>, height: Number}}
      */
     const getOptions = () => {
         let { width, height } = canvasElement.getBoundingClientRect();
@@ -62,9 +65,7 @@ const SimpleLineChart = controller => {
         const pointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-color"); //TODO change for line chart
 
         width = width === 0 ? 500 : width; //TODO bereits initialisiert mit 500
-        height = height === 0 ? 400 : height; //TODO bereits initialisiert 400
-
-        //TODO wo werden die default-Werte bewirtschaftet, sodass es konsistent bleibt? Im Model? Oder im Projector?
+        height = height === 0 ? 400 : height; //TODO bereits initialisiert 400 //TODO wo werden die default-Werte bewirtschaftet, sodass es konsistent bleibt? Im Model? Oder im Projector?
 
         const xMin = controller.xMin.getValue();
         const xMax = controller.xMax.getValue();
@@ -88,11 +89,11 @@ const SimpleLineChart = controller => {
         return {
             width,
             height,
-            color :     pointColor, //TODO change for line chart
-            pointSize : pointSize, //TODO change for line chart
+            color       : pointColor, //TODO change for line chart
+            pointSize   : pointSize, //TODO change for line chart
             gridOptions : {
-                nullPoint :   nullPoint,
-                canvasWidth:  width,
+                nullPoint   :   nullPoint,
+                canvasWidth :  width,
                 canvasHeight: height,
                 xRatio,
                 yRatio,
@@ -106,7 +107,7 @@ const SimpleLineChart = controller => {
     /**
      * @description draws all data points
      * @param { CanvasRenderingContext2D } ctx
-     * @param { Array<LineChartDataElement> } data
+     * @param { Array.<LineChartDataElement> } data
      * @param { LineChartOptions } options
      */
     const drawLineChartPoints = (
@@ -121,16 +122,16 @@ const SimpleLineChart = controller => {
                 options.gridOptions.nullPoint,
                 options.gridOptions.xRatio,
                 options.gridOptions.yRatio,
-                data[pointFromPosition]);
+                data[pointFromPosition]
+            );
             
             for (let j = i; j < data.length; j++) {
                 const pointTo = domainToCanvasXY(
                     options.gridOptions.nullPoint,
                     options.gridOptions.xRatio,
                     options.gridOptions.yRatio,
-                    data[pointToPosition]);
-                
-            
+                    data[pointToPosition]
+                );
             drawLine(ctx, pointFrom.xValue, pointFrom.yValue, pointTo.xValue, pointTo.yValue, options.color);
                 pointFromPosition++;
             }
@@ -140,11 +141,13 @@ const SimpleLineChart = controller => {
     /**
      * @description draws the line chart with the grid
      * @param { CanvasRenderingContext2D } ctx
-     * @param { Array<LineChartDataElement> } data
+     * @param { Array.<LineChartDataElement> } data
      * @param { LineChartOptions } options
      */
     const drawLineChart = (
-        ctx, data, options
+        ctx, 
+        data, 
+        options
     ) => {
         drawGrid(ctx, options.gridOptions);
         drawLineChartPoints(ctx, data, options);
@@ -153,13 +156,13 @@ const SimpleLineChart = controller => {
     /**
      * @description redraws the line chart with the grid
      * @param { HTMLCanvasElement } element the affected html element for redraw
-     * @param { Array<LineChartDataElement>} data the affected data array for redraw
+     * @param { Array.<LineChartDataElement>} data the affected data array for redraw
      * @param { LineChartOptions } options the affected chart options for redraw
      */
     const redrawLineChart = (
         element,
         data,
-        options
+        options,
     ) => {
         const ctx = element.getContext('2d');
         ctx.clearRect(0, 0, options.width, options.height);
@@ -170,7 +173,7 @@ const SimpleLineChart = controller => {
     controller.xMin.onValueChanged(() => redrawLineChart(canvasElement, controller.getData(), getOptions()));
     controller.xMax.onValueChanged(() => redrawLineChart(canvasElement, controller.getData(), getOptions()));
     controller.yMin.onValueChanged(() => redrawLineChart(canvasElement, controller.getData(), getOptions()));
-    controller.xMax.onValueChanged(() => redrawLineChart(canvasElement, controller.getData(), getOptions()));
+    controller.yMax.onValueChanged(() => redrawLineChart(canvasElement, controller.getData(), getOptions()));
     controller.onDataChanged(() => redrawLineChart(canvasElement, controller.getData(), getOptions()));
     
     //resize
