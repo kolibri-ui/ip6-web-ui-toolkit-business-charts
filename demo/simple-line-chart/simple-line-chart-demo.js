@@ -7,19 +7,19 @@ import { SimpleLineChartController } from "../../src/business-charts/projector/s
 //TODO Unit Tests that all data values are displayed in the canvas
 //TODO GridLines are still not visible in canvas
 /** @type { Array.<LineChartDataElement> } */ const data = [{
-    name: 'A', xValue: 0, yValue: 0,
+    name: 'A', xValue: -20, yValue: 10,
 }, {
-    name: 'B', xValue: 10, yValue: 10,
+    name: 'B', xValue: -10, yValue: -10, //input field listens only from this value
 }, {
-    name: 'C', xValue: 20, yValue: 0,
+    name: 'C', xValue: 0, yValue: 10,
 }, {
-    name: 'D', xValue: 30, yValue: 30,
+    name: 'D', xValue: 10, yValue: -10,
 }, {
-    name: 'E', xValue: 40, yValue: 0,
+    name: 'E', xValue: 20, yValue: 10,
 }, {
-    name: 'F', xValue: 50, yValue: 50,
+    name: 'F', xValue: 30, yValue: -10,
 }, {
-    name: 'G', xValue: 60, yValue: 0,
+    name: 'G', xValue: 40, yValue: 10,
 },
 ];
 
