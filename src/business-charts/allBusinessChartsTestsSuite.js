@@ -1,5 +1,4 @@
 //util tests
-import "./util/chartFunctionsTest.js"
 import "./util/geometryFunctionsTest.js"
 
 //projector tests
@@ -7,8 +6,7 @@ import "./projector/simpleScatterplotChart/simpleScatterplotChartProjectorTest.j
 
 //model tests
 import "./projector/simpleScatterplotChart/simpleScatterplotChartModelTest.js"
-import "./projector/simpleLineChart/NEWsimpleLineChartModelTest.js"
-// import "./projector/simpleLineChart/simpleLineChartModelTest.js"
+import "./projector/simpleLineChart/simpleLineChartModelTest.js"
 
 //controller tests
 import "./projector/simpleScatterplotChart/simpleScatterplotChartControllerTest.js"

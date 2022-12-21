@@ -5,7 +5,7 @@
  * Helper functions to create a chart
  */
 
-export { drawPoint, drawLine, drawRect } //TODO 2 functions drawGrid available (chartFunctions.js and chartGridFrunctions.js).
+export { drawPoint, drawLine, drawRect, drawGridForSimpleBarChart }
 
 /**
  * @typedef { Object } ChartGridOptions
@@ -92,9 +92,9 @@ function drawRect(
 }
 
 /**
- * A function that creates horizontal and vertical lines
- * @todo Refine description for technical doc.
- * @todo eliminate magic numbers
+ * This function creates horizontal and vertical lines in bar chart.
+ * only for simple bar chart
+ * TODO rebuild / refactor bar chart. use drawGrid function in gridFrunctions
  * @param { ChartGridOptions } options for displaying horizontal and or vertical lines as grid
  * @param { CanvasRenderingContext2D } ctx
  * @param { Number } startX
@@ -108,7 +108,7 @@ function drawRect(
  * @param { Number } startValueX
  * @param { Number } startValueY
  */
-function drawGrid(
+function drawGridForSimpleBarChart(
     options,
     ctx,
     startX,

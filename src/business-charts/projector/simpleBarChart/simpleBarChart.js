@@ -1,6 +1,6 @@
 // noinspection SpellCheckingInspection
 
-import { drawGrid, drawRect } from "../../util/chartFunctions.js";
+import { drawGridForSimpleBarChart, drawRect } from "../../util/chartFunctions.js";
 import { resizeHandler }      from "../../util/resizeHandler.js";
 
 
@@ -82,7 +82,7 @@ const SimpleBarChart = (data, options) => {
         const barWidth = (gridWidth - offset) / data.length - 2 * options.padding - 1;
         const ratio = 20 / options.gridOptions.verticalSteps;
 
-        drawGrid(
+        drawGridForSimpleBarChart(
             options.gridOptions,
             context,
             gridX,
