@@ -73,13 +73,13 @@ const SimpleLineChartModel = ({
     lineChartAttr.getObs(ELEMENT_ID).setValue(id ?? generateId('line-chart'));
     lineChartAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
     lineChartAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
-    lineChartAttr.getObs(X_EVERY).setValue(xEvery ?? 10);
-    lineChartAttr.getObs(Y_EVERY).setValue(yEvery ?? 10);
+    lineChartAttr.getObs(X_EVERY).setValue(xEvery ?? 1);
+    lineChartAttr.getObs(Y_EVERY).setValue(yEvery ?? 1);
     lineChartAttr.getObs(CANVAS_WIDTH).setValue(canvasWidth ?? 600);
     lineChartAttr.getObs(CANVAS_HEIGHT).setValue(canvasHeight ?? 400);
     lineChartAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 200, yValue: 200 });
     lineChartAttr.getObs(DRAW_OUTER_TICKS).setValue(drwawOuterTicks ?? false);
-    lineChartAttr.getObs(COLORS).setValue(colors ?? ["#DE2A9C"]);
+    lineChartAttr.getObs(COLORS).setValue(colors ?? [ "#a55ca5", "#67b6c7", "#bccd7a", "#eb9743" ]);
 
     return /** AttributeType<*> */ lineChartAttr;
 };
