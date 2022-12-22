@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
-import { drawLine, drawPoint } from "../../util/chartFunctions.js";
-import { drawGrid }            from "../../util/chartGridFunctions.js";
+import { drawLine } from "../../util/chartFunctions.js";
+import { drawGrid } from "../../util/chartGridFunctions.js";
 import { 
     calcXRatio, 
     calcYRatio, 
@@ -11,6 +11,7 @@ import { generateId }          from "../../util/functions.js";
 import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
 
 export { SimpleLineChart }
+export { }
 
 /**
  * @typedef { Object } LineChartOptions

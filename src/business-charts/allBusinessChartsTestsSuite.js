@@ -3,6 +3,7 @@ import "./util/geometryFunctionsTest.js"
 
 //projector tests
 import "./projector/simpleScatterplotChart/simpleScatterplotChartProjectorTest.js"
+import "./projector/simpleLineChart/simpleLineChartProjectorTest.js"
 
 //model tests
 import "./projector/simpleScatterplotChart/simpleScatterplotChartModelTest.js"

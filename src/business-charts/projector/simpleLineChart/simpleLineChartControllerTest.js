@@ -1,6 +1,5 @@
 import { TestSuite }                   from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import { SimpleLineChartController }   from "./simpleLineChartController.js";
-import { SimpleScatterplotController } from "../simpleScatterplotChart/simpleScatterplotChartController.js";
 
 const SimpleLineChartControllerTestSuite = TestSuite("src/business-charts/projector/simpleLineChartController");
 
