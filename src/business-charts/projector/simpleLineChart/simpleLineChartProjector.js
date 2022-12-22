@@ -11,7 +11,6 @@ import { generateId }          from "../../util/functions.js";
 import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
 
 export { SimpleLineChart }
-export { }
 
 /**
  * @typedef { Object } LineChartOptions

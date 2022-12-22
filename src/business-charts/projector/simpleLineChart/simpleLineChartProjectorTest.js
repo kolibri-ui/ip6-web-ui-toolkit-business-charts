@@ -25,14 +25,14 @@ SimpleLineChartProjectorTestSuite.add("simple line chart projector", assert => {
         options
     ]);
     
-    const xAxisBar = AxisControlBarProjector("X_AXIS", { min: lineChartController.xMin, max: lineChartController.xMax });
-    
     const lineChart = SimpleLineChart(lineChartController);
 
     /** @type { HTMLDivElement } */
     const chartElement = document.createElement("div");
     chartElement.classList.add("chart-container");
 
+    const xAxisBar = AxisControlBarProjector("X_AXIS", { min: lineChartController.xMin, max: lineChartController.xMax });
+    const yAxisBar = AxisControlBarProjector("Y_AXIS", { min: lineChartController.yMin, max: lineChartController.yMax });
 
     /** @type { HTMLCanvasElement } */
     const canvasElement = document.createElement("canvas");
@@ -42,7 +42,7 @@ SimpleLineChartProjectorTestSuite.add("simple line chart projector", assert => {
     canvasElement.width = 500; //TODO wenn initialisiert, dann kann width nicht 0 sein..?
     canvasElement.height = 400; //TODO wenn initialisiert, dann kann height nicht 0 sein..?
 
-    chartElement.append(canvasElement);
+    chartElement.append(yAxisBar, canvasElement, xAxisBar);
 
     /** @type { CanvasRenderingContext2D } */
     const context = canvasElement.getContext('2d');
@@ -64,6 +64,19 @@ SimpleLineChartProjectorTestSuite.add("simple line chart projector", assert => {
     assert.is(lineChart.className, "chart-container");
     
     assert.is(context.strokeStyle, "#000000");
+
+    assert.is(chartElement.className, 'chart-container');
+    assert.is(xAxisBar.className, 'x-axis');
+    assert.is(canvasElement.className, 'line-chart-canvas');
+    assert.is(yAxisBar.className, 'y-axis');
+    
+    assert.is(yAxisBar.nextSibling.className, 'line-chart-canvas');
+    assert.is(xAxisBar.previousSibling.className, 'line-chart-canvas');
+    assert.is(context.canvas.nextSibling.parentElement.className, 'chart-container');
+    assert.is(context.canvas.parentElement.className, 'chart-container');
+    assert.is(xAxisBar.parentElement.className, 'chart-container');
+    assert.is(canvasElement.parentElement.className, 'chart-container');
+    assert.is(yAxisBar.parentElement.className, 'chart-container');
     
 });
 SimpleLineChartProjectorTestSuite.run();
