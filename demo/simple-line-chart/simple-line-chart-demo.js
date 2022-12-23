@@ -2,26 +2,29 @@
 
 import { SimpleLineChart }           from "../../src/business-charts/projector/simpleLineChart/simpleLineChartProjector.js";
 import { SimpleLineChartController } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartController.js";
+import { energyDataFile } from "./energy-data.js";
 
-//TODO Unit Tests that input fields are bigger than the biggest input value
-//TODO Unit Tests that all data values are displayed in the canvas
-//TODO GridLines are still not visible in canvas
-/** @type { Array.<LineChartDataElement> } */ const data = [{
-    name: 'A', xValue: -20, yValue: 10,
-}, {
-    name: 'B', xValue: -10, yValue: -10, //input field listens only from this value
-}, {
-    name: 'C', xValue: 0, yValue: 10,
-}, {
-    name: 'D', xValue: 10, yValue: -10,
-}, {
-    name: 'E', xValue: 20, yValue: 10,
-}, {
-    name: 'F', xValue: 30, yValue: -10,
-}, {
-    name: 'G', xValue: 40, yValue: 10,
-},
-];
+// TODO Unit Tests that input fields are bigger than the biggest input value
+// TODO Unit Tests that all data values are displayed in the canvas
+// TODO GridLines are still not visible in canvas
+// /** @type { Array.<LineChartDataElement> } */ const data = [{
+//     name: 'A', xValue: -20, yValue: 10,
+// }, {
+//     name: 'B', xValue: -10, yValue: -10, //input field listens only from this value
+// }, {
+//     name: 'C', xValue: 0, yValue: 10,
+// }, {
+//     name: 'D', xValue: 10, yValue: -10,
+// }, {
+//     name: 'E', xValue: 20, yValue: 10,
+// }, {
+//     name: 'F', xValue: 30, yValue: -10,
+// }, {
+//     name: 'G', xValue: 40, yValue: 10,
+// },
+// ];
+
+const data = energyDataFile;
 
 const controller = SimpleLineChartController(
     data
