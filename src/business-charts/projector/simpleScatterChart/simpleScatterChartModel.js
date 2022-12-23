@@ -77,7 +77,7 @@ const SimpleScatterChartModel = ({
     scatterChartAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
     scatterChartAttr.getObs(X_EVERY).setValue(xEvery ?? 1);
     scatterChartAttr.getObs(Y_EVERY).setValue(yEvery ?? 1);
-    scatterChartAttr.getObs(CANVAS_WIDTH).setValue(canvasWidth ?? 600);
+    scatterChartAttr.getObs(CANVAS_WIDTH).setValue(canvasWidth ?? 600); //TODO bug: sets canvasHeight instead of canvasWidth
     scatterChartAttr.getObs(CANVAS_HEIGHT).setValue(canvasHeight ?? 400);
     scatterChartAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 200, yValue: 200 });
     scatterChartAttr.getObs(DRAW_OUTER_TICKS).setValue(drawOuterTicks ?? false);
