@@ -54,5 +54,38 @@ SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => 
     canvasElement.id = generateId('scatterplot');
     const newGeneratedTestId = canvasElement.id;
     assert.isTrue((newGeneratedTestId !== testId));
+    
+    /** 
+     * @description sum of the word length of id prefix and the symbol '-' and a random 10 digit character string
+     * */
+    //TODO not sure if the id creation works correctly. Sometimes the sum is 23, not 22
+    assert.is(context.canvas.id.length, 22 || 23);
+
+    assert.is(context.canvas.ELEMENT_NODE, 1);
+    assert.is(context.canvas.className, 'scatterplot-canvas');
+    assert.is(context.canvas.width, 500);
+    assert.is(context.canvas.height, 400);
+
+    assert.is(scatterChartController.getOptions().xEvery, 1); //default value
+    assert.is(scatterChartController.getOptions().yEvery, 1); //default value
+    assert.is(scatterChartController.getOptions().drawOuterTicks, true); //default value
+
+    assert.is(scatterChart.localName, "div");
+    assert.is(scatterChart.className, "chart-container");
+
+    assert.is(context.strokeStyle, "#000000");
+
+    assert.is(chartElement.className, 'chart-container');
+    assert.is(xAxisBar.className, 'x-axis');
+    assert.is(canvasElement.className, 'scatterplot-canvas');
+    assert.is(yAxisBar.className, 'y-axis');
+
+    assert.is(yAxisBar.nextSibling.className, 'scatterplot-canvas');
+    assert.is(xAxisBar.previousSibling.className, 'scatterplot-canvas');
+    assert.is(context.canvas.nextSibling.parentElement.className, 'chart-container');
+    assert.is(context.canvas.parentElement.className, 'chart-container');
+    assert.is(xAxisBar.parentElement.className, 'chart-container');
+    assert.is(canvasElement.parentElement.className, 'chart-container');
+    assert.is(yAxisBar.parentElement.className, 'chart-container');
 });
 SimpleScatterplotChartTestSuite.run();
