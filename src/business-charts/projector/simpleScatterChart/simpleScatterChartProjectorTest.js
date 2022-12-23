@@ -1,16 +1,16 @@
 // noinspection SpellCheckingInspection
 
-import { TestSuite }                   from "../../../Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleScatterplotChart }      from "./simpleScatterplotChartProjector.js";
-import { SimpleScatterplotController } from "./simpleScatterplotChartController.js";
-import { AxisControlBarProjector }     from "../axisControlBar/axisControlBarProjector.js";
+import { TestSuite }                    from "../../../Kolibri/docs/src/kolibri/util/test.js";
+import { SimpleScatterChart }           from "./simpleScatterChartProjector.js";
+import { SimpleScatterChartController } from "./simpleScatterChartController.js";
+import { AxisControlBarProjector }      from "../axisControlBar/axisControlBarProjector.js";
 import { generateId }                  from "../../util/functions.js";
 
 const SimpleScatterplotChartTestSuite = TestSuite("src/business-charts/projector/simpleScatterplotChartProjector");
 
 SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => {
 
-    /** @type { Array.<ScatterplotChartDataElement> } */
+    /** @type { Array.<ScatterChartDataElement> } */
     const data = [
         { name: "A", xValue: 4, yValue: -4 },
         { name: "B", xValue: 88, yValue: -88 }
@@ -20,12 +20,12 @@ SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => 
     const drawOuterTicks = false;
     const options = { xEvery, yEvery, drawOuterTicks };
 
-    const scatterChartController = SimpleScatterplotController([
+    const scatterChartController = SimpleScatterChartController([
         data,
         options
     ]);
 
-    const scatterChart = SimpleScatterplotChart(scatterChartController);
+    const scatterChart = SimpleScatterChart(scatterChartController);
 
     /** @type { HTMLDivElement } */
     const chartElement = document.createElement("div");

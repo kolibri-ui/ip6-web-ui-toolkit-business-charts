@@ -304,7 +304,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     -20px 6px 20px -20px var(--kolibri-color-shadow);
 }
 
-.container .chart-container .scatterplot-canvas {
+.container .chart-container .scatter-chart-canvas {
     position: relative;
 }
 
@@ -324,7 +324,7 @@ input[type=range]::-webkit-slider-runnable-track  {
 }
 
 /****************** chart section ********************/
-.scatterplot-canvas {
+.scatter-chart-canvas {
     --data-point-size: 10;
     --data-point-color: #a55ca5;
     width: var(--golden-section-width);

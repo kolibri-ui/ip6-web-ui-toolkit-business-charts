@@ -10,7 +10,7 @@ import {
 import { generateId }              from "../../util/functions.js";
 import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
 
-export { SimpleScatterplotChart }
+export { SimpleScatterChart }
 
 /**
  * @typedef { Object } ScatterplotChartOptions
@@ -24,10 +24,10 @@ export { SimpleScatterplotChart }
 /**
  * @description Implementation of a simple scatter chart based on canvas.
  * @author Valentina Giampa & Roger Kreienbühl
- * @param { SimpleScatterplotControllerType } controller
+ * @param { SimpleScatterChartControllerType } controller
  * @return { HTMLCanvasElement }
  */
-const SimpleScatterplotChart = controller => {
+const SimpleScatterChart = controller => {
     /** @type { HTMLDivElement } */
     const chartElement = document.createElement("div");
     chartElement.classList.add("chart-container");
@@ -38,8 +38,8 @@ const SimpleScatterplotChart = controller => {
     /** @type { HTMLCanvasElement } */ 
     const canvasElement = document.createElement("canvas");
 
-    canvasElement.id     = generateId('scatterplot');
-    canvasElement.classList.add('scatterplot-canvas');
+    canvasElement.id     = generateId('scatter-chart');
+    canvasElement.classList.add('scatter-chart-canvas');
     canvasElement.width  = 500;
     canvasElement.height = 400;
 
@@ -100,7 +100,7 @@ const SimpleScatterplotChart = controller => {
     /**
      * @description draws all data points
      * @param { CanvasRenderingContext2D } ctx
-     * @param { Array.<ScatterplotChartDataElement> } data
+     * @param { Array.<ScatterChartDataElement> } data
      * @param { ScatterplotChartOptions } options
      */
     const drawScatterplotPoints = (
@@ -123,7 +123,7 @@ const SimpleScatterplotChart = controller => {
     /**
      * @description 
      * @param { CanvasRenderingContext2D } ctx
-     * @param { Array.<ScatterplotChartDataElement> } data
+     * @param { Array.<ScatterChartDataElement> } data
      * @param { ScatterplotChartOptions } options
      */
     const drawScatterplot = (
@@ -138,7 +138,7 @@ const SimpleScatterplotChart = controller => {
     /**
      *
      * @param { HTMLCanvasElement } element
-     * @param { Array.<ScatterplotChartDataElement> } data
+     * @param { Array.<ScatterChartDataElement> } data
      * @param { ScatterplotChartOptions } options
      */
     const redrawScatterplot = (

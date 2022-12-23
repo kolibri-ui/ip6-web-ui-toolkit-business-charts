@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
-import { TestSuite } from "../../../Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleScatterplotChartModel }      from "./simpleScatterplotChartModel.js";
+import { TestSuite }               from "../../../Kolibri/docs/src/kolibri/util/test.js";
+import { SimpleScatterChartModel } from "./simpleScatterChartModel.js";
 import {
     CANVAS_HEIGHT,
     CANVAS_WIDTH, COLORS, DOMAIN_NULL_POINT, DRAW_OUTER_TICKS,
@@ -11,12 +11,12 @@ import {
     X_EVERY,
     X_RATIO, Y_EVERY,
     Y_RATIO
-} from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
+}                                  from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 
 const simpleScatterplotChartModelSuite = TestSuite("src/business-charts/projector/simpleScatterplotChartModel");
 
 simpleScatterplotChartModelSuite.add("Scatter Chart attributes have observables", assert => {
-    /** @type { Array.<ScatterplotChartDataElement> } */ const data = [{
+    /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
         name: '1', xValue: -4, yValue: 3,
     }, {
         name: '2', xValue: 4, yValue: 3,
@@ -25,7 +25,7 @@ simpleScatterplotChartModelSuite.add("Scatter Chart attributes have observables"
     }, {
         name: '4', xValue: 4, yValue: -3,
     },];
-    const model = SimpleScatterplotChartModel({
+    const model                                                 = SimpleScatterChartModel({
         data:  data,
     });
     assert.is(model.hasObs(VALUE),   true);

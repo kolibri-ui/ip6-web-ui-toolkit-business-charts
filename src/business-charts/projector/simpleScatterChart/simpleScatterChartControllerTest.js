@@ -1,11 +1,10 @@
-import { TestSuite }                   from "../../../Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleScatterplotController } from "./simpleScatterplotChartController.js";
-import { SimpleLineChartController }   from "../simpleLineChart/simpleLineChartController.js";
+import { TestSuite }                    from "../../../Kolibri/docs/src/kolibri/util/test.js";
+import { SimpleScatterChartController } from "./simpleScatterChartController.js";
 
-const SimpleScatterplotControllerSuite = TestSuite("src/business-charts/projector/simpleScatterplotChartController");
+const SimpleScatterChartControllerSuite = TestSuite("src/business-charts/projector/simpleScatterChartController");
 
-SimpleScatterplotControllerSuite.add("options and data change scatter chart", assert => {
-    /** @type { Array.<ScatterplotChartDataElement> } */  
+SimpleScatterChartControllerSuite.add("options and data change scatter chart", assert => {
+    /** @type { Array.<ScatterChartDataElement> } */
     const data = [
         { name: "A", xValue: 4, yValue: -4 }, 
         { name: "B", xValue: 88, yValue: -88 } 
@@ -16,7 +15,7 @@ SimpleScatterplotControllerSuite.add("options and data change scatter chart", as
     const drawOuterTicks = false;
     const options = { xEvery, yEvery, drawOuterTicks };
     
-    const controller     = SimpleScatterplotController(
+    const controller     = SimpleScatterChartController(
         data, options);
 
     //check that data values are set
@@ -32,8 +31,8 @@ SimpleScatterplotControllerSuite.add("options and data change scatter chart", as
     assert.is(controller.getData().at(1).yValue, -88);
     
 });
-SimpleScatterplotControllerSuite.add("xMin, xMax, yMin, yMax", assert => {
-    /** @type { Array.<ScatterplotChartDataElement> } */ const data = [{
+SimpleScatterChartControllerSuite.add("xMin, xMax, yMin, yMax", assert => {
+    /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
         name: 'A', xValue: 0, yValue: 8,
     }, {
         name: 'B', xValue: 1, yValue: 10,
@@ -50,9 +49,9 @@ SimpleScatterplotControllerSuite.add("xMin, xMax, yMin, yMax", assert => {
     },
     ];
 
-    const controller = SimpleScatterplotController(data);
+    const controller = SimpleScatterChartController(data);
 
-    /** @type { Array<ScatterplotChartDataElement> } */
+    /** @type { Array<ScatterChartDataElement> } */
     const dataArray = [];
     const xMin = controller.xMin.getValue();
     const xMax = controller.xMax.getValue();
@@ -91,4 +90,4 @@ SimpleScatterplotControllerSuite.add("xMin, xMax, yMin, yMax", assert => {
     assert.is(controller.yMax.getValue(), 156); //yMax +1
 
 });
-SimpleScatterplotControllerSuite.run();
+SimpleScatterChartControllerSuite.run();
