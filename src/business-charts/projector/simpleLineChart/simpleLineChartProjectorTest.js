@@ -8,8 +8,6 @@ const SimpleLineChartProjectorTestSuite = TestSuite("src/business-charts/project
 
 SimpleLineChartProjectorTestSuite.add("simple line chart projector", assert => {
 
-
-
     /** @type { Array.<LineChartDataElement> } */
     const data = [
         { name: "A", xValue: 4, yValue: -4 },
@@ -37,8 +35,8 @@ SimpleLineChartProjectorTestSuite.add("simple line chart projector", assert => {
     /** @type { HTMLCanvasElement } */
     const canvasElement = document.createElement("canvas");
 
-    canvasElement.id = generateId('line-chart'); //TODO change for line chart
-    canvasElement.classList.add('line-chart-canvas'); //TODO Fehler in getComputedStyle mit line-chart-canvas
+    canvasElement.id = generateId('line-chart');
+    canvasElement.classList.add('line-chart-canvas');
     canvasElement.width = 500; //TODO wenn initialisiert, dann kann width nicht 0 sein..?
     canvasElement.height = 400; //TODO wenn initialisiert, dann kann height nicht 0 sein..?
 
@@ -46,10 +44,15 @@ SimpleLineChartProjectorTestSuite.add("simple line chart projector", assert => {
 
     /** @type { CanvasRenderingContext2D } */
     const context = canvasElement.getContext('2d');
-    
-    canvasElement.id = 'line-chart-3pc01yr3qc';
 
+    canvasElement.id = 'line-chart-3pc01yr3qc';
     assert.is(context.canvas.id, 'line-chart-3pc01yr3qc');
+    const testId = canvasElement.id;
+    assert.is(testId, 'line-chart-3pc01yr3qc');
+    canvasElement.id = generateId('line-chart');
+    const newGeneratedTestId = canvasElement.id;
+    assert.isTrue((newGeneratedTestId !== testId));
+    
     assert.is(context.canvas.id.length, 21);
     assert.is(context.canvas.ELEMENT_NODE, 1);
     assert.is(context.canvas.className, 'line-chart-canvas');
