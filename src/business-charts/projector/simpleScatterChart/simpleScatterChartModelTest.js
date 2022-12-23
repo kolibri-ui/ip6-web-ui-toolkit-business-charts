@@ -15,7 +15,7 @@ import {
 
 const simpleScatterplotChartModelSuite = TestSuite("src/business-charts/projector/simpleScatterplotChartModel");
 
-simpleScatterplotChartModelSuite.add("Scatter Chart attributes have observables", assert => {
+simpleScatterplotChartModelSuite.add("model: Scatter Chart attributes have observables", assert => {
     /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
         name: '1', xValue: -4, yValue: 3,
     }, {
@@ -43,7 +43,7 @@ simpleScatterplotChartModelSuite.add("Scatter Chart attributes have observables"
 
 });
 
-simpleScatterplotChartModelSuite.add("Scatter Chart attributes get correct observable values", assert => {
+simpleScatterplotChartModelSuite.add("model: Scatter Chart attributes get correct observable values", assert => {
     /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
         name: '1', xValue: -4, yValue: 8,
     }, {

@@ -279,7 +279,7 @@ input[type=range]::-webkit-slider-runnable-track  {
 }
 
 
-/*.scatterplot-canvas {*/
+/*.scatter-chart-canvas {*/
 /*    --data-point-size: 10;*/
 /*    --data-point-color: #a55ca5;*/
 /*    width: var(--golden-section-width);*/
@@ -292,7 +292,7 @@ input[type=range]::-webkit-slider-runnable-track  {
 
 
 
-/****************** ---------- scatterplot chart ---------- ********************/
+/****************** ---------- scatter chart chart ---------- ********************/
 .chart-container {
     --axis-inner-margin: 0.5em;
     --axis-width-height: 4em;

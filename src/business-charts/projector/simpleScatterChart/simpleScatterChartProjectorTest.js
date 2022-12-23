@@ -83,12 +83,14 @@ SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => 
     assert.is(canvasElement.className, 'scatter-chart-canvas');
     assert.is(yAxisBar.className, 'y-axis');
 
-    //assert.is(yAxisBar.nextSibling., 'scatter-chart-canvas');
-    //assert.is(xAxisBar.previousSibling.className, 'scatter-chart-canvas');
+    assert.is(yAxisBar.nextSibling.className, 'scatter-chart-canvas');
+    assert.is(xAxisBar.previousSibling.className, 'scatter-chart-canvas');
     assert.is(context.canvas.nextSibling.parentElement.className, 'chart-container');
     assert.is(context.canvas.parentElement.className, 'chart-container');
     assert.is(xAxisBar.parentElement.className, 'chart-container');
     assert.is(canvasElement.parentElement.className, 'chart-container');
     assert.is(yAxisBar.parentElement.className, 'chart-container');
+    assert.is(canvasElement.previousSibling.className, 'y-axis');
+    assert.is(canvasElement.nextSibling.className, 'x-axis');
 });
 SimpleScatterplotChartTestSuite.run();

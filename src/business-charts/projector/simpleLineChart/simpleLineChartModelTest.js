@@ -14,7 +14,7 @@ import {
 
 const simpleLineChartModelTestSuite = TestSuite("src/business-charts/projector/simpleLineChartModel");
 
-simpleLineChartModelTestSuite.add("Line Chart attributes have observables", assert => {
+simpleLineChartModelTestSuite.add("model: Line Chart attributes have observables", assert => {
     /** @type { Array<LineChartDataElement> }*/ const data = [{
         name: 'A', xValue: 0, yValue: 0,
     }, {

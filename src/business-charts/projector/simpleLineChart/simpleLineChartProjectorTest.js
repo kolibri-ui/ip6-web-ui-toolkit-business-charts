@@ -84,5 +84,7 @@ SimpleLineChartProjectorTestSuite.add("simple line chart projector", assert => {
     assert.is(xAxisBar.parentElement.className, 'chart-container');
     assert.is(canvasElement.parentElement.className, 'chart-container');
     assert.is(yAxisBar.parentElement.className, 'chart-container');
+    assert.is(canvasElement.previousSibling.className, 'y-axis');
+    assert.is(canvasElement.nextSibling.className, 'x-axis');
 });
 SimpleLineChartProjectorTestSuite.run();
