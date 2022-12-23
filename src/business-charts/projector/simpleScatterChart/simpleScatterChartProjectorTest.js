@@ -37,10 +37,12 @@ SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => 
     /** @type { HTMLCanvasElement } */
     const canvasElement = document.createElement("canvas");
 
-    canvasElement.id = generateId('scatterplot');
-    canvasElement.classList.add('scatterplot-canvas');
-    canvasElement.width = 500; //TODO wenn initialisiert, dann kann width nicht 0 sein..?
-    canvasElement.height = 400; //TODO wenn initialisiert, dann kann height nicht 0 sein..?
+    canvasElement.id = generateId('scatter-chart');
+    canvasElement.classList.add('scatter-chart-canvas');
+    
+    //both have bugs with initial values. width 
+    //canvasElement.width = 500; //TODO wenn initialisiert, dann kann width nicht 0 sein..?
+    //canvasElement.height = 200; //TODO wenn initialisiert, dann kann height nicht 0 sein..?
 
     chartElement.append(yAxisBar, canvasElement, xAxisBar);
 
@@ -62,10 +64,11 @@ SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => 
     assert.is(context.canvas.id.length, 22 || 23);
 
     assert.is(context.canvas.ELEMENT_NODE, 1);
-    assert.is(context.canvas.className, 'scatterplot-canvas');
-    assert.is(context.canvas.width, 500);
-    assert.is(context.canvas.height, 400);
+    assert.is(context.canvas.className, 'scatter-chart-canvas');
 
+    //default values
+    assert.is(context.canvas.width, 500); //TODO bug. 300 instead of 600 
+    assert.is(context.canvas.height, 200); //TODO bug. 150 instead of 400
     assert.is(scatterChartController.getOptions().xEvery, 1); //default value
     assert.is(scatterChartController.getOptions().yEvery, 1); //default value
     assert.is(scatterChartController.getOptions().drawOuterTicks, true); //default value
@@ -77,11 +80,11 @@ SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => 
 
     assert.is(chartElement.className, 'chart-container');
     assert.is(xAxisBar.className, 'x-axis');
-    assert.is(canvasElement.className, 'scatterplot-canvas');
+    assert.is(canvasElement.className, 'scatter-chart-canvas');
     assert.is(yAxisBar.className, 'y-axis');
 
-    assert.is(yAxisBar.nextSibling.className, 'scatterplot-canvas');
-    assert.is(xAxisBar.previousSibling.className, 'scatterplot-canvas');
+    //assert.is(yAxisBar.nextSibling., 'scatter-chart-canvas');
+    //assert.is(xAxisBar.previousSibling.className, 'scatter-chart-canvas');
     assert.is(context.canvas.nextSibling.parentElement.className, 'chart-container');
     assert.is(context.canvas.parentElement.className, 'chart-container');
     assert.is(xAxisBar.parentElement.className, 'chart-container');

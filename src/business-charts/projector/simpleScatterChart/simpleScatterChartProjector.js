@@ -41,7 +41,7 @@ const SimpleScatterChart = controller => {
     canvasElement.id     = generateId('scatter-chart');
     canvasElement.classList.add('scatter-chart-canvas');
     canvasElement.width  = 500;
-    canvasElement.height = 400;
+    canvasElement.height = 325;
 
     chartElement.append(yAxisBar, canvasElement, xAxisBar);
 
@@ -58,7 +58,7 @@ const SimpleScatterChart = controller => {
         const pointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
 
         width = width === 0 ? 500 : width;
-        height = height === 0 ? 400 : height;
+        height = height === 0 ? 325 : height;
 
         const xMin = controller.xMin.getValue();
         const xMax = controller.xMax.getValue();
