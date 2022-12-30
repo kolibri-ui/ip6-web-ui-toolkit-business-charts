@@ -152,6 +152,7 @@ body {
     right: 10px;
     width: 0;
     height: 0;
+    border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
 }
 
@@ -165,6 +166,7 @@ body {
 .select-items div,.select-selected {
     /*color: var(--kb-color-hsl-purple-700);*/
     padding: 8px 16px;
+    border: 1px solid transparent;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
 }
@@ -276,19 +278,14 @@ input[type=range]::-webkit-slider-runnable-track  {
     z-index: 10;
 }
 
+/*.scatter-chart-canvas {*/
+/*    --data-point-size: 10;*/
+/*    --data-point-color: #a55ca5;*/
+/*    width: var(--golden-section-width);*/
+/*    height: var(--golden-section-height);*/
+/*}*/
 
-.scatterplot-canvas {
-    --data-point-size: 10;
-    --data-point-color: #a55ca5;
-}
-
-
-
-
-
-
-
-/****************** scatterplot chart ********************/
+/****************** scatter chart ********************/
 .chart-container {
     --axis-inner-margin: 0.5em;
     --axis-width-height: 4em;
@@ -300,7 +297,11 @@ input[type=range]::-webkit-slider-runnable-track  {
                      -20px 6px 20px -20px var(--kolibri-color-shadow);
 }
 
-.container .chart-container .scatterplot-canvas {
+.container .chart-container .scatter-chart-canvas {
+    position: relative;
+}
+
+.container .chart-container .line-chart-canvas {
     position: relative;
 }
 
@@ -316,11 +317,26 @@ input[type=range]::-webkit-slider-runnable-track  {
 }
 
 /****************** chart section ********************/
-.scatterplot-canvas {
-    position: absolute;
-    z-index: 10;
+.scatter-chart-canvas {
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
     width: var(--golden-section-width);
     height: var(--golden-section-height);
+
+    position: absolute;
+    z-index: 10;
+    grid-column: 2;
+    grid-row: 1;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+.line-chart-canvas {
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+
+    position: absolute;
+    z-index: 10;
     grid-column: 2;
     grid-row: 1;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
@@ -389,24 +405,4 @@ input[type=range]::-webkit-slider-runnable-track  {
     font-size: var(--font-size-textXS);
     outline: 3px solid var(--kb-color-hsl-purple-200);
     outline-offset: 1px;
-}
-
-.x-axis input:invalid {
-    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);
-}
-
-.x-axis input:invalid {
-    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);
-}
-
-.x-axis input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-
-}
-
-.x-axis input:-webkit-autofill {
-
-}
-
-.chart-container {
-    /*outline: 1px solid red;*/
 }

@@ -16,10 +16,10 @@ import {
 }                     from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 import { generateId } from "../../util/functions.js";
 
-export { SimpleScatterplotChartModel }
+export { SimpleScatterChartModel }
 
 /**
- * @typedef { Object } ScatterplotChartDataElement
+ * @typedef { Object } ScatterChartDataElement
  * @property { String }  name name of the data element
  * @property { !Number } xValue value on the horizontal Axis of the data element
  * @property { !Number } yValue value on the vertical Axis of the data element
@@ -36,8 +36,8 @@ export { SimpleScatterplotChartModel }
  */
 
 /**
- * @typedef { Object } SimpleScatterplotAttributes
- * @property { Array<ScatterplotChartDataElement> } data
+ * @typedef { Object } SimpleScatterChartAttributes
+ * @property { Array<ScatterChartDataElement> } data
  * @property { ?String } id
  * @property { ?Number } xRatio
  * @property { ?Number } yRatio
@@ -46,18 +46,18 @@ export { SimpleScatterplotChartModel }
  * @property { ?Number } canvasWidth
  * @property { ?Number } canvasHeight
  * @property { ?CanvasPoint2D } domainNullPoint
- * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be dawn
+ * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be drawn
  * @property { ?Array<String> } colors Colors for points
  */
 
 
 /**
  * TODO: pointSize as configurable parameter
- * @param { SimpleScatterplotAttributes } options
+ * @param { SimpleScatterChartAttributes } options
  * @returns { AttributeType<*> }
  * @constructor
  */
-const SimpleScatterplotChartModel = ({
+const SimpleScatterChartModel = ({
                                          data,
                                          id,
                                          xRatio,
@@ -70,18 +70,19 @@ const SimpleScatterplotChartModel = ({
                                          drawOuterTicks,
                                          colors
                                      }) => {
-    const scatterplotAttr = Attribute(data);
-    scatterplotAttr.getObs(FILTERED_DATA).setValue(data);
-    scatterplotAttr.getObs(ELEMENT_ID).setValue(id ?? generateId('scatterplot-chart'));
-    scatterplotAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
-    scatterplotAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
-    scatterplotAttr.getObs(X_EVERY).setValue(xEvery ?? 1);
-    scatterplotAttr.getObs(Y_EVERY).setValue(yEvery ?? 1);
-    scatterplotAttr.getObs(CANVAS_WIDTH).setValue(canvasWidth ?? 600);
-    scatterplotAttr.getObs(CANVAS_HEIGHT).setValue(canvasHeight ?? 400);
-    scatterplotAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 200, yValue: 200 });
-    scatterplotAttr.getObs(DRAW_OUTER_TICKS).setValue(drawOuterTicks ?? false);
-    scatterplotAttr.getObs(COLORS).setValue(colors ?? [ "#a55ca5", "#67b6c7", "#bccd7a", "#eb9743" ]);
+    const scatterChartAttr = Attribute(data);
+    scatterChartAttr.getObs(FILTERED_DATA).setValue(data);
+    scatterChartAttr.getObs(ELEMENT_ID).setValue(id ?? generateId('scatterplot-chart'));
+    scatterChartAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
+    scatterChartAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
+    scatterChartAttr.getObs(X_EVERY).setValue(xEvery ?? 1);
+    scatterChartAttr.getObs(Y_EVERY).setValue(yEvery ?? 1);
+    scatterChartAttr.getObs(CANVAS_WIDTH).setValue(canvasWidth ?? 600); //TODO bug: sets canvasHeight instead of canvasWidth
+    scatterChartAttr.getObs(CANVAS_HEIGHT).setValue(canvasHeight ?? 400);
+    scatterChartAttr.getObs(DOMAIN_NULL_POINT).setValue(domainNullPoint ?? { xValue: 200, yValue: 200 });
+    scatterChartAttr.getObs(DRAW_OUTER_TICKS).setValue(drawOuterTicks ?? false);
+    scatterChartAttr.getObs(COLORS).setValue(colors ?? [ "#a55ca5", "#67b6c7", "#bccd7a", "#eb9743" ]);
+    //TODO use kolibri colors as default value
 
-    return /** AttributeType<*> */ scatterplotAttr;
+    return /** AttributeType<*> */ scatterChartAttr;
 };

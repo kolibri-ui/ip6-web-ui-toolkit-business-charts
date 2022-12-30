@@ -1,7 +1,7 @@
 import { TestSuite }      from "../../src/Kolibri/docs/src/kolibri/util/test.js";
 import { SimpleBarChart } from "../../src/business-charts/projector/simpleBarChart/simpleBarChart.js";
 
-const simpleBarChartDemoSuite = TestSuite("simpleBarChart");
+const simpleBarChartDemoSuite = TestSuite("simpleBarChart Demo");
 
 /**
  * The purpose of a spike is not to test all possible user interactions and their outcome but rather
