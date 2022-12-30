@@ -117,10 +117,10 @@ const SimpleScatterChartController = (dataArray, opts) => {
     const minMaxX = minMaxRule(xMin, xMax);
     const minMaxY = minMaxRule(yMin, yMax);
 
-    xMin.onValueChanged(() => minMaxX());
-    xMax.onValueChanged(() => minMaxX());
-    yMin.onValueChanged(() => minMaxY());
-    yMax.onValueChanged(() => minMaxY());
+    xMin.onValueChanged(() => minMaxX("MIN"));
+    xMax.onValueChanged(() => minMaxX("MAX"));
+    yMin.onValueChanged(() => minMaxY("MIN"));
+    yMax.onValueChanged(() => minMaxY("MAX"));
 
     return {
         xMin,
@@ -138,14 +138,20 @@ const SimpleScatterChartController = (dataArray, opts) => {
  * @description Rule to prevent, that max value is less or equal to min value
  * @param min { SimpleInputControllerType<Number> }
  * @param max { SimpleInputControllerType<Number> }
- * @returns {(function(): void)|*}
+ * @returns {(function(changedValue: 'MIN'|'MAX'): void)|*}
  */
-const minMaxRule = (min, max) => () => {
-    const minValue = Number(min.getValue());
-    const maxValue = Number(max.getValue());
+const minMaxRule = (min, max) => (changedValue) => {
+    const minValue = min.getValue();
+    const maxValue = max.getValue();
 
     if (maxValue <= minValue) {
-        const newValue = minValue + 1;
-        max.setValue(newValue);
+        if (changedValue === "MIN") {
+            const newValue = minValue + 1;
+            max.setValue(newValue);
+        } else {
+            const newValue = maxValue - 1;
+            min.setValue(newValue);
+        }
+
     }
 };
