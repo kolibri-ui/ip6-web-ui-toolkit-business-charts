@@ -92,6 +92,8 @@ const SimpleScatterChartController = (dataArray, opts) => {
         name : "x_min",
         type : "number"
     });
+    xMin.setConverter((input) => Number(input));
+
     /** @type { SimpleInputControllerType<Number> } */
     const xMax = SimpleInputController({
         value: xMaximum,
@@ -99,6 +101,8 @@ const SimpleScatterChartController = (dataArray, opts) => {
         name : "x_max",
         type : "number"
     });
+    xMax.setConverter((input) => Number(input));
+
     /** @type { SimpleInputControllerType<Number> } */
     const yMin = SimpleInputController({
         value: yMinimum,
@@ -106,6 +110,8 @@ const SimpleScatterChartController = (dataArray, opts) => {
         name : "y_min",
         type : "number"
     });
+    yMin.setConverter((input) => Number(input));
+
     /** @type { SimpleInputControllerType<Number> } */
     const yMax = SimpleInputController({
         value: yMaximum,
@@ -113,6 +119,7 @@ const SimpleScatterChartController = (dataArray, opts) => {
         name : "y_max",
         type : "number"
     });
+    yMax.setConverter((input) => Number(input));
 
     const minMaxX = minMaxRule(xMin, xMax);
     const minMaxY = minMaxRule(yMin, yMax);
