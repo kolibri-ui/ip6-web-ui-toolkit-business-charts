@@ -1,12 +1,16 @@
 // noinspection SpellCheckingInspection
 
-import { drawPoint }               from "../../util/chartFunctions.js";
+import {
+    drawPoint
+}                                  from "../../util/chartFunctions.js";
 import { drawGrid }                from "../../util/chartGridFunctions.js";
-import { 
-    calcXRatio, 
-    calcYRatio, 
-    domainToCanvasXY, 
-    pointDomainToCanvas } from "../../util/geometryFunctions.js";
+import {
+    calcXRatio,
+    calcYRatio,
+    domainToCanvasXY,
+    pointCanvasToDomain,
+    pointDomainToCanvas
+}                                  from "../../util/geometryFunctions.js";
 import { generateId }              from "../../util/functions.js";
 import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
 
@@ -35,10 +39,10 @@ const SimpleScatterChart = controller => {
     const xAxisBar = AxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
     const yAxisBar = AxisControlBarProjector("Y_AXIS", { min: controller.yMin, max: controller.yMax });
 
-    /** @type { HTMLCanvasElement } */ 
+    /** @type { HTMLCanvasElement } */
     const canvasElement = document.createElement("canvas");
 
-    canvasElement.id     = generateId('scatter-chart');
+    canvasElement.id = generateId('scatter-chart');
     canvasElement.classList.add('scatter-chart-canvas');
     canvasElement.width  = 500;
     canvasElement.height = 325;
@@ -50,14 +54,16 @@ const SimpleScatterChart = controller => {
 
     /**
      *
-     * @returns {{gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: Number, xRatio: Number, yRatio: Number, xEvery: Number, drawOuterTicks: Boolean, canvasHeight: Number, yEvery: Number}, width: Number, colors: Array<String>, height: Number}}
+     * @returns {{gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: Number, xRatio: Number, yRatio: Number, xEvery:
+     *     Number, drawOuterTicks: Boolean, canvasHeight: Number, yEvery: Number}, width: Number, colors:
+     *     Array<String>, height: Number}}
      */
     const getOptions = () => {
         let { width, height } = canvasElement.getBoundingClientRect();
-        const pointSize = Number(getComputedStyle(canvasElement).getPropertyValue("--data-point-size"));
-        const pointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
+        const pointSize       = Number(getComputedStyle(canvasElement).getPropertyValue("--data-point-size"));
+        const pointColor      = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
 
-        width = width === 0 ? 500 : width;
+        width  = width === 0 ? 500 : width;
         height = height === 0 ? 325 : height;
 
         const xMin = controller.xMin.getValue();
@@ -110,9 +116,9 @@ const SimpleScatterChart = controller => {
     ) => {
         for (const v of data) {
             const point = domainToCanvasXY(
-                options.gridOptions.nullPoint, 
-                options.gridOptions.xRatio, 
-                options.gridOptions.yRatio, 
+                options.gridOptions.nullPoint,
+                options.gridOptions.xRatio,
+                options.gridOptions.yRatio,
                 v
             );
 
@@ -121,7 +127,7 @@ const SimpleScatterChart = controller => {
     };
 
     /**
-     * @description 
+     * @description
      * @param { CanvasRenderingContext2D } ctx
      * @param { Array.<ScatterChartDataElement> } data
      * @param { ScatterplotChartOptions } options
@@ -160,8 +166,8 @@ const SimpleScatterChart = controller => {
 
     //resize
     const resizeHandler = new ResizeObserver((_) => {
-        const options = getOptions();
-        canvasElement.width = options.width;
+        const options        = getOptions();
+        canvasElement.width  = options.width;
         canvasElement.height = options.height;
 
         redrawScatterplot(canvasElement, controller.getData(), options);
@@ -172,7 +178,78 @@ const SimpleScatterChart = controller => {
         const options = getOptions();
         redrawScatterplot(canvasElement, controller.getData(), options);
     });
-    styleChangeHandler.observe(canvasElement, { attributes: true, attributeFilter: ["style"] });
+    styleChangeHandler.observe(canvasElement, { attributes: true, attributeFilter: [ "style" ] });
+
+    // ruberband
+    let rubberbandStartX;
+    let rubberbandStartY;
+    let rubberbandActive = false;
+
+    canvasElement.onmousedown = (event) => {
+        const rect       = canvasElement.getBoundingClientRect();
+        rubberbandStartX = event.x - rect.left;
+        rubberbandStartY = event.y - rect.top;
+        rubberbandActive = true;
+    };
+
+    canvasElement.onmousemove = (event) => {
+        if (rubberbandActive) {
+            const rect    = canvasElement.getBoundingClientRect();
+            const options = getOptions();
+
+            const posX = event.x - rect.left;
+            const posY = event.y - rect.top;
+
+            redrawScatterplot(canvasElement, controller.getData(), options);
+
+            const ctx = canvasElement.getContext('2d');
+
+            ctx.setLineDash([4, 2]);
+            ctx.beginPath();
+            ctx.rect(rubberbandStartX, rubberbandStartY, posX - rubberbandStartX, posY - rubberbandStartY);
+            ctx.stroke();
+            ctx.setLineDash([])
+        }
+    };
+
+    canvasElement.onmouseup = (event) => {
+        rubberbandActive = false;
+        const rect       = canvasElement.getBoundingClientRect();
+        const options    = getOptions();
+
+        const endX = event.x - rect.left;
+        const endY = event.y - rect.top;
+
+        const domainStart = pointCanvasToDomain(
+            options.width,
+            options.height,
+            controller.xMin.getValue(),
+            controller.xMax.getValue(),
+            controller.yMin.getValue(),
+            controller.yMax.getValue(),
+            {
+                xValue: rubberbandStartX,
+                yValue: rubberbandStartY
+            }
+        );
+        const domainEnd   = pointCanvasToDomain(
+            options.width,
+            options.height,
+            controller.xMin.getValue(),
+            controller.xMax.getValue(),
+            controller.yMin.getValue(),
+            controller.yMax.getValue(),
+            {
+                xValue: endX,
+                yValue: endY
+            }
+        );
+
+        controller.xMin.setValue(Math.min(...[ domainStart.xValue, domainEnd.xValue ]));
+        controller.xMax.setValue(Math.max(...[ domainStart.xValue, domainEnd.xValue ]));
+        controller.yMin.setValue(Math.min(...[ domainStart.yValue, domainEnd.yValue ]));
+        controller.yMax.setValue(Math.max(...[ domainStart.yValue, domainEnd.yValue ]));
+    };
 
     drawScatterplot(context, controller.getData(), getOptions());
 
