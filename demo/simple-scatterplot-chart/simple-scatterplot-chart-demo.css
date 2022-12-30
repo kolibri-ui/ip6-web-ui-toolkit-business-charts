@@ -152,7 +152,6 @@ body {
     right: 10px;
     width: 0;
     height: 0;
-    border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
 }
 
@@ -166,7 +165,6 @@ body {
 .select-items div,.select-selected {
     /*color: var(--kb-color-hsl-purple-700);*/
     padding: 8px 16px;
-    border: 1px solid transparent;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
 }
@@ -282,8 +280,6 @@ input[type=range]::-webkit-slider-runnable-track  {
 .scatterplot-canvas {
     --data-point-size: 10;
     --data-point-color: #a55ca5;
-    width: var(--golden-section-width);
-    height: var(--golden-section-height);
 }
 
 
