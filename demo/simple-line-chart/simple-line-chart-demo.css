@@ -278,21 +278,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     z-index: 10;
 }
 
-
-/*.scatter-chart-canvas {*/
-/*    --data-point-size: 10;*/
-/*    --data-point-color: #a55ca5;*/
-/*    width: var(--golden-section-width);*/
-/*    height: var(--golden-section-height);*/
-/*}*/
-
-
-
-
-
-
-
-/****************** ---------- scatter chart chart ---------- ********************/
+/****************** chart container ********************/
 .chart-container {
     --axis-inner-margin: 0.5em;
     --axis-width-height: 4em;
@@ -302,17 +288,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     -20px 6px 20px -20px var(--kolibri-color-shadow);
     --x-axis-shadow: -8px 4px  8px 1px var(--kolibri-color-shadow),
     -20px 6px 20px -20px var(--kolibri-color-shadow);
-}
 
-.container .chart-container .scatter-chart-canvas {
-    position: relative;
-}
-
-.container .chart-container .line-chart-canvas {
-    position: relative;
-}
-
-.container .chart-container {
     flex: 1 0 auto;
     display: grid;
     grid-template-columns: repeat(2, min-content);
@@ -323,7 +299,15 @@ input[type=range]::-webkit-slider-runnable-track  {
     grid-gap: var(--all-borders);
 }
 
-/****************** chart section ********************/
+.chart-container .scatter-chart-canvas {
+    position: relative;
+}
+
+.chart-container .line-chart-canvas {
+    position: relative;
+}
+
+/****************** canvas section ********************/
 .scatter-chart-canvas {
     --data-point-size: 10;
     --data-point-color: #a55ca5;
@@ -413,23 +397,3 @@ input[type=range]::-webkit-slider-runnable-track  {
     outline: 3px solid var(--kb-color-hsl-purple-200);
     outline-offset: 1px;
 }
-
-/*.x-axis input:invalid {*/
-/*    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);*/
-/*}*/
-
-/*.x-axis input:invalid {*/
-/*    border: calc( 3 * var(--all-borders)) solid var(--kb-rgb-danger-dark);*/
-/*}*/
-
-/*.x-axis input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {*/
-
-/*}*/
-
-/*.x-axis input:-webkit-autofill {*/
-
-/*}*/
-
-/*.chart-container {*/
-/*    !*outline: 1px solid red;*!*/
-/*}*/
