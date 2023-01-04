@@ -38,8 +38,8 @@ const SimpleLineChart = controller => {
     /** @type { HTMLCanvasElement } */
     const canvasElement = document.createElement("canvas");
     
-    canvasElement.id = generateId('line-chart'); //TODO change for line chart
-    canvasElement.classList.add('line-chart-canvas'); //TODO Fehler in getComputedStyle mit line-chart-canvas
+    canvasElement.id = generateId('line-chart');
+    canvasElement.classList.add('line-chart-canvas');
     canvasElement.width = 500; //TODO wenn initialisiert, dann kann width nicht 0 sein..?
     canvasElement.height = 400; //TODO wenn initialisiert, dann kann height nicht 0 sein..?
     
