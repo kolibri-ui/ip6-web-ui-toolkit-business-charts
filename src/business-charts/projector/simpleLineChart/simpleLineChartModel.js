@@ -50,6 +50,11 @@ export { SimpleLineChartModel }
  * @property { ?Array<String> } colors Colors for points //TODO change for line chart
  */
 
+/**
+ * @private
+ * @type {number}
+ */
+let x = 0;
 
 /**
  * TODO: pointSize as configurable parameter
@@ -59,7 +64,6 @@ export { SimpleLineChartModel }
  */
 const SimpleLineChartModel = ({
     data,
-    id,
     xRatio,
     yRatio,
     xEvery,
@@ -72,7 +76,7 @@ const SimpleLineChartModel = ({
 }) => {
     const lineChartAttr = Attribute(data);
     lineChartAttr.getObs(FILTERED_DATA).setValue(data);
-    lineChartAttr.getObs(ELEMENT_ID).setValue(id ?? generateId('line-chart'));
+    lineChartAttr.getObs(ELEMENT_ID).setValue('simple-line-chart-model-' + String(x++));
     lineChartAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
     lineChartAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
     lineChartAttr.getObs(X_EVERY).setValue(xEvery ?? 1);

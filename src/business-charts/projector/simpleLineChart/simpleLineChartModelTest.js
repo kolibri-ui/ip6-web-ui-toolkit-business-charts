@@ -33,7 +33,7 @@ simpleLineChartModelTestSuite.add("model: Line Chart attributes have observables
     const model = SimpleLineChartModel({
         data: data,
         canvasWidth: 658,
-        canvasHeight: 968,
+        canvasHeight: 777,
     });
     assert.is(model.hasObs(VALUE), true);
     assert.is(model.hasObs(FILTERED_DATA), true);
@@ -48,8 +48,8 @@ simpleLineChartModelTestSuite.add("model: Line Chart attributes have observables
     assert.is(model.hasObs(DRAW_OUTER_TICKS), true);
     assert.is(model.hasObs(COLORS), true);
 
-    assert.is(model.getObs(CANVAS_WIDTH).getValue(), 654); //TODO 400 instead of 600
-    assert.is(model.getObs(CANVAS_HEIGHT).getValue(), 965);
+    assert.is(model.getObs(CANVAS_WIDTH).getValue(), 658); //TODO 400 instead of 600
+    assert.is(model.getObs(CANVAS_HEIGHT).getValue(), 777);
     assert.is(model.getObs(DOMAIN_NULL_POINT).getValue().xValue, 200);
     assert.is(model.getObs(DOMAIN_NULL_POINT).getValue().yValue, 200);
 });
