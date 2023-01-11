@@ -82,12 +82,6 @@ const SimpleLineChartController = ( dataArray, opts ) => {
     const { options } = LineChartOptionsModel(opts);
 
     //TODO add offset +1, -1, adapt Unit Tests of the controller
-    // const xMinimum = dataArray.reduce((prev, curr, currentIndex) => prev < curr.xValue ? prev : curr.xValue) - 0; 
-    // const xMaximum = dataArray.reduce((prev, curr, currentIndex) => prev > curr.xValue ? prev : curr.xValue) + 0;
-    // const yMinimum = dataArray.reduce((prev, curr, currentIndex) => (prev ?? yValueStartIndex) < curr.yValue ? prev : curr.yValue) - 0;
-    // const yMaximum = dataArray.reduce((prev, curr, currentIndex) => (prev > curr.yValue ? prev : curr.yValue) + 0;
-    //
-    
     const xMinimum = dataArray.reduce((prev, curr, start) => prev < curr.xValue ? prev : curr.xValue, dataArray[0].xValue) - 0;
     const xMaximum = dataArray.reduce((prev, curr, start) => prev > curr.xValue ? prev : curr.xValue , dataArray[0].xValue) + 0;
     const yMinimum = dataArray.reduce((prev, curr, start) => prev < curr.yValue ? prev : curr.yValue, dataArray[0].yValue) - 0;
@@ -143,9 +137,9 @@ const SimpleLineChartController = ( dataArray, opts ) => {
 };
 
 /**
- * @description Rule to prevent, that max value is less or equal to min value
- * @param min { SimpleInputControllerType<Number> }
- * @param max { SimpleInputControllerType<Number> }
+ * @description Rule to prevent, that max value is less or equal to min value. Max value is at the minimum +1 bigger
+ * @param min { SimpleInputControllerType<Number> } Min value of ordered or unordered Numbers
+ * @param max { SimpleInputControllerType<Number> } Max value of ordered or unordered Numbers
  * @returns {(function(): void)|*}
  */
 const minMaxRule = (min, max) => () => {

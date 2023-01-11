@@ -6,8 +6,8 @@ const SimpleLineChartControllerTestSuite = TestSuite("src/business-charts/projec
 SimpleLineChartControllerTestSuite.add("options and data change line chart", assert => {
     /** @type { Array.<LineChartDataElement> } */
     const data = [
-        { name: "A", xValue: 4, yValue: -4 },
-        { name: "B", xValue: 88, yValue: -88 }
+        { name: "A", xValue: 88, yValue: -4 },
+        { name: "B", xValue: 0, yValue: -88 }
     ];
 
     const xEvery         = 10;
@@ -30,15 +30,62 @@ SimpleLineChartControllerTestSuite.add("options and data change line chart", ass
     assert.is(controller.getOptions().drawOuterTicks, false);
 
     assert.is(controller.getData().at(0).name, "A");
-    assert.is(controller.getData().at(0).xValue, 4);
+    assert.is(controller.getData().at(0).xValue, 88);
     assert.is(controller.getData().at(0).yValue, -4);
 
     assert.is(controller.getData().at(1).name, "B");
-    assert.is(controller.getData().at(1).xValue, 88);
+    assert.is(controller.getData().at(1).xValue, 0);
     assert.is(controller.getData().at(1).yValue, -88);
 
+    //check that the controller sets the minimum and maximum values correctly
+    //first y-value array entry is yMin
+    assert.is(controller.xMin.getValue(), 0); //controller handles negative values correctly
+    assert.is(controller.xMax.getValue(), 88);
+    assert.is(controller.yMin.getValue(), -88); //controller handles negative values correctly
+    assert.is(controller.yMax.getValue(), -4);
+
 });
-SimpleLineChartControllerTestSuite.add("xMin, xMax, yMin, yMax", assert => {
+SimpleLineChartControllerTestSuite.add("first data entry is min value, last data entry is max value", assert => {
+    /** @type { Array.<LineChartDataElement> } */
+    const data = [
+        { name: "A", xValue: -55, yValue: -4 },
+        { name: "B", xValue: 0,   yValue: -2 },
+        { name: "C", xValue: 0,  yValue: -1 }
+    ];
+
+    const controller     = SimpleLineChartController(
+        data);
+
+    assert.is(data.length, 3);
+
+    assert.is(controller.xMin.getValue(), -55); //controller handles negative values correctly
+    assert.is(controller.xMax.getValue(), 0);
+    assert.is(controller.yMin.getValue(), -4); //controller handles negative values correctly
+    assert.is(controller.yMax.getValue(), -1);
+
+});
+
+SimpleLineChartControllerTestSuite.add("first data entry is max value, last data entry is min value", assert => {
+    /** @type { Array.<LineChartDataElement> } */
+    const data = [
+        { name: "A", xValue: 0, yValue: 0 },
+        { name: "B", xValue: -1, yValue: -1 },
+        { name: "C", xValue: -2,  yValue: -1 }
+    ];
+
+    const controller     = SimpleLineChartController(
+        data);
+
+    assert.is(data.length, 3);
+
+    assert.is(controller.xMin.getValue(), -2); //controller handles negative values correctly
+    assert.is(controller.xMax.getValue(), 0);
+    assert.is(controller.yMin.getValue(), -1); //controller handles negative values correctly
+    assert.is(controller.yMax.getValue(), 0);
+
+});
+
+SimpleLineChartControllerTestSuite.add("min max with negative values", assert => {
     /** @type { Array.<LineChartDataElement> } */ const data = [{
         name: 'A', xValue: 0, yValue: 8,
     }, {
@@ -89,7 +136,85 @@ SimpleLineChartControllerTestSuite.add("xMin, xMax, yMin, yMax", assert => {
     assert.is(controller.xMax.getValue(), 18);
     assert.is(controller.yMin.getValue(), -30); //controller handles negative values correctly
     assert.is(controller.yMax.getValue(), 155);
-
 });
+SimpleLineChartControllerTestSuite.add("min max boundaries: all x-values = 0, all y-values = -1", assert => {
+    /** @type { Array.<LineChartDataElement> } */ const data = [{
+        name: 'A', xValue: 0, yValue: -1,
+    }, {
+        name: 'B', xValue: 0, yValue: -1,
+    }, {
+        name: 'C', xValue: 0, yValue: -1,
+    }, {
+        name: 'D', xValue: 0, yValue: -1,
+    }, {
+        name: 'E', xValue: 0, yValue: -1,
+    }, {
+        name: 'F', xValue: 0, yValue: -1,
+    }, {
+        name: 'g', xValue: 0, yValue: -1,
+    },
+    ];
 
+    const controller = SimpleLineChartController(data);
+
+    /** @type { Array<LineChartDataElement> } */
+    const dataArray = [];
+
+    for (let i = 0; i < data.length; i++) {
+        dataArray.push({
+            name: data[i].name,
+            xValue: data[i].xValue,
+            yValue: data[i].yValue
+        })
+    }
+
+    controller.setData(dataArray);
+    assert.is(dataArray.length, 7);
+
+    //check that the controller sets the minimum and maximum values correctly
+    assert.is(controller.xMin.getValue(), 0); //controller handles negative values correctly
+    assert.is(controller.xMax.getValue(), 1); //controller sets +1 if xMin == xMax
+    assert.is(controller.yMin.getValue(), -1); //controller handles negative values correctly
+    assert.is(controller.yMax.getValue(), 0); //controller sets +1 if yMin == yMax
+});
+SimpleLineChartControllerTestSuite.add("min max boundaries: all x-values = -1, all y-values = 0", assert => {
+    /** @type { Array.<LineChartDataElement> } */ const data = [{
+        name: 'A', xValue: -1, yValue: 0,
+    }, {
+        name: 'B', xValue: -1, yValue: 0,
+    }, {
+        name: 'C', xValue: -1, yValue: 0,
+    }, {
+        name: 'D', xValue: -1, yValue: 0,
+    }, {
+        name: 'E', xValue: -1, yValue: 0,
+    }, {
+        name: 'F', xValue: -1, yValue: 0,
+    }, {
+        name: 'g', xValue: -1, yValue: 0,
+    },
+    ];
+
+    const controller = SimpleLineChartController(data);
+
+    /** @type { Array<LineChartDataElement> } */
+    const dataArray = [];
+
+    for (let i = 0; i < data.length; i++) {
+        dataArray.push({
+            name: data[i].name,
+            xValue: data[i].xValue,
+            yValue: data[i].yValue
+        })
+    }
+
+    controller.setData(dataArray);
+    assert.is(dataArray.length, 7);
+
+    //check that the controller sets the minimum and maximum values correctly
+    assert.is(controller.xMin.getValue(), -1); //controller handles negative values correctly
+    assert.is(controller.xMax.getValue(), 0); //controller sets +1 if the x-values are the same
+    assert.is(controller.yMin.getValue(), 0); //controller handles negative values correctly
+    assert.is(controller.yMax.getValue(), 1);
+});
 SimpleLineChartControllerTestSuite.run();
