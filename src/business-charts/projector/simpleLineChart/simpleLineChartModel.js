@@ -52,9 +52,15 @@ export { SimpleLineChartModel }
 
 /**
  * @private
- * @type {number}
+ * @type { String } id-prefix to identify a unique simple line chart
  */
-let x = 0;
+const chartPrefix = 'simple-line-chart-model-';
+
+/**
+ * @private
+ * @type { !number } accending numbered id-suffix to identify a unique simple line chart
+ */
+let numbering = 0;
 
 /**
  * TODO: pointSize as configurable parameter
@@ -76,7 +82,7 @@ const SimpleLineChartModel = ({
 }) => {
     const lineChartAttr = Attribute(data);
     lineChartAttr.getObs(FILTERED_DATA).setValue(data);
-    lineChartAttr.getObs(ELEMENT_ID).setValue('simple-line-chart-model-' + String(x++));
+    lineChartAttr.getObs(ELEMENT_ID).setValue(chartPrefix + String(numbering++));
     lineChartAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
     lineChartAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
     lineChartAttr.getObs(X_EVERY).setValue(xEvery ?? 1);
