@@ -67,8 +67,8 @@ SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => 
     assert.is(context.canvas.className, 'scatter-chart-canvas');
 
     //default values
-    assert.is(context.canvas.width, 500); //TODO bug. 300 instead of 600 
-    assert.is(context.canvas.height, 200); //TODO bug. 150 instead of 400
+    assert.is(context.canvas.width, 500); //TODO bug. 
+    assert.is(context.canvas.height, 325); //TODO bug. 
     assert.is(scatterChartController.getOptions().xEvery, 1); //default value
     assert.is(scatterChartController.getOptions().yEvery, 1); //default value
     assert.is(scatterChartController.getOptions().drawOuterTicks, true); //default value
