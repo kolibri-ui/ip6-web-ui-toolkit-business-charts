@@ -5,13 +5,15 @@
 import { Observable } from "./observable.js";
 import { id }         from "./stdlib.js";
 
-export { Attribute, QualifiedAttribute,
-         presentationModelFromAttributeNames,
-         valueOf, readQualifierValue,
-         VALID, VALUE, EDITABLE, LABEL, NAME, TYPE,
-         FILTERED_DATA, ELEMENT_ID, X_RATIO, Y_RATIO, X_EVERY, Y_EVERY,
-         CANVAS_WIDTH, CANVAS_HEIGHT, DOMAIN_NULL_POINT,
-         DRAW_OUTER_TICKS, COLORS, X_MIN, X_MAX, Y_MIN, Y_MAX }
+export {
+    Attribute, QualifiedAttribute,
+    presentationModelFromAttributeNames,
+    valueOf, readQualifierValue,
+    VALID, VALUE, EDITABLE, LABEL, NAME, TYPE,
+    FILTERED_DATA, ELEMENT_ID, X_RATIO, Y_RATIO, X_EVERY, Y_EVERY,
+    CANVAS_WIDTH, CANVAS_HEIGHT, DOMAIN_NULL_POINT,
+    DRAW_OUTER_TICKS, COLORS, X_MIN, X_MAX, Y_MIN, Y_MAX
+}
 
 /**
  * @typedef {
@@ -31,17 +33,17 @@ export { Attribute, QualifiedAttribute,
 /** @type ObservableTypeString */ const TYPE     = "type"; // HTML input types: text, number, checkbox, etc.
 
 // Observable type strings for Charts
-/** @type ObservableTypeString */ const FILTERED_DATA  = "filteredData";
-/** @type ObservableTypeString */ const ELEMENT_ID  = "elementId";
-/** @type ObservableTypeString */ const X_RATIO  = "xRatio";
-/** @type ObservableTypeString */ const Y_RATIO  = "yRatio";
-/** @type ObservableTypeString */ const X_EVERY  = "xEvery";
-/** @type ObservableTypeString */ const Y_EVERY  = "yEvery";
-/** @type ObservableTypeString */ const CANVAS_WIDTH = "canvasWidth";
-/** @type ObservableTypeString */ const CANVAS_HEIGHT = "canvasWidth";
+/** @type ObservableTypeString */ const FILTERED_DATA     = "filteredData";
+/** @type ObservableTypeString */ const ELEMENT_ID        = "elementId";
+/** @type ObservableTypeString */ const X_RATIO           = "xRatio";
+/** @type ObservableTypeString */ const Y_RATIO           = "yRatio";
+/** @type ObservableTypeString */ const X_EVERY           = "xEvery";
+/** @type ObservableTypeString */ const Y_EVERY           = "yEvery";
+/** @type ObservableTypeString */ const CANVAS_WIDTH      = "canvasWidth";
+/** @type ObservableTypeString */ const CANVAS_HEIGHT     = "canvasHeight";
 /** @type ObservableTypeString */ const DOMAIN_NULL_POINT = "domainNullPoint";
-/** @type ObservableTypeString */ const DRAW_OUTER_TICKS = "drawOuterTicks";
-/** @type ObservableTypeString */ const COLORS = "colors";
+/** @type ObservableTypeString */ const DRAW_OUTER_TICKS  = "drawOuterTicks";
+/** @type ObservableTypeString */ const COLORS            = "colors";
 
 /** @type ObservableTypeString */ const X_MIN = "xMin";
 /** @type ObservableTypeString */ const X_MAX = "xMax";
@@ -67,10 +69,10 @@ const valueOf = attribute => attribute.getObs(VALUE).getValue();
  * @constructor
  * @example
  * const pm = presentationModelFromAttributeNames(["firstname", "lastname"]);
-*/
+ */
 const presentationModelFromAttributeNames = attributeNames => {
     const result = Object.create(null);                 // make sure that we have no prototype
-    attributeNames.forEach ( attributeName => {
+    attributeNames.forEach(attributeName => {
         const attribute = Attribute(undefined);
         attribute.getObs(LABEL).setValue(attributeName); // default: use the attribute name as the label
         result[attributeName] = attribute;
@@ -81,12 +83,12 @@ const presentationModelFromAttributeNames = attributeNames => {
 /**
  * @typedef ModelWorldType
  * @template T
- * @property { ( getQualifier:function():String, name:ObservableTypeString, observable: IObservable<T> ) => void } update -
- *              update the value of the named observableType for all attributes that have the same qualifier.
- *              Add the respective observable if it not yet known.
- * @property { (qualifier:String, newQualifier:String, observables:Object<String, IObservable<T>>) => void} updateQualifier -
- *              handle the change when an attribute changes its qualifier such that all respective
- *              internal indexes need to be updated, their values are updated, and nullish newQualifier leads to removal.
+ * @property { ( getQualifier:function():String, name:ObservableTypeString, observable: IObservable<T> ) => void }
+ *     update - update the value of the named observableType for all attributes that have the same qualifier. Add the
+ *     respective observable if it not yet known.
+ * @property { (qualifier:String, newQualifier:String, observables:Object<String, IObservable<T>>) => void}
+ *     updateQualifier - handle the change when an attribute changes its qualifier such that all respective internal
+ *     indexes need to be updated, their values are updated, and nullish newQualifier leads to removal.
  * @property { (qualifier:String) => T} readQualifierValue
  */
 
@@ -106,24 +108,25 @@ const ModelWorld = () => {
     };
 
     // handle the change of a value
-    const update = (getQualifier, name, observable) => {
+    const update          = (getQualifier, name, observable) => {
         const qualifier = getQualifier(); // lazy get
         if (null == qualifier) { return; }
-        const key = qualifier + "." + name; // example: "Person.4711.firstname" "VALID" -> "Person.4711.firstname.VALID"
+        const key        = qualifier + "." + name; // example: "Person.4711.firstname" "VALID" ->
+                                                   // "Person.4711.firstname.VALID"
         const candidates = data[key];
         if (null == candidates) {
-            data[key] = [observable]; // nothing to notify
+            data[key] = [ observable ]; // nothing to notify
             return;
         }
         let found = false;
-        candidates.forEach ( candidate => {
-           if (candidate === observable) {
-               found = true;
-           } else {
-               candidate.setValue(observable.getValue());
-           }
+        candidates.forEach(candidate => {
+            if (candidate === observable) {
+                found = true;
+            } else {
+                candidate.setValue(observable.getValue());
+            }
         });
-        if (! found) {
+        if (!found) {
             candidates.push(observable); // lazy init: we should have been in the list
         }
     };
@@ -132,9 +135,9 @@ const ModelWorld = () => {
         for (const name in observables) {
             const observable = observables[name];
             if (null != qualifier) {                    // remove qualifier from old candidates
-                const oldKey = qualifier + "." + name;
+                const oldKey        = qualifier + "." + name;
                 const oldCandidates = data[oldKey];
-                const foundIndex = oldCandidates.indexOf(observable);
+                const foundIndex    = oldCandidates.indexOf(observable);
                 if (foundIndex > -1) {
                     oldCandidates.splice(foundIndex, 1);
                 }
@@ -142,8 +145,8 @@ const ModelWorld = () => {
                     delete data[oldKey];
                 }
             }
-            if (null != newQualifier){                  // add to new candidates
-                const newKey = newQualifier + "." + name;
+            if (null != newQualifier) {                  // add to new candidates
+                const newKey      = newQualifier + "." + name;
                 let newCandidates = data[newKey];
                 if (null == newCandidates) {
                     data[newKey]  = [];
@@ -167,8 +170,8 @@ const modelWorld = ModelWorld();
 const readQualifierValue = modelWorld.readQualifierValue; // specific export
 
 /**
- * Convenience constructor of an {@link Attribute} that builds its initial value from already existing qualified values (if any)
- * instead of overriding possibly existing qualified values with the constructor value.
+ * Convenience constructor of an {@link Attribute} that builds its initial value from already existing qualified values
+ * (if any) instead of overriding possibly existing qualified values with the constructor value.
  * @constructor
  * @template T
  * @param { String } qualifier - mandatory. Nullish values make no sense here since one can use {@link Attribute}.
@@ -214,10 +217,9 @@ const QualifiedAttribute = qualifier => Attribute(readQualifierValue(qualifier),
  *              There can only ever be at most one converter on an attribute.
  * @property { (validator:?Validator) => void } setValidator - use specialized Validator, default is null.
  *              There can only ever be at most one validator on an attribute.
- * @property { (newQualifier:?String) => void } setQualifier - setting the qualifier can have a wide-ranging impact since
- *              the ModelWorld keeps all attributes with the same qualifier synchronized. Any non-nullish qualifier
- *              adds/keeps the attribute to the ModelWorld, any nullish qualifier removes the attribute from
- *              the ModelWorld.
+ * @property { (newQualifier:?String) => void } setQualifier - setting the qualifier can have a wide-ranging impact
+ *     since the ModelWorld keeps all attributes with the same qualifier synchronized. Any non-nullish qualifier
+ *     adds/keeps the attribute to the ModelWorld, any nullish qualifier removes the attribute from the ModelWorld.
  * @property { function(): ?String } getQualifier - the optional qualifier
  */
 /**
@@ -240,8 +242,10 @@ const Attribute = (value, qualifier) => {
 
     const getQualifier = () => qualifier;
     const setQualifier = newQualifier => {
-        const oldQualifier = qualifier;     // store for use in updateQualifier, since that needs the value to properly unregister
-        qualifier = newQualifier;           // since updateQualifier sets the qualifier and calls the attribute back to read it, it must have the new value
+        const oldQualifier = qualifier;     // store for use in updateQualifier, since that needs the value to properly
+                                            // unregister
+        qualifier          = newQualifier;           // since updateQualifier sets the qualifier and calls the
+                                                     // attribute back to read it, it must have the new value
         modelWorld.updateQualifier(oldQualifier, qualifier, observables);
     };
 
@@ -251,21 +255,22 @@ const Attribute = (value, qualifier) => {
 
         const observable = Observable(initValue); // we might observe more types than just T, for example VALID: Boolean
 
-        // noinspection JSValidateTypes // issue with T as generic parameter for the observed value and other observed types
+        // noinspection JSValidateTypes // issue with T as generic parameter for the observed value and other observed
+        // types
         observables[name] = observable;
         // noinspection JSCheckFunctionSignatures
-        observable.onChange( _ => modelWorld.update(getQualifier, name, observable) );
+        observable.onChange(_ => modelWorld.update(getQualifier, name, observable));
         return observable;
     };
 
     const getObs = (name, initValue = null) =>
         hasObs(name)
-            ? observables[name]
-            : makeObservable(name, initValue);
+        ? observables[name]
+        : makeObservable(name, initValue);
 
     getObs(VALUE, value); // initialize the value at least
 
-    let   convert           = id ;
+    let convert             = id;
     const setConverter      = converter => {
         convert = converter;
         setConvertedValue(getObs(VALUE).getValue());
@@ -274,11 +279,11 @@ const Attribute = (value, qualifier) => {
 
     let validator        = undefined;  // the current validator in use, might change over time
     let validateListener = undefined;  // the "validate" listener on the attribute, lazily initialized
-    const setValidator = newValidator => {
+    const setValidator   = newValidator => {
         validator = newValidator;
-        if (! validateListener && validator) {
+        if (!validateListener && validator) {
             validateListener = val => getObs(VALID).setValue(validator ? validator(val) : true);
-            getObs(VALUE).onChange( validateListener );
+            getObs(VALUE).onChange(validateListener);
         }
     };
 
