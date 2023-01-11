@@ -3,9 +3,9 @@
 export { energyDataFile }
 
 /** @type { Array.<LineChartDataElement> } */ const energyDataFile = [{
-    name: 'A', xValue: -20, yValue: 10,
+    name: 'A', xValue: -22, yValue: -33,
 }, {
-    name: 'B', xValue: -10, yValue: -10, //input field listens only from this value
+    name: 'B', xValue: -20, yValue: -30, //input field listens only from this value
 }, {
     name: 'C', xValue: 0, yValue: 10,
 }, {
@@ -15,7 +15,7 @@ export { energyDataFile }
 }, {
     name: 'F', xValue: 30, yValue: -10,
 }, {
-    name: 'G', xValue: 40, yValue: 10,
+    name: 'G', xValue: 44, yValue: 33,
 },
 ];
 

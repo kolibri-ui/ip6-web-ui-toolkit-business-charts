@@ -17,8 +17,10 @@ SimpleLineChartControllerTestSuite.add("options and data change line chart", ass
 
     const controller     = SimpleLineChartController(
         data, options);
+    
+    assert.is(data.length, 2);
 
-    //check that data values are set
+    //check that data values are set correctly
     let foundData = false;
     controller.onDataChanged( () => foundData = true );
     assert.is(foundData, true);
@@ -26,6 +28,10 @@ SimpleLineChartControllerTestSuite.add("options and data change line chart", ass
     assert.is(controller.getOptions().xEvery, 10);
     assert.is(controller.getOptions().yEvery, 20);
     assert.is(controller.getOptions().drawOuterTicks, false);
+
+    assert.is(controller.getData().at(0).name, "A");
+    assert.is(controller.getData().at(0).xValue, 4);
+    assert.is(controller.getData().at(0).yValue, -4);
 
     assert.is(controller.getData().at(1).name, "B");
     assert.is(controller.getData().at(1).xValue, 88);
@@ -54,10 +60,6 @@ SimpleLineChartControllerTestSuite.add("xMin, xMax, yMin, yMax", assert => {
 
     /** @type { Array<LineChartDataElement> } */
     const dataArray = [];
-    const xMin = controller.xMin.getValue();
-    const xMax = controller.xMax.getValue();
-    const yMin = controller.yMin.getValue();
-    const yMax = controller.yMax.getValue();
 
     for (let i = 0; i < data.length; i++) {
         dataArray.push({
@@ -66,14 +68,11 @@ SimpleLineChartControllerTestSuite.add("xMin, xMax, yMin, yMax", assert => {
             yValue: data[i].yValue
         })
     }
-
-    assert.is(xMin, -3);
-    assert.is(xMax, 18); 
-    assert.is(yMin, -30);
-    assert.is(yMax, 155);
     
     controller.setData(dataArray);
-    
+    assert.is(dataArray.length, 7);
+
+    //test border values, test initial values
     assert.is(controller.getData().at(0).xValue, 0); // first xValue
     assert.is(controller.getData().at(0).yValue, 8); // first yValue
     assert.is(controller.getData().reverse().at(0).xValue, 13); // last xValue
@@ -85,10 +84,12 @@ SimpleLineChartControllerTestSuite.add("xMin, xMax, yMin, yMax", assert => {
     assert.is(controller.getOptions().xEvery, 1); //default value
     assert.is(controller.getOptions().drawOuterTicks, true); //default value
 
-    assert.is(controller.xMin.getValue(), -3);
+    //check that the controller sets the minimum and maximum values correctly
+    assert.is(controller.xMin.getValue(), -3); //controller handles negative values correctly
     assert.is(controller.xMax.getValue(), 18);
-    assert.is(controller.yMin.getValue(), -30);
+    assert.is(controller.yMin.getValue(), -30); //controller handles negative values correctly
     assert.is(controller.yMax.getValue(), 155);
 
 });
+
 SimpleLineChartControllerTestSuite.run();

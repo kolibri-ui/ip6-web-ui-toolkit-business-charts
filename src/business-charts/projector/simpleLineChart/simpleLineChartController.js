@@ -82,10 +82,16 @@ const SimpleLineChartController = ( dataArray, opts ) => {
     const { options } = LineChartOptionsModel(opts);
 
     //TODO add offset +1, -1, adapt Unit Tests of the controller
-    const xMinimum = dataArray.reduce((prev, curr) => prev < curr.xValue ? prev : curr.xValue) - 0; 
-    const xMaximum = dataArray.reduce((prev, curr) => prev > curr.xValue ? prev : curr.xValue) + 0;
-    const yMinimum = dataArray.reduce((prev, curr) => prev < curr.yValue ? prev : curr.yValue) - 0;
-    const yMaximum = dataArray.reduce((prev, curr) => prev > curr.yValue ? prev : curr.yValue) + 0;
+    // const xMinimum = dataArray.reduce((prev, curr, currentIndex) => prev < curr.xValue ? prev : curr.xValue) - 0; 
+    // const xMaximum = dataArray.reduce((prev, curr, currentIndex) => prev > curr.xValue ? prev : curr.xValue) + 0;
+    // const yMinimum = dataArray.reduce((prev, curr, currentIndex) => (prev ?? yValueStartIndex) < curr.yValue ? prev : curr.yValue) - 0;
+    // const yMaximum = dataArray.reduce((prev, curr, currentIndex) => (prev > curr.yValue ? prev : curr.yValue) + 0;
+    //
+    
+    const xMinimum = dataArray.reduce((prev, curr, start) => prev < curr.xValue ? prev : curr.xValue, dataArray[0].xValue) - 0;
+    const xMaximum = dataArray.reduce((prev, curr, start) => prev > curr.xValue ? prev : curr.xValue , dataArray[0].xValue) + 0;
+    const yMinimum = dataArray.reduce((prev, curr, start) => prev < curr.yValue ? prev : curr.yValue, dataArray[0].yValue) - 0;
+    const yMaximum = dataArray.reduce((prev, curr, start) => prev > curr.yValue ? prev : curr.yValue, dataArray[0].yValue) + 0;
 
     /** @type { SimpleInputControllerType<Number> } */
     const xMin = SimpleInputController({
