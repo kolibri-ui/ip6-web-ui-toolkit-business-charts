@@ -39,7 +39,7 @@ const rubberBandTool = (canvasElement, callbacks) => {
                 ctx.beginPath();
                 ctx.rect(rubberbandStartX, rubberbandStartY, posX - rubberbandStartX, posY - rubberbandStartY);
                 ctx.stroke();
-                ctx.setLineDash([])
+                ctx.setLineDash([]);
             }
         },
         mouseUp: (event) => {
@@ -59,7 +59,7 @@ const rubberBandTool = (canvasElement, callbacks) => {
                         Math.max(...[rubberbandStartX, endX]),
                         Math.min(...[rubberbandStartY, endY]),
                         Math.max(...[rubberbandStartY, endY])
-                    )
+                    );
                 } else {
                     callbacks.redraw();
                 }
