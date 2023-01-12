@@ -255,7 +255,7 @@ input[type=range]::-webkit-slider-runnable-track  {
     background-color: var(--kb-rgb-primary-dark);
     transition: 0.4s;
 }
-.button:active {
+.button:active, .button.active {
     color: var(--kb-color-rgb-purple-200);
     background-color: var(--kb-rgb-primary-dark);
     transition: 0.1s;
