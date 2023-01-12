@@ -26,8 +26,10 @@ const selectionTool = (canvasElement, callbacks) => {
 
                 if (dataPointHovered !== undefined) {
                     // TODO: Tooltip anzeigen
+                    console.log('hovered over point');
                 } else {
                     // TODO: Tooltip ausblenden
+                    console.log('left point');
                 }
             }
 
@@ -41,6 +43,8 @@ const selectionTool = (canvasElement, callbacks) => {
             const point = callbacks.getDataPointForPosition(mouseX, mouseY);
 
             callbacks.selectDataPoint(point);
+
+            console.log(`point selected: ${point}`);
         }
     };
 };
