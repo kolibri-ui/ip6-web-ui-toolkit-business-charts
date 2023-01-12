@@ -12,6 +12,7 @@ export { ToolBarProjector }
 
 /**
  * @typedef ChartToolType
+ * @property { String } title
  * @property { String } icon
  * @property { mouseMove?: (event: MouseEvent) => void } mouseMove
  * @property { mouseDown?: (event: MouseEvent) => void } mouseDown
@@ -20,27 +21,51 @@ export { ToolBarProjector }
  */
 
 const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
-    const tools = [];
+    const tools       = [];
+    const toolButtons = [];
+
     /** @type { ChartToolBarCallbacks } */
     const toolCallbacks = {
-        getData: controller.getData,
-        getOptions: canvasCallbacks.getOptions,
-        setCanvasBoundaries: canvasCallbacks.setCanvasBoundaries,
+        getData                : controller.getData,
+        getOptions             : canvasCallbacks.getOptions,
+        setCanvasBoundaries    : canvasCallbacks.setCanvasBoundaries,
         getDataPointForPosition: canvasCallbacks.getDataPointForPosition,
-        selectDataPoint: controller.selectDataPoint,
-        redraw: canvasCallbacks.redraw
+        selectDataPoint        : controller.selectDataPoint,
+        redraw                 : canvasCallbacks.redraw
     };
 
     const toolBarElement = document.createElement("div");
     toolBarElement.classList.add(`tool-bar`);
 
     for (const tool of controller.tools) {
-        tools.push(tool(canvasElement, toolCallbacks));
+        const t = tool(canvasElement, toolCallbacks);
+        tools.push(t);
 
-        // TODO: button erstellen und in div einfügen
+        const buttonElement = document.createElement("button");
+        buttonElement.classList.add('button');
+        buttonElement.append(document.createTextNode(t.title));
+
+        toolButtons.push(buttonElement);
+
+        buttonElement.onclick = (_) => {
+            for (const toolButton of toolButtons) {
+                toolButton === buttonElement
+                ? toolButton.classList.add('active')
+                : toolButton.classList.remove('active');
+
+                toolButton === buttonElement
+                ? toolButton.focus()
+                : toolButton.active = false;
+            }
+
+            controller.selectTool(t);
+        };
+
+        toolBarElement.append(buttonElement);
     }
 
     controller.selectTool(tools[0]);
+    toolButtons[0].classList.add('active');
 
     canvasElement.onclick = (event) => {
         const selectedTool = controller.selectedTool();
