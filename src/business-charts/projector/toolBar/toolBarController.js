@@ -4,6 +4,7 @@ import {
 }                         from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 import { rubberBandTool } from "./tools/RubberbandTool.js";
 import { selectionTool }  from "./tools/SelectionTool.js";
+import { panningTool }    from "./tools/PanningTool.js";
 
 export { ToolBarController }
 
@@ -43,6 +44,7 @@ const ToolBarController = (controllerCallbacks, tools) => {
     tools = [
         selectionTool,
         rubberBandTool,
+        panningTool,
         ...(tools ?? [])
     ];
 
