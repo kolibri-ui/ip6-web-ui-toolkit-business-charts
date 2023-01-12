@@ -12,6 +12,7 @@ const selectionTool = (canvasElement, callbacks) => {
     let dataPointHovered;
 
     return {
+        title: 'Selection',
         icon: '',
         mouseMove: (event) => {
             const rect       = canvasElement.getBoundingClientRect();

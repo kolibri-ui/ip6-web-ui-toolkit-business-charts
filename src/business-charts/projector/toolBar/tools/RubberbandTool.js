@@ -15,6 +15,7 @@ const rubberBandTool = (canvasElement, callbacks) => {
     let eventstart = 0;
 
     return {
+        title: 'Rubberband',
         icon: '',
         mouseDown: (event) => {
             const rect       = canvasElement.getBoundingClientRect();
