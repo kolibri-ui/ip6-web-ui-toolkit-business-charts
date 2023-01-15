@@ -30,8 +30,61 @@
   <!-- top toolbar ------------------------------------------------->
   <div class="toolbar top">
     <div class="toolbar top left">
-      <!--            <input type="file" id="myFile" datasrc="20221223_ogd51_wochenstatistik_elektrizitaetsbilanz.csv">-->
-      <button type="button" onclick="alert('slect a datapoint for more details')" id="select-button" class="tool-bar">select data point</button>
+      <div class="tooltip">
+        <button type="button" onclick="alert('search data info')" id="search-button" class="toolbar-button">
+          <embed src="./svg-icons/searchIconV1.svg">
+          <span class="tooltipText">search data
+          </span>
+        </button>
+      </div>
+
+    </div>
+    <div class="toolbar top middle">
+      <div class="tooltip">
+          <button type="button" onclick="alert('select a datapoint for more details')" id="select-button" class="toolbar-button">
+            <embed src="./svg-icons/selectIconV3.svg">
+            <span class="tooltipText">select data point
+            </span>
+          </button>
+      </div>
+      <div class="tooltip">
+        <button type="button" onclick="alert('select a datapoint for more details')" id="rubberBandSelect-button" class="toolbar-button">
+          <embed src="./svg-icons/rubberBandSelectV5.svg">
+          <span class="tooltipText">rubber band selection
+            </span>
+        </button>
+      </div>
+      <div class="tooltip">
+        <button type="button" onclick="alert('rubber band zoom in')" id="rubberBandZoom-button" class="toolbar-button">
+          <embed src="./svg-icons/rubberBandZoomV5.svg">
+          <span class="tooltipText">rubber band zoom in
+          </span>
+        </button>
+      </div>
+      <div class="tooltip">
+        <button type="button" onclick="alert('panning on axes')" id="pan-button" class="toolbar-button">
+          <embed src="./svg-icons/panIconV4.svg">
+          <span class="tooltipText">pan on axes
+          </span>
+        </button>
+      </div>
+      <div class="tooltip">
+        <button type="button" onclick="alert('zoom In')" id="zoomIn-button" class="toolbar-button">
+          <embed src="./svg-icons/zoomInIconV1.svg">
+          <span class="tooltipText">zoom in into chart
+          </span>
+        </button>
+      </div>
+      <div class="tooltip">
+        <button type="button" onclick="alert('zoom Out')" id="zoomOut-button" class="toolbar-button">
+          <embed src="./svg-icons/zoomOutIconV1.svg">
+          <span class="tooltipText">zoom out from chart
+          </span>
+        </button>
+      </div>
+    </div>
+    <div class="tool-bar top right">
+
     </div>
   </div>
 
