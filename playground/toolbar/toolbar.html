@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Line Chart Demo</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/kolibri.png"/>
+  <link rel="stylesheet"                     href="../../src/Kolibri/docs/css/kolibri-base.css">
+  <link rel="stylesheet"                     href="../../src/Kolibri/docs/css/kolibri-light-colors.css">
+  <link rel="stylesheet"                     href="../../demo/charts-css/charts-style.css"/>
+  <link rel="stylesheet"                     href="../../demo/simple-scatter-chart/simple-scatter-chart-demo.css"/>
+</head>
+<body>
+
+<!-- header ----------------------------------------------------->
+<div class="header">
+  <div class="title h1">
+    <h1>Kolibri Business Charts</h1>
+    <div class="subtitle h3">
+      <h3>Simple Line Chart</h3>
+    </div>
+  </div>
+  <div class="kolibri-logo-anim">
+    <div class="kolibri-logo">
+    </div>
+  </div>
+</div>
+
+<div class="interaction-section"> <!-- includes chart section, top & bottom toolbar -->
+
+  <!-- top toolbar ------------------------------------------------->
+  <div class="toolbar top">
+    <div class="toolbar top left">
+      <!--            <input type="file" id="myFile" datasrc="20221223_ogd51_wochenstatistik_elektrizitaetsbilanz.csv">-->
+      <button type="button" onclick="alert('slect a datapoint for more details')" id="select-button" class="tool-bar">select data point</button>
+    </div>
+  </div>
+
+  <!-- chart section ----------------------------------------------->
+  <div class="container" id="container">
+  </div>
+
+  <!-- bottom toolbar ---------------------------------------------->
+  <div class="toolbar bottom">
+    <div class="toolbar bottom left">
+      <label class="color-picker" for="data-point-color">Color of data points </label>
+      <input type="color" id="data-point-color">
+    </div>
+    <div class="toolbar bottom middle">
+      <div class="slide-container">
+        <label for="data-point-size">Size of data points </label>
+        <input type="range" name="rangeInput" value="5" min="5" max="15" class="slider"
+               id="data-point-size" oninput="this.nextElementSibling.value = this.value">
+        <output>5</output>
+      </div>
+    </div>
+    <div class="toolbar bottom right">
+      <button type="button" class ="button" id="data-point-random-data">Switch data randomly</button>&nbsp;or resize window
+    </div>
+  </div>
+
+</div>
+
+<!-- footer ------------------------------------------------------>
+<div class="footer">
+  made by Roger Kreienb&uumlhl and Valentina Giampa
+</div>
+
+<script src="../../demo/simple-scatter-chart/simple-scatter-chart-demo.js" type="module"></script>
+
+</body>
+</html>
