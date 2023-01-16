@@ -5,6 +5,8 @@ import {
 import { rubberBandTool } from "./tools/RubberbandTool.js";
 import { selectionTool }  from "./tools/SelectionTool.js";
 import { panningTool }    from "./tools/PanningTool.js";
+import { zoomInTool }     from "./tools/ZoomInTool.js";
+import { zoomOutTool }    from "./tools/ZoomOut.js";
 
 export { ToolBarController }
 
@@ -42,6 +44,8 @@ const ToolBarController = (controllerCallbacks, tools) => {
     const { selectedTool } = SelectedToolModel();
 
     tools = [
+        zoomInTool,
+        zoomOutTool,
         selectionTool,
         rubberBandTool,
         panningTool,
