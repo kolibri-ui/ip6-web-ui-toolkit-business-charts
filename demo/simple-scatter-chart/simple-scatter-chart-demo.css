@@ -248,7 +248,8 @@ input[type=range]::-webkit-slider-runnable-track  {
     color: var(--kb-rgb-primary-dark);
     background-color: var(--kb-color-hsl-blue-100);
     border-radius: 0;
-    border: none;
+    border: 1px solid var(--kb-rgb-primary-dark);
+
     padding: 0.5em;
 }
 .button:hover {
@@ -323,8 +324,26 @@ input[type=range]::-webkit-slider-runnable-track  {
 }
 
 .toolbar-button {
-    background-color: transparent;
-    border-color: transparent;
-    margin: 1px;
-    padding: 1px;
+    line-height: 0px;
+    background-color: var(--kb-color-hsl-blue-100);
+    border-radius: 0;
+    border: 1px solid var(--kb-rgb-primary-dark);
+    margin: 0px;
+    padding: 0px;
+}
+
+.toolbar-button:hover {
+    color: var(--kb-color-hsl-blue-100);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.4s;
+}
+
+.toolbar-button:active, .toolbar-button.active {
+    color: var(--kb-color-rgb-purple-200);
+    background-color: var(--kb-color-rgb-purple-500);
+    transition: 0.1s;
+}
+
+.toolbar-button > span {
+    line-height: normal;
 }
