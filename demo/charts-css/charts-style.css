@@ -90,7 +90,7 @@
 
 .x-axis input {
     margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
-    border: calc( 3 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
     padding: 0.5em;
     font-family: var(--font-sans-serif);
     font-size: var(--font-size-textXS);
@@ -98,7 +98,7 @@
 
 .y-axis input {
     margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
-    border: calc( 3 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
     padding: 0.5em;
     font-family: var(--font-sans-serif);
     font-size: var(--font-size-textXS);
@@ -106,20 +106,20 @@
 
 .x-axis input:focus {
     margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
-    border: calc( 3 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
     padding: 0.5em;
     font-family: var(--font-sans-serif);
     font-size: var(--font-size-textXS);
-    outline: 3px solid var(--kb-color-hsl-purple-200);
-    outline-offset: 1px;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 0.03em;
 }
 
 .y-axis input:focus {
     margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
-    border: calc( 3 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
     padding: 0.5em;
     font-family: var(--font-sans-serif);
     font-size: var(--font-size-textXS);
-    outline: 3px solid var(--kb-color-hsl-purple-200);
-    outline-offset: 1px;
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 0.03em;
 }

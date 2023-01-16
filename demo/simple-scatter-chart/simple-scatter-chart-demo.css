@@ -279,6 +279,59 @@ input[type=range]::-webkit-slider-runnable-track  {
     z-index: 10;
 }
 
+/****************** charts toolbar ********************/
+
+.toolbar-button {
+    line-height: 0;
+    background-color: var(--kb-color-hsl-blue-100);
+    border-radius: 0;
+    border: 1px solid var(--kb-rgb-primary-dark);
+    margin: 0.2em 0.1em;
+    padding: 0.1em;
+}
+
+.toolbar-button:hover {
+    color: var(--kb-color-hsl-blue-100);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.4s;
+}
+
+.toolbar-button:active, .toolbar-button.active {
+    color: var(--kb-color-rgb-purple-200);
+    background-color: var(--kb-color-rgb-purple-500);
+    transition: 0.1s;
+}
+
+.toolbar-button > span {
+    line-height: normal;
+}
+
+/****************** search field ********************/
+
+.search-field {
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+    padding: 0.5em;
+    /*color: var(--kb-rgb-primary-dark);*/
+
+    height: 45px;
+    width: 229px;
+
+    background: var(--kb-rgb-primary-accent);
+    background-color: white;
+    border-radius: 0;
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    margin-left: 0.1em;
+}
+
+.search-field:focus {
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 0.03em;
+}
+
+/****************** tooltip ********************/
+
 /* based on https://www.w3schools.com/howto/howto_css_tooltip.asp */
 
 /* Tooltip container */
@@ -290,13 +343,13 @@ input[type=range]::-webkit-slider-runnable-track  {
 /* Tooltip text */
 .tooltip .tooltipText {
     visibility: visible;
-    width: 120px;
+    width: max-content;
     background-color: var(--kb-color-rgb-purple-100);
     border: 1px solid var(--kb-color-rgb-purple-500); /*var(--kb-rgb-primary-dark);*/
     font-size: var(--font-size-textXS);
     color: var(--kb-rgb-primary-dark);
     text-align: center;
-    padding: 5px 0;
+    padding: 3px 5px;
 
     /* Position the tooltip text - see examples below! */
     position: absolute;
@@ -319,30 +372,4 @@ input[type=range]::-webkit-slider-runnable-track  {
     top: 100%;
     left: 50%;
     margin: 0;
-
-}
-
-.toolbar-button {
-    line-height: 0;
-    background-color: var(--kb-color-hsl-blue-100);
-    border-radius: 0;
-    border: 1px solid var(--kb-rgb-primary-dark);
-    margin: 1px 2px;
-    padding: 0;
-}
-
-.toolbar-button:hover {
-    color: var(--kb-color-hsl-blue-100);
-    background-color: var(--kb-rgb-primary-dark);
-    transition: 0.4s;
-}
-
-.toolbar-button:active, .toolbar-button.active {
-    color: var(--kb-color-rgb-purple-200);
-    background-color: var(--kb-color-rgb-purple-500);
-    transition: 0.1s;
-}
-
-.toolbar-button > span {
-    line-height: normal;
 }
