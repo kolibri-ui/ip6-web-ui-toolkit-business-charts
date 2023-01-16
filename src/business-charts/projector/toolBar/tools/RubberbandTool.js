@@ -16,6 +16,8 @@ const rubberBandTool = (canvasElement, callbacks) => {
 
     return {
         title: 'Rubberband',
+        type: 'ACTIVATE',
+        tooltip: 'rubberband zooming',
         icon: '',
         mouseDown: (event) => {
             const rect       = canvasElement.getBoundingClientRect();

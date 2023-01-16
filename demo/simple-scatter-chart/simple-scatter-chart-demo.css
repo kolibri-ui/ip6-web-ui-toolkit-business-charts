@@ -77,7 +77,6 @@ body {
     justify-content: space-between;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
     background-color: var(--kb-color-hsl-white);
-    background-color: white;
     align-items: center;
 }
 
@@ -153,7 +152,7 @@ body {
     right: 10px;
     width: 0;
     height: 0;
-    border: 6px solid transparent;
+    border: 6px solid;
     border-color: #fff transparent transparent transparent;
 }
 
@@ -167,7 +166,7 @@ body {
 .select-items div,.select-selected {
     /*color: var(--kb-color-hsl-purple-700);*/
     padding: 8px 16px;
-    border: 1px solid transparent;
+    border: 1px solid;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
 }
@@ -324,12 +323,12 @@ input[type=range]::-webkit-slider-runnable-track  {
 }
 
 .toolbar-button {
-    line-height: 0px;
+    line-height: 0;
     background-color: var(--kb-color-hsl-blue-100);
     border-radius: 0;
     border: 1px solid var(--kb-rgb-primary-dark);
-    margin: 0px;
-    padding: 0px;
+    margin: 1px;
+    padding: 0;
 }
 
 .toolbar-button:hover {
