@@ -13,6 +13,8 @@ const selectionTool = (canvasElement, callbacks) => {
 
     return {
         title: 'Selection',
+        type: 'ACTIVATE',
+        tooltip: 'select',
         icon: '',
         mouseMove: (event) => {
             const rect       = canvasElement.getBoundingClientRect();

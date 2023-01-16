@@ -15,6 +15,8 @@ const panningTool = (canvasElement, callbacks) => {
 
     return {
         title: 'Panning',
+        type: 'ACTIVATE',
+        tooltip: 'panning',
         icon: '',
         mouseDown: (event) => {
             const rect       = canvasElement.getBoundingClientRect();
