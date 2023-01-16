@@ -15,7 +15,7 @@ export { ToolBarProjector }
  * @property { String } title
  * @property { 'CLICK'|'ACTIVATE' } type
  * @property { String } tooltip
- * @property { String } icon
+ * @property { HTMLOrSVGElement } icon
  * @property { mouseMove?: (event: MouseEvent) => void } mouseMove
  * @property { mouseDown?: (event: MouseEvent) => void } mouseDown
  * @property { mouseUp?: (event: MouseEvent) => void } mouseUp
@@ -42,8 +42,8 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
         const t = tool(canvasElement, toolCallbacks);
 
         const buttonElement = document.createElement("button");
-        buttonElement.classList.add('button');
-        buttonElement.append(document.createTextNode(t.title));
+        buttonElement.classList.add('toolbar-button');
+        buttonElement.append(t.icon);
 
         toolButtons.push(buttonElement);
 
