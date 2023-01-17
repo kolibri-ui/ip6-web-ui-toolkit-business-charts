@@ -1,3 +1,4 @@
+import { dom } from "../../../Kolibri/docs/src/kolibri/util/dom.js";
 export { ToolBarProjector }
 
 /**
@@ -41,8 +42,17 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
     for (const tool of controller.tools) {
         const t = tool(canvasElement, toolCallbacks);
 
-        const buttonElement = document.createElement("button");
+        const elements = dom(`
+        <div class="tooltip">
+            <button type="button" class="toolbar-button">
+                <span class="tooltipText">${t.tooltip}
+                </span>
+            </button>
+        </div>`);
+
+        const buttonElement = elements[0].children[0];
         buttonElement.classList.add('toolbar-button');
+
         buttonElement.append(t.icon);
 
         toolButtons.push(buttonElement);
@@ -65,7 +75,7 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
             }
         };
 
-        toolBarElement.append(buttonElement);
+        toolBarElement.append(elements[0]);
 
         if (controller.selectedTool() === null && t.type === 'ACTIVATE') {
             controller.selectTool(t);
