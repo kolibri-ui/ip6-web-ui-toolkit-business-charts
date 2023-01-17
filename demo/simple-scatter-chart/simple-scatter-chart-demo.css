@@ -305,9 +305,11 @@ input[type=range]::-webkit-slider-runnable-track  {
 }
 
 .toolbar-button svg .rectangle-fill-accent {
+    margin: 0;
+    padding: 0;
     fill: var(--kb-color-hsl-blue-100);
-    width: calc(var(--toolbar-button-size) - 0.2em);
-    height: calc(var(--toolbar-button-size) - 0.2em);
+    width: 33px;
+    height: 33px;
 }
 
 .toolbar-button:hover {
@@ -325,6 +327,11 @@ input[type=range]::-webkit-slider-runnable-track  {
 .toolbar-button > span {
     line-height: normal;
 }
+
+/****************** specific toolbar buttons ********************/
+
+
+
 
 /****************** search field ********************/
 
@@ -400,4 +407,8 @@ input[type=range]::-webkit-slider-runnable-track  {
     border-width: 5px;
     border-style: solid;
     border-color: var(--kb-color-hsl-blue-200) transparent transparent transparent;
+}
+
+.move {
+    cursor: move;
 }
