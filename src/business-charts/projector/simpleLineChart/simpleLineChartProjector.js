@@ -9,6 +9,7 @@ import {
     pointDomainToCanvas }      from "../../util/geometryFunctions.js";
 import { generateId }          from "../../util/functions.js";
 import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
+import { ToolBarProjector }        from "../toolBar/toolBarProjector.js";
 
 export { SimpleLineChart }
 
@@ -32,9 +33,9 @@ const SimpleLineChart = controller => {
     const chartElement = document.createElement("div");
     chartElement.classList.add("chart-container");
     
-    const xAxisBar = AxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
-    const yAxisBar = AxisControlBarProjector("Y_AXIS", { min: controller.yMin, max: controller.yMax });
-    
+    // const xAxisBar = AxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
+    // const yAxisBar = AxisControlBarProjector("Y_AXIS", { min: controller.yMin, max: controller.yMax });
+    //
     /** @type { HTMLCanvasElement } */
     const canvasElement = document.createElement("canvas");
     
@@ -43,7 +44,7 @@ const SimpleLineChart = controller => {
     canvasElement.width = 500; //TODO wenn initialisiert, dann kann width nicht 0 sein..?
     canvasElement.height = 400; //TODO wenn initialisiert, dann kann height nicht 0 sein..?
     
-    chartElement.append(yAxisBar, canvasElement, xAxisBar);
+    // chartElement.append(yAxisBar, canvasElement, xAxisBar);
 
     /** @type { CanvasRenderingContext2D } */
     const context = canvasElement.getContext('2d');

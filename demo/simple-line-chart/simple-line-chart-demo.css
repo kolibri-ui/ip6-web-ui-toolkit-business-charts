@@ -5,6 +5,9 @@
     --golden-section-height: calc(var(--golden-section-width) / 1.618);
 
     --all-borders: 1px;
+    /*--toolbar-button-size: 40px;*/
+    /*--search-field-height: calc(var(--toolbar-button-size) + 4 * var(--all-borders));*/
+    /*--search-field-width: calc(6 * var(--toolbar-button-size));*/
 }
 html {
     box-sizing: border-box;
@@ -64,7 +67,8 @@ body {
     flex: 1;
 }
 
-/****************** toolbar section ********************/
+/*
+!****************** toolbar section ********************!
 .toolbar {
     display: flex;
     min-width: fit-content;
@@ -108,6 +112,7 @@ body {
     padding-right: 0.5em;
     min-width: fit-content;
 }
+*/
 
 /****************** item selection ********************/
 /**** Sample 1 ****/
@@ -153,7 +158,7 @@ body {
     right: 10px;
     width: 0;
     height: 0;
-    border: 6px solid transparent;
+    border: 6px solid;
     border-color: #fff transparent transparent transparent;
 }
 
@@ -167,7 +172,7 @@ body {
 .select-items div,.select-selected {
     /*color: var(--kb-color-hsl-purple-700);*/
     padding: 8px 16px;
-    border: 1px solid transparent;
+    border: 1px solid;
     border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
 }

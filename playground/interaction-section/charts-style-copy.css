@@ -1,0 +1,160 @@
+.data-chart-container {
+    position: relative;
+    margin: 0.5em;
+
+    outline: 1px solid red;
+    /*flex: 1 0 auto;*/
+    /*flex-wrap: nowrap;*/
+    flex-direction: row;
+    /*flex: 1 0 auto;*/
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /*grid-template-columns: 2fr 3fr;*/
+    /*grid-auto-columns: minmax(150px, auto);*/
+    grid-auto-columns: minmax(20px, auto);
+    margin-right: 100px;
+    margin-bottom: 100px;
+}
+
+.data-chart-container .data-container .data-section {
+    /*position: relative;*/
+    padding: 0.5em 0.5em;
+    outline: 1px solid green;
+    /*display: grid;*/
+    grid-column: 2;
+}
+
+.data-chart-container .chart-section .chart-container {
+    padding: 0.5em 0.5em;
+    outline: 1px solid blue;
+    grid-column: 1;
+    /*align-self: safe center;*/
+}
+
+/****************** chart container ********************/
+.chart-container {
+    --axis-inner-margin: 0.5em;
+    --axis-width-height: 4em;
+
+    /* TODO wontfix: set shadow on chart-container instead of the axes*/
+    --y-axis-shadow: -4px 4px  8px 1px var(--kolibri-color-shadow),
+    -20px 6px 20px -20px var(--kolibri-color-shadow);
+    --x-axis-shadow: -8px 4px  8px 1px var(--kolibri-color-shadow),
+    -20px 6px 20px -20px var(--kolibri-color-shadow);
+
+    /*flex: 1 0 auto;*/
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, max-content);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    justify-content:center;
+    grid-gap: var(--all-borders);
+    /*justify-self: stretch;*/
+    align-self: safe center;
+}
+
+/****************** canvas section ********************/
+.scatter-chart-canvas {
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+
+    position: relative;
+    z-index: 10;
+    grid-column: 2;
+    grid-row: 2;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+.chart-container .line-chart-canvas {
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+
+    position: relative;
+    z-index: 10;
+    grid-column: 2;
+    grid-row: 2;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+
+.tool-bar {
+    grid-column: span 2;
+    grid-row: 1;
+    display: flex;
+    flex-wrap: wrap;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--y-axis-shadow);
+}
+
+.tool-bar > * {
+    display: block;
+    margin: 5px;
+}
+
+/****************** axis section ********************/
+.y-axis {
+    grid-column: 1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--y-axis-shadow);
+}
+
+.x-axis {
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--x-axis-shadow);
+}
+
+.chart-container label {
+    display: none;
+}
+
+.chart-container input {
+    max-width: var(--axis-width-height);
+}
+
+.x-axis input {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+}
+
+.y-axis input {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+}
+
+.x-axis input:focus {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 0.03em;
+}
+
+.y-axis input:focus {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 0.03em;
+}

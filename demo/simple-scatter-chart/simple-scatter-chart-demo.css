@@ -6,9 +6,9 @@
 
     --all-borders: 1px;
 
-    --toolbar-button-size: 40px;
+/*    --toolbar-button-size: 40px;
     --search-field-height: calc(var(--toolbar-button-size) + 4 * var(--all-borders));
-    --search-field-width: calc(6 * var(--toolbar-button-size));
+    --search-field-width: calc(6 * var(--toolbar-button-size));*/
 }
 html {
     box-sizing: border-box;
@@ -67,7 +67,8 @@ body {
     flex: 1;
 }
 
-/****************** toolbar section ********************/
+/*
+!****************** toolbar section ********************!
 .toolbar {
     display: flex;
     min-width: fit-content;
@@ -110,7 +111,7 @@ body {
     background-color: transparent;
     padding-right: 0.5em;
     min-width: fit-content;
-}
+}*/
 
 /****************** item selection ********************/
 /**** Sample 1 ****/
@@ -283,7 +284,8 @@ input[type=range]::-webkit-slider-runnable-track  {
     z-index: 10;
 }
 
-/****************** charts toolbar buttons ********************/
+/*
+!****************** charts toolbar buttons ********************!
 
 .toolbar-button {
     line-height: 0;
@@ -328,12 +330,12 @@ input[type=range]::-webkit-slider-runnable-track  {
     line-height: normal;
 }
 
-/****************** specific toolbar buttons ********************/
+!****************** specific toolbar buttons ********************!
 
 
 
 
-/****************** search field ********************/
+!****************** search field ********************!
 
 .search-field {
     font-family: var(--font-sans-serif);
@@ -356,28 +358,28 @@ input[type=range]::-webkit-slider-runnable-track  {
     outline-offset: 0.03em;
 }
 
-/****************** tooltip ********************/
+!****************** tooltip ********************!
 
-/* based on https://www.w3schools.com/howto/howto_css_tooltip.asp */
+!* based on https://www.w3schools.com/howto/howto_css_tooltip.asp *!
 
-/* Tooltip container */
+!* Tooltip container *!
 .tooltip {
     position: relative;
     display: inline-block;
 }
 
-/* Tooltip text */
+!* Tooltip text *!
 .tooltip .tooltipText {
     visibility: hidden;
     width: max-content;
     background-color: var(--kb-color-hsl-blue-200);
-    border: 1px solid var(--kb-color-hsl-blue-200); /*var(--kb-rgb-primary-dark);*/
+    border: 1px solid var(--kb-color-hsl-blue-200); !*var(--kb-rgb-primary-dark);*!
     font-size: var(--font-size-textXS);
     color: var(--kb-color-rgb-blue-800);
     text-align: center;
     padding: 3px 5px;
 
-    /* Position the tooltip text - see examples below! */
+    !* Position the tooltip text - see examples below! *!
     position: absolute;
     z-index: 1;
     bottom: 110%;
@@ -385,18 +387,18 @@ input[type=range]::-webkit-slider-runnable-track  {
     opacity: 0;
     transition: opacity 0.3s;
 
-    /* Fade in tooltip */
+    !* Fade in tooltip *!
     opacity: 0;
     transition: opacity 0.3s;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
+!* Show the tooltip text when you mouse over the tooltip container *!
 .tooltip:hover .tooltipText {
     visibility: visible;
     opacity: 1;
 }
 
-/* Tooltip arrow */
+!* Tooltip arrow *!
 .tooltip .tooltipText::after {
     content: "";
     position: absolute;
@@ -411,4 +413,4 @@ input[type=range]::-webkit-slider-runnable-track  {
 
 .move {
     cursor: move;
-}
+}*/
