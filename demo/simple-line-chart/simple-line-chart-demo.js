@@ -9,7 +9,12 @@ import { energyDataFile } from "./energy-data.js";
 // TODO GridLines are still not visible in canvas
 
 
-const data = energyDataFile;
+// const data = energyDataFile;
+
+/** @type { Array.<LineChartDataElement> } */ const data = [
+    { name: 'A', xValue: 1, yValue: 1 },
+    { name: 'B', xValue: 1, yValue: 3 },
+];
 
 const controller = SimpleLineChartController(
     data

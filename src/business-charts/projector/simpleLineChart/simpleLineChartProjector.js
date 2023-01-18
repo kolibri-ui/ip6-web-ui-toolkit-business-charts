@@ -1,12 +1,13 @@
 // noinspection SpellCheckingInspection
 
-import { drawLine } from "../../util/chartFunctions.js";
-import { drawGrid } from "../../util/chartGridFunctions.js";
-import { 
-    calcXRatio, 
-    calcYRatio, 
-    domainToCanvasXY, 
-    pointDomainToCanvas }      from "../../util/geometryFunctions.js";
+import { drawLine, drawPoint } from "../../util/chartFunctions.js";
+import { drawGrid }            from "../../util/chartGridFunctions.js";
+import {
+    calcXRatio,
+    calcYRatio,
+    domainToCanvasXY, pointCanvasToDomain,
+    pointDomainToCanvas
+} from "../../util/geometryFunctions.js";
 import { generateId }          from "../../util/functions.js";
 import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
 import { ToolBarProjector }        from "../toolBar/toolBarProjector.js";
@@ -57,8 +58,8 @@ const SimpleLineChart = controller => {
     //  */
     
     /**
-     *
-     * @returns {{gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: Number, xRatio: Number, yRatio: Number, xEvery: Number, drawOuterTicks: Boolean, canvasHeight: Number, yEvery: Number}, width: Number, colors: Array<String>, height: Number}}
+     * @returns { LineChartOptions }
+     // * @returns {{gridOptions: {nullPoint: CanvasPoint2D, canvasWidth: Number, xRatio: Number, yRatio: Number, xEvery: Number, drawOuterTicks: Boolean, canvasHeight: Number, yEvery: Number}, width: Number, colors: Array<String>, height: Number}}
      */
     const getOptions = () => {
         let { width, height } = canvasElement.getBoundingClientRect();
@@ -111,6 +112,29 @@ const SimpleLineChart = controller => {
      * @param { Array.<LineChartDataElement> } data
      * @param { LineChartOptions } options
      */
+    const drawlinePlotPoints = (
+        ctx,
+        data,
+        options
+    ) => {
+        for (const v of data) {
+            const point = domainToCanvasXY(
+                options.gridOptions.nullPoint,
+                options.gridOptions.xRatio,
+                options.gridOptions.yRatio,
+                v
+            );
+
+            drawPoint(ctx, point.xValue, point.yValue, options.color, options.pointSize);
+        }
+    };
+
+    /**
+     * @description draws 
+     * @param { CanvasRenderingContext2D } ctx
+     * @param { Array.<LineChartDataElement> } data
+     * @param { LineChartOptions } options
+     */
     const drawLineChartPoints = (
         ctx,
         data,
@@ -152,6 +176,7 @@ const SimpleLineChart = controller => {
     ) => {
         drawGrid(ctx, options.gridOptions);
         drawLineChartPoints(ctx, data, options);
+        drawlinePlotPoints(ctx, data, options);
     };
 
     /**
@@ -168,6 +193,69 @@ const SimpleLineChart = controller => {
         const ctx = element.getContext('2d');
         ctx.clearRect(0, 0, options.width, options.height);
         drawLineChart(ctx, data, options);
+    };
+    
+    const redraw = () => redrawLineChart(canvasElement, controller.getData(), getOptions());
+    
+    const setCanvasBoundaries = (xMin, xMax, yMin, yMax) => {
+        const options = getOptions();
+        
+        const domainStart = pointCanvasToDomain(
+            options.width,
+            options.height,
+            controller.xMin.getValue(),
+            controller.xMax.getValue(),
+            controller.yMin.getValue(),
+            controller.xMax.getValue(),
+            {
+                xValue: xMin,
+                yValue: yMin
+            }
+        );
+        
+        const domainEnd = pointCanvasToDomain(
+            options.width,
+            options.height,
+            controller.xMin.getValue(),
+            controller.xMax.getValue(),
+            controller.yMin.getValue(),
+            controller.xMax.getValue(),
+            {
+                xValue: xMax,
+                yValue: yMax
+            }
+        );
+        
+        controller.xMin.setValue(Math.min(...[ domainStart.xValue, domainEnd.xValue ]));
+        controller.xMax.setValue(Math.max(...[ domainStart.xValue, domainEnd.xValue ]));
+        controller.yMin.setValue(Math.min(...[ domainStart.yValue, domainEnd.yValue ]));
+        controller.yMax.setValue(Math.max(...[ domainStart.yValue, domainEnd.yValue ]));
+    };
+    
+    const getDataPointForPosition = (canvasX, canvasY) => {
+        const options = getOptions();
+        for (const point of controller.getData()) {
+            const pointCanvas = pointDomainToCanvas(
+                options.width,
+                options.height,
+                controller.xMin.getValue(),
+                controller.xMax.getValue(),
+                controller.yMin.getValue(),
+                controller.yMax.getValue(),
+                point
+            );
+            
+            const dx = pointCanvas.xValue - canvasX;
+            const dy = pointCanvas.yValue - canvasY;
+            
+            const dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+            
+            if (dist <= options.pointSize) {
+                return point;
+            }
+        }
+        
+        return undefined;
     };
     
     //event listeners
@@ -194,6 +282,23 @@ const SimpleLineChart = controller => {
     styleChangeHandler.observe(canvasElement, {attributes: true, attributeFilter: ["style"]});
     
     drawLineChart(context, controller.getData(), getOptions());
+    
+    const xAxisBar = AxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
+    const yAxisBar = AxisControlBarProjector( "Y_AXIS", { min: controller.yMin, max: controller.yMax });
+    
+    const toolbar = ToolBarProjector(
+        controller.toolBarController,
+        {
+            getOptions,
+            getDataPointForPosition,
+            selectedDataPoint: controller.setSelectedElement,
+            setCanvasBoundaries,
+            redraw
+        },
+        canvasElement
+    );
+    
+    chartElement.append(toolbar, yAxisBar, canvasElement, xAxisBar);
     
     return chartElement;
 };
