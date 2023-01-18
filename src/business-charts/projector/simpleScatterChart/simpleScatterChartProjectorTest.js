@@ -6,9 +6,9 @@ import { SimpleScatterChartController } from "./simpleScatterChartController.js"
 import { AxisControlBarProjector }      from "../axisControlBar/axisControlBarProjector.js";
 import { generateId }                  from "../../util/functions.js";
 
-const SimpleScatterplotChartTestSuite = TestSuite("src/business-charts/projector/simpleScatterplotChartProjector");
+const SimpleScatterplotChartTestSuite = TestSuite("SCP: src/business-charts/projector/simpleScatterplotChartProjector");
 
-SimpleScatterplotChartTestSuite.add("simple scatter chart projector", assert => {
+SimpleScatterplotChartTestSuite.add("SCP: simple scatter chart projector", assert => {
 
     /** @type { Array.<ScatterChartDataElement> } */
     const data = [

@@ -13,9 +13,9 @@ import {
     Y_RATIO
 }                                  from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 
-const simpleScatterplotChartModelSuite = TestSuite("src/business-charts/projector/simpleScatterplotChartModel");
+const simpleScatterplotChartModelSuite = TestSuite("SCM: src/business-charts/projector/simpleScatterplotChartModel");
 
-simpleScatterplotChartModelSuite.add("model: Scatter Chart attributes have observables", assert => {
+simpleScatterplotChartModelSuite.add("SCM: Scatter Chart attributes have observables", assert => {
     /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
         name: '1', xValue: -4, yValue: 3,
     }, {
@@ -43,7 +43,7 @@ simpleScatterplotChartModelSuite.add("model: Scatter Chart attributes have obser
 
 });
 
-simpleScatterplotChartModelSuite.add("model: Scatter Chart attributes get correct observable values", assert => {
+simpleScatterplotChartModelSuite.add("SCM: Scatter Chart attributes get correct observable values", assert => {
     /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
         name: '1', xValue: -4, yValue: 8,
     }, {

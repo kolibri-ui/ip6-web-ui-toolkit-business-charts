@@ -1,9 +1,9 @@
 import { TestSuite }                   from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import { SimpleLineChartController }   from "./simpleLineChartController.js";
 
-const SimpleLineChartControllerTestSuite = TestSuite("src/business-charts/projector/simpleLineChartController");
+const SimpleLineChartControllerTestSuite = TestSuite("LCC: src/business-charts/projector/simpleLineChartController");
 
-SimpleLineChartControllerTestSuite.add("options and data change line chart", assert => {
+SimpleLineChartControllerTestSuite.add("LCC: options and data change line chart", assert => {
     /** @type { Array.<LineChartDataElement> } */
     const data = [
         { name: "A", xValue: 88, yValue: -4 },
@@ -45,7 +45,7 @@ SimpleLineChartControllerTestSuite.add("options and data change line chart", ass
     assert.is(controller.yMax.getValue(), -4);
 
 });
-SimpleLineChartControllerTestSuite.add("first data entry is min value, last data entry is max value", assert => {
+SimpleLineChartControllerTestSuite.add("LCC: first data entry is min value, last data entry is max value", assert => {
     /** @type { Array.<LineChartDataElement> } */
     const data = [
         { name: "A", xValue: -55, yValue: -4 },
@@ -65,7 +65,7 @@ SimpleLineChartControllerTestSuite.add("first data entry is min value, last data
 
 });
 
-SimpleLineChartControllerTestSuite.add("first data entry is max value, last data entry is min value", assert => {
+SimpleLineChartControllerTestSuite.add("LCC: first data entry is max value, last data entry is min value", assert => {
     /** @type { Array.<LineChartDataElement> } */
     const data = [
         { name: "A", xValue: 0, yValue: 0 },
@@ -85,7 +85,7 @@ SimpleLineChartControllerTestSuite.add("first data entry is max value, last data
 
 });
 
-SimpleLineChartControllerTestSuite.add("min max with negative values", assert => {
+SimpleLineChartControllerTestSuite.add("LCC: min max with negative values", assert => {
     /** @type { Array.<LineChartDataElement> } */ const data = [{
         name: 'A', xValue: 0, yValue: 8,
     }, {
@@ -137,22 +137,11 @@ SimpleLineChartControllerTestSuite.add("min max with negative values", assert =>
     assert.is(controller.yMin.getValue(), -30); //controller handles negative values correctly
     assert.is(controller.yMax.getValue(), 155);
 });
-SimpleLineChartControllerTestSuite.add("min max boundaries: all x-values = 0, all y-values = -1", assert => {
+SimpleLineChartControllerTestSuite.add("LCC: min max boundaries: all x-values = 0, all y-values = -1", assert => {
     /** @type { Array.<LineChartDataElement> } */ const data = [{
-        name: 'A', xValue: 0, yValue: -1,
-    }, {
-        name: 'B', xValue: 0, yValue: -1,
-    }, {
-        name: 'C', xValue: 0, yValue: -1,
-    }, {
-        name: 'D', xValue: 0, yValue: -1,
-    }, {
-        name: 'E', xValue: 0, yValue: -1,
-    }, {
-        name: 'F', xValue: 0, yValue: -1,
-    }, {
-        name: 'g', xValue: 0, yValue: -1,
-    },
+        name: 'A', xValue: 0, yValue: -1, }, {
+        name: 'B', xValue: 0, yValue: -1, }, {
+        name: 'C', xValue: 0, yValue: -1, }, 
     ];
 
     const controller = SimpleLineChartController(data);
@@ -169,52 +158,69 @@ SimpleLineChartControllerTestSuite.add("min max boundaries: all x-values = 0, al
     }
 
     controller.setData(dataArray);
-    assert.is(dataArray.length, 7);
-
-    //check that the controller sets the minimum and maximum values correctly
-    assert.is(controller.xMin.getValue(), 0); //controller handles negative values correctly
-    assert.is(controller.xMax.getValue(), 1); //controller sets +1 if xMin == xMax
-    assert.is(controller.yMin.getValue(), -1); //controller handles negative values correctly
-    assert.is(controller.yMax.getValue(), 0); //controller sets +1 if yMin == yMax
-});
-SimpleLineChartControllerTestSuite.add("min max boundaries: all x-values = -1, all y-values = 0", assert => {
-    /** @type { Array.<LineChartDataElement> } */ const data = [{
-        name: 'A', xValue: -1, yValue: 0,
-    }, {
-        name: 'B', xValue: -1, yValue: 0,
-    }, {
-        name: 'C', xValue: -1, yValue: 0,
-    }, {
-        name: 'D', xValue: -1, yValue: 0,
-    }, {
-        name: 'E', xValue: -1, yValue: 0,
-    }, {
-        name: 'F', xValue: -1, yValue: 0,
-    }, {
-        name: 'g', xValue: -1, yValue: 0,
-    },
-    ];
-
-    const controller = SimpleLineChartController(data);
-
-    /** @type { Array<LineChartDataElement> } */
-    const dataArray = [];
-
-    for (let i = 0; i < data.length; i++) {
-        dataArray.push({
-            name: data[i].name,
-            xValue: data[i].xValue,
-            yValue: data[i].yValue
-        })
-    }
-
-    controller.setData(dataArray);
-    assert.is(dataArray.length, 7);
+    assert.is(dataArray.length, 3);
 
     //check that the controller sets the minimum and maximum values correctly
     assert.is(controller.xMin.getValue(), -1); //controller handles negative values correctly
+    assert.is(controller.xMax.getValue(), 1); //controller sets +1 if xMin == xMax
+    assert.is(controller.yMin.getValue(), -2); //controller handles negative values correctly
+    assert.is(controller.yMax.getValue(), 0); //controller sets +1 if yMin == yMax
+});
+SimpleLineChartControllerTestSuite.add("LCC: min max boundaries: all x-values = -1, all y-values = 0", assert => {
+    /** @type { Array.<LineChartDataElement> } */ const data = [{
+        name: 'A', xValue: -1, yValue: 0, }, {
+        name: 'B', xValue: -1, yValue: 0, }, {
+        name: 'C', xValue: -1, yValue: 0, }, 
+    ];
+
+    const controller = SimpleLineChartController(data);
+
+    /** @type { Array<LineChartDataElement> } */
+    const dataArray = [];
+
+    for (let i = 0; i < data.length; i++) {
+        dataArray.push({
+            name: data[i].name,
+            xValue: data[i].xValue,
+            yValue: data[i].yValue
+        })
+    }
+
+    controller.setData(dataArray);
+    assert.is(dataArray.length, 3);
+
+    //check that the controller sets the minimum and maximum values correctly
+    assert.is(controller.xMin.getValue(), -2); //controller handles negative values correctly
     assert.is(controller.xMax.getValue(), 0); //controller sets +1 if the x-values are the same
-    assert.is(controller.yMin.getValue(), 0); //controller handles negative values correctly
+    assert.is(controller.yMin.getValue(), -1); //controller handles negative values correctly
     assert.is(controller.yMax.getValue(), 1);
+});
+
+SimpleLineChartControllerTestSuite.add("LCC: min max for 1 point", assert => {
+    /** @type { Array.<LineChartDataElement> } */ const data = [{
+        name: 'A', xValue: -10, yValue: 20, }
+    ];
+
+    const controller = SimpleLineChartController(data);
+
+    /** @type { Array<LineChartDataElement> } */
+    const dataArray = [];
+
+    for (let i = 0; i < data.length; i++) {
+        dataArray.push({
+            name: data[i].name,
+            xValue: data[i].xValue,
+            yValue: data[i].yValue
+        })
+    }
+
+    controller.setData(dataArray);
+    assert.is(dataArray.length, 1);
+
+    //check that the controller sets the minimum and maximum values correctly
+    assert.is(controller.xMin.getValue(), -11); //controller handles negative values correctly
+    assert.is(controller.xMax.getValue(), -9); //controller sets +1 if the x-values are the same
+    assert.is(controller.yMin.getValue(), 19); //controller handles negative values correctly
+    assert.is(controller.yMax.getValue(), 21);
 });
 SimpleLineChartControllerTestSuite.run();

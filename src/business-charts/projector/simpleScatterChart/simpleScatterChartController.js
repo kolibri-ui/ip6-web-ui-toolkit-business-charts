@@ -102,10 +102,14 @@ const SimpleScatterChartController = (dataArray, opts) => {
     const { options } = ScatterChartOptionsModel(opts);
     const { selectedElement } = SelectedElementModel();
 
-    const xMinimum = dataArray.reduce((prev, curr) => prev < curr.xValue ? prev : curr.xValue) - 1;
-    const xMaximum = dataArray.reduce((prev, curr) => prev > curr.xValue ? prev : curr.xValue) + 1;
-    const yMinimum = dataArray.reduce((prev, curr) => prev < curr.yValue ? prev : curr.yValue) - 1;
-    const yMaximum = dataArray.reduce((prev, curr) => prev > curr.yValue ? prev : curr.yValue) + 1;
+    const xMinimum = dataArray.reduce((prev, curr) => 
+        prev < curr.xValue ? prev : curr.xValue) - 1;
+    const xMaximum = dataArray.reduce((prev, curr) => 
+        prev > curr.xValue ? prev : curr.xValue) + 1;
+    const yMinimum = dataArray.reduce((prev, curr) => 
+        prev < curr.yValue ? prev : curr.yValue) - 1;
+    const yMaximum = dataArray.reduce((prev, curr) => 
+        prev > curr.yValue ? prev : curr.yValue) + 1;
 
     /** @type { SimpleInputControllerType<Number> } */
     const xMin = SimpleInputController({

@@ -12,9 +12,9 @@ import {
     Y_RATIO
 } from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 
-const simpleLineChartModelTestSuite = TestSuite("src/business-charts/projector/simpleLineChartModel");
+const simpleLineChartModelTestSuite = TestSuite("LCM: src/business-charts/projector/simpleLineChartModel");
 
-simpleLineChartModelTestSuite.add("model: Line Chart attributes have observables", assert => {
+simpleLineChartModelTestSuite.add("LCM: Line Chart attributes have observables", assert => {
     /** @type { Array<LineChartDataElement> }*/ const data = [{
         name: 'A', xValue: 0, yValue: 0,
     }, {

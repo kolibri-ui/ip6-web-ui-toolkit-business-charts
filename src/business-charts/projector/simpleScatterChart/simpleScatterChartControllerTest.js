@@ -1,9 +1,9 @@
 import { TestSuite }                    from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import { SimpleScatterChartController } from "./simpleScatterChartController.js";
 
-const SimpleScatterChartControllerSuite = TestSuite("src/business-charts/projector/simpleScatterChartController");
+const SimpleScatterChartControllerSuite = TestSuite("SCC: src/business-charts/projector/simpleScatterChartController");
 
-SimpleScatterChartControllerSuite.add("options and data change scatter chart", assert => {
+SimpleScatterChartControllerSuite.add("SCC: options and data change scatter chart", assert => {
     /** @type { Array.<ScatterChartDataElement> } */
     const data = [
         { name: "A", xValue: 4, yValue: -4 }, 
@@ -31,7 +31,7 @@ SimpleScatterChartControllerSuite.add("options and data change scatter chart", a
     assert.is(controller.getData().at(1).yValue, -88);
     
 });
-SimpleScatterChartControllerSuite.add("xMin, xMax, yMin, yMax", assert => {
+SimpleScatterChartControllerSuite.add("SCC: xMin, xMax, yMin, yMax", assert => {
     /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
         name: 'A', xValue: 0, yValue: 8,
     }, {

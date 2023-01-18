@@ -11,9 +11,9 @@ import {
 }                                    from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputProjector.js";
 import { fireChangeEvent }           from "../../../Kolibri/docs/src/kolibri/util/dom.js";
 
-const SimpleLineChartProjectorTestSuite = TestSuite("src/business-charts/projector/simpleLineChartProjector");
+const SimpleLineChartProjectorTestSuite = TestSuite("LCP: src/business-charts/projector/simpleLineChartProjector");
 
-SimpleLineChartProjectorTestSuite.add("binding", assert => {
+SimpleLineChartProjectorTestSuite.add("LCP: binding", assert => {
     /** @type { Array.<LineChartDataElement> } */
     const data = [
         { name: "A", xValue: 4, yValue: -4 },
@@ -45,7 +45,7 @@ SimpleLineChartProjectorTestSuite.add("binding", assert => {
     // assert.is(inputElement.value, "new value 2");
 });
 
-SimpleLineChartProjectorTestSuite.add("simple line chart projector", assert => {
+SimpleLineChartProjectorTestSuite.add("LCP: simple line chart projector", assert => {
 
     /** @type { Array.<LineChartDataElement> } */
     const data = [

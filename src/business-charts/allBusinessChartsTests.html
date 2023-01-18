@@ -8,6 +8,7 @@
         body {
             width: 48em;
             margin: auto;
+            padding: 2em;
         }
         #out {
             max-height: calc(100vh - 5em);
@@ -16,7 +17,7 @@
             grid-template-columns: repeat(4, max-content);
             grid-column-gap: 2em;
             grid-row-gap: .5em;
-            padding: 2em;
+            padding: inherit;
             box-shadow: var(--kolibri-box-shadow);
         }
         #out div:nth-child(odd) {
@@ -39,14 +40,58 @@
             padding:    0.5em;
         ;
         }
+
+        .acronym {
+            padding: 1em 0;
+        }
+
+        td, th, tr {
+            width: max-content;
+            text-align: left;
+            margin-top: 1em;
+        }
     </style>
 </head>
 <body>
 <h1>Test Report for Business Charts</h1>
+
 <div id="out"></div>
 
 <p>74 tests expected.</p>
 <p id="grossTotal">Check console for possible errors.</p>
+
+<div class="acronym">
+    <table>
+        <tr>
+            <th>Acronym</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>LCM</td>
+            <td>Line Chart Model</td>
+        </tr>
+        <tr>
+            <td>LCC</td>
+            <td>Line Chart Controller</td>
+        </tr>
+        <tr>
+            <td>LCP</td>
+            <td>Line Chart Projector</td>
+        </tr>
+        <tr>
+            <td>SCM</td>
+            <td>Scatter Chart Model</td>
+        </tr>
+        <tr>
+            <td>SCC</td>
+            <td>Scatter Chart Controller</td>
+        </tr>
+        <tr>
+            <td>SCP</td>
+            <td>Scatter Chart Projector</td>
+        </tr>
+    </table>
+</div>
 
 <footer>Business Charts Tests</footer>
 <script type="module" src="./allBusinessChartsTestsSuite.js"></script>
