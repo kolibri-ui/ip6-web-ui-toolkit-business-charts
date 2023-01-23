@@ -242,11 +242,11 @@ const SimpleScatterChart = (controller) => {
     };
 
     //event listeners
-    controller.xMin.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
-    controller.xMax.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
-    controller.yMin.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
-    controller.yMax.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
-    controller.onDataChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+    controller.xMin.onValueChanged(() => redraw());
+    controller.xMax.onValueChanged(() => redraw());
+    controller.yMin.onValueChanged(() => redraw());
+    controller.yMax.onValueChanged(() => redraw());
+    controller.onDataChanged(() => redraw());
     controller.onSelectedElementsChanged(() => redraw());
 
     //resize
