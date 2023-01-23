@@ -30,7 +30,7 @@ dataButton.onclick                                          = (_) => {
 
     for (let i = xMin; i <= xMax; i++) {
         dataArray.push({
-            name: '',
+            name: `Point ${i}`,
             xValue: i,
             yValue: Math.floor(Math.random() * (yMax - yMin + 1) + yMin)
         })
