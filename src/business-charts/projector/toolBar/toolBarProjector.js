@@ -5,6 +5,7 @@ export { ToolBarProjector }
  * @typedef ChartToolBarCallbacks
  * @property { () => Array<ScatterChartDataElement> } getData
  * @property {  (canvasX: Number, canvasY: Number) => ScatterChartDataElement } getDataPointForPosition
+ * @property { (point: ScatterChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
  * @property { () => ScatterplotChartOptions } getOptions
  * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void } setCanvasBoundaries
  * @property { (dataPoint: ScatterChartDataElement) => void } selectDataPoint
@@ -28,12 +29,13 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
 
     /** @type { ChartToolBarCallbacks } */
     const toolCallbacks = {
-        getData                : controller.getData,
-        getOptions             : canvasCallbacks.getOptions,
-        setCanvasBoundaries    : canvasCallbacks.setCanvasBoundaries,
-        getDataPointForPosition: canvasCallbacks.getDataPointForPosition,
-        selectDataPoint        : controller.selectDataPoint,
-        redraw                 : canvasCallbacks.redraw
+        getData                   : controller.getData,
+        getOptions                : canvasCallbacks.getOptions,
+        setCanvasBoundaries       : canvasCallbacks.setCanvasBoundaries,
+        getDataPointForPosition   : canvasCallbacks.getDataPointForPosition,
+        getCanvasPositionForPoint : canvasCallbacks.getCanvasPositionForPoint,
+        selectDataPoint           : controller.selectDataPoint,
+        redraw                    : canvasCallbacks.redraw
     };
 
     const toolBarElement = document.createElement("div");

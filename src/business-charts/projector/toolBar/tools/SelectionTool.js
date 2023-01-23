@@ -1,17 +1,17 @@
 // noinspection SpellCheckingInspection
 
-import { dom } from "../../../../Kolibri/docs/src/kolibri/util/dom.js";
+import { dom }                        from "../../../../Kolibri/docs/src/kolibri/util/dom.js";
 
 export { selectionTool }
 
 /**
  *
- * @param { HTMLCanvasElement } canvasElement
- * @param { ChartToolBarCallbacks } callbacks
- * @returns { ChartToolType }
+ * @param { (position: CanvasPoint2D, pointRadius: Number, title: String) => HTMLElement } tooltipProjector
+ * @returns {  (canvasElement: HTMLCanvasElement, callbacks: ChartToolBarCallbacks) => ChartToolType }
  */
-const selectionTool = (canvasElement, callbacks) => {
+const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
     let dataPointHovered;
+    let tooltip;
 
     return {
         title: 'Selection',
@@ -31,11 +31,14 @@ const selectionTool = (canvasElement, callbacks) => {
                 dataPointHovered = point;
 
                 if (dataPointHovered !== undefined) {
-                    // TODO: Tooltip anzeigen
-                    console.log('hovered over point');
+                    const position = callbacks.getCanvasPositionForPoint(dataPointHovered);
+                    const pointRadius = callbacks.getOptions().pointSize;
+
+                    tooltip = tooltipProjector(position, pointRadius, point.name);
+                    canvasElement.parentElement.append(tooltip);
                 } else {
-                    // TODO: Tooltip ausblenden
-                    console.log('left point');
+                    canvasElement.parentElement.removeChild(tooltip);
+                    tooltip = undefined;
                 }
             }
 

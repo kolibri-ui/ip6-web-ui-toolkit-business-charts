@@ -32,13 +32,16 @@ export { SimpleScatterChart }
  * @param { SimpleScatterChartControllerType } controller
  * @return { HTMLCanvasElement }
  */
-const SimpleScatterChart = controller => {
+const SimpleScatterChart = (controller) => {
     /** @type { HTMLDivElement } */
     const chartElement = document.createElement("div");
     chartElement.classList.add("chart-container");
 
     /** @type { HTMLCanvasElement } */
-    const canvasElement = document.createElement("canvas");
+    const canvasElement        = document.createElement("canvas");
+    const canvasWrapperElement = document.createElement('div');
+    canvasWrapperElement.classList.add('canvas-wrap');
+    canvasWrapperElement.append(canvasElement);
 
     canvasElement.id = generateId('scatter-chart');
     canvasElement.classList.add('scatter-chart-canvas');
@@ -213,6 +216,24 @@ const SimpleScatterChart = controller => {
         return undefined;
     };
 
+    /**
+     *
+     * @param { DomainPoint2D } point
+     * @returns {CanvasPoint2D}
+     */
+    const getCanvasPositionForPoint = (point) => {
+        const options = getOptions();
+        return pointDomainToCanvas(
+            options.width,
+            options.height,
+            controller.xMin.getValue(),
+            controller.xMax.getValue(),
+            controller.yMin.getValue(),
+            controller.yMax.getValue(),
+            point
+        );
+    };
+
     //event listeners
     controller.xMin.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
     controller.xMax.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
@@ -247,13 +268,14 @@ const SimpleScatterChart = controller => {
             getOptions,
             getDataPointForPosition,
             selectDataPoint: controller.setSelectedElement,
+            getCanvasPositionForPoint,
             setCanvasBoundaries,
             redraw
         },
         canvasElement
     );
 
-    chartElement.append(toolBar, yAxisBar, canvasElement, xAxisBar);
+    chartElement.append(toolBar, yAxisBar, canvasWrapperElement, xAxisBar);
 
     return chartElement;
 };
