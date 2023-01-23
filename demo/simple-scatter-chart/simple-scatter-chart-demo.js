@@ -47,3 +47,7 @@ pointSizeSlider.onchange = (_) => document.querySelector(".scatter-chart-canvas"
 const colorPicker = document.getElementById("data-point-color");
 colorPicker.value = getComputedStyle(document.querySelector(".scatter-chart-canvas")).getPropertyValue("--data-point-color").trim();
 colorPicker.onchange = (_) => document.querySelector(".scatter-chart-canvas").style.setProperty("--data-point-color", colorPicker.value);
+
+const selectedColorPicker = document.getElementById("data-point-selected-color");
+selectedColorPicker.value = getComputedStyle(document.querySelector(".scatter-chart-canvas")).getPropertyValue("--data-point-selected-color").trim();
+selectedColorPicker.onchange = (_) => document.querySelector(".scatter-chart-canvas").style.setProperty("--data-point-selected-color", selectedColorPicker.value);

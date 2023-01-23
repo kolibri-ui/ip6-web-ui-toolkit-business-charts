@@ -28,6 +28,7 @@
 .scatter-chart-canvas {
     --data-point-size: 10;
     --data-point-color: #a55ca5;
+    --data-point-selected-color: #ff0000;
     width: var(--golden-section-width);
     height: var(--golden-section-height);
 
@@ -40,6 +41,7 @@
 .chart-container .line-chart-canvas {
     --data-point-size: 10;
     --data-point-color: #a55ca5;
+    --data-point-selected-color: #ff0000;
     width: var(--golden-section-width);
     height: var(--golden-section-height);
 

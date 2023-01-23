@@ -22,6 +22,7 @@ export { SimpleScatterChart }
  * @property { !Number } width chart width in pixel
  * @property { !Number } height chart height in pixel
  * @property { String } color Color for points
+ * @property { String } selectedColor Color for points
  * @property { !Number } pointSize size of scatterplot points
  * @property { GridOptions } gridOptions grid options
  */
@@ -56,9 +57,10 @@ const SimpleScatterChart = (controller) => {
      * @returns { ScatterplotChartOptions }
      */
     const getOptions = () => {
-        let { width, height } = canvasElement.getBoundingClientRect();
-        const pointSize       = Number(getComputedStyle(canvasElement).getPropertyValue("--data-point-size"));
-        const pointColor      = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
+        let { width, height }    = canvasElement.getBoundingClientRect();
+        const pointSize          = Number(getComputedStyle(canvasElement).getPropertyValue("--data-point-size"));
+        const pointColor         = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
+        const selectedPointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-selected-color");
 
         width  = width === 0 ? 500 : width;
         height = height === 0 ? 325 : height;
@@ -86,6 +88,7 @@ const SimpleScatterChart = (controller) => {
             width,
             height,
             color      : pointColor,
+            selectedColor: selectedPointColor,
             pointSize  : pointSize,
             gridOptions: {
                 nullPoint     : nullPoint,
@@ -120,7 +123,7 @@ const SimpleScatterChart = (controller) => {
                 v
             );
 
-            const color = selectedPoints.includes(v) ? '#FF0000' : options.color;
+            const color = selectedPoints.includes(v) ? options.selectedColor : options.color;
 
             drawPoint(ctx, point.xValue, point.yValue, color, options.pointSize);
         }
