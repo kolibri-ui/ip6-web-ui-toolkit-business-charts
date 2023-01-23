@@ -111,6 +111,7 @@ const SimpleScatterChart = (controller) => {
         data,
         options
     ) => {
+        const selectedPoints = controller.getSelectedElements();
         for (const v of data) {
             const point = domainToCanvasXY(
                 options.gridOptions.nullPoint,
@@ -119,7 +120,9 @@ const SimpleScatterChart = (controller) => {
                 v
             );
 
-            drawPoint(ctx, point.xValue, point.yValue, options.color, options.pointSize);
+            const color = selectedPoints.includes(v) ? '#FF0000' : options.color;
+
+            drawPoint(ctx, point.xValue, point.yValue, color, options.pointSize);
         }
     };
 
@@ -190,7 +193,8 @@ const SimpleScatterChart = (controller) => {
         controller.yMax.setValue(Math.max(...[ domainStart.yValue, domainEnd.yValue ]));
     };
 
-    const getDataPointForPosition = (canvasX, canvasY) => {
+    const getDataPointsForPosition = (canvasX, canvasY) => {
+        const points = [];
         const options = getOptions();
         for (const point of controller.getData()) {
             const pointCanvas = pointDomainToCanvas(
@@ -209,11 +213,11 @@ const SimpleScatterChart = (controller) => {
             const dist = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 
             if (dist <= options.pointSize) {
-                return point;
+                points.push(point);
             }
         }
 
-        return undefined;
+        return points;
     };
 
     /**
@@ -240,6 +244,7 @@ const SimpleScatterChart = (controller) => {
     controller.yMin.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
     controller.yMax.onValueChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
     controller.onDataChanged(() => redrawScatterplot(canvasElement, controller.getData(), getOptions()));
+    controller.onSelectedElementsChanged(() => redraw());
 
     //resize
     const resizeHandler = new ResizeObserver((_) => {
@@ -266,8 +271,8 @@ const SimpleScatterChart = (controller) => {
         controller.toolBarController,
         {
             getOptions,
-            getDataPointForPosition,
-            selectDataPoint: controller.setSelectedElement,
+            getDataPointsForPosition,
+            selectDataPoint: controller.setSelectedElements,
             getCanvasPositionForPoint,
             setCanvasBoundaries,
             redraw

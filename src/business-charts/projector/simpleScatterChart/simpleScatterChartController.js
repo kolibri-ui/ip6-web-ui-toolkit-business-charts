@@ -27,10 +27,11 @@ export { SimpleScatterChartController }
  * @property { SimpleInputControllerType }                                                  yMax the highest value to be displayed on the y-axis
  * @property { (data: Array<ScatterChartDataElement>) => void }                             setData the data series to be presented in the line chart
  * @property { () => Array<ScatterChartDataElement> }                                       getData the data series used in the line chart
- * @property { (element: ScatterChartDataElement) => void }                                 setSelectedElement set the selected data element
- * @property { () => Array<ScatterChartDataElement> }                                       getSelectedElement get the selected data element
+ * @property { (elements: Array<ScatterChartDataElement>) => void }                         setSelectedElements set the selected data elements
+ * @property { () => Array<ScatterChartDataElement> }                                       getSelectedElements get the selected data elements
  * @property { () => SimpleScatterChartOptions }                                            getOptions the corresponding scatter chart options
  * @property { (callback: onValueChangeCallback<Array<ScatterChartDataElement>>)  => void } onDataChanged when interaction with the data has occurred
+ * @property { (callback: onValueChangeCallback<Array<ScatterChartDataElement>>)  => void } onSelectedElementsChanged when selected Elements change
  */
 
 /**
@@ -66,19 +67,19 @@ const DataModel = dataArray => {
 };
 
 /**
- * @typedef SelectedElementModelType
- * @property { AttributeType<ScatterChartDataElement> } selectedElement selected scatter element
+ * @typedef SelectedElementsModelType
+ * @property { AttributeType<Array<ScatterChartDataElement>> } selectedElements selected scatter elements
  */
 
 /**
  * @private
  * @pure
- * @return { SelectedElementModelType }
+ * @return { SelectedElementsModelType }
  * @constructor
  */
-const SelectedElementModel = entry => {
-    const selectedElement = Attribute(entry ?? undefined);
-    return /** @type { SelectedElementModelType } */ { selectedElement };
+const SelectedElementsModel = entries => {
+    const selectedElements = Attribute(entries ?? []);
+    return /** @type { SelectedElementsModelType } */ { selectedElements };
 };
 
 /**
@@ -100,7 +101,7 @@ const SimpleScatterChartController = (dataArray, opts) => {
     }
     const { data } = DataModel(dataArray);
     const { options } = ScatterChartOptionsModel(opts);
-    const { selectedElement } = SelectedElementModel();
+    const { selectedElements } = SelectedElementsModel();
 
     const xMinimum = dataArray.reduce((prev, curr) => 
         prev < curr.xValue ? prev : curr.xValue) - 1;
@@ -158,7 +159,7 @@ const SimpleScatterChartController = (dataArray, opts) => {
     const toolBarController = ToolBarController(
         {
             getData: data.getObs(VALUE).getValue,
-            selectDataPoint: selectedElement.getObs(VALUE).setValue,
+            selectDataPoints: selectedElements.getObs(VALUE).setValue,
         },
         opts ? opts.tools : undefined
     );
@@ -170,12 +171,13 @@ const SimpleScatterChartController = (dataArray, opts) => {
         xMax,
         yMin,
         yMax,
-        setData:               data.getObs(VALUE).setValue,
-        getData:               data.getObs(VALUE).getValue,
-        setSelectElement:      selectedElement.getObs(VALUE).setValue,
-        getSelectElement:      selectedElement.getObs(VALUE).getValue,
-        getOptions:            options.getObs(VALUE).getValue,
-        onDataChanged:         data.getObs(VALUE).onChange,
+        setData:                   data.getObs(VALUE).setValue,
+        getData:                   data.getObs(VALUE).getValue,
+        setSelectedElements:       selectedElements.getObs(VALUE).setValue,
+        getSelectedElements:       selectedElements.getObs(VALUE).getValue,
+        getOptions:                options.getObs(VALUE).getValue,
+        onDataChanged:             data.getObs(VALUE).onChange,
+        onSelectedElementsChanged: selectedElements.getObs(VALUE).onChange
     };
 };
 

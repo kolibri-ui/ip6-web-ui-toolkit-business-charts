@@ -25,7 +25,9 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
             const mouseX = event.x - rect.left;
             const mouseY = event.y - rect.top;
 
-            const point = callbacks.getDataPointForPosition(mouseX, mouseY);
+            const points = callbacks.getDataPointsForPosition(mouseX, mouseY);
+
+            const point = points.length > 0 ? points[0] : undefined;
 
             if (dataPointHovered !== point) {
                 dataPointHovered = point;
@@ -49,11 +51,9 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
             const mouseX = event.x - rect.left;
             const mouseY = event.y - rect.top;
 
-            const point = callbacks.getDataPointForPosition(mouseX, mouseY);
+            const points = callbacks.getDataPointsForPosition(mouseX, mouseY);
 
-            callbacks.selectDataPoint(point);
-
-            console.log(`point selected: ${point}`);
+            callbacks.selectDataPoints(points);
         }
     };
 };

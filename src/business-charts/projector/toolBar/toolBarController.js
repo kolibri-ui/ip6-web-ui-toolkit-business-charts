@@ -30,7 +30,7 @@ const SelectedToolModel = () => {
 /**
  * @typedef ToolBarControllerType
  * @property { () => Array<ScatterChartDataElement>} getData
- * @property { (element: ScatterChartDataElement) => void } selectDataPoint
+ * @property { (element: Array<ScatterChartDataElement>) => void } selectDataPoints
  * @property { () => ChartToolType } selectedTool
  * @property { (tool: ChartToolType) => void } selectTool
  */
@@ -58,6 +58,6 @@ const ToolBarController = (controllerCallbacks, tools) => {
         selectedTool: () => selectedTool.getObs(VALUE).getValue(),
         selectTool: (tool) => selectedTool.getObs(VALUE).setValue(tool),
         getData: controllerCallbacks.getData,
-        selectDataPoint: controllerCallbacks.selectDataPoint
+        selectDataPoints: controllerCallbacks.selectDataPoints
     };
 };
