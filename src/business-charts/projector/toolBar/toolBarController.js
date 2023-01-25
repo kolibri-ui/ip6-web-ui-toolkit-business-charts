@@ -7,7 +7,8 @@ import { selectionTool }              from "./tools/SelectionTool.js";
 import { panningTool }                from "./tools/PanningTool.js";
 import { zoomInTool }                 from "./tools/ZoomInTool.js";
 import { zoomOutTool }                from "./tools/ZoomOut.js";
-import { selectionToolBubbleTooltip } from "./tools/selectionToolTooltipProjector.js";
+import { selectionToolBubbleTooltip, 
+    selectionToolTooltip }            from "./tools/selectionToolTooltipProjector.js";
 
 export { ToolBarController }
 
@@ -47,7 +48,8 @@ const ToolBarController = (controllerCallbacks, tools) => {
     tools = [
         zoomInTool,
         zoomOutTool,
-        selectionTool(selectionToolBubbleTooltip),
+        //selectionTool(selectionToolTooltip),
+        selectionTool(selectionToolTooltip),
         rubberBandTool,
         panningTool,
         ...(tools ?? [])
