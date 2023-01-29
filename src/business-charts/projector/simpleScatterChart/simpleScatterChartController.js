@@ -156,6 +156,10 @@ const SimpleScatterChartController = (dataArray, opts) => {
     yMin.onValueChanged(() => minMaxY("MIN"));
     yMax.onValueChanged(() => minMaxY("MAX"));
 
+    data.getObs(VALUE).onChange(() => {
+        selectedElements.getObs(VALUE).setValue([]);
+    });
+
     const toolBarController = ToolBarController(
         {
             getData: data.getObs(VALUE).getValue,
