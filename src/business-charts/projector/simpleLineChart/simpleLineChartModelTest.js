@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
 import { TestSuite }            from "../../../Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleLineChartModel } from "./simpleLineChartModelOld.js";
+import { SimpleLineChartModel } from "./simpleLineChartModel.js";
 import {
     CANVAS_HEIGHT,
     CANVAS_WIDTH, COLORS, DOMAIN_NULL_POINT, DRAW_OUTER_TICKS,

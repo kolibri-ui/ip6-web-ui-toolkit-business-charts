@@ -50,6 +50,18 @@ export { SimpleScatterChartModel }
  * @property { ?Array<String> } colors Colors for points
  */
 
+/**
+ * @private
+ * @type { String } id-prefix to identify a unique simple scatter chart
+ */
+const scatterChartPrefix = 'simple-scatter-chart-model-';
+
+/**
+ * @private
+ * @type { !number } accending numbered id-suffix to identify a unique simple chart
+ */
+let numbering = 0;
+
 
 /**
  * TODO: pointSize as configurable parameter
@@ -59,7 +71,6 @@ export { SimpleScatterChartModel }
  */
 const SimpleScatterChartModel = ({
                                          data,
-                                         id,
                                          xRatio,
                                          yRatio,
                                          xEvery,
@@ -72,7 +83,8 @@ const SimpleScatterChartModel = ({
                                      }) => {
     const scatterChartAttr = Attribute(data);
     scatterChartAttr.getObs(FILTERED_DATA).setValue(data);
-    scatterChartAttr.getObs(ELEMENT_ID).setValue(id ?? generateId('scatterplot-chart'));
+    //scatterChartAttr.getObs(ELEMENT_ID).setValue(id ?? generateId('scatterplot-chart'));
+    scatterChartAttr.getObs(ELEMENT_ID).setValue(scatterChartPrefix + String(numbering++));
     scatterChartAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
     scatterChartAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
     scatterChartAttr.getObs(X_EVERY).setValue(xEvery ?? 1);
