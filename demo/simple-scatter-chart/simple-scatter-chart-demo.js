@@ -3,25 +3,48 @@
 import { SimpleScatterChart }           from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartProjector.js";
 import { SimpleScatterChartController } from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartController.js";
 
-/** @type { Array.<ScatterChartDataElement> } */ const data = [ {
-    name: '1', xValue: -4, yValue: 3,
-}, {
-    name: '2', xValue: 4, yValue: 3,
-}, {
-    name: '3', xValue: -4, yValue: -3,
-}, {
-    name: '4', xValue: 4, yValue: -3,
-},];
+import { SimpleLineChart } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartProjector.js";
+import { SimpleLineChartController } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartController.js";
 
-const controller = SimpleScatterChartController(
+/************************************** Simple Scatter Chart *********************************/
+// /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
+//     name: '1', xValue: -4, yValue: 3,
+// }, {
+//     name: '2', xValue: 4, yValue: 3,
+// }, {
+//     name: '3', xValue: -4, yValue: -3,
+// }, {
+//     name: '4', xValue: 4, yValue: -3,
+// },];
+// const controller = SimpleScatterChartController(
+//     data
+// );
+//document.getElementById('container').append(SimpleScatterChart(controller));
+
+/************************************** Simple Line Chart *********************************/
+/** @type { Array.<LineChartDataElement> } */ const data = [ {
+    name: '001', xValue: 0, yValue: 0,
+}, {
+    name: '002', xValue: 1, yValue: 15,
+}, {
+    name: '003', xValue: 2, yValue: 3,
+}, {
+    name: '004', xValue: 4, yValue: 27,
+},{
+    name: '005', xValue: 5, yValue: -3,
+},{
+    name: '006', xValue: 6, yValue: 30,
+},
+];
+const controller = SimpleLineChartController(
     data
 );
-
-document.getElementById('container').append(SimpleScatterChart(controller));
+document.getElementById('container').append(SimpleLineChart(controller));
 
 const dataButton = document.getElementById("data-point-random-data");
 dataButton.onclick                                          = (_) => {
-    /** @type { Array<ScatterChartDataElement> } */
+    // /** @type { Array<ScatterChartDataElement> } */
+    /** @type { Array<LineChartDataElement> } */
     const dataArray = [];
     const xMin = controller.xMin.getValue();
     const xMax = controller.xMax.getValue();

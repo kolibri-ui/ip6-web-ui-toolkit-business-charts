@@ -1,8 +1,8 @@
 // noinspection SpellCheckingInspection
 
-import { SimpleLineChart }           from "../../src/business-charts/projector/simpleLineChart/simpleLineChartProjector.js";
-import { SimpleLineChartController } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartController.js";
-import { energyDataFile } from "./energy-data.js";
+import { SimpleLineChart }           from "../../src/business-charts/projector/simpleLineChart/simpleLineChartProjectorOld.js";
+import { SimpleLineChartController } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartControllerOld.js";
+import { energyDataFile }            from "./energy-data.js";
 
 // TODO Unit Tests that input fields are bigger than the biggest input value
 // TODO Unit Tests that all data values are displayed in the canvas
