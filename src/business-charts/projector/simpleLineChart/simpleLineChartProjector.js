@@ -7,9 +7,9 @@ import {
     domainToCanvasXY,
     pointCanvasToDomain,
     pointDomainToCanvas
-}                                  from "../../util/geometryFunctions.js";
-import { drawPoint }               from "../../util/chartFunctions.js";
-import { drawGrid }                from "../../util/chartGridFunctions.js";
+}                              from "../../util/geometryFunctions.js";
+import { drawLine, drawPoint } from "../../util/chartFunctions.js";
+import { drawGrid }            from "../../util/chartGridFunctions.js";
 import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
 import { ToolBarProjector }        from "../toolBar/toolBarProjector.js";
 
@@ -113,20 +113,41 @@ const SimpleLineChart = (controller) => {
         data,
         options
     ) => {
-        const selectedPoints = controller.getSelectedElements();
-        for (const v of data) {
-            const point = domainToCanvasXY(
+
+        for (let i = 0; i < data.length-1; i++) {
+            let pointFromPosition = i;
+            const pointToPosition = pointFromPosition + 1;
+            const pointFrom       = domainToCanvasXY(
                 options.gridOptions.nullPoint,
                 options.gridOptions.xRatio,
                 options.gridOptions.yRatio,
-                v
+                data[pointFromPosition]
             );
+            drawPoint(ctx, pointFrom.xValue, pointFrom.yValue, options.color, options.pointSize);
 
-            const color = selectedPoints.includes(v) ? options.selectedColor : options.color;
 
-            drawPoint(ctx, point.xValue, point.yValue, color, options.pointSize);
+            for (let j = i; j < data.length; j++) {
+                const pointTo = domainToCanvasXY(
+                    options.gridOptions.nullPoint,
+                    options.gridOptions.xRatio,
+                    options.gridOptions.yRatio,
+                    data[pointToPosition]
+                );
+                drawLine(ctx, pointFrom.xValue, pointFrom.yValue, pointTo.xValue, pointTo.yValue, options.color);
+                pointFromPosition++;
+            }
         }
-    };
+        
+        //lastPoint
+        const pointFrom       = domainToCanvasXY(
+            options.gridOptions.nullPoint,
+            options.gridOptions.xRatio,
+            options.gridOptions.yRatio,
+            data[data.length-1]
+        );
+        drawPoint(ctx, pointFrom.xValue, pointFrom.yValue, options.color, options.pointSize);
+        
+        };
 
     /**
      * @description

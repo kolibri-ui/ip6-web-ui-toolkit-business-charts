@@ -29,11 +29,11 @@ import { SimpleLineChartController } from "../../src/business-charts/projector/s
 }, {
     name: '003', xValue: 2, yValue: 3,
 }, {
-    name: '004', xValue: 4, yValue: 27,
+    name: '004', xValue: 3, yValue: 27,
 },{
-    name: '005', xValue: 5, yValue: -3,
+    name: '005', xValue: 4, yValue: -3,
 },{
-    name: '006', xValue: 6, yValue: 30,
+    name: '006', xValue: 5, yValue: 30,
 },
 ];
 const controller = SimpleLineChartController(
