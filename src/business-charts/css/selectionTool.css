@@ -25,31 +25,41 @@
     bottom: -10px;
 }
 
+:root {
+    --tooltip-width: 100; /*TODO find out how to use max-content in projector*/
+    /*--tooltip-min-width: 50;*/
+    --tooltip-height: max-content;
+    --tooltip-min-height: 3;
+    --tooltip-arrow-border-width: 8;
+    --tooltip-arrow-border-width-px: 8px;
+}
+
 .tooltip-data {
     visibility: visible;
     position: absolute;
+    align-self: center;
+    display: inline;
     background-color: var(--kb-color-hsl-blue-200);
     border: 1px solid var(--kb-color-hsl-blue-200);
-    width: max-content;
-    min-width: 90px;
-    min-height: 50px;
+    width: 100px;
+    min-width: 100px;
+    min-height: var(--tooltip-min-height)em;
     font-family: var(--font-sans-serif);
     font-size: var(--font-size-textXS);
-    padding: 1em;
+    padding: 1em; /*text padding;*/
     color: var(--kb-color-rgb-blue-800);
     z-index: 50;
     text-align: left;
-    text-justify: auto;
+    text-justify: distribute-center-last;
 }
 
-.tooltip-data-arrow-top-left:after {
+.tooltip-data-arrow-bottom-center:after {
     content: "";
     position: absolute;
-    top: -23%;
-    left: -11%;
-    margin-left: 1em;
-    margin-top: -0.3em;
-    border-width: 8px;
+    display: inline;
+    border-width: var(--tooltip-arrow-border-width-px);
     border-style: solid;
-    border-color: transparent transparent var(--kb-color-hsl-blue-200) transparent;
+    border-color: transparent transparent red transparent;
+    left: calc(50% - var(--tooltip-arrow-border-width-px));
+    top: calc(0% - 2*var(--tooltip-arrow-border-width-px));
 }
