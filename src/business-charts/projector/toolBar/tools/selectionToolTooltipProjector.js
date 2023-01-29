@@ -2,8 +2,11 @@ export { selectionToolBubbleTooltip, selectionToolTooltipBottomCenter, selection
 
 const selectionToolBubbleTooltip = (canvasPosition, pointRadius, title) => {
     const tooltipElement = document.createElement('div');
-    tooltipElement.style.top = `${canvasPosition.yValue - 31 - pointRadius}px`;
-    tooltipElement.style.left = `${canvasPosition.xValue - 5}px`;
+    const tooltipDataRoot = document.querySelector(':root');
+    const computedTooltipHeight = Number(getComputedStyle(tooltipDataRoot).getPropertyValue("--tooltip-min-height"));
+    const computedArrowBorder = Number(getComputedStyle(tooltipDataRoot).getPropertyValue("--tooltip-bubble-arrow-border-right"));
+    tooltipElement.style.top = `${canvasPosition.yValue - pointRadius -computedTooltipHeight}px`;
+    tooltipElement.style.left = `${canvasPosition.xValue + pointRadius - computedArrowBorder}px`;
     tooltipElement.classList.add('tooltip-bubble', 'tooltip-bubble-bottom-left');
 
     const text = document.createTextNode(title);
