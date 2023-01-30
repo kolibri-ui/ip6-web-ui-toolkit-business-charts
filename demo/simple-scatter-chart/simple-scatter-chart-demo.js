@@ -2,6 +2,7 @@
 
 import { SimpleScatterChart }           from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartProjector.js";
 import { SimpleScatterChartController } from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartController.js";
+import { DataTableView }                from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
 
 /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
     name: '1', xValue: -4, yValue: 3,
@@ -18,6 +19,7 @@ const controller = SimpleScatterChartController(
 );
 
 document.getElementById('container').append(SimpleScatterChart(controller));
+document.getElementById('detail-view').append(DataTableView(controller, 'Datenpunkte'));
 
 const dataButton = document.getElementById("data-point-random-data");
 dataButton.onclick                                          = (_) => {

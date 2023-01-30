@@ -1,8 +1,6 @@
 /****************** header section ********************/
 :root {
-    color-scheme: light;
-    --golden-section-width: 70vw;
-    --golden-section-height: calc(var(--golden-section-width) / 1.618);
+    --color-scheme: light;
 
     --all-borders: 1px;
 
@@ -65,6 +63,17 @@ body {
 /****************** interaction section ********************/
 .interaction-section {
     flex: 1;
+}
+
+.content {
+    justify-content: space-around;
+    display: flex;
+}
+
+.detail-view {
+    width: 35vw;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
 /*
@@ -414,3 +423,18 @@ input[type=range]::-webkit-slider-runnable-track  {
 .move {
     cursor: move;
 }*/
+
+table {
+    display: block;
+    background: white; /* optional */
+}
+
+table thead {
+    text-align: left; /* optional */
+}
+
+table tbody {
+    display: block;
+    max-height: 200px;
+    overflow-y: scroll;
+}

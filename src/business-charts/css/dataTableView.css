@@ -1,0 +1,22 @@
+.chart-data-table-container {
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+
+.chart-data-table-container thead {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+
+.element-row {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid white;
+}
+
+.active-element-row {
+    background-color: var(--kb-color-hsl-blue-200);
+}

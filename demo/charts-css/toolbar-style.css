@@ -1,15 +1,4 @@
-/****************** header section ********************/
-:root {
-    color-scheme: light;
-    --golden-section-width: 70vw;
-    --golden-section-height: calc(var(--golden-section-width) / 1.618);
 
-    --all-borders: 1px;
-
-    --toolbar-button-size: 40px;
-    --search-field-height: calc(var(--toolbar-button-size) + 4 * var(--all-borders));
-    --search-field-width: calc(6 * var(--toolbar-button-size));
-}
 
 /****************** toolbar section ********************/
 .toolbar {
@@ -78,8 +67,6 @@
     height: var(--toolbar-button-size);
     stroke: var(--kb-color-hsl-purple-700);
     fill: var(--kb-color-hsl-white);
-    width: var(--toolbar-button-size);
-    height: var(--toolbar-button-size);
 }
 
 .toolbar-button svg .rectangle-fill-accent {
@@ -160,10 +147,6 @@
     z-index: 1;
     bottom: 110%;
     left: 30%;
-    opacity: 0;
-    transition: opacity 0.3s;
-
-    /* Fade in tooltip */
     opacity: 0;
     transition: opacity 0.3s;
 }
