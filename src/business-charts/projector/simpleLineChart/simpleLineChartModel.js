@@ -50,15 +50,16 @@ export { SimpleLineChartModel }
  * @property { ?Array<String> } colors Colors for points //TODO change for line chart
  */
 
+/************************************** Simple Line Chart *********************************/
 /**
  * @private
  * @type { String } id-prefix to identify a unique simple line chart
  */
-const chartPrefix = 'simple-line-chart-model-';
+const lineChartPrefix = 'simple-line-chart-model-';
 
 /**
  * @private
- * @type { !number } accending numbered id-suffix to identify a unique simple line chart
+ * @type { !number } accending numbered id-suffix to identify a unique simple chart
  */
 let numbering = 0;
 
@@ -82,7 +83,7 @@ const SimpleLineChartModel = ({
 }) => {
     const lineChartAttr = Attribute(data);
     lineChartAttr.getObs(FILTERED_DATA).setValue(data);
-    lineChartAttr.getObs(ELEMENT_ID).setValue(chartPrefix + String(numbering++));
+    lineChartAttr.getObs(ELEMENT_ID).setValue(lineChartPrefix + String(numbering++));
     lineChartAttr.getObs(X_RATIO).setValue(xRatio ?? 20);
     lineChartAttr.getObs(Y_RATIO).setValue(yRatio ?? 20);
     lineChartAttr.getObs(X_EVERY).setValue(xEvery ?? 1);

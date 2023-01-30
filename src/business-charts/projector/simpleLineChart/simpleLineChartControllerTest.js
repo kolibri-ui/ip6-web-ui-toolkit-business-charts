@@ -1,5 +1,5 @@
-import { TestSuite }                   from "../../../Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleLineChartController }   from "./simpleLineChartController.js";
+import { TestSuite }                 from "../../../Kolibri/docs/src/kolibri/util/test.js";
+import { SimpleLineChartController } from "./simpleLineChartControllerOld.js";
 
 const SimpleLineChartControllerTestSuite = TestSuite("LCC: src/business-charts/projector/simpleLineChartController");
 

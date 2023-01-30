@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
-import { TestSuite } from "../../../Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleLineChartModel }                   from "./simpleLineChartModel.js";
+import { TestSuite }            from "../../../Kolibri/docs/src/kolibri/util/test.js";
+import { SimpleLineChartModel } from "./simpleLineChartModel.js";
 import {
     CANVAS_HEIGHT,
     CANVAS_WIDTH, COLORS, DOMAIN_NULL_POINT, DRAW_OUTER_TICKS,
@@ -10,7 +10,7 @@ import {
     VALUE, X_EVERY,
     X_RATIO, Y_EVERY,
     Y_RATIO
-} from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
+}                               from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 
 const simpleLineChartModelTestSuite = TestSuite("LCM: src/business-charts/projector/simpleLineChartModel");
 

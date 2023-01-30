@@ -1,16 +1,30 @@
 import { dom } from "../../../Kolibri/docs/src/kolibri/util/dom.js";
 export { ToolBarProjector }
 
+/************************************** Simple Scatter Chart *********************************/
+// /**
+//  * @typedef ChartToolBarCallbacks
+//  * @property { () => Array<ScatterChartDataElement> } getData
+//  * @property {  (canvasX: Number, canvasY: Number) => Array<ScatterChartDataElement> } getDataPointsForPosition
+//  * @property { (point: ScatterChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
+//  * @property { () => ScatterplotChartOptions } getOptions
+//  * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void } setCanvasBoundaries
+//  * @property { (dataPoint: ScatterChartDataElement) => void } selectDataPoints
+//  * @property { () => void } redraw
+//  */
+
+/************************************** Simple Line Chart *********************************/
 /**
  * @typedef ChartToolBarCallbacks
- * @property { () => Array<ScatterChartDataElement> } getData
- * @property {  (canvasX: Number, canvasY: Number) => Array<ScatterChartDataElement> } getDataPointsForPosition
- * @property { (point: ScatterChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
- * @property { () => ScatterplotChartOptions } getOptions
+ * @property { () => Array<LineChartDataElement> } getData
+ * @property {  (canvasX: Number, canvasY: Number) => Array<LineChartDataElement> } getDataPointsForPosition
+ * @property { (point: LineChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
+ * @property { () => LineChartDataElement } getOptions
  * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void } setCanvasBoundaries
- * @property { (dataPoint: ScatterChartDataElement) => void } selectDataPoints
+ * @property { (dataPoint: LineChartDataElement) => void } selectDataPoints
  * @property { () => void } redraw
  */
+
 
 /**
  * @typedef ChartToolType
