@@ -4,10 +4,6 @@ import { SimpleScatterChart }           from "../../src/business-charts/projecto
 import { SimpleScatterChartController } from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartController.js";
 import { DataTableView }                from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
 
-import { SimpleLineChart } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartProjector.js";
-import { SimpleLineChartController } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartController.js";
-
-/************************************** Simple Scatter Chart *********************************/
 /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
     name: '1', xValue: -4, yValue: 3,
 }, {
@@ -24,29 +20,6 @@ const controller = SimpleScatterChartController(
 
 document.getElementById('container').append(SimpleScatterChart(controller));
 document.getElementById('detail-view').append(DataTableView(controller, 'Datenpunkte'));
-/************************************** Simple Scatter Chart *********************************/
-
-/************************************** Simple Line Chart *********************************/
-// /** @type { Array.<LineChartDataElement> } */ const data = [ {
-//     name: '001', xValue: 0, yValue: 0,
-// }, {
-//     name: '002', xValue: 1, yValue: 15,
-// }, {
-//     name: '003', xValue: 2, yValue: 3,
-// }, {
-//     name: '004', xValue: 3, yValue: 27,
-// },{
-//     name: '005', xValue: 4, yValue: -3,
-// },{
-//     name: '006', xValue: 5, yValue: 30,
-// },
-// ];
-// const controller = SimpleLineChartController(
-//     data
-// );
-// document.getElementById('container').append(SimpleLineChart(controller));
-/************************************** Simple Line Chart *********************************/
-
 
 const dataButton = document.getElementById("data-point-random-data");
 dataButton.onclick                                          = (_) => {
