@@ -1,19 +1,16 @@
 // noinspection SpellCheckingInspection
 
-import {
-    drawPoint
-}                                  from "../../util/chartFunctions.js";
-import { drawGrid }                from "../../util/chartGridFunctions.js";
+import { drawGrid }                      from "../../util/chartGridFunctions.js";
 import {
     calcXRatio,
     calcYRatio,
-    domainToCanvasXY,
     pointCanvasToDomain,
     pointDomainToCanvas
-}                                  from "../../util/geometryFunctions.js";
+}                                        from "../../util/geometryFunctions.js";
 import { generateId }                    from "../../util/functions.js";
 import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
+import { drawScatterplotPoints }         from "../../util/scatterChartFunctions.js";
 
 export { SimpleScatterChart }
 
@@ -104,63 +101,41 @@ const SimpleScatterChart = (controller) => {
     };
 
     /**
-     * @description draws all data points
-     * @param { CanvasRenderingContext2D } ctx
-     * @param { Array.<ScatterChartDataElement> } data
-     * @param { ScatterplotChartOptions } options
-     */
-    const drawScatterplotPoints = (
-        ctx,
-        data,
-        options
-    ) => {
-        const selectedPoints = controller.getSelectedElements();
-        for (const v of data) {
-            const point = domainToCanvasXY(
-                options.gridOptions.nullPoint,
-                options.gridOptions.xRatio,
-                options.gridOptions.yRatio,
-                v
-            );
-
-            const color = selectedPoints.includes(v) ? options.selectedColor : options.color;
-
-            drawPoint(ctx, point.xValue, point.yValue, color, options.pointSize);
-        }
-    };
-
-    /**
      * @description
      * @param { CanvasRenderingContext2D } ctx
      * @param { Array.<ScatterChartDataElement> } data
+     * @param { Array.<ScatterChartDataElement> } selectedPoints
      * @param { ScatterplotChartOptions } options
      */
     const drawScatterplot = (
         ctx,
         data,
+        selectedPoints,
         options
     ) => {
         drawGrid(ctx, options.gridOptions);
-        drawScatterplotPoints(ctx, data, options);
+        drawScatterplotPoints(ctx, data, selectedPoints, options);
     };
 
     /**
      *
      * @param { HTMLCanvasElement } element
      * @param { Array.<ScatterChartDataElement> } data
+     * @param { Array.<ScatterChartDataElement> } selectedPoints
      * @param { ScatterplotChartOptions } options
      */
     const redrawScatterplot = (
         element,
         data,
+        selectedPoints,
         options,
     ) => {
         const ctx = element.getContext('2d');
         ctx.clearRect(0, 0, options.width, options.height);
-        drawScatterplot(ctx, data, options);
+        drawScatterplot(ctx, data, selectedPoints, options);
     };
 
-    const redraw = () => redrawScatterplot(canvasElement, controller.getData(), getOptions());
+    const redraw = () => redrawScatterplot(canvasElement, controller.getData(), controller.getSelectedElements(), getOptions());
 
     const setCanvasBoundaries = (xMin, xMax, yMin, yMax) => {
         const options = getOptions();
@@ -255,7 +230,7 @@ const SimpleScatterChart = (controller) => {
         canvasElement.width  = options.width;
         canvasElement.height = options.height;
 
-        redrawScatterplot(canvasElement, controller.getData(), options);
+        redrawScatterplot(canvasElement, controller.getData(), controller.getSelectedElements(), options);
     });
     resizeHandler.observe(canvasElement);
 
@@ -265,7 +240,7 @@ const SimpleScatterChart = (controller) => {
     });
     styleChangeHandler.observe(canvasElement, { attributes: true, attributeFilter: [ "style" ] });
 
-    drawScatterplot(context, controller.getData(), getOptions());
+    drawScatterplot(context, controller.getData(), controller.getSelectedElements(), getOptions());
 
     const xAxisBar = SimpleAxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
     const yAxisBar = SimpleAxisControlBarProjector("Y_AXIS", { min: controller.yMin, max: controller.yMax });
