@@ -10,7 +10,7 @@ import {
 }                              from "../../util/geometryFunctions.js";
 import { drawLine, drawPoint } from "../../util/chartFunctions.js";
 import { drawGrid }                      from "../../util/chartGridFunctions.js";
-import { SimpleAxisControlBarProjector } from "../simpleAxisControlBar/simpleAxisControlBarProjector.js";
+import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
 
 export { SimpleLineChart }

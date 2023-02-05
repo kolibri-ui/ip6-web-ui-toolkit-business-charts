@@ -2,7 +2,7 @@ import { TestSuite }                 from "../../../Kolibri/docs/src/kolibri/uti
 import { SimpleLineChart }           from "./simpleLineChartProjectorOld.js";
 import { SimpleLineChartController } from "./simpleLineChartControllerOld.js";
 import { generateId }                    from "../../util/functions.js";
-import { SimpleAxisControlBarProjector } from "../simpleAxisControlBar/simpleAxisControlBarProjector.js";
+import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
 import {
     SimpleInputController
 }                                        from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputController.js";

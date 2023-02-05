@@ -3,7 +3,7 @@
 import { TestSuite }                    from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import { SimpleScatterChart }           from "./simpleScatterChartProjector.js";
 import { SimpleScatterChartController }  from "./simpleScatterChartController.js";
-import { SimpleAxisControlBarProjector } from "../simpleAxisControlBar/simpleAxisControlBarProjector.js";
+import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { generateId }                    from "../../util/functions.js";
 
 const SimpleScatterplotChartTestSuite = TestSuite("SCP: src/business-charts/projector/simpleScatterplotChartProjector");

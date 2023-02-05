@@ -12,7 +12,7 @@ import {
     pointDomainToCanvas
 }                                  from "../../util/geometryFunctions.js";
 import { generateId }                    from "../../util/functions.js";
-import { SimpleAxisControlBarProjector } from "../simpleAxisControlBar/simpleAxisControlBarProjector.js";
+import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
 
 export { SimpleScatterChart }
