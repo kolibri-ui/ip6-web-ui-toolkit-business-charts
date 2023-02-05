@@ -1,6 +1,6 @@
 import { projectChangeInput } from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputProjector.js";
 
-export { AxisControlBarProjector }
+export { SimpleAxisControlBarProjector }
 
 /**
  * @typedef { 'X_AXIS'|'Y_AXIS' } AxisType
@@ -18,7 +18,7 @@ export { AxisControlBarProjector }
  * @param controllers { AxisControlBarControllers }
  * @constructor
  */
-const AxisControlBarProjector = (axis, controllers) => {
+const SimpleAxisControlBarProjector = (axis, controllers) => {
     const axisIdentifier = axis === 'X_AXIS' ? 'x' : 'y';
 
     /** @type { HTMLDivElement } */

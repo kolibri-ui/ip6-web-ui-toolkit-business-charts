@@ -2,9 +2,9 @@
 
 import { TestSuite }                    from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import { SimpleScatterChart }           from "./simpleScatterChartProjector.js";
-import { SimpleScatterChartController } from "./simpleScatterChartController.js";
-import { AxisControlBarProjector }      from "../axisControlBar/axisControlBarProjector.js";
-import { generateId }                  from "../../util/functions.js";
+import { SimpleScatterChartController }  from "./simpleScatterChartController.js";
+import { SimpleAxisControlBarProjector } from "../simpleAxisControlBar/simpleAxisControlBarProjector.js";
+import { generateId }                    from "../../util/functions.js";
 
 const SimpleScatterplotChartTestSuite = TestSuite("SCP: src/business-charts/projector/simpleScatterplotChartProjector");
 
@@ -31,8 +31,8 @@ SimpleScatterplotChartTestSuite.add("SCP: simple scatter chart projector", asser
     const chartElement = document.createElement("div");
     chartElement.classList.add("chart-container");
 
-    const xAxisBar = AxisControlBarProjector("X_AXIS", { min: scatterChartController.xMin, max: scatterChartController.xMax });
-    const yAxisBar = AxisControlBarProjector("Y_AXIS", { min: scatterChartController.yMin, max: scatterChartController.yMax });
+    const xAxisBar = SimpleAxisControlBarProjector("X_AXIS", { min: scatterChartController.xMin, max: scatterChartController.xMax });
+    const yAxisBar = SimpleAxisControlBarProjector("Y_AXIS", { min: scatterChartController.yMin, max: scatterChartController.yMax });
 
     /** @type { HTMLCanvasElement } */
     const canvasElement = document.createElement("canvas");

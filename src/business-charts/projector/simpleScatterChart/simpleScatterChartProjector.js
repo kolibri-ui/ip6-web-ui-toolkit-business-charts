@@ -11,9 +11,9 @@ import {
     pointCanvasToDomain,
     pointDomainToCanvas
 }                                  from "../../util/geometryFunctions.js";
-import { generateId }              from "../../util/functions.js";
-import { AxisControlBarProjector } from "../axisControlBar/axisControlBarProjector.js";
-import { ToolBarProjector }        from "../toolBar/toolBarProjector.js";
+import { generateId }                    from "../../util/functions.js";
+import { SimpleAxisControlBarProjector } from "../simpleAxisControlBar/simpleAxisControlBarProjector.js";
+import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
 
 export { SimpleScatterChart }
 
@@ -267,8 +267,8 @@ const SimpleScatterChart = (controller) => {
 
     drawScatterplot(context, controller.getData(), getOptions());
 
-    const xAxisBar = AxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
-    const yAxisBar = AxisControlBarProjector("Y_AXIS", { min: controller.yMin, max: controller.yMax });
+    const xAxisBar = SimpleAxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
+    const yAxisBar = SimpleAxisControlBarProjector("Y_AXIS", { min: controller.yMin, max: controller.yMax });
 
     const toolBar = ToolBarProjector(
         controller.toolBarController,

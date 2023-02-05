@@ -1,11 +1,11 @@
 import { TestSuite }                 from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import { SimpleLineChart }           from "./simpleLineChartProjectorOld.js";
 import { SimpleLineChartController } from "./simpleLineChartControllerOld.js";
-import { generateId }                from "../../util/functions.js";
-import { AxisControlBarProjector }   from "../axisControlBar/axisControlBarProjector.js";
+import { generateId }                    from "../../util/functions.js";
+import { SimpleAxisControlBarProjector } from "../simpleAxisControlBar/simpleAxisControlBarProjector.js";
 import {
     SimpleInputController
-}                                    from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputController.js";
+}                                        from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputController.js";
 import {
     projectChangeInput
 }                                    from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputProjector.js";
@@ -64,8 +64,8 @@ SimpleLineChartProjectorTestSuite.add("LCP: simple line chart projector", assert
     
     const lineChart = SimpleLineChart(lineChartController);
 
-    const xAxisBar = AxisControlBarProjector("X_AXIS", { min: lineChartController.xMin, max: lineChartController.xMax });
-    const yAxisBar = AxisControlBarProjector("Y_AXIS", { min: lineChartController.yMin, max: lineChartController.yMax });
+    const xAxisBar = SimpleAxisControlBarProjector("X_AXIS", { min: lineChartController.xMin, max: lineChartController.xMax });
+    const yAxisBar = SimpleAxisControlBarProjector("Y_AXIS", { min: lineChartController.yMin, max: lineChartController.yMax });
     
     
     /** @type { HTMLCanvasElement } */
