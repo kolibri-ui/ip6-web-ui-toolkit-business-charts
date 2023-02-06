@@ -100,7 +100,15 @@
 
 .x-axis canvas {
     width: var(--golden-section-width);
-    height: 85px;
+    height: 80px;
+}
+
+.control-bar-resize {
+    cursor: col-resize;
+}
+
+.control-bar-move {
+    cursor: ew-resize;
 }
 
 .chart-container label {

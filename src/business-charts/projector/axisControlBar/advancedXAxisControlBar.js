@@ -33,7 +33,7 @@ const AdvancedXAxisControlBarProjector = (controller) => {
     /** @type { HTMLCanvasElement } */
     const canvasElement  = document.createElement("canvas");
     canvasElement.width  = 500;
-    canvasElement.height = 85;
+    canvasElement.height = 80;
 
     /**
      *
@@ -121,10 +121,25 @@ const AdvancedXAxisControlBarProjector = (controller) => {
     };
 
     canvasElement.onmousemove = (event) => {
+        const options = getOptions();
+        const rect = canvasElement.getBoundingClientRect();
+
+        const xMinPos = xDomainToCanvas(
+            options.width,
+            options.boundaries.xMin,
+            options.boundaries.xMax,
+            controller.xMin.getValue()
+        );
+        const xMaxPos = xDomainToCanvas(
+            options.width,
+            options.boundaries.xMin,
+            options.boundaries.xMax,
+            controller.xMax.getValue()
+        );
+        const posX = event.x - rect.left;
+
         // TODO: Stop panning when boundaries reached
         if (resizeActive) {
-            const options = getOptions();
-            const rect = canvasElement.getBoundingClientRect();
             const posX = event.x - rect.left;
             const moveX = posX - mouseStartX;
 
@@ -146,6 +161,19 @@ const AdvancedXAxisControlBarProjector = (controller) => {
             }
 
             mouseStartX = posX;
+        } else {
+            if ((xMinPos - 5) < posX && (xMaxPos + 5) > posX) {
+                if ((xMinPos + 5) > posX || (xMaxPos -5) < posX) {
+                    canvasElement.classList.add('control-bar-resize');
+                    canvasElement.classList.remove('control-bar-move');
+                } else {
+                    canvasElement.classList.add('control-bar-move');
+                    canvasElement.classList.remove('control-bar-resize');
+                }
+            } else {
+                canvasElement.classList.remove('control-bar-move');
+                canvasElement.classList.remove('control-bar-resize');
+            }
         }
     };
 
