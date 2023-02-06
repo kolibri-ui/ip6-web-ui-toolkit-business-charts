@@ -9,6 +9,10 @@
     --toolbar-button-size: 40px;
     --search-field-height: calc(var(--toolbar-button-size) + 4 * var(--all-borders));
     --search-field-width: calc(6 * var(--toolbar-button-size));
+
+    --data-point-size: 10;
+    --data-point-color: #a55ca5;
+    --data-point-selected-color: #ff0000;
 }
 
 /****************** chart container ********************/
@@ -41,9 +45,6 @@
 
 /****************** canvas section ********************/
 .scatter-chart-canvas {
-    --data-point-size: 10;
-    --data-point-color: #a55ca5;
-    --data-point-selected-color: #ff0000;
     width: var(--golden-section-width);
     height: var(--golden-section-height);
 
@@ -52,9 +53,6 @@
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
 }
 .chart-container .line-chart-canvas {
-    --data-point-size: 10;
-    --data-point-color: #a55ca5;
-    --data-point-selected-color: #ff0000;
     width: var(--golden-section-width);
     height: var(--golden-section-height);
 
@@ -98,6 +96,11 @@
     justify-content: space-between;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
     box-shadow: var(--x-axis-shadow);
+}
+
+.x-axis canvas {
+    width: var(--golden-section-width);
+    height: 85px;
 }
 
 .chart-container label {
