@@ -1,7 +1,20 @@
-import { domainToCanvasXY } from "./geometryFunctions.js";
-import { drawPoint }        from "./chartFunctions.js";
+// noinspection SpellCheckingInspection
+
+import {
+    pointDomainToCanvas
+}                    from "./geometryFunctions.js";
+import { drawPoint } from "./chartFunctions.js";
 
 export { drawScatterplotPoints }
+
+/**
+ * @typedef DataBoundaries
+ * @property { Number } xMin
+ * @property { Number } xMax
+ * @property { Number } yMin
+ * @property { Number } yMax
+ */
+
 
 /**
  * @description draws all data points
@@ -17,10 +30,13 @@ const drawScatterplotPoints = (
     options
 ) => {
     for (const v of data) {
-        const point = domainToCanvasXY(
-            options.gridOptions.nullPoint,
-            options.gridOptions.xRatio,
-            options.gridOptions.yRatio,
+        const point = pointDomainToCanvas(
+            options.width,
+            options.height,
+            options.boundaries.xMin,
+            options.boundaries.xMax,
+            options.boundaries.yMin,
+            options.boundaries.yMax,
             v
         );
 

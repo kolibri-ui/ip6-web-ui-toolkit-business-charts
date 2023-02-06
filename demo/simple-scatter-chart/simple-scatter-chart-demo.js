@@ -27,10 +27,10 @@ const dataButton = document.getElementById("data-point-random-data");
 dataButton.onclick                                          = (_) => {
     /** @type { Array<ScatterChartDataElement> } */
     const dataArray = [];
-    const xMin = controller.xMin.getValue();
-    const xMax = controller.xMax.getValue();
-    const yMin = controller.yMin.getValue();
-    const yMax = controller.yMax.getValue();
+    const xMin = controller.boundaries.xMin + 1;
+    const xMax = controller.boundaries.xMax - 1;
+    const yMin = controller.boundaries.yMin + 1;
+    const yMax = controller.boundaries.yMax - 1;
 
     for (let i = xMin; i <= xMax; i++) {
         dataArray.push({
@@ -46,12 +46,12 @@ dataButton.onclick                                          = (_) => {
 const pointSizeSlider = document.getElementById("data-point-size");
 pointSizeSlider.value = Number(getComputedStyle(document.querySelector(".scatter-chart-canvas")).getPropertyValue("--data-point-size"));
 pointSizeSlider.nextElementSibling.value = pointSizeSlider.value;
-pointSizeSlider.onchange = (_) => document.querySelector(".scatter-chart-canvas").style.setProperty("--data-point-size", pointSizeSlider.value);
+pointSizeSlider.onchange = (_) => document.documentElement.style.setProperty("--data-point-size", pointSizeSlider.value);
 
 const colorPicker = document.getElementById("data-point-color");
 colorPicker.value = getComputedStyle(document.querySelector(".scatter-chart-canvas")).getPropertyValue("--data-point-color").trim();
-colorPicker.onchange = (_) => document.querySelector(".scatter-chart-canvas").style.setProperty("--data-point-color", colorPicker.value);
+colorPicker.onchange = (_) => document.documentElement.style.setProperty("--data-point-color", colorPicker.value);
 
 const selectedColorPicker = document.getElementById("data-point-selected-color");
 selectedColorPicker.value = getComputedStyle(document.querySelector(".scatter-chart-canvas")).getPropertyValue("--data-point-selected-color").trim();
-selectedColorPicker.onchange = (_) => document.querySelector(".scatter-chart-canvas").style.setProperty("--data-point-selected-color", selectedColorPicker.value);
+selectedColorPicker.onchange = (_) => document.documentElement.style.setProperty("--data-point-selected-color", selectedColorPicker.value);

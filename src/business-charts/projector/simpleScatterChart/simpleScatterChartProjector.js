@@ -1,16 +1,17 @@
 // noinspection SpellCheckingInspection
 
-import { drawGrid }                      from "../../util/chartGridFunctions.js";
+import { drawGrid }                         from "../../util/chartGridFunctions.js";
 import {
     calcXRatio,
     calcYRatio,
     pointCanvasToDomain,
     pointDomainToCanvas
-}                                        from "../../util/geometryFunctions.js";
-import { generateId }                    from "../../util/functions.js";
-import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
-import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
-import { drawScatterplotPoints }         from "../../util/scatterChartFunctions.js";
+}                                           from "../../util/geometryFunctions.js";
+import { generateId }                       from "../../util/functions.js";
+import { SimpleAxisControlBarProjector }    from "../axisControlBar/simpleAxisControlBarProjector.js";
+import { ToolBarProjector }                 from "../toolBar/toolBarProjector.js";
+import { drawScatterplotPoints }            from "../../util/scatterChartFunctions.js";
+import { AdvancedXAxisControlBarProjector } from "../axisControlBar/advancedXAxisControlBar.js";
 
 export { SimpleScatterChart }
 
@@ -21,6 +22,7 @@ export { SimpleScatterChart }
  * @property { String } color Color for points
  * @property { String } selectedColor Color for points
  * @property { !Number } pointSize size of scatterplot points
+ * @property { DataBoundaries } boundaries
  * @property { GridOptions } gridOptions grid options
  */
 
@@ -87,6 +89,12 @@ const SimpleScatterChart = (controller) => {
             color      : pointColor,
             selectedColor: selectedPointColor,
             pointSize  : pointSize,
+            boundaries: {
+                xMin,
+                xMax,
+                yMin,
+                yMax
+            },
             gridOptions: {
                 nullPoint     : nullPoint,
                 canvasWidth   : width,
@@ -236,13 +244,13 @@ const SimpleScatterChart = (controller) => {
 
     const styleChangeHandler = new MutationObserver((_) => {
         const options = getOptions();
-        redrawScatterplot(canvasElement, controller.getData(), options);
+        redrawScatterplot(canvasElement, controller.getData(), controller.getSelectedElements(), options);
     });
-    styleChangeHandler.observe(canvasElement, { attributes: true, attributeFilter: [ "style" ] });
+    styleChangeHandler.observe(document.documentElement, { attributes: true, attributeFilter: [ "style" ] });
 
     drawScatterplot(context, controller.getData(), controller.getSelectedElements(), getOptions());
 
-    const xAxisBar = SimpleAxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
+    const xAxisBar = AdvancedXAxisControlBarProjector(controller);
     const yAxisBar = SimpleAxisControlBarProjector("Y_AXIS", { min: controller.yMin, max: controller.yMax });
 
     const toolBar = ToolBarProjector(

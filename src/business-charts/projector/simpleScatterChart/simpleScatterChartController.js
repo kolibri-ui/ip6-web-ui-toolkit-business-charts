@@ -25,6 +25,7 @@ export { SimpleScatterChartController }
  * @property { SimpleInputControllerType }                                                  xMax the highest value to be displayed on the x-axis
  * @property { SimpleInputControllerType }                                                  yMin the smallest value to be displayed on the y-axis
  * @property { SimpleInputControllerType }                                                  yMax the highest value to be displayed on the y-axis
+ * @property { DataBoundaries }                                                             boundaries
  * @property { (data: Array<ScatterChartDataElement>) => void }                             setData the data series to be presented in the line chart
  * @property { () => Array<ScatterChartDataElement> }                                       getData the data series used in the line chart
  * @property { (elements: Array<ScatterChartDataElement>) => void }                         setSelectedElements set the selected data elements
@@ -112,6 +113,13 @@ const SimpleScatterChartController = (dataArray, opts) => {
     const yMaximum = dataArray.reduce((prev, curr) => 
         prev > curr.yValue ? prev : curr.yValue) + 1;
 
+    const boundaries = {
+        xMin: xMinimum,
+        xMax: xMaximum,
+        yMin: yMinimum,
+        yMax: yMaximum
+    };
+
     /** @type { SimpleInputControllerType<Number> } */
     const xMin = SimpleInputController({
         value: xMinimum,
@@ -175,6 +183,7 @@ const SimpleScatterChartController = (dataArray, opts) => {
         xMax,
         yMin,
         yMax,
+        boundaries,
         setData:                   data.getObs(VALUE).setValue,
         getData:                   data.getObs(VALUE).getValue,
         setSelectedElements:       selectedElements.getObs(VALUE).setValue,

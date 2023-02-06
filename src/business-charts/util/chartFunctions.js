@@ -76,6 +76,7 @@ function drawLine(
  * @param { Number } width
  * @param { Number } height
  * @param { String } color
+ * @param { ?Number } alpha
  */
 function drawRect(
     ctx,
@@ -83,11 +84,14 @@ function drawRect(
     upperLeftCornerY,
     width,
     height,
-    color
+    color,
+    alpha
 ) {
     ctx.save();
     ctx.fillStyle = color;
+    ctx.globalAlpha = alpha ?? 1.0;
     ctx.fillRect(upperLeftCornerX, upperLeftCornerY, width, height);
+    ctx.globalAlpha = 1.0;
     ctx.restore();
 }
 
