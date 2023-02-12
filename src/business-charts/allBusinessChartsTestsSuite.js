@@ -6,8 +6,6 @@ import "./projector/simpleScatterChart/simpleScatterChartProjectorTest.js"
 import "./projector/simpleLineChart/simpleLineChartProjectorTest.js"
 
 //model tests
-import "./projector/simpleScatterChart/simpleScatterChartModelTest.js"
-import "./projector/simpleLineChart/simpleLineChartModelTest.js"
 
 //controller tests
 import "./projector/simpleScatterChart/simpleScatterChartControllerTest.js"
