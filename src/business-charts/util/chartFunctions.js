@@ -50,6 +50,7 @@ const drawPoint = (
  * @param { Number } endX the x position where the line ends relative to the null point
  * @param { Number } endY the y position where the line ends relative to the null point
  * @param { String } color the color of the line
+ * @param { Number } lineWidth line width
  */
 function drawLine(
     ctx,
@@ -57,14 +58,17 @@ function drawLine(
     startY,
     endX,
     endY,
-    color
+    color,
+    lineWidth
 ) {
     ctx.save();
     ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth ?? 1;
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.lineTo(endX, endY);
     ctx.stroke();
+    ctx.lineWidth = 1;
     ctx.restore();
 }
 
@@ -77,6 +81,8 @@ function drawLine(
  * @param { Number } height
  * @param { String } color
  * @param { ?Number } alpha
+ * @param { ?Boolean } border
+ * @param { ?String } borderColor
  */
 function drawRect(
     ctx,
@@ -85,10 +91,13 @@ function drawRect(
     width,
     height,
     color,
-    alpha
+    alpha,
+    border = false,
+    borderColor = '#000000'
 ) {
     ctx.save();
     ctx.fillStyle = color;
+    ctx.strokeStyle = borderColor;
     ctx.globalAlpha = alpha ?? 1.0;
     ctx.fillRect(upperLeftCornerX, upperLeftCornerY, width, height);
     ctx.globalAlpha = 1.0;

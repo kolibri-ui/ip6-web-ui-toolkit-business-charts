@@ -1,30 +1,16 @@
 import { dom } from "../../../Kolibri/docs/src/kolibri/util/dom.js";
 export { ToolBarProjector }
 
-/************************************** Simple Scatter Chart *********************************/
-// /**
-//  * @typedef ChartToolBarCallbacks
-//  * @property { () => Array<ScatterChartDataElement> } getData
-//  * @property {  (canvasX: Number, canvasY: Number) => Array<ScatterChartDataElement> } getDataPointsForPosition
-//  * @property { (point: ScatterChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
-//  * @property { () => ScatterplotChartOptions } getOptions
-//  * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void } setCanvasBoundaries
-//  * @property { (dataPoint: ScatterChartDataElement) => void } selectDataPoints
-//  * @property { () => void } redraw
-//  */
-
-/************************************** Simple Line Chart *********************************/
 /**
  * @typedef ChartToolBarCallbacks
- * @property { () => Array<LineChartDataElement> } getData
- * @property {  (canvasX: Number, canvasY: Number) => Array<LineChartDataElement> } getDataPointsForPosition
- * @property { (point: LineChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
- * @property { () => LineChartDataElement } getOptions
+ * @property { () => Array<ScatterChartDataElement> } getData
+ * @property {  (canvasX: Number, canvasY: Number) => Array<ScatterChartDataElement> } getDataPointsForPosition
+ * @property { (point: ScatterChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
+ * @property { () => ScatterplotChartOptions } getOptions
  * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void } setCanvasBoundaries
- * @property { (dataPoint: LineChartDataElement) => void } selectDataPoints
+ * @property { (dataPoint: ScatterChartDataElement) => void } selectDataPoints
  * @property { () => void } redraw
  */
-
 
 /**
  * @typedef ChartToolType
@@ -36,6 +22,8 @@ export { ToolBarProjector }
  * @property { mouseDown?: (event: MouseEvent) => void } mouseDown
  * @property { mouseUp?: (event: MouseEvent) => void } mouseUp
  * @property { mouseClick?: (event: MouseEvent) => void } mouseClick
+ * @property { mouseLeave?: (event: MouseEvent) => void } mouseLeave
+ * @property { mouseEnter?: (event: MouseEvent) => void } mouseEnter
  */
 
 const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
@@ -124,6 +112,20 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
         const selectedTool = controller.selectedTool();
         if (selectedTool.mouseUp) {
             selectedTool.mouseUp(event);
+        }
+    };
+
+    canvasElement.onmouseenter = (event) => {
+        const selectedTool = controller.selectedTool();
+        if (selectedTool.mouseEnter) {
+            selectedTool.mouseEnter(event);
+        }
+    };
+
+    canvasElement.onmouseleave = (event) => {
+        const selectedTool = controller.selectedTool();
+        if (selectedTool.mouseLeave) {
+            selectedTool.mouseLeave(event);
         }
     };
 

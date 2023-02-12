@@ -52,6 +52,11 @@ const panningTool = (canvasElement, callbacks) => {
         mouseUp: (_) => {
             panningActive = false;
             callbacks.redraw();
+        },
+        mouseEnter: (event) => {
+            if (event.buttons === 0) {
+                panningActive = false;
+            }
         }
     };
 };

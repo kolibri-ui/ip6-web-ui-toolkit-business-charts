@@ -22,6 +22,7 @@ export { SimpleScatterChart }
  * @property { String } color Color for points
  * @property { String } selectedColor Color for points
  * @property { !Number } pointSize size of scatterplot points
+ * @property { DataBoundaries } dataBoundaries
  * @property { DataBoundaries } boundaries
  * @property { GridOptions } gridOptions grid options
  */
@@ -89,6 +90,7 @@ const SimpleScatterChart = (controller) => {
             color      : pointColor,
             selectedColor: selectedPointColor,
             pointSize  : pointSize,
+            dataBoundaries: controller.boundaries,
             boundaries: {
                 xMin,
                 xMax,
@@ -173,10 +175,43 @@ const SimpleScatterChart = (controller) => {
             }
         );
 
-        controller.xMin.setValue(Math.min(...[ domainStart.xValue, domainEnd.xValue ]));
-        controller.xMax.setValue(Math.max(...[ domainStart.xValue, domainEnd.xValue ]));
-        controller.yMin.setValue(Math.min(...[ domainStart.yValue, domainEnd.yValue ]));
-        controller.yMax.setValue(Math.max(...[ domainStart.yValue, domainEnd.yValue ]));
+        const xMaxArea = Math.abs(options.dataBoundaries.xMin - options.dataBoundaries.xMax);
+        const xArea = Math.abs(domainStart.xValue - domainEnd.xValue);
+        const xMinimum = Math.min(...[ domainStart.xValue, domainEnd.xValue ]);
+        const xMaximum = Math.max(...[ domainStart.xValue, domainEnd.xValue ]);
+
+        if (xArea > xMaxArea) {
+            controller.xMin.setValue(options.dataBoundaries.xMin);
+            controller.xMax.setValue(options.dataBoundaries.xMax);
+        } else if (xMinimum < options.dataBoundaries.xMin) {
+            controller.xMin.setValue(options.dataBoundaries.xMin);
+            controller.xMax.setValue(options.dataBoundaries.xMin + xArea);
+        } else if (xMaximum > options.dataBoundaries.xMax) {
+            controller.xMin.setValue(options.dataBoundaries.xMax - xArea);
+            controller.xMax.setValue(options.dataBoundaries.xMax);
+        } else {
+            controller.xMin.setValue(xMinimum);
+            controller.xMax.setValue(xMaximum);
+        }
+
+        const yMaxArea = Math.abs(options.dataBoundaries.yMin - options.dataBoundaries.yMax);
+        const yArea = Math.abs(domainStart.yValue - domainEnd.yValue);
+        const yMinimum = Math.min(...[ domainStart.yValue, domainEnd.yValue ]);
+        const yMaximum = Math.max(...[ domainStart.yValue, domainEnd.yValue ]);
+
+        if (yArea > yMaxArea) {
+            controller.yMin.setValue(options.dataBoundaries.yMin);
+            controller.yMax.setValue(options.dataBoundaries.yMax);
+        } else if (yMinimum < options.dataBoundaries.yMin) {
+            controller.yMin.setValue(options.dataBoundaries.yMin);
+            controller.yMax.setValue(options.dataBoundaries.yMin + yArea);
+        } else if (yMaximum > options.dataBoundaries.yMax) {
+            controller.yMin.setValue(options.dataBoundaries.yMax - yArea);
+            controller.yMax.setValue(options.dataBoundaries.yMax);
+        } else {
+            controller.yMin.setValue(yMinimum);
+            controller.yMax.setValue(yMaximum);
+        }
     };
 
     const getDataPointsForPosition = (canvasX, canvasY) => {

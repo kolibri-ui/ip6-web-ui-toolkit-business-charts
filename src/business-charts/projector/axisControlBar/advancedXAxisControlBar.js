@@ -3,7 +3,10 @@ import {
     xCanvasToDomain,
     xDomainToCanvas
 } from "../../util/geometryFunctions.js";
-import { drawRect }              from "../../util/chartFunctions.js";
+import {
+    drawLine,
+    drawRect
+} from "../../util/chartFunctions.js";
 
 export { AdvancedXAxisControlBarProjector }
 
@@ -81,7 +84,12 @@ const AdvancedXAxisControlBarProjector = (controller) => {
 
         const width = xMaximum - xMinimum;
 
-        drawRect(ctx, xMinimum, 0, width, options.height, '#000000', 0.2);
+        const areaColor = getComputedStyle(canvasElement).getPropertyValue("--advanced-control-bar-area-color");
+        const borderColor = getComputedStyle(canvasElement).getPropertyValue("--advanced-control-bar-border-color");
+
+        drawRect(ctx, xMinimum, 0, width, options.height, areaColor, 0.2);
+        drawLine(ctx, xMinimum, 0, xMinimum, options.height, borderColor, 2);
+        drawLine(ctx, xMaximum, 0, xMaximum, options.height, borderColor, 2);
     };
 
     let mouseStartX;
@@ -138,7 +146,6 @@ const AdvancedXAxisControlBarProjector = (controller) => {
         );
         const posX = event.x - rect.left;
 
-        // TODO: Stop panning when boundaries reached
         if (resizeActive) {
             const posX = event.x - rect.left;
             const moveX = posX - mouseStartX;
@@ -146,18 +153,29 @@ const AdvancedXAxisControlBarProjector = (controller) => {
             if (changeType === 'CHANGE_MIN') {
                 const xMin = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMin.getValue());
                 const changedX = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMin + moveX);
-                controller.xMin.setValue(changedX);
+                if (changedX < options.boundaries.xMin) {
+                    controller.xMin.setValue(options.boundaries.xMin);
+                } else {
+                    controller.xMin.setValue(changedX);
+                }
             } else if (changeType === 'CHANGE_MAX') {
                 const xMax = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMax.getValue());
                 const changedX = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMax + moveX);
-                controller.xMax.setValue(changedX);
+                if (changedX > options.boundaries.xMax) {
+                    controller.xMax.setValue(options.boundaries.xMax);
+                } else {
+                    controller.xMax.setValue(changedX);
+                }
+
             } else {
                 const xMin = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMin.getValue());
                 const xMax = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMax.getValue());
                 const changedXMin = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMin + moveX);
                 const changedXMax = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMax + moveX);
-                controller.xMin.setValue(changedXMin);
-                controller.xMax.setValue(changedXMax);
+                if (changedXMin >= options.boundaries.xMin && changedXMax <= options.boundaries.xMax) {
+                    controller.xMin.setValue(changedXMin);
+                    controller.xMax.setValue(changedXMax);
+                }
             }
 
             mouseStartX = posX;
@@ -174,6 +192,12 @@ const AdvancedXAxisControlBarProjector = (controller) => {
                 canvasElement.classList.remove('control-bar-move');
                 canvasElement.classList.remove('control-bar-resize');
             }
+        }
+    };
+
+    canvasElement.onmouseenter = (event) => {
+        if (event.buttons === 0) {
+            resizeActive = false;
         }
     };
 
