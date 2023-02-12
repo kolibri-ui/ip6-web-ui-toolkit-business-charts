@@ -10,6 +10,13 @@ import { ToolBarController }     from "../toolBar/toolBarController.js";
 export { SimpleScatterChartController }
 
 /**
+ * @typedef { Object } ScatterChartDataElement
+ * @property { String }  name name of the data element
+ * @property { !Number } xValue value on the horizontal Axis of the data element
+ * @property { !Number } yValue value on the vertical Axis of the data element
+ */
+
+/**
  * @typedef { Object } SimpleScatterChartOptions
  * @property { ?String } id ID string (optional)
  * @property { ?Number } xEvery value to define which ticks should be drawn for x-axis
@@ -63,24 +70,8 @@ const ScatterChartOptionsModel = opts => {
  * @constructor
  */
 const DataModel = dataArray => {
-    const data = Attribute(dataArray);
+    const data = Attribute(dataArray ?? []);
     return /** @type { DataModelType } */ { data };
-};
-
-/**
- * @typedef SelectedElementsModelType
- * @property { AttributeType<Array<ScatterChartDataElement>> } selectedElements selected scatter elements
- */
-
-/**
- * @private
- * @pure
- * @return { SelectedElementsModelType }
- * @constructor
- */
-const SelectedElementsModel = entries => {
-    const selectedElements = Attribute(entries ?? []);
-    return /** @type { SelectedElementsModelType } */ { selectedElements };
 };
 
 /**
@@ -102,7 +93,7 @@ const SimpleScatterChartController = (dataArray, opts) => {
     }
     const { data } = DataModel(dataArray);
     const { options } = ScatterChartOptionsModel(opts);
-    const { selectedElements } = SelectedElementsModel();
+    const selectedElements = DataModel().data;
 
     const xMinimum = dataArray.reduce((prev, curr) => 
         prev < curr.xValue ? prev : curr.xValue) - 1;
