@@ -1,6 +1,7 @@
 // noinspection SpellCheckingInspection
 
-import { dom }                        from "../../../../Kolibri/docs/src/kolibri/util/dom.js";
+import { dom }              from "../../../../Kolibri/docs/src/kolibri/util/dom.js";
+import { ctrlOrCmdPressed } from "../../../util/functions.js";
 
 export { selectionTool }
 
@@ -53,7 +54,23 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
 
             const points = callbacks.getDataPointsForPosition(mouseX, mouseY);
 
-            callbacks.selectDataPoints(points);
+            if (event && ctrlOrCmdPressed(event)) {
+                let selectedPoints = callbacks.getSelectedDataPoints();
+
+                for (const point of points) {
+
+                    if (selectedPoints.includes(point)) {
+                        selectedPoints = selectedPoints.filter(p => p !== point);
+                    } else {
+                        selectedPoints = [point, ...selectedPoints];
+                    }
+                }
+
+                callbacks.selectDataPoints(selectedPoints);
+            } else {
+                callbacks.selectDataPoints(points);
+            }
+
         }
     };
 };

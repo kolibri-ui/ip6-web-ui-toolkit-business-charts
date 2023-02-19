@@ -8,7 +8,8 @@ export { ToolBarProjector }
  * @property { (point: ScatterChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
  * @property { () => ScatterplotChartOptions } getOptions
  * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void } setCanvasBoundaries
- * @property { (dataPoint: ScatterChartDataElement) => void } selectDataPoints
+ * @property { (dataPoints: Array<ScatterChartDataElement>) => void } selectDataPoints
+ * @property { () => Array<ScatterChartDataElement> } getSelectedDataPoints
  * @property { () => void } redraw
  */
 
@@ -26,6 +27,14 @@ export { ToolBarProjector }
  * @property { mouseEnter?: (event: MouseEvent) => void } mouseEnter
  */
 
+/**
+ *
+ * @param { ToolBarControllerType } controller
+ * @param canvasCallbacks
+ * @param canvasElement
+ * @returns {HTMLDivElement}
+ * @constructor
+ */
 const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
     const toolButtons = [];
 
@@ -37,6 +46,7 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
         getDataPointsForPosition  : canvasCallbacks.getDataPointsForPosition,
         getCanvasPositionForPoint : canvasCallbacks.getCanvasPositionForPoint,
         selectDataPoints          : controller.selectDataPoints,
+        getSelectedDataPoints     : controller.getSelectedDataPoints,
         redraw                    : canvasCallbacks.redraw
     };
 

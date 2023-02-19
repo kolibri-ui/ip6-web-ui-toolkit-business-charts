@@ -1,4 +1,5 @@
-import { dom } from "../../../Kolibri/docs/src/kolibri/util/dom.js";
+import { dom }              from "../../../Kolibri/docs/src/kolibri/util/dom.js";
+import { ctrlOrCmdPressed } from "../../util/functions.js";
 
 export { DataTableView }
 
@@ -84,10 +85,3 @@ const DataTableView = (controller, title) => {
 
     return elements[0];
 };
-
-/**
- * Checks if CMD (on Mac) or CTRL (on other platforms) is pressed
- * @param { MouseEvent } event
- * @returns { Boolean }
- */
-const ctrlOrCmdPressed = (event) => ((window.navigator.userAgent.indexOf("Mac") !== -1) && event.metaKey) || event.ctrlKey;

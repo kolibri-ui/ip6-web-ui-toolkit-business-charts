@@ -163,6 +163,7 @@ const SimpleScatterChartController = (dataArray, opts) => {
         {
             getData: data.getObs(VALUE).getValue,
             selectDataPoints: selectedElements.getObs(VALUE).setValue,
+            getSelectedDataPoints: selectedElements.getObs(VALUE).getValue,
         },
         opts ? opts.tools : undefined
     );
