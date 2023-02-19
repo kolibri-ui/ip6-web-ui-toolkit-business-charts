@@ -1,17 +1,7 @@
 import {
     Attribute,
     VALUE
-}                                     from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
-import { rubberBandTool }             from "./tools/RubberbandTool.js";
-import { selectionTool }              from "./tools/SelectionTool.js";
-import { panningTool }                from "./tools/PanningTool.js";
-import { zoomInTool }                 from "./tools/ZoomInTool.js";
-import { zoomOutTool }                from "./tools/ZoomOut.js";
-import {
-    selectionToolBubbleTooltip,
-    selectionToolTooltipBottomCenter, 
-    selectionToolTooltipLeftCenter
-} from "./tools/selectionToolTooltipProjector.js";
+} from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
 
 export { ToolBarController }
 
@@ -57,23 +47,14 @@ const SelectedToolModel = () => {
 const ToolBarController = (controllerCallbacks, tools) => {
     const { selectedTool } = SelectedToolModel();
 
-    tools = [
-        zoomInTool,
-        zoomOutTool,
-        selectionTool(selectionToolBubbleTooltip),
-        //selectionTool(selectionToolTooltipBottomCenter),
-        //selectionTool(selectionToolTooltipLeftCenter),
-        rubberBandTool,
-        panningTool,
-        ...(tools ?? [])
-    ];
+    tools = [ ...(tools ?? []) ];
 
     return {
         tools,
-        selectedTool: () => selectedTool.getObs(VALUE).getValue(),
-        selectTool: (tool) => selectedTool.getObs(VALUE).setValue(tool),
-        getData: controllerCallbacks.getData,
-        selectDataPoints: controllerCallbacks.selectDataPoints,
+        selectedTool         : () => selectedTool.getObs(VALUE).getValue(),
+        selectTool           : (tool) => selectedTool.getObs(VALUE).setValue(tool),
+        getData              : controllerCallbacks.getData,
+        selectDataPoints     : controllerCallbacks.selectDataPoints,
         getSelectedDataPoints: controllerCallbacks.getSelectedDataPoints
     };
 };
