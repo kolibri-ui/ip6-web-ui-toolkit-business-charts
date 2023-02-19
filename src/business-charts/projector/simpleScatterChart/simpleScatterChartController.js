@@ -83,14 +83,22 @@ const DataModel = dataArray => {
  */
 const SimpleScatterChartController = (dataArray, opts) => {
     // TODO: id model
-
     if (opts === undefined) {
-        opts = {
-            xEvery: 1,
-            yEvery: 1,
-            drawOuterTicks: true,
-        }
+        opts = {};
     }
+
+    if (opts.xEvery === undefined) {
+        opts.xEvery = 1;
+    }
+
+    if (opts.yEvery === undefined) {
+        opts.yEvery = 1;
+    }
+
+    if (opts.drawOuterTicks === undefined) {
+        opts.drawOuterTicks = true;
+    }
+
     const { data } = DataModel(dataArray);
     const { options } = ScatterChartOptionsModel(opts);
     const selectedElements = DataModel().data;
