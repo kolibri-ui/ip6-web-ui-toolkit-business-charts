@@ -11,7 +11,7 @@ import { generateId }                       from "../../util/functions.js";
 import { SimpleAxisControlBarProjector }    from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { ToolBarProjector }                 from "../toolBar/toolBarProjector.js";
 import { drawScatterplotPoints }            from "../../util/scatterChartFunctions.js";
-import { AdvancedXAxisControlBarProjector } from "../axisControlBar/advancedXAxisControlBar.js";
+import { AdvancedXAxisControlBarProjector } from "../axisControlBar/advancedXAxisControlBarProjector.js";
 
 export { SimpleScatterChart }
 
