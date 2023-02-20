@@ -45,7 +45,7 @@ In diesem Beispiel verwendest du Projektoren für die Erstellung einer Scatter C
 Dazu brauchst du Folgendes:
 
 Import der benötigten Module
-```
+``` js
 import { SimpleScatterChart }           from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartProjector.js";
 import { SimpleScatterChartController } from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartController.js";
 import { DataTableView }                from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
@@ -53,7 +53,7 @@ import { SimpleDetailView }             from "../../src/business-charts/projecto
 ```
 
 Ein Daten-Array vom Typ "ScatterChartDataElement"
-```
+``` js
 /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
 name: 'A', xValue: -4, yValue: 3,
 }, {
@@ -62,14 +62,14 @@ name: 'B', xValue: -3, yValue: 2,
 ```
 
 Einen Chart Controller, welchem du die Daten übergibst
-```
+``` js
 const controller = SimpleScatterChartController(
     data
 );
 ```
 
 Eine HTML-Anbindung der Chart-, Table- und Detailview-Projektoren 
-```
+``` js
 document.getElementById('container').append(SimpleScatterChart(controller));
 
 const detailView = document.getElementById('detail-view');
