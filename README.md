@@ -89,13 +89,13 @@ Möchtest du einen bestimmten Bereich sehen, kannst du mittels Rubber Band Zoomi
 
 ### Panning
 
-Veschiebe den Ausschnitt des Charts entweder via Toolbar (panning) oder via Achse (im Beispiel ist es die hotizontale Achse).
+Veschiebe den Ausschnitt des Charts entweder via Toolbar (panning), indem du im Chart mit gedrückter Maustaste den Ausschnitt sowohl horizontal wie auch vertikal verschiebst. Alternativ kannst du via Achse (im Beispiel ist es die horizontale Achse) ebenfalls mit gedrückter Maustaste den Bereich horizontal verschieben.
 
 ### Min-Max Range on Axes
 
 Direkteingabe des Ausschnitts auf der Achse. 
 Im Beispiel kannst du auf der vertikalen Achse via Inputfelder die Ober- und Untergrenze direkt ändern. Der Chartbereich ändert sich umgehend.
-Auf der horizontalen Achse kannst du via Verschieben der Bereiche die Grenzen ändern.
+Auf der horizontalen Achse kannst du via Verschieben des linken oder rechten Bereichs die Grenzen ändern.
 
 ### Tooltip / Bubble Tooltip
 
@@ -111,7 +111,8 @@ Selektiere mehrere Datenpunkte via Tabellenansicht (⌘ Klick auf Datenpunkte).
 
 ### Table View
 
-Selektiere mehrere Datenpunkte via Tabellenansicht (⌘ Klick auf Datenpunkte).
+Beim Selektieren von Datenpunkten werden die selektierten Punkte in der Tabelle markiert.
+Umgekehrt werden die in der Tabelle selektierten Punkte im Chart markiert und mit der Detailansicht synchronisiert.
 
 ### Detail View
 
