@@ -6,7 +6,6 @@ import { SimpleScatterChartController } from "../../src/business-charts/projecto
 import { DataTableView }                from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
 import { SimpleDetailView }             from "../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
 
-
 // Your data. These can be created directly here, for example.
 /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
     name: 'A', xValue: -4, yValue: 3,

@@ -2,22 +2,38 @@
 
 import { SimpleLineChart }           from "../../src/business-charts/projector/simpleLineChart/simpleLineChartProjectorOld.js";
 import { SimpleLineChartController } from "../../src/business-charts/projector/simpleLineChart/simpleLineChartControllerOld.js";
-import { energyDataFile }            from "./energy-data.js";
+import { runningPowerPlantData }     from "../data-files/productionRunningPowerPlantData.mjs";
 
 // TODO Unit Tests that input fields are bigger than the biggest input value
 // TODO Unit Tests that all data values are displayed in the canvas
 // TODO GridLines are still not visible in canvas
 
 
-// const data = energyDataFile;
 
-/** @type { Array.<LineChartDataElement> } */ const data = [
-    { name: 'A', xValue: 1, yValue: 1 },
-    { name: 'B', xValue: 1, yValue: 3 },
+
+/** @type { Array.<LineChartDataElement> } */
+const runningPowerPlantData = [
+    {
+        name: '01.01.03',
+        xValue: 1,
+        yValue: 43,
+    },
+    {
+        name: '08.01.03',
+        xValue: 2,
+        yValue: 38,
+    },
+    {
+        name: '15.01.03',
+        xValue: 3,
+        yValue: 33,
+    },
+    // { name: 'A', xValue: 1, yValue: 1 },
+    // { name: 'B', xValue: 1, yValue: 3 },
 ];
 
 const controller = SimpleLineChartController(
-    data
+    runningPowerPlantData
 );
 
 //append Projector

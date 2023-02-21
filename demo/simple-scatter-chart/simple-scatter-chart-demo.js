@@ -5,15 +5,17 @@ import { SimpleScatterChartController } from "../../src/business-charts/projecto
 import { DataTableView }                from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
 import { SimpleDetailView }             from "../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
 
-/** @type { Array.<ScatterChartDataElement> } */ const data = [ {
-    name: '1', xValue: -4, yValue: 3,
-}, {
-    name: '2', xValue: 4, yValue: 3,
-}, {
-    name: '3', xValue: -4, yValue: -3,
-}, {
-    name: '4', xValue: 4, yValue: -3,
-},];
+import { data } from "../data-files/testData.mjs";
+
+// /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
+//     name: '1', xValue: -4, yValue: 3,
+// }, {
+//     name: '2', xValue: 4, yValue: 3,
+// }, {
+//     name: '3', xValue: -4, yValue: -3,
+// }, {
+//     name: '4', xValue: 4, yValue: -3,
+// },];
 
 const controller = SimpleScatterChartController(
     data

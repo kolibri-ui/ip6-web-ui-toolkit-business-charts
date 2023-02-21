@@ -1,5 +1,8 @@
-// /** @type { Array.<ScatterChartDataElement> } */
-const storagePlantData = [
+//from Erzeuger_Speicherwerk.csv
+
+export { productionStoragePlantData }
+
+/** @type { Array.<ScatterChartDataElement> } */ const productionStoragePlantData = [
     {
         "date": "01.01.03",
         "week": 1,

@@ -1,5 +1,8 @@
-// /** @type { Array.<ScatterChartDataElement> } */
-const nuclearPowerPlantData = [
+//from Erzeuger_Kernkraftwerk.csv
+
+export { nuclearPowerPlantData }
+
+/** @type { Array.<ScatterChartDataElement> } */ const nuclearPowerPlantData = [
     {
         "date"                : "01.01.03",
         "week"                : 1,
