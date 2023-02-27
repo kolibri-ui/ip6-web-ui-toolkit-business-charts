@@ -10,15 +10,17 @@ import { bubbleTooltipSelectionTool }   from "../../src/business-charts/projecto
 import { rubberBandTool }               from "../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
 import { panningTool }                  from "../../src/business-charts/projector/toolBar/tools/PanningTool.js";
 
-/** @type { Array.<ScatterChartDataElement> } */ const data = [ {
-    name: '1', xValue: -4, yValue: 3,
-}, {
-    name: '2', xValue: 4, yValue: 3,
-}, {
-    name: '3', xValue: -4, yValue: -3,
-}, {
-    name: '4', xValue: 4, yValue: -3,
-},];
+import { data } from "../data-files/testData.mjs";
+
+// /** @type { Array.<ScatterChartDataElement> } */ const data = [ {
+//     name: '1', xValue: -4, yValue: 3,
+// }, {
+//     name: '2', xValue: 4, yValue: 3,
+// }, {
+//     name: '3', xValue: -4, yValue: -3,
+// }, {
+//     name: '4', xValue: 4, yValue: -3,
+// },];
 
 const controller = SimpleScatterChartController(
     data,
