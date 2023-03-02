@@ -2,12 +2,21 @@
 
 Bachelor Thesis von Valentina Giampa & Roger Kreienbühl
 
+## Intro
+
+Kolibri Business Charts ist die Erweiterung des Kolibri Web UI Toolkit.
+Das Ziel ist ein "Sortiment von Elementen", die die Entwicklung von Webanwendungen vereinfachen.
+Geschäftsanwendungen haben oft eine große Anzahl von Clients.
+Der schlanke und strukturierte Aufbau des Toolkits verwendet das Projector Pattern in einer klassischen MVC-Architektur.
+Dies ermöglicht eine schnelle und kostengünstige Änderung des "Look and Feel" der Geschäftsanwendung.
+
 ## Baue Geschäftsapplikationen für die Datenanalyse mit wenigen Codezeilen
 
-Das Kolibri Web UI Toolkit eliminiert wiederkehrende Arbeit, indem es dir ermöglicht Web-Applikationen mit wenigen Codezeilen aufzubauen. Der schlanke und strukturierte Aufbau des Toolkits mit der Anwendung des [Projctor Patterns](https://dierk.github.io/Home/projectorPattern/ProjectorPattern.html) gibt dir die Möglichkeit auf einfache und schnelle Art interaktive Charts für Geschäftsanwendungen zu programmieren.
-Durch die Trennung der Daten und Businesslogik von der View kann mit wenigen Klicks ein anderes Erscheinungsbild kreiert werden.
+Mit Kolibri Business Charts können Sie schnell interaktive Diagramme für individuelle Geschäftsanalyseanwendungen entwickeln.
+Es bietet Projektoren für die baukastenartige Erstellung von Charts.
+Dies gibt Entwickler*innen eine hohe Flexibilität.
 
-## Aufbau und Verwendung des Toolktis
+## Aufbau und Verwendung des Toolkits
 
 Es gibt verschiedene Wege das Toolkit zu verwenden. Die einfachste Möglichkeit ist, du kopierst den kompletten src-Ordner (/src) in dein Projekt und verwendest die verschiedenen Projektoren und css-Dateien. Da das Toolkit keine externen Abhängigkeiten besitzt, ist die Grösse minimal und hat somit praktisch keinen Einfluss auf die Performance.
 
@@ -30,21 +39,27 @@ Unter diesem Verzeichnis ist das gesamte [Kolibri Web UI Toolkit](https://github
 
 Im Demo-Ordner findest du Beispiele wie die Business Charts Projektoren verwendet werden können. 
 
-Hier eine kleine Anleitung wie du in wenigen Schritten eine Chart wie im unten dargestellten Bildausschnitt aufgebaut hast.
+### Anleitung
+
+Eine kurze Anleitung zur Erstellung eines Diagramms, wie es in der folgenden Abbildung dargestellt ist.
+Den Code findest du unter /demo/first-steps/.
 
 ![Auscchnitt Demo App](demo/assets/images/first-steps-demo.png "DemoApp")
 
 #### /demo/first-steps/first-steps-demo.html
 
-1. Erstelle ein [HTML-Grundgerüst](demo/first-steps/first-steps-demo.html). Du brauchst mindestens eine CSS-Section, Chart-Section und Script-Section.
-2. Um die Charts im Browser nutzen zu können, erstellst du ein div mit der class / id "container" in der **Chart-Section**. Für die Anzeige der Datenpunkte erstellst du ein div mit der id / class "detail-view".
-2. Kreiere deine Charts in einer [Javascript-Datei im type "module"](demo/first-steps/chart-demo.js) und binde deine js-Datei in der **Script-Section** in deinem HTML ein.
-3. Je nachdem welche Projektoren du verwendest, bindest du für das Styling die entsprechenden Files in der **CSS-Section** ein.
+1. Erstelle ein [HTML-Grundgerüst](demo/first-steps/first-steps-demo.html).
+Wir empfehlen einen strukturierten Ansatz der mindestens einen Style-, Chart- und Skript-Teil enthält.
+2. Um die Charts im Browser nutzen zu können, erstellst du ein div mit der class / id "container" in der **Chart-Section**.
+Für die Anzeige der Datenpunkte erstellst du ein div mit der id / class "detail-view".
+3. Kreiere deine Charts in einer [Javascript-Datei im type "module"](demo/first-steps/chart-demo.js).
+Binde deine js-Datei in der **Script-Section** in deinem HTML ein.
+4. Je nachdem welche Projektoren du verwendest, bindest du für das Styling die entsprechenden Links in der **CSS-Section** ein.
 
 #### /demo/first-steps/chart-demo.js
 
-In diesem Beispiel verwendest du Projektoren für die Erstellung einer Scatter Chart mit einer Tabellen-/Detailansicht für die Datenpunkte. 
-Dazu brauchst du Folgendes:
+In diesem Beispiel werden Projektoren verwendet für die Erstellung einer Scatter Chart
+mit einer Tabellen-/Detailansicht für die Datenpunkte. Dazu brauchst du Folgendes:
 
 Import der benötigten Module
 ``` js
@@ -118,11 +133,9 @@ Umgekehrt werden die in der Tabelle selektierten Punkte im Chart markiert und mi
 
 ### Detail View
 
-Beim Selektieren von Datenpunkten wird die Detailansicht umgehend aktualisiert.
+Wie bereits erwähnt, werden die ausgewählten Datenpunkte sofort in der Detailansicht angezeigt.
 
-## Datasets für Charts:
+### JSDoc
 
-- [Wochenstatistik Elektrizitätsbilanz - Erzeugung und Abgabe elektrischer Energie in der Schweiz](https://opendata.swiss/de/dataset/wochenstatistik-elektrizitatsbilanz-erzeugung-und-abgabe-elektrischer-energie-in-der-schweiz)
-- [Elektrizitätserzeugung](https://opendata.swiss/de/dataset/elektrizitatserzeugung)
-- [Elektrizitätsproduktionsanlagen](https://opendata.swiss/de/dataset/elektrizitatsproduktionsanlagen)
-
+Für die Spezifikation der Objekte, Funktionen, etc. steht eine auf JSDoc basierende Dokumentation zur Verfügung. 
+Allgemeine Informationen über den Dokumentengenerator findest du auf der Website von [JSDoc](https://jsdoc.app/index.html).
