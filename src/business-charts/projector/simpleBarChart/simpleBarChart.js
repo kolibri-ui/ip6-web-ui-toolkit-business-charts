@@ -130,7 +130,7 @@ const drawBars = (
         const barY = options.padding + gridHeight - offset - height;
         const color = options.colors[i % options.colors.length];
 
-        drawRect(context, barX, barY, barWidth, height, color);
+        drawRect(context, { xValue: barX, yValue: barY }, barWidth, height, { color });
 
         barX += 2 * options.padding + barWidth;
     }

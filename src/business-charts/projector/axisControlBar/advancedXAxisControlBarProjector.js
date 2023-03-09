@@ -2,11 +2,11 @@ import { drawScatterplotPoints } from "../../util/scatterChartFunctions.js";
 import {
     xCanvasToDomain,
     xDomainToCanvas
-} from "../../util/geometryFunctions.js";
+}                                from "../../util/geometryFunctions.js";
 import {
     drawLine,
     drawRect
-} from "../../util/chartFunctions.js";
+}                                from "../../util/chartFunctions.js";
 
 export { AdvancedXAxisControlBarProjector }
 
@@ -84,12 +84,12 @@ const AdvancedXAxisControlBarProjector = (controller) => {
 
         const width = xMaximum - xMinimum;
 
-        const areaColor = getComputedStyle(canvasElement).getPropertyValue("--advanced-control-bar-area-color");
+        const areaColor   = getComputedStyle(canvasElement).getPropertyValue("--advanced-control-bar-area-color");
         const borderColor = getComputedStyle(canvasElement).getPropertyValue("--advanced-control-bar-border-color");
 
-        drawRect(ctx, xMinimum, 0, width, options.height, areaColor, 0.2);
-        drawLine(ctx, xMinimum, 0, xMinimum, options.height, borderColor, 2);
-        drawLine(ctx, xMaximum, 0, xMaximum, options.height, borderColor, 2);
+        drawRect(ctx, { xValue: xMinimum, yValue: 0 }, width, options.height, { color: areaColor, alpha: 0.2 });
+        drawLine(ctx, { xValue: xMinimum, yValue: 0 }, { xValue: xMinimum, yValue: options.height }, borderColor, 2);
+        drawLine(ctx, { xValue: xMaximum, yValue: 0 }, { xValue: xMaximum, yValue: options.height }, borderColor, 2);
     };
 
     let mouseStartX;
@@ -111,15 +111,15 @@ const AdvancedXAxisControlBarProjector = (controller) => {
             options.boundaries.xMax,
             controller.xMax.getValue()
         );
-        const rect   = canvasElement.getBoundingClientRect();
-        mouseStartX  = event.x - rect.left;
+        const rect    = canvasElement.getBoundingClientRect();
+        mouseStartX   = event.x - rect.left;
 
         if ((xMinPos - 5) < mouseStartX && (xMaxPos + 5) > mouseStartX) {
             resizeActive = true;
 
             if ((xMinPos + 5) > mouseStartX) {
                 changeType = 'CHANGE_MIN';
-            } else if ((xMaxPos -5) < mouseStartX) {
+            } else if ((xMaxPos - 5) < mouseStartX) {
                 changeType = 'CHANGE_MAX';
             } else {
                 changeType = 'CHANGE_POS';
@@ -130,7 +130,7 @@ const AdvancedXAxisControlBarProjector = (controller) => {
 
     canvasElement.onmousemove = (event) => {
         const options = getOptions();
-        const rect = canvasElement.getBoundingClientRect();
+        const rect    = canvasElement.getBoundingClientRect();
 
         const xMinPos = xDomainToCanvas(
             options.width,
@@ -144,23 +144,25 @@ const AdvancedXAxisControlBarProjector = (controller) => {
             options.boundaries.xMax,
             controller.xMax.getValue()
         );
-        const posX = event.x - rect.left;
+        const posX    = event.x - rect.left;
 
         if (resizeActive) {
-            const posX = event.x - rect.left;
+            const posX  = event.x - rect.left;
             const moveX = posX - mouseStartX;
 
             if (changeType === 'CHANGE_MIN') {
-                const xMin = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMin.getValue());
-                const changedX = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMin + moveX);
+                const xMin     = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMin.getValue());
+                const changedX = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMin
+                                                                                                                  + moveX);
                 if (changedX < options.boundaries.xMin) {
                     controller.xMin.setValue(options.boundaries.xMin);
                 } else {
                     controller.xMin.setValue(changedX);
                 }
             } else if (changeType === 'CHANGE_MAX') {
-                const xMax = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMax.getValue());
-                const changedX = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMax + moveX);
+                const xMax     = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMax.getValue());
+                const changedX = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMax
+                                                                                                                  + moveX);
                 if (changedX > options.boundaries.xMax) {
                     controller.xMax.setValue(options.boundaries.xMax);
                 } else {
@@ -168,10 +170,12 @@ const AdvancedXAxisControlBarProjector = (controller) => {
                 }
 
             } else {
-                const xMin = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMin.getValue());
-                const xMax = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMax.getValue());
-                const changedXMin = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMin + moveX);
-                const changedXMax = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMax + moveX);
+                const xMin        = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMin.getValue());
+                const xMax        = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMax.getValue());
+                const changedXMin = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMin
+                                                                                                                     + moveX);
+                const changedXMax = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMax
+                                                                                                                     + moveX);
                 if (changedXMin >= options.boundaries.xMin && changedXMax <= options.boundaries.xMax) {
                     controller.xMin.setValue(changedXMin);
                     controller.xMax.setValue(changedXMax);
@@ -181,7 +185,7 @@ const AdvancedXAxisControlBarProjector = (controller) => {
             mouseStartX = posX;
         } else {
             if ((xMinPos - 5) < posX && (xMaxPos + 5) > posX) {
-                if ((xMinPos + 5) > posX || (xMaxPos -5) < posX) {
+                if ((xMinPos + 5) > posX || (xMaxPos - 5) < posX) {
                     canvasElement.classList.add('control-bar-resize');
                     canvasElement.classList.remove('control-bar-move');
                 } else {
