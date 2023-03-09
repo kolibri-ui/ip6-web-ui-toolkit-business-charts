@@ -24,9 +24,10 @@ Implementation von Projektoren als wiederverwendbare Chart-Elemente:
 - Table View Projektor
 - Detail View Projektor
 
+[Demo](demo/howto.html)
+
 ## Datasets für Charts:
 
 - [Wochenstatistik Elektrizitätsbilanz - Erzeugung und Abgabe elektrischer Energie in der Schweiz](https://opendata.swiss/de/dataset/wochenstatistik-elektrizitatsbilanz-erzeugung-und-abgabe-elektrischer-energie-in-der-schweiz)
 - [Elektrizitätserzeugung](https://opendata.swiss/de/dataset/elektrizitatserzeugung)
 - [Elektrizitätsproduktionsanlagen](https://opendata.swiss/de/dataset/elektrizitatsproduktionsanlagen)
-
