@@ -1,32 +1,82 @@
 // noinspection SpellCheckingInspection
 
-import { drawLine } from "./chartFunctions.js";
+import { drawLine }            from "./chartFunctions.js";
+import { pointDomainToCanvas } from "./geometryFunctions.js";
 
-export { drawGrid }
+export { drawGrid, drawGridOld }
 
 /**
  * @typedef { Object } GridOptions
  * @property { CanvasPoint2D } nullPoint domain null point
  * @property { Number } canvasWidth width of the canvas
  * @property { Number } canvasHeight height of the canvas
- * @property { Number } xRatio ratio between canvas and domain for x-axis
- * @property { Number } yRatio ratio between canvas and domain for y-axis
- * @property { Number } xEvery value to define which ticks should be drawn for x-axis
- * @property { Number } yEvery value to define which ticks should be drawn for y-axis
- * @property { Boolean } [drawOuterTicks] indicates if outer ticks should be dawn
+ // * @property { Number } xRatio ratio between canvas and domain for x-axis
+ // * @property { Number } yRatio ratio between canvas and domain for y-axis
+ // * @property { Number } xEvery value to define which ticks should be drawn for x-axis
+ // * @property { Number } yEvery value to define which ticks should be drawn for y-axis
+ // * @property { Boolean } [drawOuterTicks] indicates if outer ticks should be dawn
  */
 
+// /**
+//  * Enum for orientation of ticks
+//  * @typedef { String } TickOrientation
+//  * @readonly
+//  * @enum { TickOrientation }
+//  */
+// const TICK_ORIENTATION = {
+//     UP   : 'UP',
+//     DOWN : 'DOWN',
+//     LEFT : 'LEFT',
+//     RIGHT: 'RIGHT'
+// };
+
 /**
- * Enum for orientation of ticks
- * @typedef { String } TickOrientation
- * @readonly
- * @enum { TickOrientation }
+ *
+ * @param { CanvasRenderingContext2D } ctx
+ * @param { Number } width
+ * @param { Number } height
+ * @param { DataBoundaries } boundaries
  */
-const TICK_ORIENTATION = {
-    UP   : 'UP',
-    DOWN : 'DOWN',
-    LEFT : 'LEFT',
-    RIGHT: 'RIGHT'
+const drawGrid = (
+    ctx,
+    width,
+    height,
+    boundaries
+) => {
+    const nullPoint = pointDomainToCanvas(
+        width,
+        height,
+        boundaries.xMin,
+        boundaries.xMax,
+        boundaries.yMin,
+        boundaries.yMax,
+        { xValue: 0, yValue: 0 }
+    );
+
+    drawLine(
+        ctx,
+        {
+            xValue: 0,
+            yValue: nullPoint.yValue
+        },
+        {
+            xValue: width,
+            yValue: nullPoint.yValue
+        },
+        '#000000'
+    );
+    drawLine(
+        ctx,
+        {
+            xValue: nullPoint.xValue,
+            yValue: 0
+        },
+        {
+            xValue: nullPoint.xValue,
+            yValue: height
+        },
+        '#000000'
+    );
 };
 
 /**
@@ -34,16 +84,16 @@ const TICK_ORIENTATION = {
  * @param { CanvasRenderingContext2D } ctx
  * @param { GridOptions } options
  */
-const drawGrid = (
+const drawGridOld = (
     ctx,
     options
 ) => {
     drawGridLines(ctx, options);
-    drawGridTicks(ctx, options);
+    // drawGridTicks(ctx, options);
 
-    if (options.drawOuterTicks === true) {
-        drawOuterTicks(ctx, options)
-    }
+    // if (options.drawOuterTicks === true) {
+    //     drawOuterTicks(ctx, options)
+    // }
 };
 
 /**
@@ -57,146 +107,154 @@ const drawGridLines = (
 ) => {
     drawLine(
         ctx,
-        0,
-        options.nullPoint.yValue,
-        options.canvasWidth,
-        options.nullPoint.yValue,
+        {
+            xValue: 0,
+            yValue: options.nullPoint.yValue
+        },
+        {
+            xValue: options.canvasWidth,
+            yValue: options.nullPoint.yValue
+        },
         '#000000'
     );
     drawLine(
         ctx,
-        options.nullPoint.xValue,
-        0,
-        options.nullPoint.xValue,
-        options.canvasHeight,
+        {
+            xValue: options.nullPoint.xValue,
+            yValue: 0
+        },
+        {
+            xValue: options.nullPoint.xValue,
+            yValue: options.canvasHeight
+        },
         '#000000'
     );
 };
 
-/**
- * Function to draw the ticks of the grid
- * @param ctx { CanvasRenderingContext2D } rendering context of the canvas
- * @param options { GridOptions } domain null point
- */
-const drawGridTicks = (
-    ctx,
-    options
-) => {
-    let xTick = options.nullPoint.xValue % (options.xRatio * options.xEvery);
-    xTick     = xTick < 0 ? xTick + options.xRatio * options.xEvery : xTick;
-
-    for (let i = 0; i < options.canvasWidth; i++) {
-        /** @type { CanvasPoint2D } */
-        const point = { xValue: xTick, yValue: options.nullPoint.yValue };
-
-        drawTick(
-            ctx,
-            point,
-            TICK_ORIENTATION.DOWN
-        );
-
-        xTick += options.xRatio * options.xEvery;
-    }
-
-    let yTick = options.nullPoint.yValue % (options.yRatio * options.yEvery);
-    yTick     = yTick < 0 ? yTick + options.yRatio * options.yEvery : yTick;
-
-    for (let i = 0; i < options.canvasHeight; i++) {
-        /** @type { CanvasPoint2D } */
-        const point = { xValue: options.nullPoint.xValue, yValue: yTick };
-
-        drawTick(
-            ctx,
-            point,
-            TICK_ORIENTATION.LEFT
-        );
-
-        yTick += options.yRatio * options.yEvery;
-    }
-};
-
-/**
- * Function to draw the ticks of the grid
- * @param ctx { CanvasRenderingContext2D } rendering context of the canvas
- * @param options { GridOptions } domain null point
- */
-const drawOuterTicks = (
-    ctx,
-    options
-) => {
-    let xTick = options.nullPoint.xValue % (options.xRatio * options.xEvery);
-    xTick     = xTick < 0 ? xTick + options.xRatio * options.xEvery : xTick;
-
-    for (let i = 0; i < options.canvasWidth; i++) {
-        /** @type { CanvasPoint2D } */
-        const upperPoint = { xValue: xTick, yValue: 0 };
-        /** @type { CanvasPoint2D } */
-        const lowerPoint = { xValue: xTick, yValue: options.canvasHeight };
-
-        drawTick(
-            ctx,
-            upperPoint,
-            TICK_ORIENTATION.DOWN
-        );
-
-        drawTick(
-            ctx,
-            lowerPoint,
-            TICK_ORIENTATION.UP
-        );
-
-        xTick += options.xRatio * options.xEvery;
-    }
-
-    let yTick = options.nullPoint.yValue % (options.yRatio * options.yEvery);
-    yTick     = yTick < 0 ? yTick + options.yRatio * options.yEvery : yTick;
-
-    for (let i = 0; i < options.canvasHeight; i++) {
-        /** @type { CanvasPoint2D } */
-        const leftPoint  = { xValue: 0, yValue: yTick };
-        /** @type { CanvasPoint2D } */
-        const rightPoint = { xValue: options.canvasWidth, yValue: yTick };
-
-        drawTick(
-            ctx,
-            leftPoint,
-            TICK_ORIENTATION.RIGHT
-        );
-
-        drawTick(
-            ctx,
-            rightPoint,
-            TICK_ORIENTATION.LEFT
-        );
-
-        yTick += options.yRatio * options.yEvery;
-    }
-};
-
-/**
- * Function to draw a tick on a canvas context
- * @param ctx { CanvasRenderingContext2D } rendering context of the canvas
- * @param position { CanvasPoint2D } position of the tick
- * @param orientation { TickOrientation } orientation of the tick
- */
-const drawTick = (
-    ctx,
-    position,
-    orientation
-) => {
-    switch (orientation) {
-        case TICK_ORIENTATION.UP:
-            drawLine(ctx, position.xValue, position.yValue, position.xValue, position.yValue - 5, '#000000');
-            break;
-        case TICK_ORIENTATION.DOWN:
-            drawLine(ctx, position.xValue, position.yValue, position.xValue, position.yValue + 5, '#000000');
-            break;
-        case TICK_ORIENTATION.LEFT:
-            drawLine(ctx, position.xValue, position.yValue, position.xValue - 5, position.yValue, '#000000');
-            break;
-        case TICK_ORIENTATION.RIGHT:
-            drawLine(ctx, position.xValue, position.yValue, position.xValue + 5, position.yValue, '#000000');
-            break;
-    }
-};
+// /**
+//  * Function to draw the ticks of the grid
+//  * @param ctx { CanvasRenderingContext2D } rendering context of the canvas
+//  * @param options { GridOptions } domain null point
+//  */
+// const drawGridTicks = (
+//     ctx,
+//     options
+// ) => {
+//     let xTick = options.nullPoint.xValue % (options.xRatio * options.xEvery);
+//     xTick     = xTick < 0 ? xTick + options.xRatio * options.xEvery : xTick;
+//
+//     for (let i = 0; i < options.canvasWidth; i++) {
+//         /** @type { CanvasPoint2D } */
+//         const point = { xValue: xTick, yValue: options.nullPoint.yValue };
+//
+//         drawTick(
+//             ctx,
+//             point,
+//             TICK_ORIENTATION.DOWN
+//         );
+//
+//         xTick += options.xRatio * options.xEvery;
+//     }
+//
+//     let yTick = options.nullPoint.yValue % (options.yRatio * options.yEvery);
+//     yTick     = yTick < 0 ? yTick + options.yRatio * options.yEvery : yTick;
+//
+//     for (let i = 0; i < options.canvasHeight; i++) {
+//         /** @type { CanvasPoint2D } */
+//         const point = { xValue: options.nullPoint.xValue, yValue: yTick };
+//
+//         drawTick(
+//             ctx,
+//             point,
+//             TICK_ORIENTATION.LEFT
+//         );
+//
+//         yTick += options.yRatio * options.yEvery;
+//     }
+// };
+//
+// /**
+//  * Function to draw the ticks of the grid
+//  * @param ctx { CanvasRenderingContext2D } rendering context of the canvas
+//  * @param options { GridOptions } domain null point
+//  */
+// const drawOuterTicks = (
+//     ctx,
+//     options
+// ) => {
+//     let xTick = options.nullPoint.xValue % (options.xRatio * options.xEvery);
+//     xTick     = xTick < 0 ? xTick + options.xRatio * options.xEvery : xTick;
+//
+//     for (let i = 0; i < options.canvasWidth; i++) {
+//         /** @type { CanvasPoint2D } */
+//         const upperPoint = { xValue: xTick, yValue: 0 };
+//         /** @type { CanvasPoint2D } */
+//         const lowerPoint = { xValue: xTick, yValue: options.canvasHeight };
+//
+//         drawTick(
+//             ctx,
+//             upperPoint,
+//             TICK_ORIENTATION.DOWN
+//         );
+//
+//         drawTick(
+//             ctx,
+//             lowerPoint,
+//             TICK_ORIENTATION.UP
+//         );
+//
+//         xTick += options.xRatio * options.xEvery;
+//     }
+//
+//     let yTick = options.nullPoint.yValue % (options.yRatio * options.yEvery);
+//     yTick     = yTick < 0 ? yTick + options.yRatio * options.yEvery : yTick;
+//
+//     for (let i = 0; i < options.canvasHeight; i++) {
+//         /** @type { CanvasPoint2D } */
+//         const leftPoint  = { xValue: 0, yValue: yTick };
+//         /** @type { CanvasPoint2D } */
+//         const rightPoint = { xValue: options.canvasWidth, yValue: yTick };
+//
+//         drawTick(
+//             ctx,
+//             leftPoint,
+//             TICK_ORIENTATION.RIGHT
+//         );
+//
+//         drawTick(
+//             ctx,
+//             rightPoint,
+//             TICK_ORIENTATION.LEFT
+//         );
+//
+//         yTick += options.yRatio * options.yEvery;
+//     }
+// };
+//
+// /**
+//  * Function to draw a tick on a canvas context
+//  * @param ctx { CanvasRenderingContext2D } rendering context of the canvas
+//  * @param position { CanvasPoint2D } position of the tick
+//  * @param orientation { TickOrientation } orientation of the tick
+//  */
+// const drawTick = (
+//     ctx,
+//     position,
+//     orientation
+// ) => {
+//     switch (orientation) {
+//         case TICK_ORIENTATION.UP:
+//             drawLine(ctx, position.xValue, position.yValue, position.xValue, position.yValue - 5, '#000000');
+//             break;
+//         case TICK_ORIENTATION.DOWN:
+//             drawLine(ctx, position.xValue, position.yValue, position.xValue, position.yValue + 5, '#000000');
+//             break;
+//         case TICK_ORIENTATION.LEFT:
+//             drawLine(ctx, position.xValue, position.yValue, position.xValue - 5, position.yValue, '#000000');
+//             break;
+//         case TICK_ORIENTATION.RIGHT:
+//             drawLine(ctx, position.xValue, position.yValue, position.xValue + 5, position.yValue, '#000000');
+//             break;
+//     }
+// };
 

@@ -1,11 +1,15 @@
 // noinspection SpellCheckingInspection
 
 import {
-    pointDomainToCanvas
-}                    from "./geometryFunctions.js";
-import { drawPoint } from "./chartFunctions.js";
+    pointDomainToCanvas,
+    yDomainToCanvas
+} from "./geometryFunctions.js";
+import {
+    drawArea,
+} from "./chartFunctions.js";
+import { drawScatterplotPoints } from "./scatterChartFunctions.js";
 
-export { drawScatterplotPoints }
+export { drawAreachartLine }
 
 /**
  * @description draws all data points
@@ -14,12 +18,15 @@ export { drawScatterplotPoints }
  * @param { Array<ChartDataElement> } selectedPoints
  * @param { ScatterplotChartOptions } options
  */
-const drawScatterplotPoints = (
+const drawAreachartLine = (
     ctx,
     data,
     selectedPoints,
     options
 ) => {
+    const points = [];
+    const yNull = yDomainToCanvas(options.height, options.boundaries.yMin, options.boundaries.yMax, 0);
+
     for (const v of data) {
         const point = pointDomainToCanvas(
             options.width,
@@ -31,8 +38,10 @@ const drawScatterplotPoints = (
             v
         );
 
-        const color = selectedPoints.includes(v) ? options.selectedColor : options.color;
-
-        drawPoint(ctx, point.xValue, point.yValue, color, options.pointSize);
+        points.push(point);
     }
+
+    drawArea(ctx, points, yNull, options.color, 0.6);
+
+    drawScatterplotPoints(ctx, data, selectedPoints, options);
 };

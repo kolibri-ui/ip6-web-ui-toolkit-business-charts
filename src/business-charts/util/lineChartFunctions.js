@@ -2,10 +2,13 @@
 
 import {
     pointDomainToCanvas
-}                    from "./geometryFunctions.js";
-import { drawPoint } from "./chartFunctions.js";
+}                                from "./geometryFunctions.js";
+import {
+    drawPath,
+}                                from "./chartFunctions.js";
+import { drawScatterplotPoints } from "./scatterChartFunctions.js";
 
-export { drawScatterplotPoints }
+export { drawLinechartLine }
 
 /**
  * @description draws all data points
@@ -14,12 +17,14 @@ export { drawScatterplotPoints }
  * @param { Array<ChartDataElement> } selectedPoints
  * @param { ScatterplotChartOptions } options
  */
-const drawScatterplotPoints = (
+const drawLinechartLine = (
     ctx,
     data,
     selectedPoints,
     options
 ) => {
+    const points = [];
+
     for (const v of data) {
         const point = pointDomainToCanvas(
             options.width,
@@ -31,8 +36,10 @@ const drawScatterplotPoints = (
             v
         );
 
-        const color = selectedPoints.includes(v) ? options.selectedColor : options.color;
-
-        drawPoint(ctx, point.xValue, point.yValue, color, options.pointSize);
+        points.push(point);
     }
+
+    drawPath(ctx, points, options.color, 1);
+
+    drawScatterplotPoints(ctx, data, selectedPoints, options);
 };

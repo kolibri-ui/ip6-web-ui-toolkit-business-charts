@@ -8,8 +8,8 @@ import {
     pointCanvasToDomain,
     pointDomainToCanvas
 }                              from "../../util/geometryFunctions.js";
-import { drawLine, drawPoint } from "../../util/chartFunctions.js";
-import { drawGrid }                      from "../../util/chartGridFunctions.js";
+import { drawLine, drawPoint }           from "../../util/chartFunctions.js";
+import { drawGridOld }                   from "../../util/chartGridFunctions.js";
 import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
 
@@ -133,7 +133,7 @@ const SimpleLineChart = (controller) => {
                     options.gridOptions.yRatio,
                     data[pointToPosition]
                 );
-                drawLine(ctx, pointFrom.xValue, pointFrom.yValue, pointTo.xValue, pointTo.yValue, options.color);
+                drawLine(ctx, pointFrom, pointTo, options.color);
                 pointFromPosition++;
             }
         }
@@ -160,7 +160,7 @@ const SimpleLineChart = (controller) => {
         data,
         options
     ) => {
-        drawGrid(ctx, options.gridOptions);
+        drawGridOld(ctx, options.gridOptions);
         drawLineplotPoints(ctx, data, options);
     };
 

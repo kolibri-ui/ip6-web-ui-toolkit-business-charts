@@ -1,13 +1,13 @@
 // noinspection SpellCheckingInspection
 
 import { drawLine, drawPoint } from "../../util/chartFunctions.js";
-import { drawGrid }            from "../../util/chartGridFunctions.js";
+import { drawGridOld }         from "../../util/chartGridFunctions.js";
 import {
     calcXRatio,
     calcYRatio,
     domainToCanvasXY, pointCanvasToDomain,
     pointDomainToCanvas
-} from "../../util/geometryFunctions.js";
+}                              from "../../util/geometryFunctions.js";
 import { generateId }                    from "../../util/functions.js";
 import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
@@ -157,7 +157,7 @@ const SimpleLineChart = controller => {
                     options.gridOptions.yRatio,
                     data[pointToPosition]
                 );
-            drawLine(ctx, pointFrom.xValue, pointFrom.yValue, pointTo.xValue, pointTo.yValue, options.color);
+            drawLine(ctx, pointFrom, pointTo, options.color);
                 pointFromPosition++;
             }
         }
@@ -174,7 +174,7 @@ const SimpleLineChart = controller => {
         data, 
         options
     ) => {
-        drawGrid(ctx, options.gridOptions);
+        drawGridOld(ctx, options.gridOptions);
         drawLineChartPoints(ctx, data, options);
         drawlinePlotPoints(ctx, data, options);
     };

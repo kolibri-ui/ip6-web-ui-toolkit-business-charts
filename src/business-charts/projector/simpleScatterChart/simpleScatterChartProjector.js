@@ -1,12 +1,12 @@
 // noinspection SpellCheckingInspection
 
-import { drawGrid }                         from "../../util/chartGridFunctions.js";
+import { drawGridOld } from "../../util/chartGridFunctions.js";
 import {
     calcXRatio,
     calcYRatio,
     pointCanvasToDomain,
     pointDomainToCanvas
-}                                           from "../../util/geometryFunctions.js";
+}                      from "../../util/geometryFunctions.js";
 import { generateId }                       from "../../util/functions.js";
 import { SimpleAxisControlBarProjector }    from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { ToolBarProjector }                 from "../toolBar/toolBarProjector.js";
@@ -123,7 +123,7 @@ const SimpleScatterChart = (controller) => {
         selectedPoints,
         options
     ) => {
-        drawGrid(ctx, options.gridOptions);
+        drawGridOld(ctx, options.gridOptions);
         drawScatterplotPoints(ctx, data, selectedPoints, options);
     };
 

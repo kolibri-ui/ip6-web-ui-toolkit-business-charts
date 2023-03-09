@@ -1,0 +1,22 @@
+:root {
+    --all-borders: 1px;
+}
+
+.chart-container-grid {
+    flex: 1 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, max-content);
+    justify-content:center;
+    grid-gap: var(--all-borders);
+}
+
+.canvas-wrap-grid {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.tool-bar-grid {
+     grid-column: 2;
+     grid-row: 1;
+ }
