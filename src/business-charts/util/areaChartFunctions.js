@@ -9,7 +9,7 @@ import {
 } from "./chartFunctions.js";
 import { drawScatterplotPoints } from "./scatterChartFunctions.js";
 
-export { drawAreachartLine }
+export { drawAreachartArea }
 
 /**
  * @description draws all data points
@@ -18,7 +18,7 @@ export { drawAreachartLine }
  * @param { Array<ChartDataElement> } selectedPoints
  * @param { ScatterplotChartOptions } options
  */
-const drawAreachartLine = (
+const drawAreachartArea = (
     ctx,
     data,
     selectedPoints,

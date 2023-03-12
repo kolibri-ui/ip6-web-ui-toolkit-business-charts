@@ -4,8 +4,8 @@ import { generateId }            from "../../util/functions.js";
 import { drawGrid }              from "../../util/chartGridFunctions.js";
 import { drawScatterplotPoints } from "../../util/scatterChartFunctions.js";
 import { VALUE }                 from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
-import { drawLinechartLine }     from "../../util/lineChartFunctions.js";
-import { drawAreachartLine }     from "../../util/areaChartFunctions.js";
+import { drawLinechartLine } from "../../util/lineChartFunctions.js";
+import { drawAreachartArea } from "../../util/areaChartFunctions.js";
 
 export { ChartProjector }
 
@@ -103,7 +103,7 @@ const ChartProjector = (controller) => {
                     drawLinechartLine(ctx, seriesController.getData(), controller.getSelectedElements(), seriesOptions);
                     break;
                 case "area":
-                    drawAreachartLine(ctx, seriesController.getData(), controller.getSelectedElements(), seriesOptions);
+                    drawAreachartArea(ctx, seriesController.getData(), controller.getSelectedElements(), seriesOptions);
                     break;
             }
         }

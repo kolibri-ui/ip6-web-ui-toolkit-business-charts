@@ -4,13 +4,23 @@ import { SimpleChartProjector }         from "../../src/business-charts/projecto
 import { SimpleScatterChartController } from "../../src/business-charts/projector/chart/simpleChartController.js";
 
 /** @type { Array<ChartDataElement> } */ const data = [ {
-    name: '1', xValue: -4, yValue: 3,
+    name: 'A', xValue: -4, yValue: 3,
 }, {
-    name: '2', xValue: 4, yValue: 3,
+    name: 'B', xValue: -3, yValue: 2,
 }, {
-    name: '3', xValue: -4, yValue: -3,
+    name: 'C', xValue: -2, yValue: 0,
 }, {
-    name: '4', xValue: 4, yValue: -3,
+    name: 'D', xValue: -1, yValue: -3,
+}, {
+    name: 'E', xValue: 0, yValue: 1,
+},{
+    name: 'F', xValue: 1, yValue: -1,
+},{
+    name: 'G', xValue: 2, yValue: 4,
+},{
+    name: 'H', xValue: 3, yValue: 2,
+},{
+    name: 'I', xValue: 4, yValue: 9,
 },];
 
 const controller = SimpleScatterChartController(data);
