@@ -5,18 +5,18 @@ export { DataTableView }
 
 /**
  * @typedef TableViewControllerType
- * @property { (data: Array<ScatterChartDataElement>) => void }                             setData the data series to be presented in the line chart
- * @property { () => Array<ScatterChartDataElement> }                                       getData the data series used in the line chart
- * @property { (elements: Array<ScatterChartDataElement>) => void }                         setSelectedElements set the selected data elements
- * @property { () => Array<ScatterChartDataElement> }                                       getSelectedElements get the selected data elements
- * @property { (callback: onValueChangeCallback<Array<ScatterChartDataElement>>)  => void } onDataChanged when interaction with the data has occurred
- * @property { (callback: onValueChangeCallback<Array<ScatterChartDataElement>>)  => void } onSelectedElementsChanged when selected Elements change
+ * @property { (data: Array<ChartDataElement>) => void }                             setData the data series to be presented in the line chart
+ * @property { () => Array<ChartDataElement> }                                       getData the data series used in the line chart
+ * @property { (elements: Array<ChartDataElement>) => void }                         setSelectedElements set the selected data elements
+ * @property { () => Array<ChartDataElement> }                                       getSelectedElements get the selected data elements
+ * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onDataChanged when interaction with the data has occurred
+ * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onSelectedElementsChanged when selected Elements change
  */
 
 /**
  *
  * @param { TableViewControllerType } controller
- * @param { ?String }title
+ * @param { ?String } title
  * @returns { HTMLDivElement }
  */
 const DataTableView = (controller, title) => {

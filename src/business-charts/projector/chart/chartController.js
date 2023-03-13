@@ -101,6 +101,15 @@ const DataModel = dataArray => {
 };
 
 /**
+ * @description Choice of following controller types: 
+ * For one data serie: 
+ * 
+ * ***SimpleAreaChartController***, ***SimpleLineChartController***, ***SimpleScatterChartController***
+ * 
+ * 
+ * For more tha one data serie: 
+ * 
+ * ***AreaChartController***, ***LineChartController***, ***ScatterChartController***
  * @typedef { Object } ChartControllerType
  * @property { () => Array<ChartDataSeriesControllerType> }                          getSeries data serie controllers
  * @property { SimpleInputControllerType }                                           xMin the smallest value to
@@ -125,6 +134,19 @@ const DataModel = dataArray => {
  * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onSelectedElementsChanged
  *     when selected Elements change
  * @property { ToolBarControllerType } toolBarController
+ * @example for a simple chart controller
+ * const controller = SimpleAreaChartController(data);
+ * @example for an advanced chart controller with toolbar
+ * const controller = AreaChartController([data1, data2],
+ *     { //pass the optional toolbar
+ *         tools: [
+ *             zoomInTool,
+ *             zoomOutTool,
+ *             bubbleTooltipSelectionTool, // you can choose other tooltips
+ *             rubberBandTool,
+ *             panningTool,
+ *         ]
+ *     });
  */
 
 /**
