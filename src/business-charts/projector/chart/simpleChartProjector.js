@@ -10,6 +10,8 @@ import {
 }                                        from "./chartProjector.js";
 import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
 import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
+import { XAxisLabelingBarProjector }     from "../axisLabelingBar/xAxisLabelingBarProjector.js";
+import { YAxisLabelingBarProjector }     from "../axisLabelingBar/yAxisLabelingBarProjector.js";
 
 export { SimpleChartProjector }
 
@@ -33,6 +35,9 @@ const SimpleChartProjector = (controller) => {
     const canvasWrapperElement = document.createElement("div");
     canvasWrapperElement.classList.add("canvas-wrap", "canvas-wrap-grid");
     canvasWrapperElement.append(canvasElement);
+
+    const xAxisLabelingBar = XAxisLabelingBarProjector(controller);
+    const yAxisLabelingBar = YAxisLabelingBarProjector(controller);
 
     const xAxisBar = SimpleAxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
     const yAxisBar = SimpleAxisControlBarProjector("Y_AXIS", {
@@ -60,7 +65,7 @@ const SimpleChartProjector = (controller) => {
         canvasElement
     );
 
-    chartElement.append(yAxisBar, canvasWrapperElement, xAxisBar);
+    chartElement.append(yAxisBar, yAxisLabelingBar, canvasWrapperElement, xAxisLabelingBar, xAxisBar);
 
     return chartElement;
 };

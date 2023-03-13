@@ -47,7 +47,7 @@
 
 .canvas-wrap {
     grid-row: 2;
-    grid-column: 2;
+    grid-column: 3;
     position: relative;
     line-height: 0;
 }
@@ -77,13 +77,13 @@
 
     position: relative;
     z-index: 10;
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 2;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
 }
 
 .tool-bar {
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 1;
     display: flex;
     flex-wrap: wrap;
@@ -108,8 +108,8 @@
 }
 
 .x-axis {
-    grid-column: 2;
-    grid-row: 3;
+    grid-column: 3;
+    grid-row: 4;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -120,6 +120,35 @@
 .x-axis canvas {
     width: var(--golden-section-width);
     height: 80px;
+}
+
+.x-axis-labeling {
+    grid-column: 3;
+    grid-row: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+
+.x-axis-labeling canvas {
+    width: var(--golden-section-width);
+    height: 25px;
+}
+
+.y-axis-labeling {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--y-axis-shadow);
+}
+
+.y-axis-labeling canvas {
+    width: 35px;
+    height: var(--golden-section-height);
 }
 
 .control-bar-resize {

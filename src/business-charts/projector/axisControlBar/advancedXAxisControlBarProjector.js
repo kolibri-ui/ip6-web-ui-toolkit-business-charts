@@ -16,6 +16,7 @@ import {
 }                                from "../chart/chartController.js";
 import { drawLinechartLine }     from "../../util/lineChartFunctions.js";
 import { drawAreachartArea }     from "../../util/areaChartFunctions.js";
+import { registerChangeHandler } from "../../util/changeHandler.js";
 
 export { AdvancedXAxisControlBarProjector }
 
@@ -240,20 +241,7 @@ const AdvancedXAxisControlBarProjector = (controller) => {
     controller.xMin.onValueChanged(() => redraw());
     controller.xMax.onValueChanged(() => redraw());
 
-    //resize
-    const resizeHandler = new ResizeObserver((_) => {
-        const options        = getOptions();
-        canvasElement.width  = options.width;
-        canvasElement.height = options.height;
-
-        redraw();
-    });
-    resizeHandler.observe(canvasElement);
-
-    const styleChangeHandler = new MutationObserver((_) => {
-        redraw();
-    });
-    styleChangeHandler.observe(document.documentElement, { attributes: true, attributeFilter: [ "style" ] });
+    registerChangeHandler(canvasElement, getOptions, redraw);
 
     redraw();
 

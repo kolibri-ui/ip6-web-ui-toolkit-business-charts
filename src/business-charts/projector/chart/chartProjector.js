@@ -13,7 +13,8 @@ import {
     AREA_CHART,
     LINE_CHART,
     SCATTER_CHART
-} from "./chartController.js";
+}                                from "./chartController.js";
+import { registerChangeHandler } from "../../util/changeHandler.js";
 
 export {
     ChartProjector,
@@ -86,17 +87,7 @@ const ChartProjector = (controller) => {
     controller.yMax.onValueChanged(() => redraw());
     controller.onSelectedElementsChanged(() => redraw());
 
-    const resizeHandler = new ResizeObserver((_) => {
-        const { width, height } = canvasElement.getBoundingClientRect();
-        canvasElement.width     = width;
-        canvasElement.height    = height;
-
-        redraw();
-    });
-    resizeHandler.observe(canvasElement);
-
-    const styleChangeHandler = new MutationObserver((_) => redraw());
-    styleChangeHandler.observe(document.documentElement, { attributes: true, attributeFilter: [ "style" ] });
+    registerChangeHandler(canvasElement, getOptions, redraw);
 
     return canvasElement;
 };

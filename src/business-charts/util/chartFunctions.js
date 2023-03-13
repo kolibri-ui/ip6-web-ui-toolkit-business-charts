@@ -10,8 +10,7 @@ export {
     drawLine,
     drawPath,
     drawArea,
-    drawRect,
-    drawGridForSimpleBarChart
+    drawRect
 }
 
 /**
@@ -169,101 +168,4 @@ function drawRect(
     ctx.fillRect(upperLeftCorner.xValue, upperLeftCorner.yValue, width, height);
     ctx.globalAlpha = 1.0;
     ctx.restore();
-}
-
-/**
- * This function creates horizontal and vertical lines in bar chart.
- * only for simple bar chart
- * TODO rebuild / refactor bar chart. use drawGrid function in gridFrunctions
- * @param { ChartGridOptions } options for displaying horizontal and or vertical lines as grid
- * @param { CanvasRenderingContext2D } ctx
- * @param { Number } startX
- * @param { Number } startY
- * @param { Number } offset
- * @param { Number } width
- * @param { Number } height
- * @param { Number } padding
- * @param { Number } horizontalDifference
- * @param { Number } verticalDifference
- * @param { Number } startValueX
- * @param { Number } startValueY
- */
-function drawGridForSimpleBarChart(
-    options,
-    ctx,
-    startX,
-    startY,
-    offset,
-    width,
-    height,
-    padding,
-    horizontalDifference,
-    verticalDifference,
-    startValueX,
-    startValueY,
-) {
-    function drawHorizontalGridLines() {
-        if (options.hasHorizontalLines === true) {
-            let lineY  = y - horizontalDifference;
-            let number = startValueY + options.verticalSteps;
-
-            while (lineY > startY) {
-                drawLine(ctx, { xValue: startX, yValue: lineY }, {
-                    xValue: width,
-                    yValue: lineY
-                }, options.secondaryLineColor);
-
-                if (options.displayNumbers === true) {
-                    ctx.save();
-                    ctx.fillStyle    = options.primaryLineColor;
-                    ctx.textBaseline = "bottom";
-                    ctx.font         = "bold 10px Arial";
-                    ctx.fillText(number.toString(), startX, lineY - 2);
-                    ctx.restore();
-                }
-
-                lineY -= horizontalDifference;
-                number += options.verticalSteps;
-            }
-        }
-    }
-
-    function drawVerticalGridLines() {
-        if (options.hasVerticalLines === true) {
-            let lineX  = x + verticalDifference;
-            let number = startValueX + options.horizontalSteps;
-
-            while (lineX < width) {
-                drawLine(ctx, { xValue: lineX, yValue: startY }, { xValue: lineX, yValue: height }, options.secondaryLineColor);
-
-                if (options.displayNumbers === true) {
-                    ctx.save();
-                    ctx.fillStyle    = options.primaryLineColor;
-                    ctx.textBaseline = "bottom";
-                    ctx.font         = "bold 10px Arial";
-                    ctx.fillText(number.toString(), lineX + 2, height + 2);
-                    ctx.restore();
-                }
-
-                lineX += verticalDifference;
-                number += options.horizontalSteps;
-            }
-        }
-    }
-
-    if (options.hasGrid !== true) {
-        return;
-    }
-
-    const x = startX + offset;
-    const y = startY + height - offset;
-
-    // Abscissa
-    drawLine(ctx, { xValue: startX, yValue: y }, { xValue: width, yValue: y }, options.primaryLineColor);
-
-    // Ordinate
-    drawLine(ctx, { xValue: x, yValue: startY }, { xValue: x, yValue: height }, options.primaryLineColor);
-
-    drawHorizontalGridLines();
-    drawVerticalGridLines();
 }

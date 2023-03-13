@@ -7,9 +7,11 @@ import {
     optionsFunc,
     redrawFunc,
     setCanvasBoundariesFunc
-} from "./chartProjector.js";
+}                                           from "./chartProjector.js";
 import { AdvancedXAxisControlBarProjector } from "../axisControlBar/advancedXAxisControlBarProjector.js";
 import { ToolBarProjector }                 from "../toolBar/toolBarProjector.js";
+import { XAxisLabelingBarProjector }        from "../axisLabelingBar/xAxisLabelingBarProjector.js";
+import { YAxisLabelingBarProjector }        from "../axisLabelingBar/yAxisLabelingBarProjector.js";
 
 export { AdvancedChartProjector }
 
@@ -30,6 +32,8 @@ const AdvancedChartProjector = (controller) => {
     canvasWrapperElement.classList.add("canvas-wrap", "canvas-wrap-grid");
     canvasWrapperElement.append(canvasElement);
 
+    const xAxisLabelingBar = XAxisLabelingBarProjector(controller);
+    const yAxisLabelingBar = YAxisLabelingBarProjector(controller);
     const xAxisBar = AdvancedXAxisControlBarProjector(controller);
 
     const getOptions = optionsFunc(canvasElement, controller);
@@ -52,7 +56,7 @@ const AdvancedChartProjector = (controller) => {
         canvasElement
     );
 
-    chartElement.append(toolBar, canvasWrapperElement, xAxisBar);
+    chartElement.append(toolBar, yAxisLabelingBar, canvasWrapperElement, xAxisLabelingBar, xAxisBar);
 
     return chartElement;
 };

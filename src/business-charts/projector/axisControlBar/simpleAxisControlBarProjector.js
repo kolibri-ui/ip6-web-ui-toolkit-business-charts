@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 import { projectChangeInput } from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputProjector.js";
 
 export { SimpleAxisControlBarProjector }
