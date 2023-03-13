@@ -13,6 +13,7 @@ import {
 }                                from "../../util/geometryFunctions.js";
 import { drawRect }              from "../../util/chartFunctions.js";
 import { registerChangeHandler } from "../../util/changeHandler.js";
+import { ctrlOrCmdPressed }      from "../../util/functions.js";
 
 export { YAxisLabelingBarProjector }
 
@@ -26,6 +27,8 @@ const YAxisLabelingBarProjector = (controller) => {
     /** @type { HTMLDivElement } */
     const yAxisLabelingBarElement = document.createElement("div");
     yAxisLabelingBarElement.classList.add("y-axis-labeling");
+
+    const hasMultipleSeries = controller.getSeries().length > 1;
 
     for (const serie of controller.getSeries()) {
         /** @type { HTMLCanvasElement } */
@@ -51,7 +54,7 @@ const YAxisLabelingBarProjector = (controller) => {
             return {
                 width,
                 height,
-                boundaries   : controller.boundaries,
+                boundaries   : controller.getBoundaries(),
                 color        : pointColor,
                 selectedColor: selectedPointColor,
                 pointSize    : pointSize,
@@ -101,6 +104,10 @@ const YAxisLabelingBarProjector = (controller) => {
             }
         };
 
+        if (hasMultipleSeries) {
+            addMouseEvents(canvasElement, serie, getOptions);
+        }
+
         serie.yMin.onValueChanged(() => redraw());
         serie.yMax.onValueChanged(() => redraw());
 
@@ -112,4 +119,64 @@ const YAxisLabelingBarProjector = (controller) => {
     }
 
     return yAxisLabelingBarElement;
+};
+
+/**
+ *
+ * @param { HTMLCanvasElement } canvasElement
+ * @param { ChartDataSeriesControllerType } serieController
+ * @param { () => ChartOptions } getOptions
+ */
+const addMouseEvents = (canvasElement, serieController, getOptions) => {
+    let manipulationActive = false;
+    /** @type { 'CHANGE_FACTOR'|'CHANGE_SHIFTING' } */
+    let changeType;
+    let manipulationStartY;
+
+    canvasElement.onmousedown = (event) => {
+        const rect       = canvasElement.getBoundingClientRect();
+        manipulationStartY = event.y - rect.top;
+
+        if (event && ctrlOrCmdPressed(event)) {
+            manipulationActive = true;
+            changeType = 'CHANGE_FACTOR';
+        } else if (event && event.shiftKey) {
+            manipulationActive = true;
+            changeType = 'CHANGE_SHIFTING';
+        }
+    };
+
+    canvasElement.onmousemove = (event) => {
+        if (manipulationActive) {
+            const rect  = canvasElement.getBoundingClientRect();
+            const posY = event.y - rect.top;
+            const moveY = posY - manipulationStartY;
+
+            const options = getOptions();
+
+            if (changeType === 'CHANGE_FACTOR') {
+
+            } else if (changeType === 'CHANGE_SHIFTING') {
+                const yMax = yCanvasToDomain(options.height, serieController.yMin.getValue(), serieController.yMax.getValue(), moveY);
+                const shifting =  (serieController.yMax.getValue() - yMax);
+
+                serieController.yMin.setValue(serieController.yMin.getValue() + shifting);
+                serieController.yMax.setValue(serieController.yMax.getValue() + shifting);
+
+                serieController.shifting.setValue(shifting + serieController.shifting.getValue());
+            }
+
+            manipulationStartY = posY;
+        }
+    };
+
+    canvasElement.onmouseenter = (event) => {
+        if (event.buttons === 0) {
+            manipulationActive = false;
+        }
+    };
+
+    canvasElement.onmouseup = (_) => {
+        manipulationActive = false;
+    };
 };

@@ -35,9 +35,9 @@ const SimpleChartController = (dataSerie, opts) => {
      */
     const serieController = controller.getSeries()[0];
     serieController.yMin.onValueChanged(() => controller.yMin.setValue(serieController.yMin.getValue()
-                                                                       / serieController.getFactor()));
+                                                                       / serieController.factor.getValue()));
     serieController.yMax.onValueChanged(() => controller.yMax.setValue(serieController.yMax.getValue()
-                                                                       / serieController.getFactor()));
+                                                                       / serieController.factor.getValue()));
 
     return controller;
 };

@@ -101,14 +101,30 @@ const DataModel = dataArray => {
 };
 
 /**
- * @description Choice of following controller types: 
- * For one data serie: 
- * 
+ * @typedef DataBoundariesModelType
+ * @property { AttributeType<DataBoundaries> } boundaries boundaries
+ */
+
+/**
+ * @private
+ * @pure
+ * @return { DataBoundariesModelType }
+ * @constructor
+ */
+const DataBoundariesModel = dataBoundaries => {
+    const boundaries = Attribute(dataBoundaries);
+    return /** @type { DataModelType } */ { boundaries };
+};
+
+/**
+ * @description Choice of following controller types:
+ * For one data serie:
+ *
  * ***SimpleAreaChartController***, ***SimpleLineChartController***, ***SimpleScatterChartController***
- * 
- * 
- * For more tha one data serie: 
- * 
+ *
+ *
+ * For more tha one data serie:
+ *
  * ***AreaChartController***, ***LineChartController***, ***ScatterChartController***
  * @typedef { Object } ChartControllerType
  * @property { () => Array<ChartDataSeriesControllerType> }                          getSeries data serie controllers
@@ -120,7 +136,7 @@ const DataModel = dataArray => {
  *     be displayed on the y-axis
  * @property { SimpleInputControllerType }                                           yMax the highest value to
  *     be displayed on the y-axis
- * @property { DataBoundaries }                                                      boundaries
+ * @property { () => DataBoundaries }                                                getBoundaries
  * @property { () => Array<ChartDataElement> }                                       getData the data series
  *     used in the line chart
  * @property { (elements: Array<ChartDataElement>) => void }                         setSelectedElements set the
@@ -133,6 +149,7 @@ const DataModel = dataArray => {
  *     interaction with the data has occurred
  * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onSelectedElementsChanged
  *     when selected Elements change
+ * @property { (callback: onValueChangeCallback<DataBoundaries>)  => void }          onBoundariesChanged
  * @property { ToolBarControllerType } toolBarController
  * @example for a simple chart controller
  * const controller = SimpleAreaChartController(data);
@@ -162,7 +179,6 @@ const ChartController = (dataSeries, opts) => {
     opts.drawOuterTicks = opts.drawOuterTicks === undefined ? true : opts.drawOuterTicks;
 
     let lastControllerId   = 0;
-    const { series }       = DataSeriesModel();
     const { options }      = ChartOptionsModel(opts);
     const selectedElements = DataModel().data;
 
@@ -187,16 +203,15 @@ const ChartController = (dataSeries, opts) => {
         )
     );
 
-    const { yMinBoundarie, yMaxBoundarie, factor } = calcYBoundaries(yMinimum, yMaximum);
+    const { yMinBoundarie, yMaxBoundarie, factor } = calcInitialYBoundaries(yMinimum, yMaximum);
 
     /** @type { DataBoundaries } */
-    const boundaries = {
+    const { boundaries } = DataBoundariesModel({
         xMin: xMinimum,
         xMax: xMaximum,
         yMin: yMinBoundarie,
         yMax: yMaxBoundarie
-    };
-
+    });
 
 
     /** @type { SimpleInputControllerType<Number> } */
@@ -215,12 +230,57 @@ const ChartController = (dataSeries, opts) => {
     for (const serie of dataSeries) {
         const controller = DataSeriesController(serie, factor, ++lastControllerId);
 
-        yMin.onValueChanged(() => controller.yMin.setValue(yMin.getValue() * controller.getFactor()));
-        yMax.onValueChanged(() => controller.yMax.setValue(yMax.getValue() * controller.getFactor()));
+        yMin.onValueChanged(() => controller.yMin.setValue(yMin.getValue()
+                                                           * controller.factor.getValue()
+                                                           + controller.shifting.getValue()));
+        yMax.onValueChanged(() => controller.yMax.setValue(yMax.getValue()
+                                                           * controller.factor.getValue()
+                                                           + controller.shifting.getValue()));
+
+        controller.shifting.onValueChanged(() => {
+            const activeBoundaries = boundaries.getObs(VALUE).getValue();
+
+            let min = 0;
+            let max = 0;
+
+            for (const serie of serieControllers) {
+                const minBoundarie = (serie.getDataYMin() - serie.shifting.getValue()) / serie.factor.getValue();
+                const maxBoundarie = (serie.getDataYMax() - serie.shifting.getValue()) / serie.factor.getValue();
+
+                min = minBoundarie < min ? minBoundarie : min;
+                max = maxBoundarie > max ? maxBoundarie : max;
+            }
+
+            boundaries.getObs(VALUE).setValue({
+                xMin: activeBoundaries.xMin,
+                xMax: activeBoundaries.xMax,
+                yMin: min,
+                yMax: max,
+            });
+        });
 
         serieControllers.push(controller);
     }
-    series.getObs(VALUE).setValue(serieControllers);
+    const { series }       = DataSeriesModel(serieControllers);
+
+    boundaries.getObs(VALUE).onChange(() => {
+        const activeBoundaries = boundaries.getObs(VALUE).getValue();
+        const min              = yMin.getValue();
+        const max              = yMax.getValue();
+        const boundariesDiff   = activeBoundaries.yMax - activeBoundaries.yMin;
+        const diff             = max - min;
+
+        if (diff > boundariesDiff) {
+            yMin.setValue(activeBoundaries.yMin);
+            yMax.setValue(activeBoundaries.yMax);
+        } else if (activeBoundaries.yMin > min) {
+            yMin.setValue(activeBoundaries.yMin);
+            yMax.setValue(activeBoundaries.yMin + diff);
+        } else if (activeBoundaries.yMax < max) {
+            yMax.setValue(activeBoundaries.yMax);
+            yMin.setValue(activeBoundaries.yMax - diff);
+        }
+    });
 
     const getData = () => series.getObs(VALUE).getValue().reduce((acc, curr) => [ ...acc, ...curr.getData() ], []);
 
@@ -239,12 +299,13 @@ const ChartController = (dataSeries, opts) => {
         xMax,
         yMin,
         yMax,
-        boundaries,
+        getBoundaries            : boundaries.getObs(VALUE).getValue,
         getData,
         setSelectedElements      : selectedElements.getObs(VALUE).setValue,
         getSelectedElements      : selectedElements.getObs(VALUE).getValue,
         getOptions               : options.getObs(VALUE).getValue,
         onSelectedElementsChanged: selectedElements.getObs(VALUE).onChange,
+        onBoundariesChanged      : boundaries.getObs(VALUE).onChange,
         toolBarController
     };
 };
@@ -262,7 +323,7 @@ const ChartController = (dataSeries, opts) => {
  * @param { !Number } yMax
  * @returns { !YBoundaries }
  */
-const calcYBoundaries = (yMin, yMax) => {
+const calcInitialYBoundaries = (yMin, yMax) => {
     /** @type { Number } */
     let yMinBoundarie;
 
@@ -319,15 +380,15 @@ const MinMaxValueController = (value, label, name) => {
 
 /**
  * @typedef ChartDataSeriesControllerType
- * @property { !String } id
- * @property { !ChartTypeString } type
+ * @property { !String }                        id
+ * @property { !ChartTypeString }               type
  * @property { () => !Array<ChartDataElement> } getData
- * @property { (Number) => void } updateFactor
- * @property { () => Number } getFactor
- * @property { (Number) => void } updateShifting
- * @property { () => Number } getShifting
- * @property { !SimpleInputControllerType } yMin
- * @property { !SimpleInputControllerType } yMax
+ * @property { () => Number }                   getDataYMin
+ * @property { () => Number }                   getDataYMax
+ * @property { !SimpleInputControllerType }     factor
+ * @property { !SimpleInputControllerType }     shifting
+ * @property { !SimpleInputControllerType }     yMin
+ * @property { !SimpleInputControllerType }     yMax
  */
 
 /**
@@ -339,21 +400,10 @@ const MinMaxValueController = (value, label, name) => {
  */
 const DataSeriesController = (dataSerie, initialFactor, id) => {
     const { data } = DataModel();
-    let factor     = initialFactor;
-    let shifting   = 0;
+    const factor   = MinMaxValueController(initialFactor, "factor", "factor");
+    const shifting = MinMaxValueController(0, "shifting", "shifting");
 
     data.getObs(VALUE).setValue(dataSerie.data.sort((a, b) => a.xValue - b.xValue));
-
-    /**
-     *
-     * @param { !Number } f new factor
-     */
-    const updateFactor   = (f) => factor = f;
-    /**
-     *
-     * @param { !Number } s new shifting
-     */
-    const updateShifting = (s) => shifting = s;
 
     const yMinimum = Math.min(dataSerie.data.reduce(
         (prev, curr) => prev < curr.yValue ? prev : curr.yValue)
@@ -372,10 +422,14 @@ const DataSeriesController = (dataSerie, initialFactor, id) => {
         id,
         type       : dataSerie.type,
         getData    : data.getObs(VALUE).getValue,
-        updateFactor,
-        getFactor  : () => factor,
-        updateShifting,
-        getShifting: () => shifting,
+        getDataYMin: () => Math.min(data.getObs(VALUE).getValue().reduce(
+            (prev, curr) => prev < curr.yValue ? prev : curr.yValue, 0)
+        ),
+        getDataYMax: () => Math.max(data.getObs(VALUE).getValue().reduce(
+            (prev, curr) => prev > curr.yValue ? prev : curr.yValue, 0)
+        ),
+        factor,
+        shifting,
         yMin,
         yMax
     }

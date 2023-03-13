@@ -86,6 +86,7 @@ const ChartProjector = (controller) => {
     controller.yMin.onValueChanged(() => redraw());
     controller.yMax.onValueChanged(() => redraw());
     controller.onSelectedElementsChanged(() => redraw());
+    controller.onBoundariesChanged(() => redraw());
 
     registerChangeHandler(canvasElement, getOptions, redraw);
 
@@ -125,7 +126,7 @@ const optionsFunc = (canvasElement, controller) => (seriesController) => {
         color         : pointColor,
         selectedColor : selectedPointColor,
         pointSize     : pointSize,
-        dataBoundaries: controller.boundaries,
+        dataBoundaries: controller.getBoundaries(),
         boundaries    : {
             xMin,
             xMax,

@@ -49,7 +49,7 @@ const XAxisLabelingBarProjector = (controller) => {
         return {
             width,
             height,
-            boundaries   : controller.boundaries,
+            boundaries   : controller.getBoundaries(),
             color        : pointColor,
             selectedColor: selectedPointColor,
             pointSize    : pointSize,
@@ -58,12 +58,13 @@ const XAxisLabelingBarProjector = (controller) => {
 
     const redraw = () => {
         const options = getOptions();
+        const boundaries = controller.getBoundaries();
 
         ctx.clearRect(0, 0, options.width, options.height);
 
-        const longestText = controller.boundaries.xMin.length > controller.boundaries.xMax.length
-                            ? controller.boundaries.xMin
-                            : controller.boundaries.xMax;
+        const longestText = boundaries.xMin.length > boundaries.xMax.length
+                            ? boundaries.xMin
+                            : boundaries.xMax;
 
         const textWidth = measureText(ctx, longestText) + 20;
 
