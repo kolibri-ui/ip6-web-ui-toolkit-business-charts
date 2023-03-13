@@ -24,18 +24,18 @@ const SelectedToolModel = () => {
 /**
  * @typedef ToolBarControllerType
  * @property { Array<() => ChartToolType> } tools
- * @property { () => Array<ScatterChartDataElement>} getData
- * @property { (elements: Array<ScatterChartDataElement>) => void } selectDataPoints
- * @property { () => Array<ScatterChartDataElement> } getSelectedDataPoints
+ * @property { () => Array<ChartDataElement>} getData
+ * @property { (elements: Array<ChartDataElement>) => void } selectDataPoints
+ * @property { () => Array<ChartDataElement> } getSelectedDataPoints
  * @property { () => ChartToolType } selectedTool
  * @property { (tool: ChartToolType) => void } selectTool
  */
 
 /**
  * @typedef ToolBarControllerCallbacks
- * @property { () => Array<ScatterChartDataElement> } getData
- * @property { (elements: Array<ScatterChartDataElement>) => void } selectDataPoints
- * @property { () => Array<ScatterChartDataElement> } getSelectedDataPoints
+ * @property { () => Array<ChartDataElement> } getData
+ * @property { (elements: Array<ChartDataElement>) => void } selectDataPoints
+ * @property { () => Array<ChartDataElement> } getSelectedDataPoints
  */
 
 /**

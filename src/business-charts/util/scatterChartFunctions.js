@@ -12,7 +12,7 @@ export { drawScatterplotPoints }
  * @param { CanvasRenderingContext2D } ctx
  * @param { Array<ChartDataElement> } data
  * @param { Array<ChartDataElement> } selectedPoints
- * @param { ScatterplotChartOptions } options
+ * @param { ChartOptions } options
  */
 const drawScatterplotPoints = (
     ctx,
@@ -20,14 +20,19 @@ const drawScatterplotPoints = (
     selectedPoints,
     options
 ) => {
+
     for (const v of data) {
         const point = pointDomainToCanvas(
             options.width,
             options.height,
-            options.boundaries.xMin,
-            options.boundaries.xMax,
-            options.boundaries.yMin,
-            options.boundaries.yMax,
+            {
+                xValue: options.boundaries.xMin,
+                yValue: options.boundaries.yMin,
+            },
+            {
+                xValue: options.boundaries.xMax,
+                yValue: options.boundaries.yMax,
+            },
             v
         );
 

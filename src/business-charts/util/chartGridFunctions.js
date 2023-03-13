@@ -46,10 +46,14 @@ const drawGrid = (
     const nullPoint = pointDomainToCanvas(
         width,
         height,
-        boundaries.xMin,
-        boundaries.xMax,
-        boundaries.yMin,
-        boundaries.yMax,
+        {
+            xValue: boundaries.xMin,
+            yValue: boundaries.yMin,
+        },
+        {
+            xValue: boundaries.xMax,
+            yValue: boundaries.yMax,
+        },
         { xValue: 0, yValue: 0 }
     );
 

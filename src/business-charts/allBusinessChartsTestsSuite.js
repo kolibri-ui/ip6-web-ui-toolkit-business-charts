@@ -13,4 +13,4 @@ import "./projector/simpleLineChart/simpleLineChartControllerTest.js"
 
 //demo tests
 // import "../../demo/simple-bar-chart/simple-bar-chart-demoTest.js"
-// import "../../demo/simple-scatterplot-chart/simple-scatter-chart-demoTest.js"
+// import "../../demo/simple-scatterplot-chart/area-chart-demoTest.js"

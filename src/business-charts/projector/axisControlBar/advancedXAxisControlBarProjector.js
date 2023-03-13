@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 import { drawScatterplotPoints } from "../../util/scatterChartFunctions.js";
 import {
     xCanvasToDomain,
@@ -7,25 +9,19 @@ import {
     drawLine,
     drawRect
 }                                from "../../util/chartFunctions.js";
+import {
+    AREA_CHART,
+    LINE_CHART,
+    SCATTER_CHART
+}                                from "../chart/chartController.js";
+import { drawLinechartLine }     from "../../util/lineChartFunctions.js";
+import { drawAreachartArea }     from "../../util/areaChartFunctions.js";
 
 export { AdvancedXAxisControlBarProjector }
 
 /**
- * @typedef { Object } AdvancedXAxisControlBarControllers
- * @property { SimpleInputControllerType }            xMin the smallest value to be displayed on the x-axis
- * @property { SimpleInputControllerType }            xMax the highest value to be displayed on the x-axis
- * @property { SimpleInputControllerType }            yMin the smallest value to be displayed on the y-axis
- * @property { SimpleInputControllerType }            yMax the highest value to be displayed on the y-axis
- * @property { DataBoundaries }                       boundaries
- * @property { () => Array<ScatterChartDataElement> } getData
- * @property { () => SimpleScatterChartOptions }      getOptions
- * @property { (callback: onValueChangeCallback<Array<ScatterChartDataElement>>)  => void } onDataChanged when
- *     interaction with the data has occurred
- */
-
-/**
  *
- * @param { AdvancedXAxisControlBarControllers } controller
+ * @param { ChartControllerType } controller
  * @returns {HTMLDivElement}
  */
 const AdvancedXAxisControlBarProjector = (controller) => {
@@ -39,23 +35,30 @@ const AdvancedXAxisControlBarProjector = (controller) => {
     canvasElement.height = 80;
 
     /**
-     *
-     * @returns { ScatterplotChartOptions }
+     * @param { ?ChartDataSeriesControllerType } serieController
+     * @returns { ChartOptions }
      */
-    const getOptions = () => {
+    const getOptions = (serieController) => {
         let { width, height }    = canvasElement.getBoundingClientRect();
-        const pointSize          = 3;
+        const pointSize          = 2;
         const pointColor         = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
-        const selectedPointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-selected-color");
+        const selectedPointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
 
         width  = width === 0 ? 500 : width;
         height = height === 0 ? 85 : height;
 
-        /** @type { ScatterplotChartOptions } */
+        const boundaries = {
+            xMin: controller.boundaries.xMin,
+            xMax: controller.boundaries.xMax,
+            yMin: serieController ? controller.boundaries.yMin * serieController.getFactor() : controller.boundaries.yMin,
+            yMax: serieController ? controller.boundaries.yMax * serieController.getFactor() : controller.boundaries.yMax,
+        };
+
+        /** @type { ChartOptions } */
         return {
             width,
             height,
-            boundaries   : controller.boundaries,
+            boundaries,
             color        : pointColor,
             selectedColor: selectedPointColor,
             pointSize    : pointSize,
@@ -67,7 +70,22 @@ const AdvancedXAxisControlBarProjector = (controller) => {
 
         const ctx = canvasElement.getContext('2d');
         ctx.clearRect(0, 0, options.width, options.height);
-        drawScatterplotPoints(ctx, controller.getData(), [], options);
+
+        for (const seriesController of controller.getSeries()) {
+            const seriesOptions = getOptions(seriesController);
+
+            switch (seriesController.type) {
+                case SCATTER_CHART:
+                    drawScatterplotPoints(ctx, seriesController.getData(), [], seriesOptions);
+                    break;
+                case LINE_CHART:
+                    drawLinechartLine(ctx, seriesController.getData(), [], seriesOptions);
+                    break;
+                case AREA_CHART:
+                    drawAreachartArea(ctx, seriesController.getData(), [], seriesOptions);
+                    break;
+            }
+        }
 
         const xMinimum = xDomainToCanvas(
             options.width,
@@ -147,10 +165,9 @@ const AdvancedXAxisControlBarProjector = (controller) => {
         const posX    = event.x - rect.left;
 
         if (resizeActive) {
-            const posX  = event.x - rect.left;
             const moveX = posX - mouseStartX;
 
-            if (changeType === 'CHANGE_MIN') {
+            const changeMin = () => {
                 const xMin     = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMin.getValue());
                 const changedX = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMin
                                                                                                                   + moveX);
@@ -159,7 +176,9 @@ const AdvancedXAxisControlBarProjector = (controller) => {
                 } else {
                     controller.xMin.setValue(changedX);
                 }
-            } else if (changeType === 'CHANGE_MAX') {
+            };
+
+            const changeMax = () => {
                 const xMax     = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMax.getValue());
                 const changedX = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMax
                                                                                                                   + moveX);
@@ -168,8 +187,9 @@ const AdvancedXAxisControlBarProjector = (controller) => {
                 } else {
                     controller.xMax.setValue(changedX);
                 }
+            };
 
-            } else {
+            const changeMinMax = () => {
                 const xMin        = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMin.getValue());
                 const xMax        = xDomainToCanvas(options.width, options.boundaries.xMin, options.boundaries.xMax, controller.xMax.getValue());
                 const changedXMin = xCanvasToDomain(options.width, options.boundaries.xMin, options.boundaries.xMax, xMin
@@ -180,6 +200,14 @@ const AdvancedXAxisControlBarProjector = (controller) => {
                     controller.xMin.setValue(changedXMin);
                     controller.xMax.setValue(changedXMax);
                 }
+            };
+
+            if (changeType === 'CHANGE_MIN') {
+                changeMin();
+            } else if (changeType === 'CHANGE_MAX') {
+                changeMax();
+            } else {
+                changeMinMax()
             }
 
             mouseStartX = posX;
@@ -226,8 +254,6 @@ const AdvancedXAxisControlBarProjector = (controller) => {
         redraw();
     });
     styleChangeHandler.observe(document.documentElement, { attributes: true, attributeFilter: [ "style" ] });
-
-    controller.onDataChanged(() => redraw());
 
     redraw();
 

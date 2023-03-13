@@ -39,23 +39,23 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
             const points = callbacks.getDataPointsForPosition(mouseX, mouseY);
 
             const point = points.length > 0 ? points[0] : undefined;
+            const p = point ? point.point : undefined;
+            const pHovered = dataPointHovered ? dataPointHovered.point : undefined;
 
-            if (dataPointHovered !== point) {
+            if (pHovered !== p) {
                 dataPointHovered = point;
 
                 if (dataPointHovered !== undefined) {
-                    const position    = callbacks.getCanvasPositionForPoint(dataPointHovered);
-                    const pointRadius = callbacks.getOptions().pointSize;
+                    const position    = callbacks.getCanvasPositionForPoint(dataPointHovered.point);
+                    const pointRadius = callbacks.getOptions(dataPointHovered.serie).pointSize;
 
-                    tooltip = tooltipProjector(position, pointRadius, point.name);
+                    tooltip = tooltipProjector(position, pointRadius, point.point.name);
                     canvasElement.parentElement.append(tooltip);
                 } else {
                     canvasElement.parentElement.removeChild(tooltip);
                     tooltip = undefined;
                 }
             }
-
-
         },
         mouseClick: (event) => {
             const rect   = canvasElement.getBoundingClientRect();
@@ -65,22 +65,21 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
             const points = callbacks.getDataPointsForPosition(mouseX, mouseY);
 
             if (event && ctrlOrCmdPressed(event)) {
-                let selectedPoints = callbacks.getSelectedDataPoints();
+                let selectedPoints = callbacks.getSelectedDataPoints() ?? [];
 
                 for (const point of points) {
 
-                    if (selectedPoints.includes(point)) {
-                        selectedPoints = selectedPoints.filter(p => p !== point);
+                    if (selectedPoints.includes(point.point)) {
+                        selectedPoints = selectedPoints.filter(p => p !== point.point);
                     } else {
-                        selectedPoints = [ point, ...selectedPoints ];
+                        selectedPoints = [ point.point, ...selectedPoints ];
                     }
                 }
 
                 callbacks.selectDataPoints(selectedPoints);
             } else {
-                callbacks.selectDataPoints(points);
+                callbacks.selectDataPoints(points.map(p => p.point));
             }
-
         }
     };
 };

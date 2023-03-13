@@ -5,8 +5,8 @@ import {
     ChartController,
     LINE_CHART,
     SCATTER_CHART
-} from "./chartController.js";
-import { VALUE } from "../../../Kolibri/docs/src/kolibri/presentationModel.js";
+}                                     from "./chartController.js";
+import { bubbleTooltipSelectionTool } from "../toolBar/tools/SelectionTool.js";
 
 export {
     SimpleScatterChartController,
@@ -21,13 +21,19 @@ export {
  * @return { ChartControllerType }
  */
 const SimpleChartController = (dataSerie, opts) => {
+    if(!opts || !opts.tools) {
+        opts = {
+            ...opts,
+            tools: [bubbleTooltipSelectionTool]
+        }
+    }
     const controller = ChartController([ dataSerie ], opts);
 
     /**
      *
      * @type { ChartDataSeriesControllerType }
      */
-    const serieController = controller.series.getObs(VALUE).getValue()[0];
+    const serieController = controller.getSeries()[0];
     serieController.yMin.onValueChanged(() => controller.yMin.setValue(serieController.yMin.getValue()
                                                                        / serieController.getFactor()));
     serieController.yMax.onValueChanged(() => controller.yMax.setValue(serieController.yMax.getValue()

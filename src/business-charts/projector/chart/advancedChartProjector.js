@@ -7,22 +7,18 @@ import {
     optionsFunc,
     redrawFunc,
     setCanvasBoundariesFunc
-}                                        from "./chartProjector.js";
-import { SimpleAxisControlBarProjector } from "../axisControlBar/simpleAxisControlBarProjector.js";
-import { ToolBarProjector }              from "../toolBar/toolBarProjector.js";
+} from "./chartProjector.js";
+import { AdvancedXAxisControlBarProjector } from "../axisControlBar/advancedXAxisControlBarProjector.js";
+import { ToolBarProjector }                 from "../toolBar/toolBarProjector.js";
 
-export { SimpleChartProjector }
+export { AdvancedChartProjector }
 
 /**
  *
  * @param { !ChartControllerType } controller
  * @return { HTMLDivElement }
  */
-const SimpleChartProjector = (controller) => {
-    if (controller.getSeries().length !== 1) {
-        throw new Error("SimpleChartProjector only supports one data serie!")
-    }
-
+const AdvancedChartProjector = (controller) => {
     /** @type { HTMLDivElement } */
     const chartElement = document.createElement("div");
     chartElement.classList.add("chart-container", "chart-container-grid");
@@ -34,11 +30,7 @@ const SimpleChartProjector = (controller) => {
     canvasWrapperElement.classList.add("canvas-wrap", "canvas-wrap-grid");
     canvasWrapperElement.append(canvasElement);
 
-    const xAxisBar = SimpleAxisControlBarProjector("X_AXIS", { min: controller.xMin, max: controller.xMax });
-    const yAxisBar = SimpleAxisControlBarProjector("Y_AXIS", {
-        min: controller.getSeries()[0].yMin,
-        max: controller.getSeries()[0].yMax
-    });
+    const xAxisBar = AdvancedXAxisControlBarProjector(controller);
 
     const getOptions = optionsFunc(canvasElement, controller);
     const redraw = redrawFunc(canvasElement, controller, getOptions);
@@ -46,7 +38,7 @@ const SimpleChartProjector = (controller) => {
     const setCanvasBoundaries = setCanvasBoundariesFunc(controller, getOptions);
     const getCanvasPositionForPoint = getCanvasPositionForPointFunc(controller, getOptions);
 
-    ToolBarProjector(
+    const toolBar = ToolBarProjector(
         controller.toolBarController,
         {
             getOptions,
@@ -60,7 +52,7 @@ const SimpleChartProjector = (controller) => {
         canvasElement
     );
 
-    chartElement.append(yAxisBar, canvasWrapperElement, xAxisBar);
+    chartElement.append(toolBar, canvasWrapperElement, xAxisBar);
 
     return chartElement;
 };

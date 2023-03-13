@@ -3,25 +3,25 @@ export { ToolBarProjector }
 
 /**
  * @typedef ChartToolBarCallbacks
- * @property { () => Array<ScatterChartDataElement> } getData
- * @property {  (canvasX: Number, canvasY: Number) => Array<ScatterChartDataElement> } getDataPointsForPosition
- * @property { (point: ScatterChartDataElement) => CanvasPoint2D } getCanvasPositionForPoint
- * @property { () => ScatterplotChartOptions } getOptions
+ * @property { () => Array<ChartDataElement> }                                     getData
+ * @property {  (canvasX: Number, canvasY: Number) => Array<ChartDataElement> }    getDataPointsForPosition
+ * @property { (point: ChartDataElement) => CanvasPoint2D }                        getCanvasPositionForPoint
+ * @property { () => ChartOptions }                                                getOptions
  * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void } setCanvasBoundaries
- * @property { (dataPoints: Array<ScatterChartDataElement>) => void } selectDataPoints
- * @property { () => Array<ScatterChartDataElement> } getSelectedDataPoints
- * @property { () => void } redraw
+ * @property { (dataPoints: Array<ChartDataElement>) => void }                     selectDataPoints
+ * @property { () => Array<ChartDataElement> }                                     getSelectedDataPoints
+ * @property { () => void }                                                        redraw
  */
 
 /**
  * @typedef ChartToolType
- * @property { String } title
- * @property { 'CLICK'|'ACTIVATE' } type
- * @property { String } tooltip
- * @property { HTMLOrSVGElement } icon
- * @property { mouseMove?: (event: MouseEvent) => void } mouseMove
- * @property { mouseDown?: (event: MouseEvent) => void } mouseDown
- * @property { mouseUp?: (event: MouseEvent) => void } mouseUp
+ * @property { String }                                   title
+ * @property { 'CLICK'|'ACTIVATE' }                       type
+ * @property { String }                                   tooltip
+ * @property { HTMLOrSVGElement }                         icon
+ * @property { mouseMove?: (event: MouseEvent) => void }  mouseMove
+ * @property { mouseDown?: (event: MouseEvent) => void }  mouseDown
+ * @property { mouseUp?: (event: MouseEvent) => void }    mouseUp
  * @property { mouseClick?: (event: MouseEvent) => void } mouseClick
  * @property { mouseLeave?: (event: MouseEvent) => void } mouseLeave
  * @property { mouseEnter?: (event: MouseEvent) => void } mouseEnter
