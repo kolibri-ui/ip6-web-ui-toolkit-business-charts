@@ -180,28 +180,10 @@ const ChartController = (dataSeries, opts) => {
 
     let lastControllerId   = 0;
     const { options }      = ChartOptionsModel(opts);
+    const { series }       = DataSeriesModel();
     const selectedElements = DataModel().data;
 
-    const xMinimum = Math.min(
-        ...dataSeries.map(serie => serie.data.reduce(
-            (prev, curr) => prev < curr.xValue ? prev : curr.xValue, serie.data[0].xValue)
-        )
-    );
-    const xMaximum = Math.max(
-        ...dataSeries.map(serie => serie.data.reduce(
-            (prev, curr) => prev > curr.xValue ? prev : curr.xValue, serie.data[0].xValue)
-        )
-    );
-    const yMinimum = Math.min(
-        ...dataSeries.map(serie => serie.data.reduce(
-            (prev, curr) => prev < curr.yValue ? prev : curr.yValue, serie.data[0].yValue)
-        )
-    );
-    const yMaximum = Math.max(
-        ...dataSeries.map(serie => serie.data.reduce(
-            (prev, curr) => prev > curr.yValue ? prev : curr.yValue, serie.data[0].yValue)
-        )
-    );
+    const { xMinimum, xMaximum, yMinimum, yMaximum, } = getDataMinAndMax(dataSeries);
 
     const { yMinBoundarie, yMaxBoundarie, factor } = calcInitialYBoundaries(yMinimum, yMaximum);
 
@@ -212,7 +194,6 @@ const ChartController = (dataSeries, opts) => {
         yMin: yMinBoundarie,
         yMax: yMaxBoundarie
     });
-
 
     /** @type { SimpleInputControllerType<Number> } */
     const xMin = MinMaxValueController(xMinimum, "X-Minimum", "x_min");
@@ -237,19 +218,35 @@ const ChartController = (dataSeries, opts) => {
                                                            * controller.factor.getValue()
                                                            + controller.shifting.getValue()));
 
-        controller.shifting.onValueChanged(() => {
+        serieControllers.push(controller);
+    }
+    series.getObs(VALUE).setValue(serieControllers);
+
+    for (const serie of series.getObs(VALUE).getValue()) {
+        serie.shifting.onValueChanged(() => {
             const activeBoundaries = boundaries.getObs(VALUE).getValue();
 
             let min = 0;
             let max = 0;
 
-            for (const serie of serieControllers) {
+            for (const serie of series.getObs(VALUE).getValue()) {
+                console.log(serie.getDataYMin());
+                console.log(serie.getDataYMax());
                 const minBoundarie = (serie.getDataYMin() - serie.shifting.getValue()) / serie.factor.getValue();
                 const maxBoundarie = (serie.getDataYMax() - serie.shifting.getValue()) / serie.factor.getValue();
+
+                console.log(maxBoundarie);
 
                 min = minBoundarie < min ? minBoundarie : min;
                 max = maxBoundarie > max ? maxBoundarie : max;
             }
+
+            console.log({
+                xMin: activeBoundaries.xMin,
+                xMax: activeBoundaries.xMax,
+                yMin: min,
+                yMax: max,
+            });
 
             boundaries.getObs(VALUE).setValue({
                 xMin: activeBoundaries.xMin,
@@ -258,10 +255,7 @@ const ChartController = (dataSeries, opts) => {
                 yMax: max,
             });
         });
-
-        serieControllers.push(controller);
     }
-    const { series }       = DataSeriesModel(serieControllers);
 
     boundaries.getObs(VALUE).onChange(() => {
         const activeBoundaries = boundaries.getObs(VALUE).getValue();
@@ -308,6 +302,50 @@ const ChartController = (dataSeries, opts) => {
         onBoundariesChanged      : boundaries.getObs(VALUE).onChange,
         toolBarController
     };
+};
+
+/**
+ * @typedef { Object } MinAndMaxValues
+ * @property { Number } xMinimum
+ * @property { Number } xMaximum
+ * @property { Number } yMinimum
+ * @property { Number } yMaximum
+ *
+ */
+
+/**
+ *
+ * @param { Array<ChartDataSerie> } dataSeries
+ * @return { MinAndMaxValues }
+ */
+const getDataMinAndMax = (dataSeries) => {
+    const xMinimum = Math.min(
+        ...dataSeries.map(serie => serie.data.reduce(
+            (prev, curr) => prev < curr.xValue ? prev : curr.xValue, serie.data[0].xValue)
+        )
+    );
+    const xMaximum = Math.max(
+        ...dataSeries.map(serie => serie.data.reduce(
+            (prev, curr) => prev > curr.xValue ? prev : curr.xValue, serie.data[0].xValue)
+        )
+    );
+    const yMinimum = Math.min(
+        ...dataSeries.map(serie => serie.data.reduce(
+            (prev, curr) => prev < curr.yValue ? prev : curr.yValue, serie.data[0].yValue)
+        )
+    );
+    const yMaximum = Math.max(
+        ...dataSeries.map(serie => serie.data.reduce(
+            (prev, curr) => prev > curr.yValue ? prev : curr.yValue, serie.data[0].yValue)
+        )
+    );
+
+    return {
+        xMinimum,
+        xMaximum,
+        yMinimum,
+        yMaximum,
+    }
 };
 
 /**
@@ -418,16 +456,19 @@ const DataSeriesController = (dataSerie, initialFactor, id) => {
     /** @type { SimpleInputControllerType<Number> } */
     const yMax = MinMaxValueController(yMaximum, "Y-Maximum", "y_max");
 
+    const getDataYMin = () => Math.min(data.getObs(VALUE).getValue().reduce(
+        (prev, curr) => prev < curr.yValue ? prev : curr.yValue, 0)
+    );
+    const getDataYMax = () => Math.max(data.getObs(VALUE).getValue().reduce(
+        (prev, curr) => prev > curr.yValue ? prev : curr.yValue, 0)
+    );
+
     return {
         id,
-        type       : dataSerie.type,
-        getData    : data.getObs(VALUE).getValue,
-        getDataYMin: () => Math.min(data.getObs(VALUE).getValue().reduce(
-            (prev, curr) => prev < curr.yValue ? prev : curr.yValue, 0)
-        ),
-        getDataYMax: () => Math.max(data.getObs(VALUE).getValue().reduce(
-            (prev, curr) => prev > curr.yValue ? prev : curr.yValue, 0)
-        ),
+        type   : dataSerie.type,
+        getData: data.getObs(VALUE).getValue,
+        getDataYMin,
+        getDataYMax,
         factor,
         shifting,
         yMin,
