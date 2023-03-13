@@ -2,6 +2,11 @@
 
 import { SimpleChartProjector }         from "../../src/business-charts/projector/chart/simpleChartProjector.js";
 import { SimpleScatterChartController } from "../../src/business-charts/projector/chart/simpleChartController.js";
+import { zoomInTool }                   from "../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
+import { zoomOutTool }                  from "../../src/business-charts/projector/toolBar/tools/ZoomOut.js";
+import { bubbleTooltipSelectionTool }   from "../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
+import { rubberBandTool }               from "../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
+import { panningTool }                  from "../../src/business-charts/projector/toolBar/tools/PanningTool.js";
 
 /** @type { Array<ChartDataElement> } */ const data = [ {
     name: 'A', xValue: -4, yValue: 3,
@@ -23,7 +28,15 @@ import { SimpleScatterChartController } from "../../src/business-charts/projecto
     name: 'I', xValue: 4, yValue: 9,
 },];
 
-const controller = SimpleScatterChartController(data);
+const controller = SimpleScatterChartController(data, {
+    tools: [
+        zoomInTool,
+        zoomOutTool,
+        bubbleTooltipSelectionTool,
+        rubberBandTool,
+        panningTool,
+    ]
+});
 
 document.getElementById('container').append(SimpleChartProjector(controller));
 

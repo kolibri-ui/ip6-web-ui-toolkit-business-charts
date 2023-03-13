@@ -51,7 +51,7 @@ const SimpleChartProjector = (controller) => {
     const setCanvasBoundaries = setCanvasBoundariesFunc(controller, getOptions);
     const getCanvasPositionForPoint = getCanvasPositionForPointFunc(controller, getOptions);
 
-    ToolBarProjector(
+    const toolBar = ToolBarProjector(
         controller.toolBarController,
         {
             getOptions,
@@ -65,7 +65,7 @@ const SimpleChartProjector = (controller) => {
         canvasElement
     );
 
-    chartElement.append(yAxisBar, yAxisLabelingBar, canvasWrapperElement, xAxisLabelingBar, xAxisBar);
+    chartElement.append(toolBar, yAxisBar, yAxisLabelingBar, canvasWrapperElement, xAxisLabelingBar, xAxisBar);
 
     return chartElement;
 };

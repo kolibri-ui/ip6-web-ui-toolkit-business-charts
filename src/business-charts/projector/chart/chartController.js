@@ -214,6 +214,10 @@ const ChartController = (dataSeries, opts) => {
     const serieControllers = [];
     for (const serie of dataSeries) {
         const controller = DataSeriesController(serie, factor, ++lastControllerId);
+
+        yMin.onValueChanged(() => controller.yMin.setValue(yMin.getValue() * controller.getFactor()));
+        yMax.onValueChanged(() => controller.yMax.setValue(yMax.getValue() * controller.getFactor()));
+
         serieControllers.push(controller);
     }
     series.getObs(VALUE).setValue(serieControllers);
