@@ -4,8 +4,8 @@ export { SimpleDetailView }
 
 /**
  * @typedef SimpleDetailViewControllerType
- * @property { () => Array<ScatterChartDataElement> }                                       getSelectedElements get the selected data elements
- * @property { (callback: onValueChangeCallback<Array<ScatterChartDataElement>>)  => void } onSelectedElementsChanged when selected Elements change
+ * @property { () => Array<ChartDataElement> }                                       getSelectedElements get the selected data elements
+ * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onSelectedElementsChanged when selected Elements change
  */
 
 /**
