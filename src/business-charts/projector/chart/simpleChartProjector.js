@@ -16,9 +16,13 @@ import { YAxisLabelingBarProjector }     from "../axisLabelingBar/yAxisLabelingB
 export { SimpleChartProjector }
 
 /**
- *
+ * @description chart projector for one data serie
  * @param { !ChartControllerType } controller
  * @return { HTMLDivElement }
+ * @example
+ * required controller: SimpleScatterChartController || SimpleLineChartController || SimpleAreaChartController
+ * 
+ * document.getElementById('container').append(SimpleChartProjector(controller));
  */
 const SimpleChartProjector = (controller) => {
     if (controller.getSeries().length !== 1) {
