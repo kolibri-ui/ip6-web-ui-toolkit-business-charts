@@ -16,9 +16,11 @@ import { YAxisLabelingBarProjector }        from "../axisLabelingBar/yAxisLabeli
 export { AdvancedChartProjector }
 
 /**
- *
+ * @description projector for more than one data serie
  * @param { !ChartControllerType } controller
  * @return { HTMLDivElement }
+ * @example usage of advanced chart projector
+ * document.getElementById('container').append(AdvancedChartProjector(controller));
  */
 const AdvancedChartProjector = (controller) => {
     /** @type { HTMLDivElement } */

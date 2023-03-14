@@ -155,37 +155,24 @@ const DataBoundariesModel = dataBoundaries => {
  *     when selected Elements change
  * @property { (callback: onValueChangeCallback<DataBoundaries>)  => void }          onBoundariesChanged
  * @property { ToolBarControllerType } toolBarController
- * @example simple chart controller
- * const controller = SimpleAreaChartController(data);
- *
- * @example advanced chart controller with toolbar
- * const controller = AreaChartController([data1, data2], {
- *         tools: [
- *             zoomInTool,
- *             zoomOutTool,
- *             bubbleTooltipSelectionTool,
- *             rubberBandTool,
- *             panningTool,
- *         ]
- *     });
- *
- * @example general chart controller with different chart types and toolbar
- * const controller = ChartController([{ type: LINE_CHART, data: dataSerie1 }, { type: SCATTER_CHART, data: dataSerie2 }], {
- *         tools: [
- *             zoomInTool,
- *             zoomOutTool,
- *             bubbleTooltipSelectionTool,
- *             rubberBandTool,
- *             panningTool,
- *         ]
- *     });
  */
 
 /**
- *
+ * @description chart controller for more than one data serie with various chart types
  * @param { Array<ChartDataSerie> } dataSeries
  * @param { ChartOptions } opts
  * @return { ChartControllerType }
+ * @example
+ * const controller = ChartController([{ type: LINE_CHART, data: dataSerie1 }, { type: SCATTER_CHART, data: dataSerie2 }], {
+ *     tools: [
+ *         zoomInTool,
+ *         zoomOutTool,
+ *         bubbleTooltipSelectionTool,
+ *         rubberBandTool,
+ *         panningTool,
+ *     ]
+ * });
+ * Required projector: AdvancedChartProjector(controller);
  */
 const ChartController = (dataSeries, opts) => {
     opts                = opts === undefined ? {} : opts;
