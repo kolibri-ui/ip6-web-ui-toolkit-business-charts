@@ -28,8 +28,6 @@ const YAxisLabelingBarProjector = (controller) => {
     const yAxisLabelingBarElement = document.createElement("div");
     yAxisLabelingBarElement.classList.add("y-axis-labeling");
 
-    const hasMultipleSeries = controller.getSeries().length > 1;
-
     for (const serie of controller.getSeries()) {
         /** @type { HTMLCanvasElement } */
         const canvasElement  = document.createElement("canvas");
@@ -104,9 +102,7 @@ const YAxisLabelingBarProjector = (controller) => {
             }
         };
 
-        if (hasMultipleSeries) {
-            addMouseEvents(canvasElement, serie, getOptions);
-        }
+        addMouseEvents(canvasElement, serie, getOptions);
 
         serie.yMin.onValueChanged(() => redraw());
         serie.yMax.onValueChanged(() => redraw());
