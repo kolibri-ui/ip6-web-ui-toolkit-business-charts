@@ -123,9 +123,13 @@ const DataBoundariesModel = dataBoundaries => {
  * ***SimpleAreaChartController***, ***SimpleLineChartController***, ***SimpleScatterChartController***
  *
  *
- * For more tha one data serie:
+ * For more than one data serie:
  *
  * ***AreaChartController***, ***LineChartController***, ***ScatterChartController***
+ *
+ * For mixed chart types:
+ *
+ * ***ChartController***
  * @typedef { Object } ChartControllerType
  * @property { () => Array<ChartDataSeriesControllerType> }                          getSeries data serie controllers
  * @property { SimpleInputControllerType }                                           xMin the smallest value to
@@ -151,15 +155,26 @@ const DataBoundariesModel = dataBoundaries => {
  *     when selected Elements change
  * @property { (callback: onValueChangeCallback<DataBoundaries>)  => void }          onBoundariesChanged
  * @property { ToolBarControllerType } toolBarController
- * @example for a simple chart controller
+ * @example simple chart controller
  * const controller = SimpleAreaChartController(data);
- * @example for an advanced chart controller with toolbar
- * const controller = AreaChartController([data1, data2],
- *     { //pass the optional toolbar
+ *
+ * @example advanced chart controller with toolbar
+ * const controller = AreaChartController([data1, data2], {
  *         tools: [
  *             zoomInTool,
  *             zoomOutTool,
- *             bubbleTooltipSelectionTool, // you can choose other tooltips
+ *             bubbleTooltipSelectionTool,
+ *             rubberBandTool,
+ *             panningTool,
+ *         ]
+ *     });
+ *
+ * @example general chart controller with different chart types and toolbar
+ * const controller = ChartController([{ type: LINE_CHART, data: dataSerie1 }, { type: SCATTER_CHART, data: dataSerie2 }], {
+ *         tools: [
+ *             zoomInTool,
+ *             zoomOutTool,
+ *             bubbleTooltipSelectionTool,
  *             rubberBandTool,
  *             panningTool,
  *         ]
