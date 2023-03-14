@@ -15,10 +15,16 @@ export {
 }
 
 /**
+ * @description type for the definition of the data series as ChartDataElement
  * @typedef { Object } ChartDataElement
  * @property { String }  name name of the data element
  * @property { !Number } xValue value on the horizontal Axis of the data element
  * @property { !Number } yValue value on the vertical Axis of the data element
+ * @example
+ * /** @type { Array<ChartDataElement> }
+ * const dataSerie1 = [ {
+ *     name: 'A1', xValue: -4, yValue: 2,
+ * },];
  */
 
 /**
