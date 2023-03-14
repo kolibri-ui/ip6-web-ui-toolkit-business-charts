@@ -169,7 +169,7 @@ const DataBoundariesModel = dataBoundaries => {
  * @param { ChartOptions } opts
  * @return { ChartControllerType }
  * @example
- * const controller = ChartController([{ type: LINE_CHART, data: dataSerie1 }, { type: SCATTER_CHART, data: dataSerie2 }], {
+ * const controller = ChartController([{ type: LINE_CHART, data: ds1 }, { type: SCATTER_CHART, data: ds2 }], {
  *     tools: [
  *         zoomInTool,
  *         zoomOutTool,

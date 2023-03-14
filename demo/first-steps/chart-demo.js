@@ -19,7 +19,12 @@ import { AdvancedChartProjector } from "../../src/business-charts/projector/char
 import {
     AreaChartController, LineChartController,
     ScatterChartController
-} from "../../src/business-charts/projector/chart/advancedChartController.js";
+}                                         from "../../src/business-charts/projector/chart/advancedChartController.js";
+import {
+    ChartController,
+    LINE_CHART,
+    SCATTER_CHART
+} from "../../src/business-charts/projector/chart/chartController.js";
 
 // Your data. These can be created directly here, for example.
 /** @type { Array.<ChartDataElement> } */ const data = [ {
@@ -65,7 +70,16 @@ import {
 
 
 // at least pass on the data to your simple chart controller
-const controller = SimpleAreaChartController(data);
+const simpleController = SimpleAreaChartController(data,
+    { //pass the optional toolbar
+        tools: [
+            zoomInTool,
+            zoomOutTool,
+            bubbleTooltipSelectionTool, // you can choose other tooltips
+            rubberBandTool,
+            panningTool,
+        ]
+    });
 
 // see the sample for the advanced version below:
 const advancedController = LineChartController([data, data2],
@@ -77,16 +91,30 @@ const advancedController = LineChartController([data, data2],
             rubberBandTool,
             panningTool,
         ]
-    }
-);
+    });
 
+// see the sample for the advanced version with different chart types below:
+const multipleChartTypesController = ChartController(
+    [{ type: SCATTER_CHART, data: data },{ type: LINE_CHART, data: data2 }], 
+    {
+    tools:[
+        zoomInTool,
+        zoomOutTool,
+        bubbleTooltipSelectionTool, // you can choose other tooltips
+        rubberBandTool,
+        panningTool,
+    ]
+});
 
 // append the projectors to your HTML bindings. 
-// Pass the controller as parameter in your simple projector.
-document.getElementById('containerSimple').append(SimpleChartProjector(controller));
+// Pass the controller for one data serie as parameter in your simple projector.
+document.getElementById('containerSimple').append(SimpleChartProjector(simpleController));
 
-// Pass the controller as parameter in your advanced projector.
+// Pass the controller for more than one data serie as parameter in your advanced projector.
 document.getElementById('containerAdvanced').append(AdvancedChartProjector(advancedController));
+
+// Pass the controller for different chart types as parameter in your advanced projector.
+document.getElementById('containerMultipleChartTypes').append(AdvancedChartProjector(multipleChartTypesController));
 
 
 //TODO add detail and table view when the corresponding projectors work

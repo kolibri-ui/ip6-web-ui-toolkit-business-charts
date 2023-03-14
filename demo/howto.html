@@ -15,6 +15,8 @@
             flex-direction: column;
             padding: 0;
             align-content: center;
+
+            box-sizing: content-box;
         }
 
         header {
@@ -32,7 +34,7 @@
         }
 
         code {
-            font-family: "JetBrainsMono-VariableFont_wght";
+            font-family: "JetBrainsMono-VariableFont_wght", sans-serif;
             color: var(--kolibri-color-output);
             background-color: #f1f1f1;
             padding: 0.2em;
@@ -115,7 +117,11 @@
         </div>
         <div>
             <h3>/src/business-charts</h3>
-            <p>This folder contains all chart projectors, styles, helper functions and <a
+            <p>This folder contains
+                chart projectors (/src/business-charts/projector),
+                styles (/src/business-charts/css),
+                helper functions (/src/business-charts/util)
+                and <a
                     onclick="openBusinessChartsTests()" target="_blank" rel="noopener noreferrer"><u>tests</u></a>.</p>
             <script id="businessChartsTests">
                 function openBusinessChartsTests() {
@@ -227,7 +233,7 @@
                     <u>First Steps Demo</u></a>.</p>
             <script id="demo first steps">
                 function openFirstStepsDemo() {
-                    window.open("first-steps/first-steps-demo.html", "_popup", "width=100%");
+                    window.open("first-steps/first-steps-demo.html", "_popup", "width=900px", "height=100%");
                 }
             </script>
             <p>Check out other demo apps with real data in the demo folder.</p>
