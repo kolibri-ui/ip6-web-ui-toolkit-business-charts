@@ -28,44 +28,65 @@ import {
 
 // Your data. These can be created directly here, for example.
 /** @type { Array.<ChartDataElement> } */ const data = [ {
-    name: 'A', xValue: -4, yValue: 3,
+    name: 'A1', xValue: -4, yValue: 3,
 }, {
-    name: 'B', xValue: -3, yValue: 2,
+    name: 'B1', xValue: -3, yValue: 2,
 }, {
-    name: 'C', xValue: -2, yValue: 0,
+    name: 'C1', xValue: -2, yValue: 0,
 }, {
-    name: 'D', xValue: -1, yValue: -3,
+    name: 'D1', xValue: -1, yValue: -3,
 }, {
-    name: 'E', xValue: 0, yValue: 1,
+    name: 'E1', xValue: 0, yValue: 1,
 }, {
-    name: 'F', xValue: 1, yValue: -1,
+    name: 'F1', xValue: 1, yValue: -1,
 },{
-    name: 'G', xValue: 2, yValue: 4,
+    name: 'G1', xValue: 2, yValue: 4,
 },{
-    name: 'H', xValue: 3, yValue: 2,
+    name: 'H1', xValue: 3, yValue: 2,
 },{
-    name: 'I', xValue: 4, yValue: 9,
+    name: 'I1', xValue: 4, yValue: 9,
 },];
 
-// If you have more than one data serie, the advanced contoller is the right choice.
+// If you have more than one data serie, the advanced controller is the right choice.
 /** @type { Array.<ChartDataElement> } */ const data2 = [ {
-    name: 'A', xValue: -4, yValue: 13,
+    name: 'A2', xValue: -4, yValue: 13,
 }, {
-    name: 'B', xValue: -3, yValue: 12,
+    name: 'B2', xValue: -3, yValue: 12,
 }, {
-    name: 'C', xValue: -2, yValue: 10,
+    name: 'C2', xValue: -2, yValue: 10,
 }, {
-    name: 'D', xValue: -1, yValue: -13,
+    name: 'D2', xValue: -1, yValue: -13,
 }, {
-    name: 'E', xValue: 0, yValue: 11,
+    name: 'E2', xValue: 0, yValue: 11,
 }, {
-    name: 'F', xValue: 1, yValue: -11,
+    name: 'F2', xValue: 1, yValue: -11,
 },{
-    name: 'G', xValue: 2, yValue: 14,
+    name: 'G2', xValue: 2, yValue: 14,
 },{
-    name: 'H', xValue: 3, yValue: 12,
+    name: 'H2', xValue: 3, yValue: 12,
 },{
-    name: 'I', xValue: 4, yValue: 19,
+    name: 'I2', xValue: 4, yValue: 19,
+},];
+
+// If you have more than one data serie, the advanced controller is the right choice.
+/** @type { Array.<ChartDataElement> } */ const data3 = [ {
+    name: 'A-avg', xValue: -4, yValue: 8,
+}, {
+    name: 'B-avg', xValue: -3, yValue: 7,
+}, {
+    name: 'C-avg', xValue: -2, yValue: 5,
+}, {
+    name: 'D-avg', xValue: -1, yValue: -8,
+}, {
+    name: 'E-avg', xValue: 0, yValue: 6,
+}, {
+    name: 'F-avg', xValue: 1, yValue: -6,
+},{
+    name: 'G-avg', xValue: 2, yValue: 9,
+},{
+    name: 'H-avg', xValue: 3, yValue: 8,
+},{
+    name: 'I-avg', xValue: 4, yValue: 14,
 },];
 
 
@@ -95,7 +116,7 @@ const advancedController = LineChartController([data, data2],
 
 // see the sample for the advanced version with different chart types below:
 const multipleChartTypesController = ChartController(
-    [{ type: SCATTER_CHART, data: data },{ type: LINE_CHART, data: data2 }], 
+    [{ type: SCATTER_CHART, data: data }, { type: SCATTER_CHART, data: data2 }, { type: LINE_CHART, data: data3 }], 
     {
     tools:[
         zoomInTool,
