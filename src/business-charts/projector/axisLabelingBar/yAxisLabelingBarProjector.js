@@ -155,7 +155,15 @@ const addMouseEvents = (canvasElement, serieController, getOptions) => {
             const options = getOptions();
 
             if (changeType === 'CHANGE_FACTOR') {
+                const yNull = yDomainToCanvas(options.height, serieController.yMin.getValue(), serieController.yMax.getValue(), 0);
+                const prevDistNull = yNull - manipulationStartY;
+                const newDistNull = yNull - posY;
+                const factor = newDistNull / prevDistNull;
 
+                serieController.yMin.setValue(serieController.yMin.getValue() / factor);
+                serieController.yMax.setValue(serieController.yMax.getValue() / factor);
+
+                serieController.factor.setValue(serieController.factor.getValue() / factor);
             } else if (changeType === 'CHANGE_SHIFTING') {
                 const yMax = yCanvasToDomain(options.height, serieController.yMin.getValue(), serieController.yMax.getValue(), moveY);
                 const shifting =  (serieController.yMax.getValue() - yMax);

@@ -240,6 +240,7 @@ const AdvancedXAxisControlBarProjector = (controller) => {
 
     controller.xMin.onValueChanged(() => redraw());
     controller.xMax.onValueChanged(() => redraw());
+    controller.onBoundariesChanged(() => redraw());
 
     registerChangeHandler(canvasElement, getOptions, redraw);
 

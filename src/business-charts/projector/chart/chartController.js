@@ -207,54 +207,50 @@ const ChartController = (dataSeries, opts) => {
     /** @type { SimpleInputControllerType<Number> } */
     const yMax = MinMaxValueController(yMaxBoundarie, "Y-Maximum", "y_max");
 
-    const serieControllers = [];
-    for (const serie of dataSeries) {
-        const controller = DataSeriesController(serie, factor, ++lastControllerId);
+    const initControllers = () => {
+        const serieControllers = [];
+        for (const serie of dataSeries) {
+            const controller = DataSeriesController(serie, factor, ++lastControllerId);
 
-        yMin.onValueChanged(() => controller.yMin.setValue(yMin.getValue()
-                                                           * controller.factor.getValue()
-                                                           + controller.shifting.getValue()));
-        yMax.onValueChanged(() => controller.yMax.setValue(yMax.getValue()
-                                                           * controller.factor.getValue()
-                                                           + controller.shifting.getValue()));
+            yMin.onValueChanged(() => controller.yMin.setValue(yMin.getValue()
+                                                               * controller.factor.getValue()
+                                                               + controller.shifting.getValue()));
+            yMax.onValueChanged(() => controller.yMax.setValue(yMax.getValue()
+                                                               * controller.factor.getValue()
+                                                               + controller.shifting.getValue()));
 
-        serieControllers.push(controller);
-    }
-    series.getObs(VALUE).setValue(serieControllers);
+            serieControllers.push(controller);
+        }
+        series.getObs(VALUE).setValue(serieControllers);
+    };
+
+    const updateBoundaries = () => {
+        const activeBoundaries = boundaries.getObs(VALUE).getValue();
+
+        let min = 0;
+        let max = 0;
+
+        for (const serie of series.getObs(VALUE).getValue()) {
+            const minBoundarie = (serie.getDataYMin() - serie.shifting.getValue()) / serie.factor.getValue();
+            const maxBoundarie = (serie.getDataYMax() - serie.shifting.getValue()) / serie.factor.getValue();
+
+            min = minBoundarie < min ? minBoundarie : min;
+            max = maxBoundarie > max ? maxBoundarie : max;
+        }
+
+        boundaries.getObs(VALUE).setValue({
+            xMin: activeBoundaries.xMin,
+            xMax: activeBoundaries.xMax,
+            yMin: min,
+            yMax: max,
+        });
+    };
+
+    initControllers();
 
     for (const serie of series.getObs(VALUE).getValue()) {
-        serie.shifting.onValueChanged(() => {
-            const activeBoundaries = boundaries.getObs(VALUE).getValue();
-
-            let min = 0;
-            let max = 0;
-
-            for (const serie of series.getObs(VALUE).getValue()) {
-                console.log(serie.getDataYMin());
-                console.log(serie.getDataYMax());
-                const minBoundarie = (serie.getDataYMin() - serie.shifting.getValue()) / serie.factor.getValue();
-                const maxBoundarie = (serie.getDataYMax() - serie.shifting.getValue()) / serie.factor.getValue();
-
-                console.log(maxBoundarie);
-
-                min = minBoundarie < min ? minBoundarie : min;
-                max = maxBoundarie > max ? maxBoundarie : max;
-            }
-
-            console.log({
-                xMin: activeBoundaries.xMin,
-                xMax: activeBoundaries.xMax,
-                yMin: min,
-                yMax: max,
-            });
-
-            boundaries.getObs(VALUE).setValue({
-                xMin: activeBoundaries.xMin,
-                xMax: activeBoundaries.xMax,
-                yMin: min,
-                yMax: max,
-            });
-        });
+        serie.shifting.onValueChanged(() => updateBoundaries());
+        serie.factor.onValueChanged(() => updateBoundaries());
     }
 
     boundaries.getObs(VALUE).onChange(() => {
