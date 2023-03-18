@@ -30,6 +30,32 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
     /** @type { Array<TooltipNode> } */
     const tooltips = [];
 
+    /** @type { (event: MouseEvent) => void } */
+    const mouseClick = (event) => {
+        const rect   = canvasElement.getBoundingClientRect();
+        const mouseX = event.x - rect.left;
+        const mouseY = event.y - rect.top;
+
+        const points = callbacks.getDataPointsForPosition(mouseX, mouseY);
+
+        if (event && ctrlOrCmdPressed(event)) {
+            let selectedPoints = callbacks.getSelectedDataPoints() ?? [];
+
+            for (const point of points) {
+
+                if (selectedPoints.includes(point.point)) {
+                    selectedPoints = selectedPoints.filter(p => p !== point.point);
+                } else {
+                    selectedPoints = [ point.point, ...selectedPoints ];
+                }
+            }
+
+            callbacks.selectDataPoints(selectedPoints);
+        } else {
+            callbacks.selectDataPoints(points.map(p => p.point));
+        }
+    };
+
     return {
         title     : 'Selection',
         type      : 'ACTIVATE',
@@ -65,46 +91,14 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
                         tooltip: tooltipProjector(position, pointRadius, point.point.name)
                     };
 
-                    node.tooltip.onclick = (event) => {
-                        const evt = new MouseEvent("click", {
-                            view: window,
-                            bubbles: true,
-                            cancelable: true,
-                            clientX: event.clientX,
-                            clientY: event.clientY,
-                        });
-                        canvasElement.dispatchEvent(evt);
-                    };
+                    node.tooltip.onclick = (event) => mouseClick(event);
 
                     canvasElement.parentElement.append(node.tooltip);
                     tooltips.push(node);
                 }
             }
         },
-        mouseClick: (event) => {
-            const rect   = canvasElement.getBoundingClientRect();
-            const mouseX = event.x - rect.left;
-            const mouseY = event.y - rect.top;
-
-            const points = callbacks.getDataPointsForPosition(mouseX, mouseY);
-
-            if (event && ctrlOrCmdPressed(event)) {
-                let selectedPoints = callbacks.getSelectedDataPoints() ?? [];
-
-                for (const point of points) {
-
-                    if (selectedPoints.includes(point.point)) {
-                        selectedPoints = selectedPoints.filter(p => p !== point.point);
-                    } else {
-                        selectedPoints = [ point.point, ...selectedPoints ];
-                    }
-                }
-
-                callbacks.selectDataPoints(selectedPoints);
-            } else {
-                callbacks.selectDataPoints(points.map(p => p.point));
-            }
-        }
+        mouseClick
     };
 };
 
