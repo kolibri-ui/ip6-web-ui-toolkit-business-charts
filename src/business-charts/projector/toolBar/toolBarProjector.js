@@ -1,16 +1,18 @@
+// noinspection SpellCheckingInspection
+
 import { dom } from "../../../Kolibri/docs/src/kolibri/util/dom.js";
 export { ToolBarProjector }
 
 /**
  * @typedef ChartToolBarCallbacks
- * @property { () => Array<ChartDataElement> }                                     getData
- * @property {  (canvasX: Number, canvasY: Number) => Array<ChartDataElement> }    getDataPointsForPosition
- * @property { (point: ChartDataElement) => CanvasPoint2D }                        getCanvasPositionForPoint
- * @property { () => ChartOptions }                                                getOptions
- * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void } setCanvasBoundaries
- * @property { (dataPoints: Array<ChartDataElement>) => void }                     selectDataPoints
- * @property { () => Array<ChartDataElement> }                                     getSelectedDataPoints
- * @property { () => void }                                                        redraw
+ * @property { () => Array<ChartDataElement> }                                          getData
+ * @property {  (canvasX: Number, canvasY: Number) => Array<ChartDataElementAndSerie> } getDataPointsForPosition
+ * @property { (point: ChartDataElement) => CanvasPoint2D }                             getCanvasPositionForPoint
+ * @property { () => ChartOptions }                                                     getOptions
+ * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void }      setCanvasBoundaries
+ * @property { (dataPoints: Array<ChartDataElement>) => void }                          selectDataPoints
+ * @property { () => Array<ChartDataElement> }                                          getSelectedDataPoints
+ * @property { () => void }                                                             redraw
  */
 
 /**

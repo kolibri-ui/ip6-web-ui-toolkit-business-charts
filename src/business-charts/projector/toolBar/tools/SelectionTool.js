@@ -16,13 +16,19 @@ export {
 }
 
 /**
+ * @typedef { Object } TooltipNode
+ * @property { ChartDataElementAndSerie } point
+ * @property { HTMLElement } tooltip
+ */
+
+/**
  *
  * @param { (position: CanvasPoint2D, pointRadius: Number, title: String) => HTMLElement } tooltipProjector
  * @returns {  (canvasElement: HTMLCanvasElement, callbacks: ChartToolBarCallbacks) => ChartToolType }
  */
 const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
-    let dataPointHovered;
-    let tooltip;
+    /** @type { Array<TooltipNode> } */
+    const tooltips = [];
 
     return {
         title     : 'Selection',
@@ -38,22 +44,29 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
 
             const points = callbacks.getDataPointsForPosition(mouseX, mouseY);
 
-            const point = points.length > 0 ? points[0] : undefined;
-            const p = point ? point.point : undefined;
-            const pHovered = dataPointHovered ? dataPointHovered.point : undefined;
+            const pts = [];
 
-            if (pHovered !== p) {
-                dataPointHovered = point;
+            for (const node of tooltips) {
+                if (!points.includes(node.point)) {
+                    canvasElement.parentElement.removeChild(node.tooltip);
+                    tooltips.removeItem(node);
+                }
+                pts.push(node.point);
+            }
 
-                if (dataPointHovered !== undefined) {
-                    const position    = callbacks.getCanvasPositionForPoint(dataPointHovered.point);
-                    const pointRadius = callbacks.getOptions(dataPointHovered.serie).pointSize;
+            for (const point of points) {
+                if (!pts.includes(point)) {
+                    const position    = callbacks.getCanvasPositionForPoint(point.point);
+                    const pointRadius = callbacks.getOptions(point.serie).pointSize;
 
-                    tooltip = tooltipProjector(position, pointRadius, point.point.name);
-                    canvasElement.parentElement.append(tooltip);
-                } else {
-                    canvasElement.parentElement.removeChild(tooltip);
-                    tooltip = undefined;
+                    /** @type { TooltipNode } */
+                    const node = {
+                        point,
+                        tooltip: tooltipProjector(position, pointRadius, point.point.name)
+                    };
+
+                    canvasElement.parentElement.append(node.tooltip);
+                    tooltips.push(node);
                 }
             }
         },
