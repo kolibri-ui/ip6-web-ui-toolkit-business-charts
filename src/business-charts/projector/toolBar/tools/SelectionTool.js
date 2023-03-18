@@ -65,6 +65,17 @@ const selectionTool = (tooltipProjector) => (canvasElement, callbacks) => {
                         tooltip: tooltipProjector(position, pointRadius, point.point.name)
                     };
 
+                    node.tooltip.onclick = (event) => {
+                        const evt = new MouseEvent("click", {
+                            view: window,
+                            bubbles: true,
+                            cancelable: true,
+                            clientX: event.clientX,
+                            clientY: event.clientY,
+                        });
+                        canvasElement.dispatchEvent(evt);
+                    };
+
                     canvasElement.parentElement.append(node.tooltip);
                     tooltips.push(node);
                 }
