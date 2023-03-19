@@ -63,22 +63,22 @@ const controller = LineChartController([dataSerie1, dataSerie2], {
 document.getElementById('container').append(AdvancedChartProjector(controller));
 
 const pointSizeSlider1 = document.getElementById("data-point-size-1");
-pointSizeSlider1.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-1")) || 5;
+pointSizeSlider1.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-1-1")) || 5;
 pointSizeSlider1.nextElementSibling.value = pointSizeSlider1.value;
-pointSizeSlider1.onchange = (_) => document.documentElement.style.setProperty("--data-point-size-1", pointSizeSlider1.value);
+pointSizeSlider1.onchange = (_) => document.documentElement.style.setProperty("--data-point-size-1-1", pointSizeSlider1.value);
 
 const pointSizeSlider2 = document.getElementById("data-point-size-2");
-pointSizeSlider2.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-2")) || 5;
+pointSizeSlider2.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-1-2")) || 5;
 pointSizeSlider2.nextElementSibling.value = pointSizeSlider2.value;
-pointSizeSlider2.onchange = (_) => document.documentElement.style.setProperty("--data-point-size-2", pointSizeSlider2.value);
+pointSizeSlider2.onchange = (_) => document.documentElement.style.setProperty("--data-point-size-1-2", pointSizeSlider2.value);
 
 const colorPicker1 = document.getElementById("data-point-color-1");
-colorPicker1.value = getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-color-1").trim();
-colorPicker1.onchange = (_) => document.documentElement.style.setProperty("--data-point-color-1", colorPicker1.value);
+colorPicker1.value = getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-color-1-1").trim();
+colorPicker1.onchange = (_) => document.documentElement.style.setProperty("--data-point-color-1-1", colorPicker1.value);
 
 const colorPicker2 = document.getElementById("data-point-color-2");
-colorPicker2.value = getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-color-2").trim();
-colorPicker2.onchange = (_) => document.documentElement.style.setProperty("--data-point-color-2", colorPicker2.value);
+colorPicker2.value = getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-color-1-2").trim();
+colorPicker2.onchange = (_) => document.documentElement.style.setProperty("--data-point-color-1-2", colorPicker2.value);
 
 const selectedColorPicker = document.getElementById("data-point-selected-color");
 selectedColorPicker.value = getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-selected-color").trim();

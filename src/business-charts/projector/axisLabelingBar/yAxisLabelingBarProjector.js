@@ -42,8 +42,8 @@ const YAxisLabelingBarProjector = (controller) => {
         const getOptions = () => {
             let { width, height }    = canvasElement.getBoundingClientRect();
             const pointSize          = 2;
-            const pointColor         = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${ serie.id }`);
-            const selectedPointColor = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${ serie.id }`);
+            const pointColor         = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${controller.id}-${ serie.id }`);
+            const selectedPointColor = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${controller.id}-${ serie.id }`);
 
             width  = width === 0 ? 500 : width;
             height = height === 0 ? 35 : height;

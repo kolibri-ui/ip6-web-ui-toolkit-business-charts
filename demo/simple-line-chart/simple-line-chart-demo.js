@@ -43,10 +43,10 @@ const controller = SimpleLineChartController(data, {
 document.getElementById('container').append(SimpleChartProjector(controller));
 
 const pointSizeSlider = document.getElementById("data-point-size");
-pointSizeSlider.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-1")) || 5;
+pointSizeSlider.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-1-1")) || 5;
 pointSizeSlider.nextElementSibling.value = pointSizeSlider.value;
-pointSizeSlider.onchange = (_) => document.documentElement.style.setProperty("--data-point-size-1", pointSizeSlider.value);
+pointSizeSlider.onchange = (_) => document.documentElement.style.setProperty("--data-point-size-1-1", pointSizeSlider.value);
 
 const colorPicker = document.getElementById("data-point-color");
-colorPicker.value = getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-color-1").trim();
-colorPicker.onchange = (_) => document.documentElement.style.setProperty("--data-point-color-1", colorPicker.value);
+colorPicker.value = getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-color-1-1").trim();
+colorPicker.onchange = (_) => document.documentElement.style.setProperty("--data-point-color-1-1", colorPicker.value);

@@ -51,28 +51,8 @@ export {
 
 /**
  * @typedef { Object } ChartOptions
- * @property { ?String } id ID string (optional)
- * @property { ?Number } xEvery value to define which ticks should be drawn for x-axis
- * @property { ?Number } yEvery value to define which ticks should be drawn for y-axis
- * @property { ?Boolean } drawOuterTicks indicates if outer ticks should be drawn
- * @property { ?Array<() => ChartToolType> } tools additional tools for toolbar
+ * @property { ?Array<() => ChartToolType> } tools tools for toolbar
  */
-
-/**
- * @typedef ChartOptionsModelType
- * @property { AttributeType<ChartOptions> } options specific chart options
- */
-
-/**
- * @private
- * @pure
- * @return { ChartOptionsModelType }
- * @constructor
- */
-const ChartOptionsModel = opts => {
-    const options = Attribute(opts);
-    return /** @type { ChartOptionsModelType } */ { options };
-};
 
 /**
  * @typedef DataSeriesModelType
@@ -122,6 +102,8 @@ const DataBoundariesModel = dataBoundaries => {
     return /** @type { DataModelType } */ { boundaries };
 };
 
+let lastControllerId = 0;
+
 /**
  * @description Choice of following controller types:
  * For one data serie:
@@ -137,6 +119,7 @@ const DataBoundariesModel = dataBoundaries => {
  *
  * ***ChartController***
  * @typedef { Object } ChartControllerType
+ * @property { Number }                                                              id controller id
  * @property { () => Array<ChartDataSeriesControllerType> }                          getSeries data serie controllers
  * @property { SimpleInputControllerType }                                           xMin the smallest value to
  *     be displayed on the x-axis
@@ -153,8 +136,6 @@ const DataBoundariesModel = dataBoundaries => {
  *     selected data elements
  * @property { () => Array<ChartDataElement> }                                       getSelectedElements get the
  *     selected data elements
- * @property { () => ChartOptions }                                                  getOptions the
- *     corresponding scatter chart options
  * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onDataChanged when
  *     interaction with the data has occurred
  * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onSelectedElementsChanged
@@ -181,15 +162,9 @@ const DataBoundariesModel = dataBoundaries => {
  * Required projector: AdvancedChartProjector(controller);
  */
 const ChartController = (dataSeries, opts) => {
-    opts                = opts === undefined ? {} : opts;
-    opts.xEvery         = opts.xEvery === undefined ? 1 : opts.xEvery;
-    opts.yEvery         = opts.yEvery === undefined ? 1 : opts.yEvery;
-    opts.drawOuterTicks = opts.drawOuterTicks === undefined ? true : opts.drawOuterTicks;
-
-    let lastControllerId   = 0;
-    const { options }      = ChartOptionsModel(opts);
-    const { series }       = DataSeriesModel();
-    const selectedElements = DataModel().data;
+    let lastSerieControllerId = 0;
+    const { series }          = DataSeriesModel();
+    const selectedElements    = DataModel().data;
 
     const { xMinimum, xMaximum, yMinimum, yMaximum, } = getDataMinAndMax(dataSeries);
 
@@ -218,7 +193,7 @@ const ChartController = (dataSeries, opts) => {
     const initControllers = () => {
         const serieControllers = [];
         for (const serie of dataSeries) {
-            const controller = DataSeriesController(serie, factor, ++lastControllerId);
+            const controller = DataSeriesController(serie, factor, ++lastSerieControllerId);
 
             yMin.onValueChanged(() => controller.yMin.setValue(yMin.getValue()
                                                                * controller.factor.getValue()
@@ -292,6 +267,7 @@ const ChartController = (dataSeries, opts) => {
     );
 
     return {
+        id                       : ++lastControllerId,
         getSeries                : series.getObs(VALUE).getValue,
         xMin,
         xMax,
@@ -301,7 +277,6 @@ const ChartController = (dataSeries, opts) => {
         getData,
         setSelectedElements      : selectedElements.getObs(VALUE).setValue,
         getSelectedElements      : selectedElements.getObs(VALUE).getValue,
-        getOptions               : options.getObs(VALUE).getValue,
         onSelectedElementsChanged: selectedElements.getObs(VALUE).onChange,
         onBoundariesChanged      : boundaries.getObs(VALUE).onChange,
         toolBarController

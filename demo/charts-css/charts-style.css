@@ -12,11 +12,11 @@
 
     --data-point-color: var(--kb-color-hsl-purple-700);
 
-    --data-point-size-1: 5;
-    --data-point-color-1: #a55ca5;
+    --data-point-size-1-1: 5;
+    --data-point-color-1-1: #a55ca5;
 
-    --data-point-size-2: 5;
-    --data-point-color-2: #5c76a5;
+    --data-point-size-1-2: 5;
+    --data-point-color-1-2: #5c76a5;
 
     --data-point-selected-color: #ff0000;
 

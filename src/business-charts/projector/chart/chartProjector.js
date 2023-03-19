@@ -1,6 +1,5 @@
 // noinspection SpellCheckingInspection
 
-import { generateId }            from "../../util/functions.js";
 import { drawGrid }              from "../../util/chartGridFunctions.js";
 import { drawScatterplotPoints } from "../../util/scatterChartFunctions.js";
 import { drawLinechartLine }     from "../../util/lineChartFunctions.js";
@@ -65,7 +64,7 @@ const ChartProjector = (controller) => {
     const canvasElement = document.createElement("canvas");
 
 
-    canvasElement.id = generateId("chart");
+    canvasElement.id = `chart-${controller.id}`;
     canvasElement.classList.add("chart-canvas");
     canvasElement.width  = 500;
     canvasElement.height = 325;
@@ -101,11 +100,11 @@ const ChartProjector = (controller) => {
 const optionsFunc = (canvasElement, controller) => (seriesController) => {
     let { width, height }  = canvasElement.getBoundingClientRect();
     let pointSize          = Number(getComputedStyle(canvasElement).getPropertyValue(seriesController
-                                                                                     ? `--data-point-size-${ seriesController.id }`
+                                                                                     ? `--data-point-size-${controller.id}-${ seriesController.id }`
                                                                                      : "--data-point-size"));
     pointSize              = pointSize !== 0 ? pointSize : 3;
     let pointColor         = getComputedStyle(canvasElement).getPropertyValue(seriesController
-                                                                              ? `--data-point-color-${ seriesController.id }`
+                                                                              ? `--data-point-color-${controller.id}-${ seriesController.id }`
                                                                               : "--data-point-color");
     pointColor             = pointColor !== '' ? pointColor : '#000000';
     let selectedPointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-selected-color");
