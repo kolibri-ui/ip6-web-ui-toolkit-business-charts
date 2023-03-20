@@ -14,6 +14,7 @@ import {
     SCATTER_CHART
 }                                from "./chartController.js";
 import { registerChangeHandler } from "../../util/changeHandler.js";
+import { defaultColors }         from "../../util/functions.js";
 
 export {
     ChartProjector,
@@ -64,7 +65,7 @@ const ChartProjector = (controller) => {
     const canvasElement = document.createElement("canvas");
 
 
-    canvasElement.id = `chart-${controller.id}`;
+    canvasElement.id = `chart-${ controller.id }`;
     canvasElement.classList.add("chart-canvas");
     canvasElement.width  = 500;
     canvasElement.height = 325;
@@ -98,17 +99,21 @@ const ChartProjector = (controller) => {
  * @return { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions }
  */
 const optionsFunc = (canvasElement, controller) => (seriesController) => {
+    const colors           = defaultColors();
     let { width, height }  = canvasElement.getBoundingClientRect();
-    let pointSize          = Number(getComputedStyle(canvasElement).getPropertyValue(seriesController
-                                                                                     ? `--data-point-size-${controller.id}-${ seriesController.id }`
-                                                                                     : "--data-point-size"));
-    pointSize              = pointSize !== 0 ? pointSize : 3;
-    let pointColor         = getComputedStyle(canvasElement).getPropertyValue(seriesController
-                                                                              ? `--data-point-color-${controller.id}-${ seriesController.id }`
-                                                                              : "--data-point-color");
-    pointColor             = pointColor !== '' ? pointColor : '#000000';
-    let selectedPointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-selected-color");
-    selectedPointColor     = selectedPointColor !== '' ? selectedPointColor : '#FF0000';
+    const computedStyle    = getComputedStyle(canvasElement);
+    const pointSizeString  = seriesController
+                             ? `--data-point-size-${ controller.id }-${ seriesController.id }`
+                             : "--data-point-size";
+    const pointSize        = Number(computedStyle.getPropertyValue(pointSizeString)) || 3;
+    const pointColorString = seriesController
+                             ? `--data-point-color-${ controller.id }-${ seriesController.id }`
+                             : "--data-point-color";
+    let pointColor         = computedStyle.getPropertyValue(pointColorString).trim();
+    const colorIndex       = seriesController ? seriesController.id % colors.length : 0;
+    pointColor             = pointColor.startsWith("#") ? pointColor : colors[colorIndex];
+    let selectedPointColor = computedStyle.getPropertyValue("--data-point-selected-color").trim();
+    selectedPointColor     = selectedPointColor.startsWith("#") ? selectedPointColor : '#FF0000';
 
     width  = width === 0 ? 500 : width;
     height = height === 0 ? 325 : height;

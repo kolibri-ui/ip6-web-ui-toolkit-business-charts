@@ -17,6 +17,7 @@ import {
 import { drawLinechartLine }     from "../../util/lineChartFunctions.js";
 import { drawAreachartArea }     from "../../util/areaChartFunctions.js";
 import { registerChangeHandler } from "../../util/changeHandler.js";
+import { defaultColors }         from "../../util/functions.js";
 
 export { AdvancedXAxisControlBarProjector }
 
@@ -41,10 +42,11 @@ const AdvancedXAxisControlBarProjector = (controller) => {
      * @returns { ChartOptions }
      */
     const getOptions = (serieController) => {
+        const colors             = defaultColors();
         let { width, height }    = canvasElement.getBoundingClientRect();
         const pointSize          = 2;
-        const pointColor         = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
-        const selectedPointColor = getComputedStyle(canvasElement).getPropertyValue("--data-point-color");
+        let pointColor           = getComputedStyle(canvasElement).getPropertyValue("--data-point-color").trim();
+        pointColor               = pointColor.startsWith("#") ? pointColor : colors[0];
 
         width  = width === 0 ? 500 : width;
         height = height === 0 ? 85 : height;
@@ -66,7 +68,7 @@ const AdvancedXAxisControlBarProjector = (controller) => {
             height,
             boundaries,
             color        : pointColor,
-            selectedColor: selectedPointColor,
+            selectedColor: pointColor,
             pointSize    : pointSize,
         }
     };

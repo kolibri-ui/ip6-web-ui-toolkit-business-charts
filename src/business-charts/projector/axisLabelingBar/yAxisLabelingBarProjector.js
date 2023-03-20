@@ -13,7 +13,10 @@ import {
 }                                from "../../util/geometryFunctions.js";
 import { drawRect }              from "../../util/chartFunctions.js";
 import { registerChangeHandler } from "../../util/changeHandler.js";
-import { ctrlOrCmdPressed }      from "../../util/functions.js";
+import {
+    ctrlOrCmdPressed,
+    defaultColors
+} from "../../util/functions.js";
 
 export { YAxisLabelingBarProjector }
 
@@ -40,10 +43,13 @@ const YAxisLabelingBarProjector = (controller) => {
          * @returns { ChartOptions }
          */
         const getOptions = () => {
+            const colors             = defaultColors();
             let { width, height }    = canvasElement.getBoundingClientRect();
             const pointSize          = 2;
-            const pointColor         = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${controller.id}-${ serie.id }`);
-            const selectedPointColor = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${controller.id}-${ serie.id }`);
+            let pointColor           = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${controller.id}-${ serie.id }`).trim();
+            pointColor               = pointColor.startsWith("#") ? pointColor : colors[serie.id % colors.length];
+            let selectedPointColor   = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${controller.id}-${ serie.id }`).trim();
+            selectedPointColor       = selectedPointColor.startsWith("#") ? selectedPointColor : '#FF0000';
 
             width  = width === 0 ? 500 : width;
             height = height === 0 ? 35 : height;
@@ -98,7 +104,7 @@ const YAxisLabelingBarProjector = (controller) => {
 
                 drawText(ctx, pointText, text);
 
-                yTick += yRatio * yEvery; // 1 for xEvery
+                yTick += yRatio * yEvery;
             }
         };
 

@@ -10,7 +10,7 @@
     --search-field-height: calc(var(--toolbar-button-size) + 4 * var(--all-borders));
     --search-field-width: calc(6 * var(--toolbar-button-size));
 
-    --data-point-color: var(--kb-color-hsl-purple-700);
+    --data-point-color: var(--kb-color-rgb-purple-700);
 
     --data-point-size-1-1: 5;
     --data-point-color-1-1: #a55ca5;
