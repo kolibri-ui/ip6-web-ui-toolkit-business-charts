@@ -232,6 +232,15 @@ input[type=range]::-webkit-slider-runnable-track  {
     z-index: 10;
 }
 
+.data-table-views {
+    display: flex;
+    flex-direction: row;
+}
+
+.data-table-views > * {
+    margin: 5px;
+}
+
 table {
     display: block;
     background: white; /* optional */

@@ -1,17 +1,11 @@
+// noinspection SpellCheckingInspection
+
 import { dom }              from "../../../Kolibri/docs/src/kolibri/util/dom.js";
 import { ctrlOrCmdPressed } from "../../util/functions.js";
 
-export { DataTableView }
+export { DataTableViewProjector }
 
-/**
- * @typedef TableViewControllerType
- * @property { (data: Array<ChartDataElement>) => void }                             setData the data series to be presented in the line chart
- * @property { () => Array<ChartDataElement> }                                       getData the data series used in the line chart
- * @property { (elements: Array<ChartDataElement>) => void }                         setSelectedElements set the selected data elements
- * @property { () => Array<ChartDataElement> }                                       getSelectedElements get the selected data elements
- * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onDataChanged when interaction with the data has occurred
- * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onSelectedElementsChanged when selected Elements change
- */
+
 
 /**
  *
@@ -19,7 +13,7 @@ export { DataTableView }
  * @param { ?String }                 title title for the table
  * @returns { HTMLDivElement }
  */
-const DataTableView = (controller, title) => {
+const DataTableViewProjector = (controller, title) => {
     const elements = dom(`
         <div class="chart-data-table-container">
             <table class="chart-data-table">
@@ -76,10 +70,6 @@ const DataTableView = (controller, title) => {
             }
         }
     };
-
-    controller.onDataChanged(() => {
-        addRows();
-    });
 
     addRows();
 

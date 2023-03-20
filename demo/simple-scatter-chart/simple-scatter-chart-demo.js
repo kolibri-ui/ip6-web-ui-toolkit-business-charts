@@ -7,6 +7,9 @@ import { zoomOutTool }                  from "../../src/business-charts/projecto
 import { bubbleTooltipSelectionTool }   from "../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
 import { rubberBandTool }               from "../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
 import { panningTool }                  from "../../src/business-charts/projector/toolBar/tools/PanningTool.js";
+import { DataTableViewProjector }       from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
+import { SimpleDetailView }             from "../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
+import { DataTableViewController }      from "../../src/business-charts/projector/dataTableView/dataTableViewController.js";
 
 /** @type { Array<ChartDataElement> } */ const data = [ {
     name: 'A', xValue: -4, yValue: 3,
@@ -39,6 +42,9 @@ const controller = SimpleScatterChartController(data, {
 });
 
 document.getElementById('container').append(SimpleChartProjector(controller));
+
+const detailView = document.getElementById('detail-view');
+detailView.append(DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[0]), 'Data points'), SimpleDetailView(controller));
 
 const pointSizeSlider = document.getElementById("data-point-size");
 pointSizeSlider.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-1-1")) || 5;

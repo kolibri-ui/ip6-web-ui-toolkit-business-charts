@@ -1,24 +1,18 @@
 // noinspection SpellCheckingInspection
 import {
     SimpleAreaChartController,
-    SimpleLineChartController,
-    SimpleScatterChartController
 } from "../../src/business-charts/projector/chart/simpleChartController.js";
-import { SimpleChartProjector }         from "../../src/business-charts/projector/chart/simpleChartProjector.js";
-import { DataTableView }          from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
-import { SimpleDetailView }       from "../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
+import { SimpleChartProjector }   from "../../src/business-charts/projector/chart/simpleChartProjector.js";
 import { zoomInTool }             from "../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
 import { zoomOutTool }            from "../../src/business-charts/projector/toolBar/tools/ZoomOut.js";
 import {
-    bottomCenterTooltipSelectionTool,
-    bubbleTooltipSelectionTool, leftCenterTooltipSelectionTool
+    bubbleTooltipSelectionTool
 }                                 from "../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
 import { rubberBandTool }         from "../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
 import { panningTool }            from "../../src/business-charts/projector/toolBar/tools/PanningTool.js";
 import { AdvancedChartProjector } from "../../src/business-charts/projector/chart/advancedChartProjector.js";
 import {
-    AreaChartController, LineChartController,
-    ScatterChartController
+    LineChartController,
 }                                         from "../../src/business-charts/projector/chart/advancedChartController.js";
 import {
     ChartController,
