@@ -57,30 +57,41 @@ const XAxisLabelingBarProjector = (controller) => {
     };
 
     const redraw = () => {
-        const options = getOptions();
+        const options    = getOptions();
         const boundaries = controller.getBoundaries();
 
         ctx.clearRect(0, 0, options.width, options.height);
 
-        const longestText = boundaries.xMin.length > boundaries.xMax.length
-                            ? boundaries.xMin
-                            : boundaries.xMax;
+        let longestText = "";
+        if (controller.xAxisLabeling) {
+            controller.xAxisLabeling.forEach(
+                (v) => longestText = longestText.length >= v.length ? longestText : v
+            );
+        } else {
+            longestText = boundaries.xMin.length > boundaries.xMax.length
+                          ? boundaries.xMin
+                          : boundaries.xMax;
+        }
 
         const textWidth = measureText(ctx, longestText) + 20;
 
         const nullPointX = xDomainToCanvas(options.width, controller.xMin.getValue(), controller.xMax.getValue(), 0);
         const xRatio     = calcXRatio(options.width, controller.xMin.getValue(), controller.xMax.getValue());
-        let xEvery = 1;
+        let xEvery       = 1;
 
         while (xEvery * xRatio < textWidth) {
             xEvery++;
         }
 
-        let xTick = nullPointX % (xRatio * xEvery); // 1 for xEvery
-        xTick     = xTick < -5 ? xTick + xRatio * xEvery : xTick; // 1 for xEvery
+        let xTick = nullPointX % (xRatio * xEvery);
+        xTick     = xTick < -5 ? xTick + xRatio * xEvery : xTick;
 
         while (xTick < (options.width + 5)) {
-            const text = Math.round(xCanvasToDomain(options.width, controller.xMin.getValue(), controller.xMax.getValue(), xTick));
+            let text        = Math.round(
+                xCanvasToDomain(options.width, controller.xMin.getValue(), controller.xMax.getValue(), xTick)
+            );
+            text = controller.xAxisLabeling ? controller.xAxisLabeling.get(text) || text : text;
+
             /** @type { CanvasPoint2D } */
             const pointTick = { xValue: xTick, yValue: 0 };
             const pointText = { xValue: xTick - measureText(ctx, text) / 2, yValue: 20 };

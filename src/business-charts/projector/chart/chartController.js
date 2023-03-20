@@ -51,6 +51,7 @@ export {
 
 /**
  * @typedef { Object } ChartOptions
+ * @property { ?Map<Number, String> }        xAxisLabeling labeling for x values
  * @property { ?Array<() => ChartToolType> } tools tools for toolbar
  */
 
@@ -121,6 +122,8 @@ let lastControllerId = 0;
  * @typedef { Object } ChartControllerType
  * @property { Number }                                                              id controller id
  * @property { () => Array<ChartDataSeriesControllerType> }                          getSeries data serie controllers
+ * @property { ?Map<Number, String> }                                                 xAxisLabeling labeling for x
+ *     values
  * @property { SimpleInputControllerType }                                           xMin the smallest value to
  *     be displayed on the x-axis
  * @property { SimpleInputControllerType }                                           xMax the highest value to
@@ -268,7 +271,7 @@ const ChartController = (dataSeries, opts) => {
         opts ? opts.tools : undefined
     );
 
-    return {
+    const controller = {
         id                       : ++lastControllerId,
         getSeries                : series.getObs(VALUE).getValue,
         xMin,
@@ -283,6 +286,12 @@ const ChartController = (dataSeries, opts) => {
         onBoundariesChanged      : boundaries.getObs(VALUE).onChange,
         toolBarController
     };
+
+    if (opts.xAxisLabeling) {
+        controller.xAxisLabeling = opts.xAxisLabeling;
+    }
+
+    return controller;
 };
 
 /**
