@@ -1,8 +1,8 @@
-export { data }
+export { dataRunningPowerPlant }
 
 //test with running Power Plant Data (Laufwerk)
 
-/** @type { Array.<ScatterChartDataElement> } */ const data = [
+/** @type { Array.<ChartDataElement> } */ const dataRunningPowerPlant = [
     {
         "name": "01.01.03",
         "xValue": 1,
@@ -5119,6 +5119,4 @@ export { data }
         "yValue": 47
     }
 ];
-
-console.log(data);
 

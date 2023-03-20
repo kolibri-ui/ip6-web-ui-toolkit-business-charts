@@ -2,7 +2,7 @@
 
 export { productionStoragePlantData }
 
-/** @type { Array.<ScatterChartDataElement> } */ const productionStoragePlantData = [
+/** @type { Array.<ChartDataElement> } */ const productionStoragePlantData = [
     {
         "date": "01.01.03",
         "week": 1,

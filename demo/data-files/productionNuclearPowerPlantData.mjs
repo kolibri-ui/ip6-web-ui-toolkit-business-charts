@@ -2,7 +2,7 @@
 
 export { nuclearPowerPlantData }
 
-/** @type { Array.<ScatterChartDataElement> } */ const nuclearPowerPlantData = [
+/** @type { Array.<ChartDataElement> } */ const nuclearPowerPlantData = [
     {
         "date"                : "01.01.03",
         "week"                : 1,

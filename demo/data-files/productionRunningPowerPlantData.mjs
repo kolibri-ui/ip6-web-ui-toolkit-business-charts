@@ -4,7 +4,7 @@ import { productionStoragePlantData } from "./productionStoragePlantData.mjs";
 
 export { runningPowerPlantData }
 
-/** @type { Array.<ScatterChartDataElement> } */ const runningPowerPlantData = [
+/** @type { Array.<ChartDataElement> } */ const runningPowerPlantData = [
     {
         "date": "01.01.03",
         "week": 1,
