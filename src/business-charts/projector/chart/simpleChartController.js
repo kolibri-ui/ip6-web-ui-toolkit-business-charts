@@ -88,8 +88,8 @@ const SimpleAreaChartController = (data, opts) => SimpleChartController({ type: 
 
 /**
  * @description Rule to prevent, that max value is less or equal to min value
- * @param min { SimpleInputControllerType<Number> }
- * @param max { SimpleInputControllerType<Number> }
+ * @param { SimpleInputControllerType<Number> } min minimum controller
+ * @param { SimpleInputControllerType<Number> } max maximum controller
  * @returns {(function(changedValue: 'MIN'|'MAX'): void)|*}
  */
 const minMaxRule = (min, max) => (changedValue) => {
