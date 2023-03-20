@@ -28,7 +28,7 @@ export { AdvancedXAxisControlBarProjector }
 const AdvancedXAxisControlBarProjector = (controller) => {
     /** @type { HTMLDivElement } */
     const xAxisControlBarElement = document.createElement("div");
-    xAxisControlBarElement.classList.add("x-axis");
+    xAxisControlBarElement.classList.add("x-axis", "x-axis-grid");
 
     /** @type { HTMLCanvasElement } */
     const canvasElement  = document.createElement("canvas");

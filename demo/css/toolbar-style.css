@@ -45,11 +45,6 @@
     min-width: fit-content;
 }
 
-
-
-
-
-
 /****************** charts toolbar buttons ********************/
 
 .toolbar-button {
@@ -93,11 +88,6 @@
     line-height: normal;
 }
 
-/****************** specific toolbar buttons ********************/
-
-
-
-
 /****************** search field ********************/
 
 .search-field {
@@ -123,8 +113,6 @@
 
 /****************** tooltip ********************/
 
-/* based on https://www.w3schools.com/howto/howto_css_tooltip.asp */
-
 /* Tooltip container */
 .tooltip {
     position: relative;
@@ -136,7 +124,7 @@
     visibility: hidden;
     width: max-content;
     background-color: var(--kb-color-hsl-blue-200);
-    border: 1px solid var(--kb-color-hsl-blue-200); /*var(--kb-rgb-primary-dark);*/
+    border: 1px solid var(--kb-color-hsl-blue-200);
     font-size: var(--font-size-textXS);
     color: var(--kb-color-rgb-blue-800);
     text-align: center;

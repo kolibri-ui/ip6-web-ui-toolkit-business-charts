@@ -26,7 +26,7 @@ export { YAxisLabelingBarProjector }
 const YAxisLabelingBarProjector = (controller) => {
     /** @type { HTMLDivElement } */
     const yAxisLabelingBarElement = document.createElement("div");
-    yAxisLabelingBarElement.classList.add("y-axis-labeling");
+    yAxisLabelingBarElement.classList.add("y-axis-labeling", "y-axis-labeling-grid");
 
     for (const serie of controller.getSeries()) {
         /** @type { HTMLCanvasElement } */

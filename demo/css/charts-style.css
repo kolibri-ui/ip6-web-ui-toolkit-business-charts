@@ -35,19 +35,12 @@
     --x-axis-shadow: -8px 4px  8px 1px var(--kolibri-color-shadow),
     -20px 6px 20px -20px var(--kolibri-color-shadow);
 
-    flex: 1 0 auto;
-    display: grid;
-    grid-template-columns: repeat(2, min-content);
-    grid-template-rows: repeat(2, max-content);
     padding-top: 10px;
     padding-bottom: 20px;
     justify-content:center;
-    grid-gap: var(--all-borders);
 }
 
 .canvas-wrap {
-    grid-row: 2;
-    grid-column: 3;
     position: relative;
     line-height: 0;
 }
@@ -62,29 +55,7 @@
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
 }
 
-.scatter-chart-canvas {
-    width: var(--golden-section-width);
-    height: var(--golden-section-height);
-
-    position: relative;
-    z-index: 10;
-    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
-}
-
-.chart-container .line-chart-canvas {
-    width: var(--golden-section-width);
-    height: var(--golden-section-height);
-
-    position: relative;
-    z-index: 10;
-    grid-column: 3;
-    grid-row: 2;
-    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
-}
-
 .tool-bar {
-    grid-column: 3;
-    grid-row: 1;
     display: flex;
     flex-wrap: wrap;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
@@ -98,8 +69,6 @@
 
 /****************** axis section ********************/
 .y-axis {
-    grid-column: 1;
-    grid-row: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -108,8 +77,6 @@
 }
 
 .x-axis {
-    grid-column: 3;
-    grid-row: 4;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -123,8 +90,6 @@
 }
 
 .x-axis-labeling {
-    grid-column: 3;
-    grid-row: 3;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -137,8 +102,6 @@
 }
 
 .y-axis-labeling {
-    grid-column: 2;
-    grid-row: 2;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

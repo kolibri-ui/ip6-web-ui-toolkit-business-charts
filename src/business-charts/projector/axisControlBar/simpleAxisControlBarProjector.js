@@ -25,7 +25,7 @@ const SimpleAxisControlBarProjector = (axis, controller) => {
 
     /** @type { HTMLDivElement } */
     const axisControlElement = document.createElement("div");
-    axisControlElement.classList.add(`${axisIdentifier}-axis`);
+    axisControlElement.classList.add(`${axisIdentifier}-axis`, `${axisIdentifier}-axis-grid`);
 
     const minInput = projectChangeInput(`${axisIdentifier}-axis-min-dimension`, controller.min);
     const maxInput = projectChangeInput(`${axisIdentifier}-axis-max-dimension`, controller.max);

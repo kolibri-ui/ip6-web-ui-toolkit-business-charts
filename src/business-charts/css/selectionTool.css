@@ -21,6 +21,7 @@
     color: var(--kb-color-rgb-blue-800);
     z-index: 50;
 }
+
 .tooltip-bubble-bottom-left:before {
     content: "";
     width: 0;
@@ -52,6 +53,7 @@
     text-align: left;
     text-justify: distribute-center-last;
 }
+
 .tooltip-data-arrow-top-center:after {
     content: "";
     position: absolute;

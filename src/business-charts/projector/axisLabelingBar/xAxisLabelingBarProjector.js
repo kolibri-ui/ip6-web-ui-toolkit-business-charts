@@ -24,7 +24,7 @@ export { XAxisLabelingBarProjector }
 const XAxisLabelingBarProjector = (controller) => {
     /** @type { HTMLDivElement } */
     const xAxisLabelingBarElement = document.createElement("div");
-    xAxisLabelingBarElement.classList.add("x-axis-labeling");
+    xAxisLabelingBarElement.classList.add("x-axis-labeling", "x-axis-labeling-grid");
 
     /** @type { HTMLCanvasElement } */
     const canvasElement  = document.createElement("canvas");

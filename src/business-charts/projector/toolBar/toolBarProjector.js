@@ -74,7 +74,7 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
     };
 
     const toolBarElement = document.createElement("div");
-    toolBarElement.classList.add(`tool-bar`);
+    toolBarElement.classList.add(`tool-bar`, `tool-bar-grid`);
 
     for (const tool of controller.tools) {
         const t = tool(canvasElement, toolCallbacks);
