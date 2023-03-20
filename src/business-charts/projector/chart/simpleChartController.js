@@ -34,6 +34,14 @@ const SimpleChartController = (dataSerie, opts) => {
      * @type { ChartDataSeriesControllerType }
      */
     const serieController = controller.getSeries()[0];
+    const minMaxX = minMaxRule(controller.xMin, controller.xMax);
+    const minMaxY = minMaxRule(serieController.yMin, serieController.yMax);
+
+    controller.xMin.onValueChanged(() => minMaxX("MIN"));
+    controller.xMax.onValueChanged(() => minMaxX("MAX"));
+    serieController.yMin.onValueChanged(() => minMaxY("MIN"));
+    serieController.yMax.onValueChanged(() => minMaxY("MAX"));
+
     serieController.yMin.onValueChanged(() => controller.yMin.setValue(serieController.yMin.getValue()
                                                                        / serieController.factor.getValue()));
     serieController.yMax.onValueChanged(() => controller.yMax.setValue(serieController.yMax.getValue()
@@ -77,3 +85,25 @@ const SimpleLineChartController = (data, opts) => SimpleChartController({ type: 
  * Required Projector: SimpleChartProjector(controller);
  */
 const SimpleAreaChartController = (data, opts) => SimpleChartController({ type: AREA_CHART, data }, opts);
+
+/**
+ * @description Rule to prevent, that max value is less or equal to min value
+ * @param min { SimpleInputControllerType<Number> }
+ * @param max { SimpleInputControllerType<Number> }
+ * @returns {(function(changedValue: 'MIN'|'MAX'): void)|*}
+ */
+const minMaxRule = (min, max) => (changedValue) => {
+    const minValue = min.getValue();
+    const maxValue = max.getValue();
+
+    if (maxValue <= minValue) {
+        if (changedValue === "MIN") {
+            const newValue = minValue + 1;
+            max.setValue(newValue);
+        } else {
+            const newValue = maxValue - 1;
+            min.setValue(newValue);
+        }
+
+    }
+};
