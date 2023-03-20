@@ -19,7 +19,7 @@ export { YAxisLabelingBarProjector }
 
 /**
  *
- * @param { ChartControllerType } controller
+ * @param { ChartControllerType } controller chart controller
  * @return {HTMLDivElement}
  * @constructor
  */
@@ -119,9 +119,9 @@ const YAxisLabelingBarProjector = (controller) => {
 
 /**
  *
- * @param { HTMLCanvasElement } canvasElement
- * @param { ChartDataSeriesControllerType } serieController
- * @param { () => ChartOptions } getOptions
+ * @param { HTMLCanvasElement } canvasElement canvas element to add mouse events to
+ * @param { ChartDataSeriesControllerType } serieController serie of the canvas element
+ * @param { () => ChartOptions } getOptions get options of the serie
  */
 const addMouseEvents = (canvasElement, serieController, getOptions) => {
     let manipulationActive = false;

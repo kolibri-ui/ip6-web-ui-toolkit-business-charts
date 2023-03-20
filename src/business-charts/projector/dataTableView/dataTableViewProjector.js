@@ -15,8 +15,8 @@ export { DataTableView }
 
 /**
  *
- * @param { TableViewControllerType } controller
- * @param { ?String } title
+ * @param { TableViewControllerType } controller table view controller
+ * @param { ?String }                 title title for the table
  * @returns { HTMLDivElement }
  */
 const DataTableView = (controller, title) => {

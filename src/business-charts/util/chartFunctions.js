@@ -14,24 +14,12 @@ export {
 }
 
 /**
- * @typedef { Object } ChartGridOptions
- * @property { Boolean } hasGrid
- * @property { Boolean } hasHorizontalLines
- * @property { Boolean } hasVerticalLines
- * @property { Boolean } displayNumbers
- * @property { Number } [horizontalSteps]
- * @property { Number } [verticalSteps]
- * @property { String } [primaryLineColor]
- * @property { String } [secondaryLineColor]
- */
-
-/**
  * Function to draw a point to a canvas context.
  * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
- * @param { Number } pointX x position where the point starts relative to the null point
- * @param { Number } pointY y position where the point starts relative to the null point
- * @param { String } color fill color of the point
- * @param { Number } radius radius of the point
+ * @param { Number }                   pointX x position where the point starts relative to the null point
+ * @param { Number }                   pointY y position where the point starts relative to the null point
+ * @param { String }                   color fill color of the point
+ * @param { Number }                   radius radius of the point
  */
 const drawPoint = (
     ctx,
@@ -51,10 +39,10 @@ const drawPoint = (
 /**
  * Function to draw a line to a canvas context.
  * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
- * @param { CanvasPoint2D } start the position where the line starts relative to the null point
- * @param { CanvasPoint2D } end the position where the line ends relative to the null point
- * @param { String } color the color of the line
- * @param { Number } lineWidth line width
+ * @param { CanvasPoint2D }            start the position where the line starts relative to the null point
+ * @param { CanvasPoint2D }            end the position where the line ends relative to the null point
+ * @param { String }                   color the color of the line
+ * @param { Number }                   lineWidth line width
  */
 function drawLine(
     ctx,
@@ -77,9 +65,9 @@ function drawLine(
 /**
  * Function to draw a path to a canvas context.
  * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
- * @param { Array<CanvasPoint2D> } points
- * @param { String } color the color of the line
- * @param { Number } lineWidth line width
+ * @param { Array<CanvasPoint2D> }     points array of canvas points
+ * @param { String }                   color the color of the line
+ * @param { Number }                   lineWidth line width
  */
 function drawPath(
     ctx,
@@ -100,12 +88,12 @@ function drawPath(
 }
 
 /**
- * Function to draw a path to a canvas context.
+ * Function to draw an area to a canvas context.
  * @param { CanvasRenderingContext2D } ctx the canvas rendering context in 2D
- * @param { Array<CanvasPoint2D> } points
- * @param { String } color
- * @param { Number } alpha
- * @param { Number } yNull
+ * @param { Array<CanvasPoint2D> }     points array of canvas points
+ * @param { String }                   color color
+ * @param { Number }                   alpha alpha value for drawing the area
+ * @param { Number }                   yNull null position for y
  */
 function drawArea(
     ctx,
@@ -134,19 +122,19 @@ function drawArea(
 
 /**
  * @typedef { Object } RectOptions
- * @property { String } color
- * @property { Number } alpha
- * @property { Boolean } border
- * @property { String } borderColor
+ * @property { String }  color color
+ * @property { Number }  alpha alpha value for drawing the rectangle
+ * @property { Boolean } border weather border is drawn or not
+ * @property { String }  borderColor border color
  */
 
 /**
  * Function to draw a rectangle to a canvas context.
- * @param { CanvasRenderingContext2D } ctx
- * @param { CanvasPoint2D } upperLeftCorner
- * @param { Number } width
- * @param { Number } height
- * @param { RectOptions } opts
+ * @param { CanvasRenderingContext2D } ctx canvas 2d context
+ * @param { CanvasPoint2D }            upperLeftCorner upper left start point for drawing
+ * @param { Number }                   width width of the rectangle
+ * @param { Number }                   height height of the rectangle
+ * @param { RectOptions }              opts rectangle options
  */
 function drawRect(
     ctx,

@@ -16,8 +16,8 @@ export {
 
 /**
  *
- * @param { ChartDataSerie } dataSerie
- * @param { ChartOptions } opts
+ * @param { ChartDataSerie } dataSerie data serie
+ * @param { ChartOptions }   opts chart options
  * @return { ChartControllerType }
  */
 const SimpleChartController = (dataSerie, opts) => {
@@ -44,8 +44,8 @@ const SimpleChartController = (dataSerie, opts) => {
 
 /**
  * @description scatter chart controller for one data serie
- * @param { Array<ChartDataElement> } data
- * @param { ChartOptions } opts
+ * @param { Array<ChartDataElement> } data array of data elements
+ * @param { ChartOptions }            opts chart options
  * @return { ChartControllerType }
  * @constructor
  * @example
@@ -56,8 +56,8 @@ const SimpleScatterChartController = (data, opts) => SimpleChartController({ typ
 
 /**
  * @description line chart controller for one data serie
- * @param { Array<ChartDataElement> } data
- * @param { ChartOptions } opts
+ * @param { Array<ChartDataElement> } data array of data elements
+ * @param { ChartOptions }            opts chart options
  * @return { ChartControllerType }
  * @constructor
  * @example
@@ -68,8 +68,8 @@ const SimpleLineChartController = (data, opts) => SimpleChartController({ type: 
 
 /**
  * @description area chart controller for one data serie
- * @param { Array<ChartDataElement> } data
- * @param { ChartOptions } opts
+ * @param { Array<ChartDataElement> } data array of data elements
+ * @param { ChartOptions }            opts chart options
  * @return { ChartControllerType }
  * @constructor
  * @example

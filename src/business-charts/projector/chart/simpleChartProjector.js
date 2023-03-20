@@ -17,7 +17,7 @@ export { SimpleChartProjector }
 
 /**
  * @description chart projector for one data serie
- * @param { !ChartControllerType } controller
+ * @param { !ChartControllerType } controller chart controller
  * @return { HTMLDivElement }
  * @example
  * required controller: SimpleScatterChartController || SimpleLineChartController || SimpleAreaChartController

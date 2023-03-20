@@ -1,10 +1,12 @@
+// noinspection SpellCheckingInspection
+
 export { registerChangeHandler }
 
 /**
  *
- * @param { HTMLCanvasElement } canvasElement
- * @param { (serie: ? ChartDataSeriesControllerType) => ChartOptions } getOptions
- * @param { () => void } redraw
+ * @param { HTMLCanvasElement }                                        canvasElement canvas element
+ * @param { (serie: ? ChartDataSeriesControllerType) => ChartOptions } getOptions get options for element
+ * @param { () => void }                                               redraw redraw the canvas
  */
 const registerChangeHandler = (canvasElement, getOptions, redraw) => {
     //resize

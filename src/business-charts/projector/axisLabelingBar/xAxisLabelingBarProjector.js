@@ -17,7 +17,7 @@ export { XAxisLabelingBarProjector }
 
 /**
  *
- * @param { ChartControllerType } controller
+ * @param { ChartControllerType } controller chart controller
  * @return { HTMLDivElement }
  * @constructor
  */

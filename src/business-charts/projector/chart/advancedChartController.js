@@ -11,10 +11,9 @@ export { ScatterChartController, LineChartController, AreaChartController }
 
 /**
  * @description scatter chart controller for more than one data serie
- * @param { Array<Array<ChartDataElement>> } data
- * @param { ChartOptions } opts
+ * @param { Array<Array<ChartDataElement>> } data array of series data arrays
+ * @param { ChartOptions }                   opts options for the chart
  * @return { ChartControllerType }
- * @constructor
  * @example
  * const controller = ScatterChartController([data1, data2], {
  *    tools: [
@@ -31,8 +30,8 @@ const ScatterChartController = (data, opts) => ChartController(data.map((d) => (
 
 /**
  * @description line chart controller for more than one data serie
- * @param { Array<Array<ChartDataElement>> } data
- * @param { ChartOptions } opts
+ * @param { Array<Array<ChartDataElement>> } data array of series data arrays
+ * @param { ChartOptions }                   opts options for the chart
  * @return { ChartControllerType }
  * @constructor
  * @example
@@ -51,8 +50,8 @@ const LineChartController = (data, opts) => ChartController(data.map((d) => ({ t
 
 /**
  * @description area chart controller for more than one data serie
- * @param { Array<Array<ChartDataElement>> } data
- * @param { ChartOptions } opts
+ * @param { Array<Array<ChartDataElement>> } data array of series data arrays
+ * @param { ChartOptions }                   opts options for the chart
  * @return { ChartControllerType }
  * @constructor
  * @example

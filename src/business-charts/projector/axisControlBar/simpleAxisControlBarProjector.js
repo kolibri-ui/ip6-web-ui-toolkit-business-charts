@@ -9,26 +9,26 @@ export { SimpleAxisControlBarProjector }
  */
 
 /**
- * @typedef { Object } AxisControlBarControllers
- * @property { SimpleInputControllerType } min
- * @property { SimpleInputControllerType } max
+ * @typedef { Object } AxisControlBarController
+ * @property { SimpleInputControllerType } min minimum value
+ * @property { SimpleInputControllerType } max maximum value
  */
 
 /**
  *
- * @param axis { AxisType }
- * @param controllers { AxisControlBarControllers }
+ * @param { AxisType } axis type of axis
+ * @param { AxisControlBarController } controller axis controller
  * @constructor
  */
-const SimpleAxisControlBarProjector = (axis, controllers) => {
+const SimpleAxisControlBarProjector = (axis, controller) => {
     const axisIdentifier = axis === 'X_AXIS' ? 'x' : 'y';
 
     /** @type { HTMLDivElement } */
     const axisControlElement = document.createElement("div");
     axisControlElement.classList.add(`${axisIdentifier}-axis`);
 
-    const minInput = projectChangeInput(`${axisIdentifier}-axis-min-dimension`, controllers.min);
-    const maxInput = projectChangeInput(`${axisIdentifier}-axis-max-dimension`, controllers.max);
+    const minInput = projectChangeInput(`${axisIdentifier}-axis-min-dimension`, controller.min);
+    const maxInput = projectChangeInput(`${axisIdentifier}-axis-max-dimension`, controller.max);
 
     if (axis === 'X_AXIS') {
         axisControlElement.append(...minInput, ...maxInput);

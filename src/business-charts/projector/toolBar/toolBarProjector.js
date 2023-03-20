@@ -1,39 +1,60 @@
 // noinspection SpellCheckingInspection
 
 import { dom } from "../../../Kolibri/docs/src/kolibri/util/dom.js";
+
 export { ToolBarProjector }
 
 /**
  * @typedef ChartToolBarCallbacks
- * @property { () => Array<ChartDataElement> }                                          getData
- * @property {  (canvasX: Number, canvasY: Number) => Array<ChartDataElementAndSerie> } getDataPointsForPosition
- * @property { (point: ChartDataElement) => CanvasPoint2D }                             getCanvasPositionForPoint
- * @property { () => ChartOptions }                                                     getOptions
- * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void }      setCanvasBoundaries
- * @property { (dataPoints: Array<ChartDataElement>) => void }                          selectDataPoints
- * @property { () => Array<ChartDataElement> }                                          getSelectedDataPoints
- * @property { () => void }                                                             redraw
+ * @property { () => Array<ChartDataElement> }                                          getData get data elements
+ * @property {  (canvasX: Number, canvasY: Number) => Array<ChartDataElementAndSerie> } getDataPointsForPosition get
+ *     data elements for a specific position
+ * @property { (point: ChartDataElement) => CanvasPoint2D }                             getCanvasPositionForPoint get
+ *     canvas point for data element
+ * @property { () => ChartOptions }                                                     getOptions get options
+ * @property { (xMin: Number , xMax: Number, yMin: Number, yMax: number) => void }      setCanvasBoundaries get
+ *     boundaries
+ * @property { (dataPoints: Array<ChartDataElement>) => void }                          selectDataPoints select data
+ *     elements
+ * @property { () => Array<ChartDataElement> }                                          getSelectedDataPoints get
+ *     selected data elements
+ * @property { () => void }                                                             redraw function to redraw
+ */
+
+/**
+ * @typedef ChartCanvasCallbacks
+ * @property { () => ChartOptions }                                               getOptions get chart options
+ * @property { (mouseX: Number, mouseY: Number) => Array<ChartDataElement> }      getDataPointsForPosition get data
+ *     elements for given position on canvas
+ * @property { (elements: Array<ChartDataElement>) => void }                      selectDataPoints select data elements
+ * @property { () => Array<ChartDataElement> }                                    getSelectedDataPoints get selected
+ *     data elements
+ * @property { ( DomainPoint2D ) => CanvasPoint2D }                               getCanvasPositionForPoint get
+ *     position on canvas for given element
+ * @property { (xMin: Number, xMax: Number, yMin: Number, yMax: Number) => void } setCanvasBoundaries set new
+ *     boundaries for canvas
+ * @property { () => void }                                                       redraw redraw the chart
  */
 
 /**
  * @typedef ChartToolType
- * @property { String }                                   title
- * @property { 'CLICK'|'ACTIVATE' }                       type
- * @property { String }                                   tooltip
- * @property { HTMLOrSVGElement }                         icon
- * @property { mouseMove?: (event: MouseEvent) => void }  mouseMove
- * @property { mouseDown?: (event: MouseEvent) => void }  mouseDown
- * @property { mouseUp?: (event: MouseEvent) => void }    mouseUp
- * @property { mouseClick?: (event: MouseEvent) => void } mouseClick
- * @property { mouseLeave?: (event: MouseEvent) => void } mouseLeave
- * @property { mouseEnter?: (event: MouseEvent) => void } mouseEnter
+ * @property { String }                                   title tool title
+ * @property { 'CLICK'|'ACTIVATE' }                       type tool type
+ * @property { String }                                   tooltip description for tooltip
+ * @property { HTMLOrSVGElement }                         icon svg icon for tool
+ * @property { mouseMove?: (event: MouseEvent) => void }  mouseMove mouse move callback
+ * @property { mouseDown?: (event: MouseEvent) => void }  mouseDown mouse down callback
+ * @property { mouseUp?: (event: MouseEvent) => void }    mouseUp mouse up callback
+ * @property { mouseClick?: (event: MouseEvent) => void } mouseClick mouse click callback
+ * @property { mouseLeave?: (event: MouseEvent) => void } mouseLeave mouse leave callback
+ * @property { mouseEnter?: (event: MouseEvent) => void } mouseEnter mouse enter callback
  */
 
 /**
  *
- * @param { ToolBarControllerType } controller
- * @param canvasCallbacks
- * @param canvasElement
+ * @param { ToolBarControllerType } controller toolbar controller
+ * @param { ChartCanvasCallbacks } canvasCallbacks canvas callbacks
+ * @param { HTMLCanvasElement }     canvasElement chart canvas element
  * @returns {HTMLDivElement}
  * @constructor
  */
@@ -42,14 +63,14 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
 
     /** @type { ChartToolBarCallbacks } */
     const toolCallbacks = {
-        getData                   : controller.getData,
-        getOptions                : canvasCallbacks.getOptions,
-        setCanvasBoundaries       : canvasCallbacks.setCanvasBoundaries,
-        getDataPointsForPosition  : canvasCallbacks.getDataPointsForPosition,
-        getCanvasPositionForPoint : canvasCallbacks.getCanvasPositionForPoint,
-        selectDataPoints          : controller.selectDataPoints,
-        getSelectedDataPoints     : controller.getSelectedDataPoints,
-        redraw                    : canvasCallbacks.redraw
+        getData                  : controller.getData,
+        getOptions               : canvasCallbacks.getOptions,
+        setCanvasBoundaries      : canvasCallbacks.setCanvasBoundaries,
+        getDataPointsForPosition : canvasCallbacks.getDataPointsForPosition,
+        getCanvasPositionForPoint: canvasCallbacks.getCanvasPositionForPoint,
+        selectDataPoints         : controller.selectDataPoints,
+        getSelectedDataPoints    : controller.getSelectedDataPoints,
+        redraw                   : canvasCallbacks.redraw
     };
 
     const toolBarElement = document.createElement("div");
@@ -61,7 +82,7 @@ const ToolBarProjector = (controller, canvasCallbacks, canvasElement) => {
         const elements = dom(`
         <div class="tooltip">
             <button type="button" class="toolbar-button">
-                <span class="tooltipText">${t.tooltip}
+                <span class="tooltipText">${ t.tooltip }
                 </span>
             </button>
         </div>`);

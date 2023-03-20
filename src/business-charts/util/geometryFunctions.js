@@ -11,14 +11,14 @@ export {
 
 /**
  * @typedef { Object } CanvasPoint2D
- * @property { Number } xValue
- * @property { Number } yValue
+ * @property { Number } xValue x value of point
+ * @property { Number } yValue y value of point
  */
 
 /**
  * @typedef { Object } DomainPoint2D
- * @property { Number } xValue
- * @property { Number } yValue
+ * @property { Number } xValue x value of point
+ * @property { Number } yValue y value of point
  */
 
 /**
@@ -82,8 +82,8 @@ const yCanvasToDomain = (height, yMin, yMax, canvasY) => yMax - canvasY / (heigh
 
 /**
  *
- * @param { Number } width canvas width
- * @param { Number } height canvas height
+ * @param { Number }        width canvas width
+ * @param { Number }        height canvas height
  * @param { DomainPoint2D } min minimum of domain
  * @param { DomainPoint2D } max maximum of domain
  * @param { DomainPoint2D } point domain position of the new point
@@ -96,8 +96,8 @@ const pointDomainToCanvas = (width, height, min, max, point) => ({
 
 /**
  *
- * @param { Number } width canvas width
- * @param { Number } height canvas height
+ * @param { Number }        width canvas width
+ * @param { Number }        height canvas height
  * @param { DomainPoint2D } min minimum of domain
  * @param { DomainPoint2D } max maximum of domain
  * @param { CanvasPoint2D } point canvas position of the new point

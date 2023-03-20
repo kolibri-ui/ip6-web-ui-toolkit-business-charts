@@ -10,7 +10,7 @@ export { SimpleDetailView }
 
 /**
  *
- * @param { SimpleDetailViewControllerType } controller
+ * @param { SimpleDetailViewControllerType } controller simple detail view controller
  * @returns { HTMLDivElement }
  * @constructor
  */

@@ -6,8 +6,8 @@ export { rubberBandTool }
 
 /**
  *
- * @param { HTMLCanvasElement } canvasElement
- * @param { ChartToolBarCallbacks } callbacks
+ * @param { HTMLCanvasElement }     canvasElement chart canvas element
+ * @param { ChartToolBarCallbacks } callbacks chart toolbar callbacks
  * @returns { ChartToolType }
  */
 const rubberBandTool = (canvasElement, callbacks) => {

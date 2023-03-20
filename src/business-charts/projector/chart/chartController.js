@@ -37,16 +37,16 @@ export {
 
 /**
  * @typedef DataBoundaries
- * @property { Number } xMin
- * @property { Number } xMax
- * @property { Number } yMin
- * @property { Number } yMax
+ * @property { Number } xMin boundarie of xMin
+ * @property { Number } xMax boundarie of xMax
+ * @property { Number } yMin boundarie of yMin
+ * @property { Number } yMax boundarie of yMax
  */
 
 /**
  * @typedef ChartDataSerie
- * @property { ChartTypeString } type
- * @property { Array<ChartDataElement> } data
+ * @property { ChartTypeString }         type type of data serie
+ * @property { Array<ChartDataElement> } data elements of data serie
  */
 
 /**
@@ -140,14 +140,16 @@ let lastControllerId = 0;
  *     interaction with the data has occurred
  * @property { (callback: onValueChangeCallback<Array<ChartDataElement>>)  => void } onSelectedElementsChanged
  *     when selected Elements change
- * @property { (callback: onValueChangeCallback<DataBoundaries>)  => void }          onBoundariesChanged
- * @property { ToolBarControllerType } toolBarController
+ * @property { (callback: onValueChangeCallback<DataBoundaries>)  => void }          onBoundariesChanged when
+ *     boundaries change
+ * @property { ToolBarControllerType }                                               toolBarController toolbar
+ *     controller
  */
 
 /**
  * @description chart controller for more than one data serie with various chart types
- * @param { Array<ChartDataSerie> } dataSeries
- * @param { ChartOptions } opts
+ * @param { Array<ChartDataSerie> } dataSeries data series for the chart
+ * @param { ChartOptions }          opts chart options
  * @return { ChartControllerType }
  * @example
  * const controller = ChartController([{ type: LINE_CHART, data: ds1 }, { type: SCATTER_CHART, data: ds2 }], {
@@ -285,16 +287,16 @@ const ChartController = (dataSeries, opts) => {
 
 /**
  * @typedef { Object } MinAndMaxValues
- * @property { Number } xMinimum
- * @property { Number } xMaximum
- * @property { Number } yMinimum
- * @property { Number } yMaximum
+ * @property { Number } xMinimum minimum of x
+ * @property { Number } xMaximum maximum of x
+ * @property { Number } yMinimum minimum of y
+ * @property { Number } yMaximum maximum of x
  *
  */
 
 /**
  *
- * @param { Array<ChartDataSerie> } dataSeries
+ * @param { Array<ChartDataSerie> } dataSeries data series of chart
  * @return { MinAndMaxValues }
  */
 const getDataMinAndMax = (dataSeries) => {
@@ -329,15 +331,15 @@ const getDataMinAndMax = (dataSeries) => {
 
 /**
  * @typedef YBoundaries
- * @property { !Number } yMaxBoundarie
- * @property { !Number } yMinBoundarie
+ * @property { !Number } yMaxBoundarie maximum boundarie for y
+ * @property { !Number } yMinBoundarie minimum boundarie for y
  * @property { !Number } factor
  */
 
 /**
- *
- * @param { !Number } yMin
- * @param { !Number } yMax
+ * Function to initially calculate y boundaries
+ * @param { !Number } yMin minimum data value for y
+ * @param { !Number } yMax maximum data value for y
  * @returns { !YBoundaries }
  */
 const calcInitialYBoundaries = (yMin, yMax) => {
@@ -377,11 +379,10 @@ const calcInitialYBoundaries = (yMin, yMax) => {
 
 /**
  *
- * @param { Number } value
- * @param { String } label
- * @param { String } name
+ * @param { Number } value value for the controller
+ * @param { String } label label for the controller
+ * @param { String } name name of the value
  * @returns { SimpleInputControllerType<Number> }
- * @constructor
  */
 const MinMaxValueController = (value, label, name) => {
     const controller = SimpleInputController({
@@ -397,22 +398,22 @@ const MinMaxValueController = (value, label, name) => {
 
 /**
  * @typedef ChartDataSeriesControllerType
- * @property { !String }                        id
- * @property { !ChartTypeString }               type
- * @property { () => !Array<ChartDataElement> } getData
- * @property { () => Number }                   getDataYMin
- * @property { () => Number }                   getDataYMax
- * @property { !SimpleInputControllerType }     factor
- * @property { !SimpleInputControllerType }     shifting
- * @property { !SimpleInputControllerType }     yMin
- * @property { !SimpleInputControllerType }     yMax
+ * @property { !String }                        id id of the data serie
+ * @property { !ChartTypeString }               type type of the data serie
+ * @property { () => !Array<ChartDataElement> } getData get data of serie
+ * @property { () => Number }                   getDataYMin get the minimum data value of y
+ * @property { () => Number }                   getDataYMax get the maximum data value of y
+ * @property { !SimpleInputControllerType }     factor factor of the data serie for drawing
+ * @property { !SimpleInputControllerType }     shifting shifting of the data serie for drawing
+ * @property { !SimpleInputControllerType }     yMin minimum y value for drawing data serie
+ * @property { !SimpleInputControllerType }     yMax maximum y value for drawing data serie
  */
 
 /**
  *
- * @param { !ChartDataSerie } dataSerie
- * @param { !Number } initialFactor
- * @param { !Number } id
+ * @param { !ChartDataSerie } dataSerie data serie
+ * @param { !Number }         initialFactor initial drawing factor
+ * @param { !Number }         id id for data serie (managed by chart controller)
  * @returns { ChartDataSeriesControllerType }
  */
 const DataSeriesController = (dataSerie, initialFactor, id) => {

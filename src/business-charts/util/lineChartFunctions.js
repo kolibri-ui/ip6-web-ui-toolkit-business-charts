@@ -11,11 +11,11 @@ import { drawScatterplotPoints } from "./scatterChartFunctions.js";
 export { drawLinechartLine }
 
 /**
- * @description draws all data points
- * @param { CanvasRenderingContext2D } ctx
- * @param { Array<ChartDataElement> } data
- * @param { Array<ChartDataElement> } selectedPoints
- * @param { ChartOptions } options
+ * @description draws line for all data points
+ * @param { CanvasRenderingContext2D } ctx canvas 2d context
+ * @param { Array<ChartDataElement> }  data data elements to draw
+ * @param { Array<ChartDataElement> }  selectedPoints selected data elements
+ * @param { ChartOptions }             options chart options
  */
 const drawLinechartLine = (
     ctx,

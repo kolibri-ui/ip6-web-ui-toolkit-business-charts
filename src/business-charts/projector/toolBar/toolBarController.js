@@ -7,7 +7,7 @@ export { ToolBarController }
 
 /**
  * @typedef SelectedToolModelType
- * @property { AttributeType<ChartToolType> } tool
+ * @property { AttributeType<ChartToolType> } tool selected tool
  */
 
 /**
@@ -23,25 +23,25 @@ const SelectedToolModel = () => {
 
 /**
  * @typedef ToolBarControllerType
- * @property { Array<() => ChartToolType> } tools
- * @property { () => Array<ChartDataElement>} getData
- * @property { (elements: Array<ChartDataElement>) => void } selectDataPoints
- * @property { () => Array<ChartDataElement> } getSelectedDataPoints
- * @property { () => ChartToolType } selectedTool
- * @property { (tool: ChartToolType) => void } selectTool
+ * @property { Array<() => ChartToolType> }                  tools chart toolbar tools
+ * @property { () => Array<ChartDataElement>}                getData get data elements
+ * @property { (elements: Array<ChartDataElement>) => void } selectDataPoints select data elements
+ * @property { () => Array<ChartDataElement> }               getSelectedDataPoints get selected data elements
+ * @property { () => ChartToolType }                         selectedTool get selected toolbar tool
+ * @property { (tool: ChartToolType) => void }               selectTool change selected toolbar tool
  */
 
 /**
  * @typedef ToolBarControllerCallbacks
- * @property { () => Array<ChartDataElement> } getData
- * @property { (elements: Array<ChartDataElement>) => void } selectDataPoints
- * @property { () => Array<ChartDataElement> } getSelectedDataPoints
+ * @property { () => Array<ChartDataElement> }               getData get data elements
+ * @property { (elements: Array<ChartDataElement>) => void } selectDataPoints select data elements
+ * @property { () => Array<ChartDataElement> }               getSelectedDataPoints get selected data elements
  */
 
 /**
  *
- * @param { ToolBarControllerCallbacks } controllerCallbacks
- * @param { Array<() => ChartToolType> } tools
+ * @param { ToolBarControllerCallbacks } controllerCallbacks controller callbacks
+ * @param { Array<() => ChartToolType> } tools chart toolbar tools
  * @returns { ToolBarControllerType }
  */
 const ToolBarController = (controllerCallbacks, tools) => {

@@ -1,5 +1,12 @@
 export { selectionToolBubbleTooltip, selectionToolTooltipBottomCenter, selectionToolTooltipLeftCenter }
 
+/**
+ *
+ * @param { CanvasPoint2D } canvasPosition position of data element on canvas
+ * @param { Number }        pointRadius drawing radius of the element point
+ * @param { String }        title title of the element
+ * @return { HTMLDivElement }
+ */
 const selectionToolBubbleTooltip = (canvasPosition, pointRadius, title) => {
     const tooltipElement = document.createElement('div');
     
@@ -17,6 +24,13 @@ const selectionToolBubbleTooltip = (canvasPosition, pointRadius, title) => {
     return tooltipElement;
 };
 
+/**
+ *
+ * @param { CanvasPoint2D } canvasPosition position of data element on canvas
+ * @param { Number }        pointRadius drawing radius of the element point
+ * @param { String }        title title of the element
+ * @return { HTMLDivElement }
+ */
 const selectionToolTooltipBottomCenter = (canvasPosition, pointRadius, title) => {
     const tooltipElement = document.createElement('div');
     
@@ -35,6 +49,13 @@ const selectionToolTooltipBottomCenter = (canvasPosition, pointRadius, title) =>
     return tooltipElement;
 };
 
+/**
+ *
+ * @param { CanvasPoint2D } canvasPosition position of data element on canvas
+ * @param { Number }        pointRadius drawing radius of the element point
+ * @param { String }        title title of the element
+ * @return { HTMLDivElement }
+ */
 const selectionToolTooltipLeftCenter = (canvasPosition, pointRadius, title) => {
     const tooltipElement = document.createElement('div');
 

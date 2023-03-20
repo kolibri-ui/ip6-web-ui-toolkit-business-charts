@@ -9,10 +9,10 @@ export { drawScatterplotPoints }
 
 /**
  * @description draws all data points
- * @param { CanvasRenderingContext2D } ctx
- * @param { Array<ChartDataElement> } data
- * @param { Array<ChartDataElement> } selectedPoints
- * @param { ChartOptions } options
+ * @param { CanvasRenderingContext2D } ctx canvas 2d context
+ * @param { Array<ChartDataElement> }  data array of data elements
+ * @param { Array<ChartDataElement> }  selectedPoints array of selected data ellements
+ * @param { ChartOptions } options chart options
  */
 const drawScatterplotPoints = (
     ctx,

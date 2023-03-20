@@ -6,8 +6,8 @@ export { panningTool }
 
 /**
  *
- * @param { HTMLCanvasElement } canvasElement
- * @param { ChartToolBarCallbacks } callbacks
+ * @param { HTMLCanvasElement }     canvasElement chart canvas element
+ * @param { ChartToolBarCallbacks } callbacks chart toolbar callbacks
  * @returns { ChartToolType }
  */
 const panningTool = (canvasElement, callbacks) => {

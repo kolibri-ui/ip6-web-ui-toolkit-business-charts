@@ -27,36 +27,36 @@ export {
 
 /**
  * @typedef { Object } MinMaxValues
- * @property { Number } min
- * @property { Number } max
+ * @property { Number } min minimum value
+ * @property { Number } max maximum value
  */
 
 /**
  * @typedef { Object } AreaValues
- * @property { Number } area
- * @property { Number } areaMax
+ * @property { Number } area area value
+ * @property { Number } areaMax maximum area value
  */
 
 /**
  * @typedef { Object } ChartDataElementAndSerie
- * @property { ChartDataElement } point
- * @property { ChartDataSeriesControllerType } serie
+ * @property { ChartDataElement }              point data element
+ * @property { ChartDataSeriesControllerType } serie serie the element belongs to
  */
 
 /**
  * @typedef { Object } ChartOptions
- * @property { !Number } width chart width in pixel
- * @property { !Number } height chart height in pixel
- * @property { String } color Color for points
- * @property { String } selectedColor Color for points
- * @property { !Number } pointSize size of scatterplot points
- * @property { DataBoundaries } dataBoundaries
- * @property { DataBoundaries } boundaries
+ * @property { !Number }        width chart width in pixel
+ * @property { !Number }        height chart height in pixel
+ * @property { String }         color Color for points
+ * @property { String }         selectedColor Color for points
+ * @property { !Number }        pointSize size of scatterplot points
+ * @property { DataBoundaries } dataBoundaries actual data boundaries
+ * @property { DataBoundaries } boundaries boundaries of all data
  */
 
 /**
  *
- * @param { !ChartControllerType } controller
+ * @param { !ChartControllerType } controller chart controller
  * @return { HTMLCanvasElement }
  */
 const ChartProjector = (controller) => {
@@ -70,7 +70,7 @@ const ChartProjector = (controller) => {
     canvasElement.height = 325;
 
     /**
-     * @param { ?ChartDataSeriesControllerType } seriesController
+     * @param { ?ChartDataSeriesControllerType } seriesController series controller
      * @return { ChartOptions }
      */
     const getOptions = optionsFunc(canvasElement, controller);
@@ -93,8 +93,8 @@ const ChartProjector = (controller) => {
 };
 
 /**
- * @param { HTMLCanvasElement } canvasElement
- * @param { !ChartControllerType } controller
+ * @param { HTMLCanvasElement }    canvasElement chart canvas element
+ * @param { !ChartControllerType } controller chart controller
  * @return { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions }
  */
 const optionsFunc = (canvasElement, controller) => (seriesController) => {
@@ -137,8 +137,8 @@ const optionsFunc = (canvasElement, controller) => (seriesController) => {
 
 /**
  *
- * @param { HTMLCanvasElement } canvasElement
- * @param { ChartControllerType } controller
+ * @param { HTMLCanvasElement }    canvasElement chart canvas element
+ * @param { ChartControllerType } controller chart controller
  * @param { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions } getOptions
  * @return { () => void }
  */
@@ -169,8 +169,8 @@ const redrawFunc = (canvasElement, controller, getOptions) => () => {
 
 /**
  *
- * @param { ChartControllerType } controller
- * @param { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions } getOptions
+ * @param { ChartControllerType }                                                controller chart controller
+ * @param { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions } getOptions function to get options
  * @return { (canvasX: Number, canvasY: Number) => Array<ChartDataElementAndSerie> }
  */
 const getDataPointsForPositionFunc = (controller, getOptions) => (canvasX, canvasY) => {
@@ -208,8 +208,8 @@ const getDataPointsForPositionFunc = (controller, getOptions) => (canvasX, canva
 
 /**
  *
- * @param { ChartControllerType } controller
- * @param { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions } getOptions
+ * @param { ChartControllerType }                                                controller chart controller
+ * @param { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions } getOptions function to get options
  * @return { (xMin: Number, xMax: Number, yMin: Number, yMax: Number) => void }
  */
 const setCanvasBoundariesFunc = (controller, getOptions) => (xMin, xMax, yMin, yMax) => {
@@ -250,11 +250,11 @@ const setCanvasBoundariesFunc = (controller, getOptions) => (xMin, xMax, yMin, y
 
     /**
      *
-     * @param { SimpleInputControllerType } min
-     * @param { SimpleInputControllerType } max
-     * @param { MinMaxValues } boundaries
-     * @param { MinMaxValues } minMax
-     * @param { AreaValues } area
+     * @param { SimpleInputControllerType } min input controller for minimum
+     * @param { SimpleInputControllerType } max input controller for maximum
+     * @param { MinMaxValues }              boundaries boundaries for axis
+     * @param { MinMaxValues }              minMax minimum and maximum value of axis
+     * @param { AreaValues }                area area of axis
      */
     const setBoundaries = (min, max, boundaries, minMax, area) => {
         if (area.area > area.areaMax) {
@@ -319,8 +319,8 @@ const setCanvasBoundariesFunc = (controller, getOptions) => (xMin, xMax, yMin, y
 
 /**
  *
- * @param { ChartControllerType } controller
- * @param { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions } getOptions
+ * @param { ChartControllerType }                                                controller chart controller
+ * @param { (seriesController: ?ChartDataSeriesControllerType) => ChartOptions } getOptions function to get options
  * @return { ( DomainPoint2D ) => CanvasPoint2D }
  */
 const getCanvasPositionForPointFunc = (controller, getOptions) => (point) => {

@@ -17,7 +17,7 @@ export { AdvancedChartProjector }
 
 /**
  * @description chart projector for more than one data serie
- * @param { !ChartControllerType } controller
+ * @param { !ChartControllerType } controller chatrt controller
  * @return { HTMLDivElement }
  * @example
  * required controller: ScatterChartController || LineChartController || AreaChartController || ChartController

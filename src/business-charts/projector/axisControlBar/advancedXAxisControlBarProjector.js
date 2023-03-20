@@ -22,7 +22,7 @@ export { AdvancedXAxisControlBarProjector }
 
 /**
  *
- * @param { ChartControllerType } controller
+ * @param { ChartControllerType } controller chart controller
  * @returns {HTMLDivElement}
  */
 const AdvancedXAxisControlBarProjector = (controller) => {
@@ -36,7 +36,8 @@ const AdvancedXAxisControlBarProjector = (controller) => {
     canvasElement.height = 80;
 
     /**
-     * @param { ?ChartDataSeriesControllerType } serieController
+     * @param { ?ChartDataSeriesControllerType } serieController optional serie controller to get options specific for
+     *     serie
      * @returns { ChartOptions }
      */
     const getOptions = (serieController) => {
@@ -51,8 +52,12 @@ const AdvancedXAxisControlBarProjector = (controller) => {
         const boundaries = {
             xMin: controller.getBoundaries().xMin,
             xMax: controller.getBoundaries().xMax,
-            yMin: serieController ? controller.getBoundaries().yMin * serieController.factor.getValue() : controller.getBoundaries().yMin,
-            yMax: serieController ? controller.getBoundaries().yMax * serieController.factor.getValue() : controller.getBoundaries().yMax,
+            yMin: serieController
+                  ? controller.getBoundaries().yMin * serieController.factor.getValue()
+                  : controller.getBoundaries().yMin,
+            yMax: serieController
+                  ? controller.getBoundaries().yMax * serieController.factor.getValue()
+                  : controller.getBoundaries().yMax,
         };
 
         /** @type { ChartOptions } */

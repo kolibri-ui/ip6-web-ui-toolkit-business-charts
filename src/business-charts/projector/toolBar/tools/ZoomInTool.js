@@ -6,8 +6,8 @@ export { zoomInTool }
 
 /**
  *
- * @param { HTMLCanvasElement } canvasElement
- * @param { ChartToolBarCallbacks } callbacks
+ * @param { HTMLCanvasElement }     canvasElement chart canvas element
+ * @param { ChartToolBarCallbacks } callbacks chart toolbar callbacks
  * @returns { ChartToolType }
  */
 const zoomInTool = (canvasElement, callbacks) => ({

@@ -20,9 +20,9 @@ const TICK_ORIENTATION = {
 /**
  * Function to draw a tick on a canvas context
  * @param { CanvasRenderingContext2D } ctx rendering context of the canvas
- * @param { CanvasPoint2D } position position of the tick
- * @param { TickOrientation } orientation orientation of the tick
- * @param { String } color
+ * @param { CanvasPoint2D }            position position of the tick
+ * @param { TickOrientation }          orientation orientation of the tick
+ * @param { String }                   color color
  */
 const drawTick = (
     ctx,
@@ -49,9 +49,9 @@ const drawTick = (
 /**
  * Function to draw a text on a canvas context
  * @param { CanvasRenderingContext2D } ctx rendering context of the canvas
- * @param { CanvasPoint2D } position position of the text
- * @param { String } text
- * @param { String } color
+ * @param { CanvasPoint2D }            position position of the text
+ * @param { String }                   text text
+ * @param { String }                   color text color
  */
 const drawText = (
     ctx,
@@ -67,8 +67,8 @@ const drawText = (
 
 /**
  *
- * @param { CanvasRenderingContext2D }  ctx
- * @param { String } text
+ * @param { CanvasRenderingContext2D }  ctx canvas 2d context
+ * @param { String }                    text text
  * @return { Number }
  */
 const measureText = (
