@@ -29,20 +29,24 @@
     --axis-inner-margin: 0.5em;
     --axis-width-height: 4em;
 
-    /* TODO wontfix: set shadow on chart-container instead of the axes*/
-    --y-axis-shadow: -4px 4px  8px 1px var(--kolibri-color-shadow),
-    -20px 6px 20px -20px var(--kolibri-color-shadow);
-    --x-axis-shadow: -8px 4px  8px 1px var(--kolibri-color-shadow),
-    -20px 6px 20px -20px var(--kolibri-color-shadow);
+    /*--y-axis-shadow: -4px 4px  8px 1px var(--kolibri-color-shadow),*/
+    /*-20px 6px 20px -20px var(--kolibri-color-shadow);*/
+    /*--x-axis-shadow: -8px 4px  8px 1px var(--kolibri-color-shadow),*/
+    /*-20px 6px 20px -20px var(--kolibri-color-shadow);*/
 
     padding-top: 10px;
     padding-bottom: 20px;
     justify-content:center;
 }
 
+.chart-container > * {
+
+}
+
 .canvas-wrap {
     position: relative;
     line-height: 0;
+
 }
 
 /****************** canvas section ********************/
@@ -59,7 +63,7 @@
     display: flex;
     flex-wrap: wrap;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
-    box-shadow: var(--y-axis-shadow);
+    /*box-shadow: var(--kolibri-box-shadow);*/
 }
 
 .tool-bar > * {
@@ -167,7 +171,6 @@
     flex-direction: column;
     justify-content: space-between;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
-    box-shadow: var(--y-axis-shadow);
 }
 
 .x-axis {
@@ -175,7 +178,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
-    box-shadow: var(--x-axis-shadow);
 }
 
 .x-axis canvas {
@@ -200,7 +202,6 @@
     flex-direction: row;
     justify-content: space-between;
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
-    box-shadow: var(--y-axis-shadow);
 }
 
 .y-axis-labeling canvas {

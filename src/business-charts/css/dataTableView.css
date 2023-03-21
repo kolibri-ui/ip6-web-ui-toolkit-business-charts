@@ -1,5 +1,6 @@
 .chart-data-table-container {
     outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--kolibri-box-shadow);
 }
 
 .chart-data-table-container thead {

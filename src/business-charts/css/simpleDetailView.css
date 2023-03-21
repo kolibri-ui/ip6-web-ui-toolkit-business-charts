@@ -9,7 +9,7 @@
 .simple-detail-view-entry {
     display: block;
     background-color: var(--kb-color-hsl-blue-200);
-    border-radius: 10px;
+    border-radius: 0px;
     padding: 10px;
     margin-bottom: 10px;
 }

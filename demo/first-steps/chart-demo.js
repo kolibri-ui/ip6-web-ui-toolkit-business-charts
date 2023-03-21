@@ -8,17 +8,22 @@ import { zoomOutTool }            from "../../src/business-charts/projector/tool
 import {
     bubbleTooltipSelectionTool
 }                                 from "../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
-import { rubberBandTool }         from "../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
-import { panningTool }            from "../../src/business-charts/projector/toolBar/tools/PanningTool.js";
-import { AdvancedChartProjector } from "../../src/business-charts/projector/chart/advancedChartProjector.js";
+import { rubberBandTool }          from "../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
+import { panningTool }             from "../../src/business-charts/projector/toolBar/tools/PanningTool.js";
+import { AdvancedChartProjector }  from "../../src/business-charts/projector/chart/advancedChartProjector.js";
 import {
     LineChartController,
-}                                         from "../../src/business-charts/projector/chart/advancedChartController.js";
+}                                  from "../../src/business-charts/projector/chart/advancedChartController.js";
 import {
     ChartController,
     LINE_CHART,
     SCATTER_CHART
-} from "../../src/business-charts/projector/chart/chartController.js";
+}                                  from "../../src/business-charts/projector/chart/chartController.js";
+import { DataTableViewProjector }  from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
+import { DataTableViewController } from "../../src/business-charts/projector/dataTableView/dataTableViewController.js";
+import {
+    SimpleDetailView
+}                                  from "../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
 
 // Your data. These can be created directly here, for example.
 /** @type { Array.<ChartDataElement> } */ const data = [ {
@@ -133,5 +138,15 @@ document.getElementById('containerMultipleChartTypes').append(AdvancedChartProje
 
 
 //TODO add detail and table view when the corresponding projectors work
-// const detailView = document.getElementById('detail-view');
-// detailView.append(DataTableView(controller, 'Datenpunkte'), SimpleDetailView(controller));
+const detailView = document.getElementById('detail-view');
+detailView.append(DataTableViewProjector(DataTableViewController(simpleController, simpleController.getSeries()[0]), 'Data points'), SimpleDetailView(simpleController));
+
+const detailViewMulti = document.getElementById('detail-view-multi');
+const tableViews = document.createElement("div");
+tableViews.classList.add("data-table-views");
+tableViews.append(
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController, multipleChartTypesController.getSeries()[0]), 'Data points serie 1'),
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController, multipleChartTypesController.getSeries()[1]), 'Data points serie 2'),
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController, multipleChartTypesController.getSeries()[2]), 'Data points serie 3')
+);
+detailViewMulti.append(tableViews, SimpleDetailView(multipleChartTypesController));
