@@ -1,0 +1,261 @@
+/****************** header section ********************/
+:root {
+    --color-scheme: light;
+    --golden-section-width: 50vw;
+    --golden-section-height: calc(var(--golden-section-width) / 1.618);
+
+    --all-borders: 1px;
+
+    --toolbar-button-size: 40px;
+    --search-field-height: calc(var(--toolbar-button-size) + 4 * var(--all-borders));
+    --search-field-width: calc(6 * var(--toolbar-button-size));
+
+    --data-point-color: var(--kb-color-rgb-purple-700);
+
+    --data-point-size-1-1: 5;
+    --data-point-color-1-1: #a55ca5;
+
+    --data-point-size-1-2: 5;
+    --data-point-color-1-2: #5c76a5;
+
+    --data-point-selected-color: #ff0000;
+
+    --advanced-control-bar-area-color: var(--kb-color-hsl-blue-100);
+    --advanced-control-bar-border-color: var(--kb-color-hsl-purple-700);
+}
+
+/****************** chart container ********************/
+.chart-container {
+    --axis-inner-margin: 0.5em;
+    --axis-width-height: 4em;
+
+    /* TODO wontfix: set shadow on chart-container instead of the axes*/
+    --y-axis-shadow: -4px 4px  8px 1px var(--kolibri-color-shadow),
+    -20px 6px 20px -20px var(--kolibri-color-shadow);
+    --x-axis-shadow: -8px 4px  8px 1px var(--kolibri-color-shadow),
+    -20px 6px 20px -20px var(--kolibri-color-shadow);
+
+    padding-top: 10px;
+    padding-bottom: 20px;
+    justify-content:center;
+}
+
+.canvas-wrap {
+    position: relative;
+    line-height: 0;
+}
+
+/****************** canvas section ********************/
+.chart-canvas {
+    width: var(--golden-section-width);
+    height: var(--golden-section-height);
+
+    position: relative;
+    z-index: 10;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+
+.tool-bar {
+    display: flex;
+    flex-wrap: wrap;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--y-axis-shadow);
+}
+
+.tool-bar > * {
+    display: block;
+    margin: 5px;
+}
+
+/****************** charts toolbar buttons ********************/
+
+.toolbar-button {
+    line-height: 0;
+    background-color: var(--kb-color-hsl-blue-100);
+    border-radius: 0;
+    border: var(--all-borders) solid var(--kb-rgb-primary-dark);
+    outline: transparent;
+    margin: 0.2em 0.1em;
+    padding: 0.1em;
+}
+
+.toolbar-button svg {
+    width: var(--toolbar-button-size);
+    height: var(--toolbar-button-size);
+    stroke: var(--kb-color-hsl-purple-700);
+    fill: var(--kb-color-hsl-white);
+}
+
+.toolbar-button svg .rectangle-fill-accent {
+    margin: 0;
+    padding: 0;
+    fill: var(--kb-color-hsl-blue-100);
+    width: 33px;
+    height: 33px;
+}
+
+.toolbar-button:hover {
+    color: var(--kb-color-hsl-blue-100);
+    background-color: var(--kb-rgb-primary-dark);
+    transition: 0.4s;
+}
+
+.toolbar-button:active, .toolbar-button.active {
+    color: var(--kb-color-rgb-purple-200);
+    background-color: var(--kb-color-rgb-purple-500);
+    transition: 0.1s;
+}
+
+.toolbar-button > span {
+    line-height: normal;
+}
+
+/****************** tooltip ********************/
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltipText {
+    visibility: hidden;
+    width: max-content;
+    background-color: var(--kb-color-hsl-blue-200);
+    border: 1px solid var(--kb-color-hsl-blue-200);
+    font-size: var(--font-size-textXS);
+    color: var(--kb-color-rgb-blue-800);
+    text-align: center;
+    padding: 3px 5px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    left: 30%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltipText::after {
+    content: "";
+    position: absolute;
+    top: 116%;
+    left: 10%;
+    margin-left: -0.3em;
+    margin-top: -0.3em;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--kb-color-hsl-blue-200) transparent transparent transparent;
+}
+
+.move {
+    cursor: move;
+}
+
+/****************** axis section ********************/
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--y-axis-shadow);
+}
+
+.x-axis {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--x-axis-shadow);
+}
+
+.x-axis canvas {
+    width: var(--golden-section-width);
+    height: 80px;
+}
+
+.x-axis-labeling {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+}
+
+.x-axis-labeling canvas {
+    width: var(--golden-section-width);
+    height: 25px;
+}
+
+.y-axis-labeling {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    outline: var(--all-borders) solid var(--kb-color-hsl-purple-200);
+    box-shadow: var(--y-axis-shadow);
+}
+
+.y-axis-labeling canvas {
+    width: 35px;
+    height: var(--golden-section-height);
+}
+
+.control-bar-resize {
+    cursor: col-resize;
+}
+
+.control-bar-move {
+    cursor: ew-resize;
+}
+
+.chart-container label {
+    display: none;
+}
+
+.chart-container input {
+    max-width: var(--axis-width-height);
+}
+
+.x-axis input {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+}
+
+.y-axis input {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-200);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+}
+
+.x-axis input:focus {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 0.03em;
+}
+
+.y-axis input:focus {
+    margin: calc((var(--axis-width-height) - 1em) / 2) var(--axis-inner-margin); /* input height always 1em */
+    border: calc( 1 * var(--all-borders)) solid var(--kb-color-hsl-purple-700);
+    padding: 0.5em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--font-size-textXS);
+    outline: 1px solid var(--kb-color-hsl-purple-200);
+    outline-offset: 0.03em;
+}
