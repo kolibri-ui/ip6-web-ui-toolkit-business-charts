@@ -52,11 +52,11 @@ Den Code findest du unter /demo/first-steps/.
 Wir empfehlen einen strukturierten Ansatz der mindestens einen Style-, Chart- und Skript-Teil enthält.
 2. Um die Charts im Browser nutzen zu können, erstellst du ein div mit der class / id "container" in der **Chart-Section**.
 Für die Anzeige der Datenpunkte erstellst du ein div mit der id / class "detail-view".
-3. Kreiere deine Charts in einer [Javascript-Datei im type "module"](demo/first-steps/chart-demo.js).
+3. Kreiere deine Charts in einer [Javascript-Datei im type "module"](demo/first-steps/first-steps-demo.js).
 Binde deine js-Datei in der **Script-Section** in deinem HTML ein.
 4. Je nachdem welche Projektoren du verwendest, bindest du für das Styling die entsprechenden Links in der **CSS-Section** ein.
 
-#### /demo/first-steps/chart-demo.js
+#### /demo/first-steps/first-steps-demo.js
 
 In diesem Beispiel werden Projektoren verwendet für die Erstellung einer Scatter Chart
 mit einer Tabellen-/Detailansicht für die Datenpunkte. Dazu brauchst du Folgendes:

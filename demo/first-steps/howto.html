@@ -13,95 +13,108 @@
     <link rel="stylesheet" href="../../src/business-charts/css/selectionTool.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/dataTableView.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/simpleDetailView.css"/>
-<style>
-    body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-        align-content: center;
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            align-content: center;
 
-        box-sizing: content-box;
-    }
-    header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    main {
-        margin: 3em auto 3em auto;
-        padding: 1em;
-        min-height: 70em;
-        max-width: 42em;
-    }
+            box-sizing: content-box;
+        }
 
-    section > div {
-        display: flex;
-        overflow: scroll;
-        padding: 1em;
-    }
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .description > div {
-        display: block;
-    }
+        main {
+            margin: 3em auto 3em auto;
+            padding: 1em;
+            min-height: 70em;
+            max-width: 42em;
+        }
 
-    /*detail-view {*/
-    /*    display: flex;*/
-    /*    flex-direction: row;*/
-    /*    max-width: 80%;*/
-    /*}*/
-    .data-table-views {
-        display: flex;
-        flex-direction: row;
-    }
+        section > div {
+            display: flex;
+            overflow: scroll;
+            padding: 1em;
+        }
 
-    .data-table-views > * {
-        margin: 5px;
-    }
+        .description > div {
+            display: block;
+        }
 
-    table {
-        display: block;
-        background: white; /* optional */
-    }
+        /*detail-view {*/
+        /*    display: flex;*/
+        /*    flex-direction: row;*/
+        /*    max-width: 80%;*/
+        /*}*/
+        .data-table-views {
+            display: flex;
+            flex-direction: row;
+        }
 
-    table thead {
-        text-align: left; /* optional */
-    }
+        .data-table-views > * {
+            margin: 5px;
+        }
 
-    table tbody {
-        display: block;
-        max-height: 200px;
-        overflow-y: scroll;
-    }
+        table {
+            display: block;
+            background: white; /* optional */
+        }
 
-    code {
-        font-family: "JetBrainsMono-VariableFont_wght", sans-serif;
-        color: var(--kolibri-color-output);
-        background-color: #f1f1f1;
-        padding: 0.2em;
-        font-size: 85%;
-    }
+        table thead {
+            text-align: left; /* optional */
+        }
 
-    footer {
-        display: flex;
-        align-items: flex-end;
-        padding: 1em;
-        max-width: 100%;
-        height: 5em;
-        vertical-align: baseline;
-        bottom: 0;
-        flex-shrink: 0;
-        background-color: var(--kb-color-rgb-lavender-200);
-        position: sticky;
-        z-index: 10;
-    }
+        table tbody {
+            display: block;
+            max-height: 200px;
+            overflow-y: scroll;
+        }
 
-    footer a {
-        display: flex;
-        padding: 1em;
-    }
-</style>
+        code {
+            font-family: "JetBrainsMono-VariableFont_wght", sans-serif;
+            color: var(--kolibri-color-output);
+            background-color: #f1f1f1;
+            padding: 0.2em;
+            font-size: 85%;
+        }
+
+        footer {
+            display: flex;
+            padding: 1em;
+            max-width: 100%;
+            min-height: 5em;
+            vertical-align: baseline;
+            bottom: 0;
+            flex-shrink: 0;
+            background-color: var(--kb-color-rgb-lavender-200);
+            position: sticky;
+            z-index: 10;
+            flex-wrap: nowrap;
+        }
+        footer div {
+            display: flow;
+            align-items: stretch;
+            flex-wrap: nowrap;
+        }
+        footer span {
+            min-height: 3em;
+            align-content: baseline;
+        }
+        footer a {
+            padding: 1em;
+            min-width: max-content;
+        }
+        footer p {
+            padding: 1em;
+        }
+    </style>
 <body>
 
 <header>
@@ -154,7 +167,8 @@
                 styles (/src/business-charts/css),
                 helper functions (/src/business-charts/util)
                 and <a
-                        onclick="openBusinessChartsTests()" target="_blank" rel="noopener noreferrer"><u>tests</u></a>.</p>
+                        onclick="openBusinessChartsTests()" target="_blank" rel="noopener noreferrer"><u>tests</u></a>.
+            </p>
             <script id="businessChartsTests">
                 function openBusinessChartsTests() {
                     window.open("../src/business-charts/allBusinessChartsTests.html", "_popup", "width=900");
@@ -262,6 +276,12 @@
             First Steps Demo shows you how to create a chart with minimal lines of code.
         </p>
         <div>
+            <h3 id="simple">Simple Projector for one data serie</h3>
+            <p>
+                This example shows you how to create a chart step by step.
+            </p>
+        </div>
+        <div>
             <h4>Setup .html</h4>
             <ol>
                 <li>
@@ -276,13 +296,14 @@
                 <li>
                     In order to view the chart in the browser, create a div with the class / id "container" in the chart
                     section.
+                    Each chart need a unique identification. Make sure you have an id for each chart.
                     <div>
                         <pre><code>&lt;!-&#45;&#45; chart section -&#45;&#45;&gt;</code></pre>
                     </div>
                     <div>
                         <pre><code>&lt;div class="container" id="container"&gt;&lt;/div&gt;</code></pre>
                     </div>
-                    To display the data points, create a div with the id / class "detail-view".
+                    To display the data points, create a div with the class "detail-view".
                     <div>
                         <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>
                     </div>
@@ -312,37 +333,113 @@
             To do this, you will need the following:
             <ol>
                 <li>
-                    Import of required modules
-                </li>
-                <li>
                     A data array of type "ScatterChartDataElement"
+                    <div>
+                        <code>/** @type { Array.<</code><code>ChartDataElement> } */</code>
+                        <pre><code>const data = [ {
+    name: 'A1', xValue: -4, yValue: 3,
+}, {
+    name: 'B1', xValue: -3, yValue: 2,
+}, {
+    name: 'C1', xValue: -2, yValue: 0,
+}, {
+    name: 'D1', xValue: -1, yValue: -3,
+}, {
+    name: 'E1', xValue: 0, yValue: 1,
+}, {
+    name: 'F1', xValue: 1, yValue: -1,
+},{
+    name: 'G1', xValue: 2, yValue: 4,
+},{
+    name: 'H1', xValue: 3, yValue: 2,
+},{
+    name: 'I1', xValue: 4, yValue: 9,
+},];</code></pre>
+                    </div>
                 </li>
                 <li>
-                    A chart controller call with your data as argument
+                    Define a <code>simpleController</code> as <code>SimpleAreaChartController()</code> with your <code>data</code> and optional toolbar as arguments
+                    <pre><code>const simpleController = SimpleAreaChartController(data, {
+        tools: [
+            zoomInTool,
+            zoomOutTool,
+            bubbleTooltipSelectionTool,
+            rubberBandTool,
+            panningTool,
+        ]
+    });</code></pre>
                 </li>
                 <li>
-                    An HTML append of the chart, table and detail view projectors
+                    Append the <code>SimpleChartProjector()</code> with its <code>simpleController</code> to your html <code>container</code>.
+                    <pre><code>document.getElementById('container').append(SimpleChartProjector(simpleController));</code></pre>
                 </li>
             </ol>
         </div>
-
+    </section>
+    <section class="description">
         <div>
             <h4>Setup .css</h4>
+            Make sure you have linked the appropriate css files in your html for the projectors you are using.
             As mentioned above, it is possible to override and extend the default CSS files with customized styles.
         </div>
         <div>
-            <h4>Run your html file - Check out the features</h4>
-            <p>After following all the steps, you should get a result similar to the
-                <a onclick="openFirstStepsDemo()" target="_blank" rel="noopener noreferrer">
-                    <u>First Steps Demo</u></a>.</p>
-            <script id="demo first steps">
-                function openFirstStepsDemo() {
-                    window.open("first-steps/first-steps-demo.html", "_popup", "width=900px", "height=100%");
-                }
-            </script>
-            <p>Check out other demo apps with real data in the demo folder.</p>
+            <h4>Run your html file. You should get a result similar to this</h4>
+<!--            <p>After following all the steps, you should get a result similar to the-->
+<!--                <a onclick="openFirstStepsDemo()" target="_blank" rel="noopener noreferrer">-->
+<!--                    <u>First Steps Demo</u></a>.-->
+<!--            </p>-->
+<!--            <script id="demo first steps">-->
+<!--                function openFirstStepsDemo() {-->
+<!--                    window.open("first-steps/first-steps-demo.html", "_popup", "width=900px", "height=100%");-->
+<!--                }-->
+<!--            </script>-->
         </div>
     </section>
+    <div class="containerSimple" id="containerSimple">
+    </div>
+    <section class="description">
+        <h2 id="interchangeability">Projector and controller interchangeability</h2>
+        <p>
+            This demonstrates the main feature of the Kolibri Web UI Toolkit.
+        </p>
+    </section>
+    <section class="description">
+        <h3 id="change-simple-projector">Change Data representation for one data serie</h3>
+        <p>
+            If you want to change the representation of the data, you only need to replace the corresponding controller.
+        </p>
+        <pre><code>const controller = Simple<s>Area</s>ChartController(data, {...});</code></pre>
+        <pre><code>const controller = SimpleLineChartController(data, {...});</code></pre>
+    </section>
+    <section class="description">
+        <h3 id="advanced-projector">Projectors for more than one data serie</h3>
+        <p>
+            If you have more than one data serie, you need the controllers without the word "simple" in the front.
+            Your data series are now passed as an array <code>[data, data2]</code>.
+        </p>
+        <pre><code>const controller = <s>Simple</s>LineChartController(data, {...});</code></pre>
+        <pre><code>const controller = LineChartController([data, data2], {...});</code></pre>
+        <p>
+            Now the AdvancedChartProjector() is used instead of the SimpleChartProjector().
+        </p>
+        <pre><code>document.getElementById('container').append(<s>SimpleChart</s>Projector(controller));</code></pre>
+        <pre><code>document.getElementById('container').append(AdvancedChartProjector(controller));</code></pre>
+    </section>
+    <section class="description">
+        <h3 id="multi-projector">Different data represantations</h3>
+        <p>
+            The <code>AdvancedChartProjector()</code> may also be used if you want to visualise the data series differently.
+            For this purpose you need the <code>ChartController()</code>.
+        </p>
+        <pre><code>const controller = ChartController(
+            [
+            { type: SCATTER_CHART, data: data  },
+            { type: SCATTER_CHART, data: data2 },
+            { type: LINE_CHART,    data: data3 }
+            ],
+            {...});</code></pre>
+        </section>
+
     <!-------------------------------------- How to ---------------------------------------------------->
     <section class="description">
         <h2 id="examples">Examples</h2>
@@ -353,12 +450,13 @@
     <!-------------------------------------- chart section --------------------------------------------->
     <div class="content">
         <h3>One data serie</h3>
-        <div class="containerSimple" id="containerSimple">
+        <div class="containerSimple" id="containerSimple2">
             <p>
                 All chart projectors provide a toolbar.
             </p>
             <p>
-                The projectors for one data serie contain axes with direct manipulation of the chart boundaries via input fields.
+                The projectors for one data serie contain axes with direct manipulation of the chart boundaries via
+                input fields.
             </p>
         </div>
         <section>
@@ -379,7 +477,8 @@
             </p>
             <p>
                 On the x-axis it is possible to manipulate the chart section via mouse.
-                Adjusting the left and right axis range boundary via mouse modifies the amount of the data points displayed.
+                Adjusting the left and right axis range boundary via mouse modifies the amount of the data points
+                displayed.
                 Shifting the axis range via mouse changes the first and the last data set displayed.
             </p>
         </div>
@@ -395,7 +494,8 @@
             </p>
             <p>
                 On the x-axis it is possible to manipulate the chart section via mouse.
-                Adjusting the left and right axis range boundary via mouse modifies the amount of the data points displayed.
+                Adjusting the left and right axis range boundary via mouse modifies the amount of the data points
+                displayed.
                 Shifting the axis range via mouse changes the first and the last data set displayed.
             </p>
         </div>
@@ -409,16 +509,19 @@
 </main>
 
 <footer>
-
-    <h4>
-        FHNW Bachelor Thesis - Interaktive Business Charts für das Kolibri Web UI Tookit
-    </h4>
-    <br>
-    <a href="#intro">intro</a>
-    <a href="#structure">structure</a>
-    <a href="#features">features</a>
-    <a href="#first-steps">first steps</a>
-    <a href="#examples">examples</a>
+    <div>
+        <span>
+            <a href="#intro">intro</a>
+            <a href="#structure">structure</a>
+            <a href="#features">features</a>
+            <a href="#first-steps">first steps</a>
+            <a href="#interchangeability">interchangeability</a>
+            <a href="#examples">examples</a>
+        </span>
+        <span>
+            <p>FHNW Bachelor Thesis - Business Charts Toolkit</p>
+        </span>
+    </div>
 </footer>
 
 <!------------------------------------- script section -------------------------------------------->

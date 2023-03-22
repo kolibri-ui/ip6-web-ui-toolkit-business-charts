@@ -24,7 +24,7 @@ Implementation von Projektoren als wiederverwendbare Chart-Elemente:
 - Table View Projektor
 - Detail View Projektor
 
-[Demo](demo/howto.html)
+[Demo](demo/first-steps/howto.html)
 
 ## Datasets für Charts:
 
