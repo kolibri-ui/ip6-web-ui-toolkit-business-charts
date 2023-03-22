@@ -46,9 +46,9 @@ Den Code findest du unter /demo/first-steps/.
 
 ![Auscchnitt Demo App](demo/assets/images/first-steps-demo.png "DemoApp")
 
-#### /demo/first-steps/first-steps-demo.html
+#### /demo/first-steps/howto.html
 
-1. Erstelle ein [HTML-Grundgerüst](demo/first-steps/first-steps-demo.html).
+1. Erstelle ein [HTML-Grundgerüst](demo/first-steps/howto.html).
 Wir empfehlen einen strukturierten Ansatz der mindestens einen Style-, Chart- und Skript-Teil enthält.
 2. Um die Charts im Browser nutzen zu können, erstellst du ein div mit der class / id "container" in der **Chart-Section**.
 Für die Anzeige der Datenpunkte erstellst du ein div mit der id / class "detail-view".
