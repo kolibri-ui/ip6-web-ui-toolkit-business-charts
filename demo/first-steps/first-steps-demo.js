@@ -1,6 +1,6 @@
 // noinspection SpellCheckingInspection
 import {
-    SimpleAreaChartController,
+    SimpleAreaChartController, SimpleLineChartController,
 } from "../../src/business-charts/projector/chart/simpleChartController.js";
 import { SimpleChartProjector }   from "../../src/business-charts/projector/chart/simpleChartProjector.js";
 import { zoomInTool }             from "../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
@@ -100,13 +100,30 @@ const simpleController = SimpleAreaChartController(data,
             panningTool,
         ]
     });
+
 // append the projectors to your HTML bindings. 
 // Pass the controller for one data serie as parameter in your simple projector.
 document.getElementById('containerSimple').append(SimpleChartProjector(simpleController));
 
-const detailView = document.getElementById('detail-view-simple');
-detailView.append(DataTableViewProjector(DataTableViewController(simpleController, simpleController.getSeries()[0]), 'Data points'), SimpleDetailView(simpleController));
+const simpleController2 = SimpleLineChartController(data,
+    { //pass the optional toolbar
+        tools: [
+            zoomInTool,
+            zoomOutTool,
+            bubbleTooltipSelectionTool, // you can choose other tooltips
+            rubberBandTool,
+            panningTool,
+        ]
+    });
 
+
+// Simple Example with detail view
+document.getElementById('containerSimple2').append(SimpleChartProjector(simpleController2));
+
+const detailView = document.getElementById('detail-view-simple2');
+detailView.append(
+    DataTableViewProjector(DataTableViewController(simpleController2, simpleController2.getSeries()[0]), 'Data points'), 
+    SimpleDetailView(simpleController));
 
 // see the sample for the advanced version below:
 const advancedController = LineChartController([data, data2],
@@ -138,6 +155,7 @@ const multipleChartTypesController = ChartController(
 document.getElementById('containerMultipleChartTypes').append(AdvancedChartProjector(multipleChartTypesController));
 
 const detailViewMulti = document.getElementById('detail-view-multi');
+
 const tableViews = document.createElement("div");
 tableViews.classList.add("data-table-views");
 tableViews.append(
@@ -145,4 +163,6 @@ tableViews.append(
     DataTableViewProjector(DataTableViewController(multipleChartTypesController, multipleChartTypesController.getSeries()[1]), 'Data points serie 2'),
     DataTableViewProjector(DataTableViewController(multipleChartTypesController, multipleChartTypesController.getSeries()[2]), 'Data points serie 3')
 );
-detailViewMulti.append(tableViews, SimpleDetailView(multipleChartTypesController));
+detailViewMulti.append(
+    tableViews, 
+    SimpleDetailView(multipleChartTypesController));

@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    align-content: center;
+
+    box-sizing: content-box;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    margin: 3em auto 3em auto;
+    padding: 1em;
+    min-height: 70em;
+    max-width: 42em;
+}
+
+section > div {
+    display: flex;
+    overflow: scroll;
+    padding: 1em;
+}
+
+.description > div {
+    display: block;
+}
+
+/*detail-view {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    max-width: 80%;*/
+/*}*/
+.data-table-views {
+    display: flex;
+    flex-direction: row;
+}
+
+.data-table-views > * {
+    margin: 5px;
+}
+
+table {
+    display: block;
+    background: white; /* optional */
+}
+
+table thead {
+    text-align: left; /* optional */
+}
+
+table tbody {
+    display: block;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+code {
+    font-family: "JetBrainsMono-VariableFont_wght", sans-serif;
+    color: var(--kolibri-color-output);
+    background-color: #f1f1f1;
+    font-size: 85%;
+    padding: 0.2em 0.2em 0.3em;
+}
+
+footer {
+    display: flex;
+    padding: 1em;
+    max-width: 100%;
+    min-height: 5em;
+    vertical-align: baseline;
+    bottom: 0;
+    flex-shrink: 0;
+    background-color: var(--kb-color-rgb-lavender-200);
+    position: sticky;
+    z-index: 10;
+    flex-wrap: nowrap;
+}
+/*footer section div {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+/*footer div {*/
+/*    display: flow;*/
+/*    align-items: stretch;*/
+/*    flex-wrap: nowrap;*/
+/*}*/
+/*footer span {*/
+/*    !*min-height: 5em;*!*/
+/*    !*align-content: baseline;*!*/
+/*}*/
+footer a {
+    padding-right: 1em;
+    min-width: max-content;
+    align-self: stretch;
+    text-align: left;
+}
+/*footer p {*/
+/*    align-content: end;*/
+/*    padding: 1em;*/
+/*    !*padding-left: 1em;*!*/
+/*    !*padding-top: 0.2em;*!*/
+/*}*/
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+/*.flex-container-row {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: stretch;*/
+/*}*/

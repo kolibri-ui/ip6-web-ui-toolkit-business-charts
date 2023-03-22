@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>First steps</title>
+    <title>How to</title>
 
     <!------------------------------------ css section ----------------------------------------------->
     <link rel="stylesheet" href="../../src/Kolibri/docs/css/kolibri-base.css">
@@ -13,116 +13,19 @@
     <link rel="stylesheet" href="../../src/business-charts/css/selectionTool.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/dataTableView.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/simpleDetailView.css"/>
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-            align-content: center;
 
-            box-sizing: content-box;
-        }
-
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        main {
-            margin: 3em auto 3em auto;
-            padding: 1em;
-            min-height: 70em;
-            max-width: 42em;
-        }
-
-        section > div {
-            display: flex;
-            overflow: scroll;
-            padding: 1em;
-        }
-
-        .description > div {
-            display: block;
-        }
-
-        /*detail-view {*/
-        /*    display: flex;*/
-        /*    flex-direction: row;*/
-        /*    max-width: 80%;*/
-        /*}*/
-        .data-table-views {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .data-table-views > * {
-            margin: 5px;
-        }
-
-        table {
-            display: block;
-            background: white; /* optional */
-        }
-
-        table thead {
-            text-align: left; /* optional */
-        }
-
-        table tbody {
-            display: block;
-            max-height: 200px;
-            overflow-y: scroll;
-        }
-
-        code {
-            font-family: "JetBrainsMono-VariableFont_wght", sans-serif;
-            color: var(--kolibri-color-output);
-            background-color: #f1f1f1;
-            padding: 0.2em;
-            font-size: 85%;
-        }
-
-        footer {
-            display: flex;
-            padding: 1em;
-            max-width: 100%;
-            min-height: 5em;
-            vertical-align: baseline;
-            bottom: 0;
-            flex-shrink: 0;
-            background-color: var(--kb-color-rgb-lavender-200);
-            position: sticky;
-            z-index: 10;
-            flex-wrap: nowrap;
-        }
-        footer div {
-            display: flow;
-            align-items: stretch;
-            flex-wrap: nowrap;
-        }
-        footer span {
-            min-height: 3em;
-            align-content: baseline;
-        }
-        footer a {
-            padding: 1em;
-            min-width: max-content;
-        }
-        footer p {
-            padding: 1em;
-        }
-    </style>
+    <link rel="stylesheet" href="first-steps.css"/>
 <body>
 
 <header>
-    <h1>Kolibri Business Charts</h1>
+    <h1 id="howto">Kolibri Business Charts</h1>
     <div class="subtitle">The Extesion of the Kolibri Web UI Toolkit</div>
 </header>
 
 <main>
+
+    <!-------------------------------------- intro ---------------------------------------------------->
+
     <section class="description">
         <h2 id="intro">Intro</h2>
         <p>
@@ -145,6 +48,9 @@
             This gives you high flexibility to provide data analysts the application they need.
         </p>
     </section>
+
+    <!-------------------------------------- structure ---------------------------------------------------->
+
     <section class="description">
         <h2 id="structure">Structure and usage of the toolkit</h2>
         <p>
@@ -204,6 +110,9 @@
             </p>
         </div>
     </section>
+
+    <!-------------------------------------- features ---------------------------------------------------->
+
     <section class="description">
         <h2 id="features">Features</h2>
         <p>
@@ -270,6 +179,9 @@
             </p>
         </div>
     </section>
+
+    <!-------------------------------------- first steps ---------------------------------------------------->
+
     <section class="description">
         <h2 id="first-steps">First steps</h2>
         <p>
@@ -287,11 +199,6 @@
                 <li>
                     Create a basic HTML skeleton.
                     A structured approach is recommended containing at least a style-, chart- and script section.
-                    <!--                        <pre><code>&lt;!-&#45;&#45; css section -&#45;&#45;&gt;</code></pre>-->
-                    <!--                        <pre><code>&lt;!-&#45;&#45; chart section -&#45;&#45;&gt;</code></pre>-->
-                    <!--                        <pre><code>&lt;div class="container" id="container"&gt;&lt;/div&gt;</code></pre>-->
-                    <!--                        <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>-->
-                    <!--                        <pre><code>&lt;!-&#45;&#45; script section -&#45;&#45;&gt;</code></pre>-->
                 </li>
                 <li>
                     In order to view the chart in the browser, create a div with the class / id "container" in the chart
@@ -303,10 +210,10 @@
                     <div>
                         <pre><code>&lt;div class="container" id="container"&gt;&lt;/div&gt;</code></pre>
                     </div>
-                    To display the data points, create a div with the class "detail-view".
-                    <div>
-                        <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>
-                    </div>
+<!--                    To display the data points, create a div with the class "detail-view".-->
+<!--                    <div>-->
+<!--                        <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>-->
+<!--                    </div>-->
                 </li>
                 <li>
                     Create your charts in a javascript file with type „module".
@@ -358,7 +265,9 @@
                     </div>
                 </li>
                 <li>
-                    Define a <code>simpleController</code> as <code>SimpleAreaChartController()</code> with your <code>data</code> and optional toolbar as arguments
+                    Define a <code>simpleController</code>
+                    as <code>SimpleAreaChartController()</code>
+                    with your <code>data</code> and optional toolbar as arguments
                     <pre><code>const simpleController = SimpleAreaChartController(data, {
         tools: [
             zoomInTool,
@@ -370,8 +279,11 @@
     });</code></pre>
                 </li>
                 <li>
-                    Append the <code>SimpleChartProjector()</code> with its <code>simpleController</code> to your html <code>container</code>.
-                    <pre><code>document.getElementById('container').append(SimpleChartProjector(simpleController));</code></pre>
+                    Append the <code>SimpleChartProjector()</code>
+                    with its <code>simpleController</code>
+                    to your html <code>container</code>.
+                    <pre><code>document.getElementById('container').append(
+                        SimpleChartProjector(simpleController));</code></pre>
                 </li>
             </ol>
         </div>
@@ -384,19 +296,13 @@
         </div>
         <div>
             <h4>Run your html file. You should get a result similar to this</h4>
-<!--            <p>After following all the steps, you should get a result similar to the-->
-<!--                <a onclick="openFirstStepsDemo()" target="_blank" rel="noopener noreferrer">-->
-<!--                    <u>First Steps Demo</u></a>.-->
-<!--            </p>-->
-<!--            <script id="demo first steps">-->
-<!--                function openFirstStepsDemo() {-->
-<!--                    window.open("first-steps/first-steps-demo.html", "_popup", "width=900px", "height=100%");-->
-<!--                }-->
-<!--            </script>-->
         </div>
     </section>
     <div class="containerSimple" id="containerSimple">
     </div>
+
+    <!-------------------------------------- interchangeability ---------------------------------------------------->
+
     <section class="description">
         <h2 id="interchangeability">Projector and controller interchangeability</h2>
         <p>
@@ -428,7 +334,8 @@
     <section class="description">
         <h3 id="multi-projector">Different data represantations</h3>
         <p>
-            The <code>AdvancedChartProjector()</code> may also be used if you want to visualise the data series differently.
+            The <code>AdvancedChartProjector()</code>
+            may also be used if you want to visualise the data series differently.
             For this purpose you need the <code>ChartController()</code>.
         </p>
         <pre><code>const controller = ChartController(
@@ -440,13 +347,69 @@
             {...});</code></pre>
         </section>
 
-    <!-------------------------------------- How to ---------------------------------------------------->
+    <!-------------------------------------- Bindings ---------------------------------------------------->
+
+    <section class="description">
+        <h2 id="bindings">Data Binding of simple detail and data table view</h2>
+        <p>
+            All chart controllers have a binding to the simpleDetailView and the dataTableView Projectors.
+            If you have created a controller, just put it to the data point view.
+        </p>
+        <h3>Simple Detail View</h3>
+        <p>
+            To display the data points, first create a div with the class "detail-view" in your html-file.
+        </p>
+            <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>
+        <p>
+            In your javacript file, create a constant for the detail view div element.
+        </p>
+        <pre><code>const detailView = document.getElementById('detail-view');</code></pre>
+        <p>
+            If you already have a controller, just append it to the detail view element.
+        </p>
+        <pre><code>detailView.append(
+            DataTableViewProjector(
+            DataTableViewController(controller, controller.getSeries()[0]), 'Data points'),
+            SimpleDetailView(controller));
+</code></pre>
+        <h3>Data Table View</h3>
+        <p>
+            To see detailed information of the data points, create a new div element.
+        </p>
+        <pre><code>const tableViews = document.createElement("div");</code></pre>
+        <p>
+            Add the html element to classList.
+        </p>
+        <pre><code>tableViews.classList.add("data-table-views");</code></pre>
+        <p>
+            Append the projectors with its controllers.
+        </p>
+        <pre><code>tableViews.classList.add("data-table-views");
+tableViews.append(
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController,
+            multipleChartTypesController.getSeries()[0]), 'Data points serie 1'),
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController,
+            multipleChartTypesController.getSeries()[1]), 'Data points serie 2'),
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController,
+            multipleChartTypesController.getSeries()[2]), 'Data points serie 3')
+);</code></pre>
+        <p>
+            Append the table view to the detail view.
+        </p>
+        <pre><code>detailViewMulti.append(
+    tableViews,
+    SimpleDetailView(multipleChartTypesController));</code></pre>
+    </section>
+
+    <!-------------------------------------- Examples ---------------------------------------------------->
+
     <section class="description">
         <h2 id="examples">Examples</h2>
         <p>
             The next few samples explain how to create charts with minimal lines of code.
         </p>
     </section>
+
     <!-------------------------------------- chart section --------------------------------------------->
     <div class="content">
         <h3>One data serie</h3>
@@ -460,9 +423,9 @@
             </p>
         </div>
         <section>
-            <p>Your detail view as table. By clicking on a point, the detail view is opened immediately.
+            <p>Your data serie in the table has a binding with the data serie in the chart.
             </p>
-            <div class="detail-view" id="detail-view-simple">
+            <div class="detail-view" id="detail-view-simple2">
             </div>
         </section>
 
@@ -500,7 +463,9 @@
             </p>
         </div>
         <section>
-            <p>Your detail view as table. By clicking on a point, the detail view is opened immediately.
+            <p>
+                For the simple detail view, there is also a table view available.
+                By clicking on a point, detailed data point information are displayed.
             </p>
             <div class="detail-view" id="detail-view-multi">
             </div>
@@ -508,23 +473,30 @@
     </div>
 </main>
 
+<!-------------------------------------- footer section ---------------------------------------------------->
+
 <footer>
-    <div>
+    <section>
+        <div class="flex-container">
         <span>
+            <a href="#howto">home</a>
             <a href="#intro">intro</a>
             <a href="#structure">structure</a>
             <a href="#features">features</a>
             <a href="#first-steps">first steps</a>
             <a href="#interchangeability">interchangeability</a>
+            <a href="#bindings">data bindings</a>
             <a href="#examples">examples</a>
         </span>
-        <span>
-            <p>FHNW Bachelor Thesis - Business Charts Toolkit</p>
-        </span>
-    </div>
+        </div>
+        <div class="flex-container">
+            FHNW Bachelor Thesis "Business Charts Toolkit" - made by Roger Kreienb&uumlhl and Valentina Giampa
+        </div>
+    </section>
 </footer>
 
-<!------------------------------------- script section -------------------------------------------->
+<!-------------------------------------- script section ---------------------------------------------------->
+
 <script src="first-steps-demo.js" type="module"></script>
 
 </body>

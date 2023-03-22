@@ -13,339 +13,252 @@
     <link rel="stylesheet" href="../../src/business-charts/css/selectionTool.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/dataTableView.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/simpleDetailView.css"/>
-<style>
-    body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-        align-content: center;
 
-        box-sizing: content-box;
-    }
-    header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    main {
-        margin: 3em auto 3em auto;
-        padding: 1em;
-        min-height: 70em;
-        max-width: 42em;
-    }
-
-    section > div {
-        display: flex;
-        overflow: scroll;
-        padding: 1em;
-    }
-
-    .description > div {
-        display: block;
-    }
-
-    /*detail-view {*/
-    /*    display: flex;*/
-    /*    flex-direction: row;*/
-    /*    max-width: 80%;*/
-    /*}*/
-    .data-table-views {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .data-table-views > * {
-        margin: 5px;
-    }
-
-    table {
-        display: block;
-        background: white; /* optional */
-    }
-
-    table thead {
-        text-align: left; /* optional */
-    }
-
-    table tbody {
-        display: block;
-        max-height: 200px;
-        overflow-y: scroll;
-    }
-
-    code {
-        font-family: "JetBrainsMono-VariableFont_wght", sans-serif;
-        color: var(--kolibri-color-output);
-        background-color: #f1f1f1;
-        padding: 0.2em;
-        font-size: 85%;
-    }
-
-    footer {
-        display: flex;
-        align-items: flex-end;
-        padding: 1em;
-        max-width: 100%;
-        height: 5em;
-        vertical-align: baseline;
-        bottom: 0;
-        flex-shrink: 0;
-        background-color: var(--kb-color-rgb-lavender-200);
-        position: sticky;
-        z-index: 10;
-    }
-
-    footer a {
-        display: flex;
-        padding: 1em;
-    }
-</style>
+    <link rel="stylesheet" href="first-steps.css"/>
 <body>
 
 <header>
-    <h1>Kolibri Business Charts</h1>
+    <h1 id="home">Kolibri Business Charts</h1>
     <div class="subtitle">The Extesion of the Kolibri Web UI Toolkit</div>
 </header>
 
 <main>
-    <section class="description">
-        <h2 id="intro">Intro</h2>
-        <p>
-            Kolibri Business Charts is the extension of the
-            <a href="https://github.com/WebEngineering-FHNW/Kolibri">Kolibri Web UI Toolkit</a>.
-            The goal is an "assortment of items" that simplify the development of web applications.
-            Business applications often have a significant amount of clients.
-            The lean and structured composition of the toolkit applies the
-            <a href="https://dierk.github.io/Home/projectorPattern/ProjectorPattern.html">Projector Pattern</a>
-            in a classical <a href="https://ieeexplore.ieee.org/abstract/document/950428">MVC architecture</a>.
-            This allows a quick and cost-effective modification of the "look and feel" of the business application.
-        </p>
-    </section>
-    <section class="description">
-        <h3>Build business applications for data analysis with minimal lines of code</h3>
-        <p>
-            Kolibri Business Charts lets you quickly develop interactive charts for custom business analysis
-            applications.
-            It provides projectors for building charts in a modular way.
-            This gives you high flexibility to provide data analysts the application they need.
-        </p>
-    </section>
-    <section class="description">
-        <h2 id="structure">Structure and usage of the toolkit</h2>
-        <p>
-            There are several ways to use the toolkit.
-            The easiest way is to copy the complete src folder in your project.
-            Since the toolkit has no external dependencies, the size is minimal.
-            Therefore, it has practically no impact on performance.
-            The toolkit requires plain JavaScript, HTML5, CSS and an IDE of your choice.
-        </p>
-        <div>
-            <h3>/src</h3>
-            <p>
-                Copy the entire src folder into your project for access to all projectors in the toolkit.
-            </p>
-        </div>
-        <div>
-            <h3>/src/business-charts</h3>
-            <p>This folder contains
-                chart projectors (/src/business-charts/projector),
-                styles (/src/business-charts/css),
-                helper functions (/src/business-charts/util)
-                and <a
-                        onclick="openBusinessChartsTests()" target="_blank" rel="noopener noreferrer"><u>tests</u></a>.</p>
-            <script id="businessChartsTests">
-                function openBusinessChartsTests() {
-                    window.open("../src/business-charts/allBusinessChartsTests.html", "_popup", "width=900");
-                }
-            </script>
-        </div>
-        <div>
-            <h3>/src/Kolibri</h3>
-            <p>
-                This directory includes the entire Kolibri Web UI Toolkit with examples, reusable projectors and tests.
-                It has been the base for the development of Kolibri Business Charts.
-            </p>
-        </div>
-        <div>
-            <h3>/demo</h3>
-            <p>
-                Within the demo folder you can find examples how to use the Business Charts projectors.
-                Take a look at the short tutorial to create a chart in a few steps, as shown in the screenshots below.
-            </p>
-            <p><img src="../assets/images/first-steps_chart.png"
-                    alt="screenshot of the first steps chart with table and detail view">
-            </p>
-            <p><img src="../assets/images/first-steps_tableView_and_detailView.png"
-                    alt="screenshot of the first steps chart with table and detail view">
-            </p>
-        </div>
-        <div>
-            <h3>JSDoc</h3>
-            <p>
-                For the specification of the objects, functions, etc. a documentation based on JSDoc is available.
-                For general information concerning the document generator visit the website of
-                <a href="https://jsdoc.app/index.html" target="_blank">JSDoc</a>.
-            </p>
-        </div>
-    </section>
-    <section class="description">
-        <h2 id="features">Features</h2>
-        <p>
-            Below you will find a brief overview of the functionalities offered by the toolkit.
-        </p>
-        <div>
-            <h3>Zooming</h3>
-            <p>
-                Via toolbar you can zoom in and out of the chart area step by step.
-                If you want to see a specific area, you can select your desired section using Rubber Band Zooming.
-                The chart will immediately zoom into the chosen area while the axes will be adjusted.
-            </p>
-        </div>
-        <div>
-            <h3>Panning</h3>
-            <p>
-                Move the section of the chart via the toolbar (panning)
-                by holding down the mouse button and moving the section both horizontally and vertically.
-                Alternatively, you can also move the area horizontally
-                via the axis (in the example it is the horizontal axis) by holding down the mouse button.
-            </p>
-        </div>
-        <div>
-            <h3>Min-Max Ranges on Axes</h3>
-            <p>
-                Immediate input of the range on the axis.
-                In the tutorial you can directly change the upper and lower limits on the vertical axis via input
-                fields.
-                The chart area changes immediately.
-                On the horizontal axis, you can change the limits by moving the left or right area.
-            </p>
-        </div>
-        <div>
-            <h3>Tooltip / Bubble Tooltip</h3>
-            <p>
-                Whenever the mouse pointer is over a data point, a tooltip appears with information about the
-                corresponding point.
-            </p>
-        </div>
-        <div>
-            <h3>Select</h3>
-            <p>
-                Select a point in the chart view. The table and the detail view will be adjusted immediately.
-            </p>
-        </div>
-        <div>
-            <h3>Multi Selection in Table View</h3>
-            <p>
-                Select multiple data points via table view (⌘ click on data points).
-            </p>
-        </div>
-        <div>
-            <h3>Table View</h3>
-            <p>
-                By clicking on data points, the selected objects will be marked in the table.
-                Vice versa, the points selected in the table are highlighted in the chart and synchronized with the
-                detail view.
-            </p>
-        </div>
-        <div>
-            <h3>Detail View</h3>
-            <p>
-                As mentioned above, the selected data points are shown immediately in the detail view.
-            </p>
-        </div>
-    </section>
-    <section class="description">
-        <h2 id="first-steps">First steps</h2>
-        <p>
-            First Steps Demo shows you how to create a chart with minimal lines of code.
-        </p>
-        <div>
-            <h4>Setup .html</h4>
-            <ol>
-                <li>
-                    Create a basic HTML skeleton.
-                    A structured approach is recommended containing at least a style-, chart- and script section.
-                    <!--                        <pre><code>&lt;!-&#45;&#45; css section -&#45;&#45;&gt;</code></pre>-->
-                    <!--                        <pre><code>&lt;!-&#45;&#45; chart section -&#45;&#45;&gt;</code></pre>-->
-                    <!--                        <pre><code>&lt;div class="container" id="container"&gt;&lt;/div&gt;</code></pre>-->
-                    <!--                        <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>-->
-                    <!--                        <pre><code>&lt;!-&#45;&#45; script section -&#45;&#45;&gt;</code></pre>-->
-                </li>
-                <li>
-                    In order to view the chart in the browser, create a div with the class / id "container" in the chart
-                    section.
-                    <div>
-                        <pre><code>&lt;!-&#45;&#45; chart section -&#45;&#45;&gt;</code></pre>
-                    </div>
-                    <div>
-                        <pre><code>&lt;div class="container" id="container"&gt;&lt;/div&gt;</code></pre>
-                    </div>
-                    To display the data points, create a div with the id / class "detail-view".
-                    <div>
-                        <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>
-                    </div>
-                </li>
-                <li>
-                    Create your charts in a javascript file with type „module".
-                    Include your js file in the script section in your HTML.
-                    <div>
-                        <pre><code>&lt;!-&#45;&#45; script section -&#45;&#45;&gt;</code></pre>
-                        <pre><code>&lt;script src="your-chart-script.js" type="module"&gt;&lt;/script&gt;</code></pre>
-                    </div>
-                </li>
-                <li>
-                    Depending on the projectors you need, add the relevant links for the styling in the CSS section.
-                    <pre><code>&lt;!-&#45;&#45; css section -&#45;&#45;&gt;</code></pre>
-                    <pre><code>&lt;link rel="stylesheet" href=".../kolibri-css-files..."&gt;</code></pre>
-                    <pre><code>&lt;link rel="stylesheet" href=".../business-charts-css-files..."&gt;</code></pre>
-                    <pre><code>&lt;link rel="stylesheet" href=".../projector-specific-css-files..."&gt;</code></pre>
-                    <pre><code>&lt;link rel="stylesheet" href=".../your-own-css-files..."&gt;</code></pre>
-                </li>
-            </ol>
-        </div>
-        <div>
-            <h4>Setup .js</h4>
-            In this example, projectors are used for creating a Scatter Chart with a table/detail view for the data
-            points.
-            To do this, you will need the following:
-            <ol>
-                <li>
-                    Import of required modules
-                </li>
-                <li>
-                    A data array of type "ScatterChartDataElement"
-                </li>
-                <li>
-                    A chart controller call with your data as argument
-                </li>
-                <li>
-                    An HTML append of the chart, table and detail view projectors
-                </li>
-            </ol>
-        </div>
+<!--    <section class="description">-->
+<!--        <h2 id="intro">Intro</h2>-->
+<!--        <p>-->
+<!--            Kolibri Business Charts is the extension of the-->
+<!--            <a href="https://github.com/WebEngineering-FHNW/Kolibri">Kolibri Web UI Toolkit</a>.-->
+<!--            The goal is an "assortment of items" that simplify the development of web applications.-->
+<!--            Business applications often have a significant amount of clients.-->
+<!--            The lean and structured composition of the toolkit applies the-->
+<!--            <a href="https://dierk.github.io/Home/projectorPattern/ProjectorPattern.html">Projector Pattern</a>-->
+<!--            in a classical <a href="https://ieeexplore.ieee.org/abstract/document/950428">MVC architecture</a>.-->
+<!--            This allows a quick and cost-effective modification of the "look and feel" of the business application.-->
+<!--        </p>-->
+<!--    </section>-->
+<!--    <section class="description">-->
+<!--        <h3>Build business applications for data analysis with minimal lines of code</h3>-->
+<!--        <p>-->
+<!--            Kolibri Business Charts lets you quickly develop interactive charts for custom business analysis-->
+<!--            applications.-->
+<!--            It provides projectors for building charts in a modular way.-->
+<!--            This gives you high flexibility to provide data analysts the application they need.-->
+<!--        </p>-->
+<!--    </section>-->
+<!--    <section class="description">-->
+<!--        <h2 id="structure">Structure and usage of the toolkit</h2>-->
+<!--        <p>-->
+<!--            There are several ways to use the toolkit.-->
+<!--            The easiest way is to copy the complete src folder in your project.-->
+<!--            Since the toolkit has no external dependencies, the size is minimal.-->
+<!--            Therefore, it has practically no impact on performance.-->
+<!--            The toolkit requires plain JavaScript, HTML5, CSS and an IDE of your choice.-->
+<!--        </p>-->
+<!--        <div>-->
+<!--            <h3>/src</h3>-->
+<!--            <p>-->
+<!--                Copy the entire src folder into your project for access to all projectors in the toolkit.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>/src/business-charts</h3>-->
+<!--            <p>This folder contains-->
+<!--                chart projectors (/src/business-charts/projector),-->
+<!--                styles (/src/business-charts/css),-->
+<!--                helper functions (/src/business-charts/util)-->
+<!--                and <a-->
+<!--                        onclick="openBusinessChartsTests()" target="_blank" rel="noopener noreferrer"><u>tests</u></a>.</p>-->
+<!--            <script id="businessChartsTests">-->
+<!--                function openBusinessChartsTests() {-->
+<!--                    window.open("../src/business-charts/allBusinessChartsTests.html", "_popup", "width=900");-->
+<!--                }-->
+<!--            </script>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>/src/Kolibri</h3>-->
+<!--            <p>-->
+<!--                This directory includes the entire Kolibri Web UI Toolkit with examples, reusable projectors and tests.-->
+<!--                It has been the base for the development of Kolibri Business Charts.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>/demo</h3>-->
+<!--            <p>-->
+<!--                Within the demo folder you can find examples how to use the Business Charts projectors.-->
+<!--                Take a look at the short tutorial to create a chart in a few steps, as shown in the screenshots below.-->
+<!--            </p>-->
+<!--            <p><img src="../assets/images/first-steps_chart.png"-->
+<!--                    alt="screenshot of the first steps chart with table and detail view">-->
+<!--            </p>-->
+<!--            <p><img src="../assets/images/first-steps_tableView_and_detailView.png"-->
+<!--                    alt="screenshot of the first steps chart with table and detail view">-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>JSDoc</h3>-->
+<!--            <p>-->
+<!--                For the specification of the objects, functions, etc. a documentation based on JSDoc is available.-->
+<!--                For general information concerning the document generator visit the website of-->
+<!--                <a href="https://jsdoc.app/index.html" target="_blank">JSDoc</a>.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    <section class="description">-->
+<!--        <h2 id="features">Features</h2>-->
+<!--        <p>-->
+<!--            Below you will find a brief overview of the functionalities offered by the toolkit.-->
+<!--        </p>-->
+<!--        <div>-->
+<!--            <h3>Zooming</h3>-->
+<!--            <p>-->
+<!--                Via toolbar you can zoom in and out of the chart area step by step.-->
+<!--                If you want to see a specific area, you can select your desired section using Rubber Band Zooming.-->
+<!--                The chart will immediately zoom into the chosen area while the axes will be adjusted.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>Panning</h3>-->
+<!--            <p>-->
+<!--                Move the section of the chart via the toolbar (panning)-->
+<!--                by holding down the mouse button and moving the section both horizontally and vertically.-->
+<!--                Alternatively, you can also move the area horizontally-->
+<!--                via the axis (in the example it is the horizontal axis) by holding down the mouse button.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>Min-Max Ranges on Axes</h3>-->
+<!--            <p>-->
+<!--                Immediate input of the range on the axis.-->
+<!--                In the tutorial you can directly change the upper and lower limits on the vertical axis via input-->
+<!--                fields.-->
+<!--                The chart area changes immediately.-->
+<!--                On the horizontal axis, you can change the limits by moving the left or right area.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>Tooltip / Bubble Tooltip</h3>-->
+<!--            <p>-->
+<!--                Whenever the mouse pointer is over a data point, a tooltip appears with information about the-->
+<!--                corresponding point.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>Select</h3>-->
+<!--            <p>-->
+<!--                Select a point in the chart view. The table and the detail view will be adjusted immediately.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>Multi Selection in Table View</h3>-->
+<!--            <p>-->
+<!--                Select multiple data points via table view (⌘ click on data points).-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>Table View</h3>-->
+<!--            <p>-->
+<!--                By clicking on data points, the selected objects will be marked in the table.-->
+<!--                Vice versa, the points selected in the table are highlighted in the chart and synchronized with the-->
+<!--                detail view.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h3>Detail View</h3>-->
+<!--            <p>-->
+<!--                As mentioned above, the selected data points are shown immediately in the detail view.-->
+<!--            </p>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    <section class="description">-->
+<!--        <h2 id="first-steps">First steps</h2>-->
+<!--        <p>-->
+<!--            First Steps Demo shows you how to create a chart with minimal lines of code.-->
+<!--        </p>-->
+<!--        <div>-->
+<!--            <h4>Setup .html</h4>-->
+<!--            <ol>-->
+<!--                <li>-->
+<!--                    Create a basic HTML skeleton.-->
+<!--                    A structured approach is recommended containing at least a style-, chart- and script section.-->
+<!--                    &lt;!&ndash;                        <pre><code>&lt;!-&#45;&#45; css section -&#45;&#45;&gt;</code></pre>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <pre><code>&lt;!-&#45;&#45; chart section -&#45;&#45;&gt;</code></pre>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <pre><code>&lt;div class="container" id="container"&gt;&lt;/div&gt;</code></pre>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <pre><code>&lt;!-&#45;&#45; script section -&#45;&#45;&gt;</code></pre>&ndash;&gt;-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    In order to view the chart in the browser, create a div with the class / id "container" in the chart-->
+<!--                    section.-->
+<!--                    <div>-->
+<!--                        <pre><code>&lt;!-&#45;&#45; chart section -&#45;&#45;&gt;</code></pre>-->
+<!--                    </div>-->
+<!--                    <div>-->
+<!--                        <pre><code>&lt;div class="container" id="container"&gt;&lt;/div&gt;</code></pre>-->
+<!--                    </div>-->
+<!--                    To display the data points, create a div with the id / class "detail-view".-->
+<!--                    <div>-->
+<!--                        <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    Create your charts in a javascript file with type „module".-->
+<!--                    Include your js file in the script section in your HTML.-->
+<!--                    <div>-->
+<!--                        <pre><code>&lt;!-&#45;&#45; script section -&#45;&#45;&gt;</code></pre>-->
+<!--                        <pre><code>&lt;script src="your-chart-script.js" type="module"&gt;&lt;/script&gt;</code></pre>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    Depending on the projectors you need, add the relevant links for the styling in the CSS section.-->
+<!--                    <pre><code>&lt;!-&#45;&#45; css section -&#45;&#45;&gt;</code></pre>-->
+<!--                    <pre><code>&lt;link rel="stylesheet" href=".../kolibri-css-files..."&gt;</code></pre>-->
+<!--                    <pre><code>&lt;link rel="stylesheet" href=".../business-charts-css-files..."&gt;</code></pre>-->
+<!--                    <pre><code>&lt;link rel="stylesheet" href=".../projector-specific-css-files..."&gt;</code></pre>-->
+<!--                    <pre><code>&lt;link rel="stylesheet" href=".../your-own-css-files..."&gt;</code></pre>-->
+<!--                </li>-->
+<!--            </ol>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h4>Setup .js</h4>-->
+<!--            In this example, projectors are used for creating a Scatter Chart with a table/detail view for the data-->
+<!--            points.-->
+<!--            To do this, you will need the following:-->
+<!--            <ol>-->
+<!--                <li>-->
+<!--                    Import of required modules-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    A data array of type "ScatterChartDataElement"-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    A chart controller call with your data as argument-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    An HTML append of the chart, table and detail view projectors-->
+<!--                </li>-->
+<!--            </ol>-->
+<!--        </div>-->
 
-        <div>
-            <h4>Setup .css</h4>
-            As mentioned above, it is possible to override and extend the default CSS files with customized styles.
-        </div>
-        <div>
-            <h4>Run your html file - Check out the features</h4>
-            <p>After following all the steps, you should get a result similar to the
-                <a onclick="openFirstStepsDemo()" target="_blank" rel="noopener noreferrer">
-                    <u>First Steps Demo</u></a>.</p>
-            <script id="demo first steps">
-                function openFirstStepsDemo() {
-                    window.open("first-steps/first-steps-demo.html", "_popup", "width=900px", "height=100%");
-                }
-            </script>
-            <p>Check out other demo apps with real data in the demo folder.</p>
-        </div>
-    </section>
+<!--        <div>-->
+<!--            <h4>Setup .css</h4>-->
+<!--            As mentioned above, it is possible to override and extend the default CSS files with customized styles.-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <h4>Run your html file - Check out the features</h4>-->
+<!--            <p>After following all the steps, you should get a result similar to the-->
+<!--                <a onclick="openFirstStepsDemo()" target="_blank" rel="noopener noreferrer">-->
+<!--                    <u>First Steps Demo</u></a>.</p>-->
+<!--            <script id="demo first steps">-->
+<!--                function openFirstStepsDemo() {-->
+<!--                    window.open("first-steps/first-steps-demo.html", "_popup", "width=900px", "height=100%");-->
+<!--                }-->
+<!--            </script>-->
+<!--            <p>Check out other demo apps with real data in the demo folder.</p>-->
+<!--        </div>-->
+<!--    </section>-->
     <!-------------------------------------- How to ---------------------------------------------------->
     <section class="description">
-        <h2 id="examples">Examples</h2>
+        <h2 id="simple-example">Examples</h2>
         <p>
             The next few samples explain how to create charts with minimal lines of code.
         </p>
@@ -368,7 +281,7 @@
             </div>
         </section>
 
-        <h3>More than one data serie</h3>
+        <h3 id="advanced-example">More than one data serie</h3>
         <div class="containerAdvanced" id="containerAdvanced">
             <p>
                 The projectors for multiple data series provide one y-axis for each data serie.
@@ -384,7 +297,7 @@
             </p>
         </div>
 
-        <h3>Different representations per data series</h3>
+        <h3 id="various-charts">Different representations per data series</h3>
         <div class="containerMultipleChartTypes" id="containerMultipleChartTypes">
             <p>
                 The projectors for multiple data series provide one y-axis for each data serie.
@@ -409,16 +322,17 @@
 </main>
 
 <footer>
-
-    <h4>
-        FHNW Bachelor Thesis - Interaktive Business Charts für das Kolibri Web UI Tookit
-    </h4>
-    <br>
-    <a href="#intro">intro</a>
-    <a href="#structure">structure</a>
-    <a href="#features">features</a>
-    <a href="#first-steps">first steps</a>
-    <a href="#examples">examples</a>
+    <div>
+        <span>
+            <a href="#home">home</a>
+            <a href="#simple-example">simple example</a>
+            <a href="#advanced-example">advanced example</a>
+            <a href="#various-charts">various charts</a>
+        </span>
+        <span>
+            <p>FHNW Bachelor Thesis - Business Charts Toolkit</p>
+        </span>
+    </div>
 </footer>
 
 <!------------------------------------- script section -------------------------------------------->
