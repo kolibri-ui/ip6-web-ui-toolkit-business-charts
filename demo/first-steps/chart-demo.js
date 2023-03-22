@@ -100,6 +100,13 @@ const simpleController = SimpleAreaChartController(data,
             panningTool,
         ]
     });
+// append the projectors to your HTML bindings. 
+// Pass the controller for one data serie as parameter in your simple projector.
+document.getElementById('containerSimple').append(SimpleChartProjector(simpleController));
+
+const detailView = document.getElementById('detail-view-simple');
+detailView.append(DataTableViewProjector(DataTableViewController(simpleController, simpleController.getSeries()[0]), 'Data points'), SimpleDetailView(simpleController));
+
 
 // see the sample for the advanced version below:
 const advancedController = LineChartController([data, data2],
@@ -112,6 +119,8 @@ const advancedController = LineChartController([data, data2],
             panningTool,
         ]
     });
+// Pass the controller for more than one data serie as parameter in your advanced projector.
+document.getElementById('containerAdvanced').append(AdvancedChartProjector(advancedController));
 
 // see the sample for the advanced version with different chart types below:
 const multipleChartTypesController = ChartController(
@@ -125,21 +134,8 @@ const multipleChartTypesController = ChartController(
         panningTool,
     ]
 });
-
-// append the projectors to your HTML bindings. 
-// Pass the controller for one data serie as parameter in your simple projector.
-document.getElementById('containerSimple').append(SimpleChartProjector(simpleController));
-
-// Pass the controller for more than one data serie as parameter in your advanced projector.
-document.getElementById('containerAdvanced').append(AdvancedChartProjector(advancedController));
-
 // Pass the controller for different chart types as parameter in your advanced projector.
 document.getElementById('containerMultipleChartTypes').append(AdvancedChartProjector(multipleChartTypesController));
-
-
-//TODO add detail and table view when the corresponding projectors work
-const detailView = document.getElementById('detail-view');
-detailView.append(DataTableViewProjector(DataTableViewController(simpleController, simpleController.getSeries()[0]), 'Data points'), SimpleDetailView(simpleController));
 
 const detailViewMulti = document.getElementById('detail-view-multi');
 const tableViews = document.createElement("div");

@@ -11,9 +11,14 @@ import { rubberBandTool }             from "../../src/business-charts/projector/
 import { panningTool }                from "../../src/business-charts/projector/toolBar/tools/PanningTool.js";
 
 
-import { dataRunningPowerPlant } from "../data-files/testDataRunningPowerPlant.mjs";
-import { storagePlant }          from "../data-files/testDataStoragePlant.mjs";
-import { dataNuclear }           from "../data-files/testDataNuclear.mjs";
+import { dataRunningPowerPlant }   from "../data-files/testDataRunningPowerPlant.mjs";
+import { storagePlant }            from "../data-files/testDataStoragePlant.mjs";
+import { dataNuclear }             from "../data-files/testDataNuclear.mjs";
+import { DataTableViewProjector }  from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
+import { DataTableViewController } from "../../src/business-charts/projector/dataTableView/dataTableViewController.js";
+import {
+    SimpleDetailView
+}                                  from "../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
 
 /** @type { Array<ChartDataElement> } */ const dataSerie1 = [ {
     name: 'A1', xValue: -4, yValue: 2,
@@ -66,6 +71,16 @@ const controller = LineChartController([dataRunningPowerPlant, storagePlant, dat
     });
 
 document.getElementById('container').append(AdvancedChartProjector(controller));
+
+const detailView = document.getElementById('detail-view');
+const tableViews = document.createElement("div");
+tableViews.classList.add("data-table-views");
+tableViews.append(
+    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[0]), 'Data points serie 1'),
+    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[1]), 'Data points serie 2'),
+    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[2]), 'Data points serie 3')
+);
+detailView.append(tableViews, SimpleDetailView(controller));
 
 const pointSizeSlider1 = document.getElementById("data-point-size-1");
 pointSizeSlider1.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-1")) || 5;

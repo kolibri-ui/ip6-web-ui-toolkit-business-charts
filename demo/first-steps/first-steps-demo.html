@@ -8,66 +8,120 @@
     <link rel="stylesheet" href="../../src/Kolibri/docs/css/kolibri-base.css">
     <link rel="stylesheet" href="../../src/Kolibri/docs/css/kolibri-light-colors.css">
 
-<!--    <link rel="stylesheet" href="../css/charts-style.css"/>-->
-<!--    <link rel="stylesheet" href="../css/toolbar-style.css"/>-->
-
     <link rel="stylesheet" href="../../src/business-charts/css/grid.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/charts-base.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/selectionTool.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/dataTableView.css"/>
     <link rel="stylesheet" href="../../src/business-charts/css/simpleDetailView.css"/>
+<style>
+    main {
+        margin: 3em auto 3em auto;
+        padding: 1em;
+        min-height: 70em;
+        max-width: 42em;
+    }
+
+    section > div {
+        display: flex;
+        overflow: scroll;
+        padding: 1em;
+    }
+
+    /*detail-view {*/
+    /*    display: flex;*/
+    /*    flex-direction: row;*/
+    /*    max-width: 80%;*/
+    /*}*/
+    .data-table-views {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .data-table-views > * {
+        margin: 5px;
+    }
+
+    table {
+        display: block;
+        background: white; /* optional */
+    }
+
+    table thead {
+        text-align: left; /* optional */
+    }
+
+    table tbody {
+        display: block;
+        max-height: 200px;
+        overflow-y: scroll;
+    }
+
+</style>
 <body>
+<main>
+    <!-------------------------------------- chart section --------------------------------------------->
+    <div class="content">
+        <h3>
+            One data serie
+        </h3>
+        <div class="containerSimple" id="containerSimple">
+            <p>
+                All chart projectors provide a toolbar.
+            </p>
+            <p>
+                The projectors for one data serie contain axes with direct manipulation of the chart boundaries via input fields.
+            </p>
+        </div>
+        <section>
+            <p>Your detail view as table. By clicking on a point, the detail view is opened immediately.
+            </p>
+            <div class="detail-view" id="detail-view-simple">
+            </div>
+        </section>
 
-<!-------------------------------------- chart section --------------------------------------------->
-<div class="content">
-    <div class="containerSimple" id="containerSimple">
-        <p>
-            All chart projectors provide a toolbar.
-        </p>
-        <p>
-            The projectors for one data serie contain axes with direct manipulation of the chart boundaries via input fields.
-        </p>
-    </div>
-    <!--    //TODO add detail and table view when the corresponding projectors work-->
-    <div class="detail-view" id="detail-view">
-        <p>Your detail view as table. By clicking on a point, the detail view is opened immediately.
-        </p>
-    </div>
-    <div class="containerAdvanced" id="containerAdvanced">
-        <p>
-            The projectors for multiple data series provide one y-axis for each data serie.
-        </p>
-        <p>
-            Press shift and mouse on the corresponding axis to shift the range of the data serie.
-            Press cmd/ctrl and mouse on the corresponding axis for zooming.
-        </p>
-        <p>
-            On the x-axis it is possible to manipulate the chart section via mouse.
-            Adjusting the left and right axis range boundary via mouse modifies the amount of the data points displayed.
-            Shifting the axis range via mouse changes the first and the last data set displayed.
-        </p>
-    </div>
-    <div class="containerMultipleChartTypes" id="containerMultipleChartTypes">
-        <p>
-            The projectors for multiple data series provide one y-axis for each data serie.
-        </p>
-        <p>
-            Press shift and mouse on the corresponding axis to shift the range of the data serie.
-            Press cmd/ctrl and mouse on the corresponding axis for zooming.
-        </p>
-        <p>
-            On the x-axis it is possible to manipulate the chart section via mouse.
-            Adjusting the left and right axis range boundary via mouse modifies the amount of the data points displayed.
-            Shifting the axis range via mouse changes the first and the last data set displayed.
-        </p>
-    </div>
-    <!--    //TODO add detail and table view when the corresponding projectors work-->
-    <div class="detail-view-multi" id="detail-view-multi">
-        <p>Your detail view as table. By clicking on a point, the detail view is opened immediately.
-        </p>
-    </div>
-</div>
+        <h3>
+            More than one data serie
+        </h3>
+        <div class="containerAdvanced" id="containerAdvanced">
+            <p>
+                The projectors for multiple data series provide one y-axis for each data serie.
+            </p>
+            <p>
+                Press shift and mouse on the corresponding axis to shift the range of the data serie.
+                Press cmd/ctrl and mouse on the corresponding axis for zooming.
+            </p>
+            <p>
+                On the x-axis it is possible to manipulate the chart section via mouse.
+                Adjusting the left and right axis range boundary via mouse modifies the amount of the data points displayed.
+                Shifting the axis range via mouse changes the first and the last data set displayed.
+            </p>
+        </div>
 
+        <h3>
+            Different representations per data series
+        </h3>
+        <div class="containerMultipleChartTypes" id="containerMultipleChartTypes">
+            <p>
+                The projectors for multiple data series provide one y-axis for each data serie.
+            </p>
+            <p>
+                Press shift and mouse on the corresponding axis to shift the range of the data serie.
+                Press cmd/ctrl and mouse on the corresponding axis for zooming.
+            </p>
+            <p>
+                On the x-axis it is possible to manipulate the chart section via mouse.
+                Adjusting the left and right axis range boundary via mouse modifies the amount of the data points displayed.
+                Shifting the axis range via mouse changes the first and the last data set displayed.
+            </p>
+        </div>
+        <section>
+            <p>Your detail view as table. By clicking on a point, the detail view is opened immediately.
+            </p>
+            <div class="detail-view" id="detail-view-multi">
+            </div>
+        </section>
+    </div>
+</main>
 
 <!------------------------------------- script section -------------------------------------------->
 <script src="chart-demo.js" type="module"></script>
