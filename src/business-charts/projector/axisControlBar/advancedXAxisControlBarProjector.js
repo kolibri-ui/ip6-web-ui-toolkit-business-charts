@@ -57,10 +57,10 @@ const AdvancedXAxisControlBarProjector = (controller) => {
             xMin: controller.getBoundaries().xMin,
             xMax: controller.getBoundaries().xMax,
             yMin: serieController
-                  ? controller.getBoundaries().yMin * serieController.factor.getValue()
+                  ? controller.getBoundaries().yMin * serieController.factor.getValue() + serieController.shifting.getValue()
                   : controller.getBoundaries().yMin,
             yMax: serieController
-                  ? controller.getBoundaries().yMax * serieController.factor.getValue()
+                  ? controller.getBoundaries().yMax * serieController.factor.getValue() + serieController.shifting.getValue()
                   : controller.getBoundaries().yMax,
         };
 
