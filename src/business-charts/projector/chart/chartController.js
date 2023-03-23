@@ -373,7 +373,7 @@ const calcInitialYBoundaries = (yMin, yMax) => {
             yMinBoundarie = -1.0;
         }
     } else {
-        yMaxBoundarie = yMax <= 0 ? 0 : (yMax / yMin);
+        yMaxBoundarie = yMax <= 0 ? 0 : (yMax / yMinAbs);
         yMinBoundarie = -1.0;
     }
 
