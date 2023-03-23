@@ -14,7 +14,13 @@ Erweiterung des bestehenden [Kolibri Web UI Toolkits](https://github.com/WebEngi
 
 ## Ergebnisse
 
-Interaktionskonzept
+Technischer Bericht [TODO]()
+
+Technischer Beschrieb und Erste Schritte (EN):
+[howto.html](demo/first-steps/howto.html)
+
+Technischer Beschrieb und Erste Schritte (DE): [TODO Text überarbeiten]()
+[HOWTO.md](HOWTO.md)
 
 Implementation von Projektoren als wiederverwendbare Chart-Elemente:
 - Chart Projektoren
@@ -24,10 +30,19 @@ Implementation von Projektoren als wiederverwendbare Chart-Elemente:
 - Table View Projektor
 - Detail View Projektor
 
-[Demo](demo/first-steps/howto.html)
+Weitere Interaktionsbeispiele als [Klick-Prototyp](https://www.figma.com/proto/wjFrNkwuFoQM6mZREmWsWG/Kolibri-business-charts?page-id=201%3A4&node-id=201-4&starting-point-node-id=201%3A5&scaling=contain&show-proto-sidebar=1)
 
-## Datasets für Charts:
+[//]: # (für fhnw website)
+[//]: # (<iframe style="border: 1px solid rgba&#40;0, 0, 0, 0.1&#41;;" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FwjFrNkwuFoQM6mZREmWsWG%2FKolibri-business-charts%3Fpage-id%3D201%253A4%26node-id%3D201-4%26starting-point-node-id%3D201%253A5%26scaling%3Dcontain%26show-proto-sidebar%3D1" allowfullscreen></iframe>)
 
-- [Wochenstatistik Elektrizitätsbilanz - Erzeugung und Abgabe elektrischer Energie in der Schweiz](https://opendata.swiss/de/dataset/wochenstatistik-elektrizitatsbilanz-erzeugung-und-abgabe-elektrischer-energie-in-der-schweiz)
-- [Elektrizitätserzeugung](https://opendata.swiss/de/dataset/elektrizitatserzeugung)
-- [Elektrizitätsproduktionsanlagen](https://opendata.swiss/de/dataset/elektrizitatsproduktionsanlagen)
+Ergebnisse der Usability Tests [TODO]()
+
+[//]: # ()
+[//]: # (## Datasets für Charts:)
+
+[//]: # ()
+[//]: # (- [Wochenstatistik Elektrizitätsbilanz - Erzeugung und Abgabe elektrischer Energie in der Schweiz]&#40;https://opendata.swiss/de/dataset/wochenstatistik-elektrizitatsbilanz-erzeugung-und-abgabe-elektrischer-energie-in-der-schweiz&#41;)
+
+[//]: # (- [Elektrizitätserzeugung]&#40;https://opendata.swiss/de/dataset/elektrizitatserzeugung&#41;)
+
+[//]: # (- [Elektrizitätsproduktionsanlagen]&#40;https://opendata.swiss/de/dataset/elektrizitatsproduktionsanlagen&#41;)
