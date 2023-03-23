@@ -21,7 +21,7 @@ export { AdvancedChartProjector }
  * @return { HTMLDivElement }
  * @example
  * required controller: ScatterChartController || LineChartController || AreaChartController || ChartController
- * 
+ *
  * document.getElementById('container').append(AdvancedChartProjector(controller));
  */
 const AdvancedChartProjector = (controller) => {
@@ -38,12 +38,12 @@ const AdvancedChartProjector = (controller) => {
 
     const xAxisLabelingBar = XAxisLabelingBarProjector(controller);
     const yAxisLabelingBar = YAxisLabelingBarProjector(controller);
-    const xAxisBar = AdvancedXAxisControlBarProjector(controller);
+    const xAxisBar         = AdvancedXAxisControlBarProjector(controller);
 
-    const getOptions = optionsFunc(canvasElement, controller);
-    const redraw = redrawFunc(canvasElement, controller, getOptions);
-    const getDataPointsForPosition = getDataPointsForPositionFunc(controller, getOptions);
-    const setCanvasBoundaries = setCanvasBoundariesFunc(controller, getOptions);
+    const getOptions                = optionsFunc(canvasElement, controller);
+    const redraw                    = redrawFunc(canvasElement, controller, getOptions);
+    const getDataPointsForPosition  = getDataPointsForPositionFunc(controller, getOptions);
+    const setCanvasBoundaries       = setCanvasBoundariesFunc(controller, getOptions);
     const getCanvasPositionForPoint = getCanvasPositionForPointFunc(controller, getOptions);
 
     const toolBar = ToolBarProjector(
@@ -51,7 +51,7 @@ const AdvancedChartProjector = (controller) => {
         {
             getOptions,
             getDataPointsForPosition,
-            selectDataPoints: controller.setSelectedElements,
+            selectDataPoints     : controller.setSelectedElements,
             getSelectedDataPoints: controller.getSelectedElements,
             getCanvasPositionForPoint,
             setCanvasBoundaries,

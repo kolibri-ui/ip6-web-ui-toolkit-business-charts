@@ -21,8 +21,8 @@ export { DataTableViewController }
  * @constructor
  */
 const DataTableViewController = (controller, serieController) => ({
-    getData: serieController.getData,
-    setSelectedElements: controller.setSelectedElements,
-    getSelectedElements: controller.getSelectedElements,
+    getData                  : serieController.getData,
+    setSelectedElements      : controller.setSelectedElements,
+    getSelectedElements      : controller.getSelectedElements,
     onSelectedElementsChanged: controller.onSelectedElementsChanged
 });

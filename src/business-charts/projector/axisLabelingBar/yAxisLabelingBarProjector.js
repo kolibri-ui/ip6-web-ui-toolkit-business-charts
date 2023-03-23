@@ -1,22 +1,22 @@
 // noinspection SpellCheckingInspection
 
 import {
+    drawRect,
     drawText,
     drawTick,
     measureText,
     TICK_ORIENTATION
-}                                from "../../util/chartLabelingFunctions.js";
+}                                from "../../util/chartFunctions.js";
 import {
     calcYRatio,
     yCanvasToDomain,
     yDomainToCanvas
 }                                from "../../util/geometryFunctions.js";
-import { drawRect }              from "../../util/chartFunctions.js";
 import { registerChangeHandler } from "../../util/changeHandler.js";
 import {
     ctrlOrCmdPressed,
     defaultColors
-} from "../../util/functions.js";
+}                                from "../../util/functions.js";
 
 export { YAxisLabelingBarProjector }
 
@@ -43,13 +43,13 @@ const YAxisLabelingBarProjector = (controller) => {
          * @returns { ChartOptions }
          */
         const getOptions = () => {
-            const colors             = defaultColors();
-            let { width, height }    = canvasElement.getBoundingClientRect();
-            const pointSize          = 2;
-            let pointColor           = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${controller.id}-${ serie.id }`).trim();
-            pointColor               = pointColor.startsWith("#") ? pointColor : colors[serie.id % colors.length];
-            let selectedPointColor   = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${controller.id}-${ serie.id }`).trim();
-            selectedPointColor       = selectedPointColor.startsWith("#") ? selectedPointColor : '#FF0000';
+            const colors           = defaultColors();
+            let { width, height }  = canvasElement.getBoundingClientRect();
+            const pointSize        = 2;
+            let pointColor         = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${ controller.id }-${ serie.id }`).trim();
+            pointColor             = pointColor.startsWith("#") ? pointColor : colors[serie.id % colors.length];
+            let selectedPointColor = getComputedStyle(canvasElement).getPropertyValue(`--data-point-color-${ controller.id }-${ serie.id }`).trim();
+            selectedPointColor     = selectedPointColor.startsWith("#") ? selectedPointColor : '#FF0000';
 
             width  = width === 0 ? 500 : width;
             height = height === 0 ? 35 : height;
@@ -136,39 +136,39 @@ const addMouseEvents = (canvasElement, serieController, getOptions) => {
     let manipulationStartY;
 
     canvasElement.onmousedown = (event) => {
-        const rect       = canvasElement.getBoundingClientRect();
+        const rect         = canvasElement.getBoundingClientRect();
         manipulationStartY = event.y - rect.top;
 
         if (event && ctrlOrCmdPressed(event)) {
             manipulationActive = true;
-            changeType = 'CHANGE_FACTOR';
+            changeType         = 'CHANGE_FACTOR';
         } else if (event && event.shiftKey) {
             manipulationActive = true;
-            changeType = 'CHANGE_SHIFTING';
+            changeType         = 'CHANGE_SHIFTING';
         }
     };
 
     canvasElement.onmousemove = (event) => {
         if (manipulationActive) {
             const rect  = canvasElement.getBoundingClientRect();
-            const posY = event.y - rect.top;
+            const posY  = event.y - rect.top;
             const moveY = posY - manipulationStartY;
 
             const options = getOptions();
 
             if (changeType === 'CHANGE_FACTOR') {
-                const yNull = yDomainToCanvas(options.height, serieController.yMin.getValue(), serieController.yMax.getValue(), 0);
+                const yNull        = yDomainToCanvas(options.height, serieController.yMin.getValue(), serieController.yMax.getValue(), 0);
                 const prevDistNull = yNull - manipulationStartY;
-                const newDistNull = yNull - posY;
-                const factor = newDistNull / prevDistNull;
+                const newDistNull  = yNull - posY;
+                const factor       = newDistNull / prevDistNull;
 
                 serieController.yMin.setValue(serieController.yMin.getValue() / factor);
                 serieController.yMax.setValue(serieController.yMax.getValue() / factor);
 
                 serieController.factor.setValue(serieController.factor.getValue() / factor);
             } else if (changeType === 'CHANGE_SHIFTING') {
-                const yMax = yCanvasToDomain(options.height, serieController.yMin.getValue(), serieController.yMax.getValue(), moveY);
-                const shifting =  (serieController.yMax.getValue() - yMax);
+                const yMax     = yCanvasToDomain(options.height, serieController.yMin.getValue(), serieController.yMax.getValue(), moveY);
+                const shifting = (serieController.yMax.getValue() - yMax);
 
                 serieController.yMin.setValue(serieController.yMin.getValue() + shifting);
                 serieController.yMax.setValue(serieController.yMax.getValue() + shifting);

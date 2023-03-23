@@ -21,10 +21,10 @@ export {
  * @return { ChartControllerType }
  */
 const SimpleChartController = (dataSerie, opts) => {
-    if(!opts || !opts.tools) {
+    if (!opts || !opts.tools) {
         opts = {
             ...opts,
-            tools: [bubbleTooltipSelectionTool]
+            tools: [ bubbleTooltipSelectionTool ]
         }
     }
     const controller = ChartController([ dataSerie ], opts);
@@ -34,8 +34,8 @@ const SimpleChartController = (dataSerie, opts) => {
      * @type { ChartDataSeriesControllerType }
      */
     const serieController = controller.getSeries()[0];
-    const minMaxX = minMaxRule(controller.xMin, controller.xMax);
-    const minMaxY = minMaxRule(serieController.yMin, serieController.yMax);
+    const minMaxX         = minMaxRule(controller.xMin, controller.xMax);
+    const minMaxY         = minMaxRule(serieController.yMin, serieController.yMax);
 
     controller.xMin.onValueChanged(() => minMaxX("MIN"));
     controller.xMax.onValueChanged(() => minMaxX("MAX"));

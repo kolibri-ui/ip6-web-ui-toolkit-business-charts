@@ -6,7 +6,6 @@ import { ctrlOrCmdPressed } from "../../util/functions.js";
 export { DataTableViewProjector }
 
 
-
 /**
  *
  * @param { TableViewControllerType } controller table view controller
@@ -19,7 +18,7 @@ const DataTableViewProjector = (controller, title) => {
             <table class="chart-data-table">
                 <thead >
                     <tr>
-                        <th>${title ?? 'Data'}</th>
+                        <th>${ title ?? 'Data' }</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,7 +26,7 @@ const DataTableViewProjector = (controller, title) => {
             </table>
         </div>`
     );
-    const tbody = elements[0].children[0].children[1];
+    const tbody    = elements[0].children[0].children[1];
 
     /**
      * Clear existing rows and add a row to the table for every data element
@@ -36,7 +35,7 @@ const DataTableViewProjector = (controller, title) => {
         tbody.replaceChildren();
 
         for (const entry of controller.getData()) {
-            const row = document.createElement('tr');
+            const row  = document.createElement('tr');
             const cell = document.createElement('td');
             const text = document.createTextNode(entry.name);
             cell.append(text);
@@ -60,12 +59,13 @@ const DataTableViewProjector = (controller, title) => {
             row.onclick = (event) => {
                 if (event && ctrlOrCmdPressed(event)) {
                     if (controller.getSelectedElements().includes(entry)) {
-                        controller.setSelectedElements(controller.getSelectedElements().filter(element => element !== entry));
+                        controller.setSelectedElements(controller.getSelectedElements().filter(element => element
+                                                                                                          !== entry));
                     } else {
-                        controller.setSelectedElements([entry, ...controller.getSelectedElements()]);
+                        controller.setSelectedElements([ entry, ...controller.getSelectedElements() ]);
                     }
                 } else {
-                    controller.setSelectedElements([entry]);
+                    controller.setSelectedElements([ entry ]);
                 }
             }
         }

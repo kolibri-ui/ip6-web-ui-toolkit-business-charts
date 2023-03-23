@@ -1,6 +1,5 @@
 // noinspection SpellCheckingInspection
 
-import { drawScatterplotPoints } from "../../util/scatterChartFunctions.js";
 import {
     xCanvasToDomain,
     xDomainToCanvas
@@ -14,8 +13,11 @@ import {
     LINE_CHART,
     SCATTER_CHART
 }                                from "../chart/chartController.js";
-import { drawLinechartLine }     from "../../util/lineChartFunctions.js";
-import { drawAreachartArea }     from "../../util/areaChartFunctions.js";
+import {
+    drawAreachartArea,
+    drawLinechartLine,
+    drawScatterplotPoints
+}                                from "../../util/chartFunctions.js";
 import { registerChangeHandler } from "../../util/changeHandler.js";
 import { defaultColors }         from "../../util/functions.js";
 
@@ -42,11 +44,11 @@ const AdvancedXAxisControlBarProjector = (controller) => {
      * @returns { ChartOptions }
      */
     const getOptions = (serieController) => {
-        const colors             = defaultColors();
-        let { width, height }    = canvasElement.getBoundingClientRect();
-        const pointSize          = 2;
-        let pointColor           = getComputedStyle(canvasElement).getPropertyValue("--data-point-color").trim();
-        pointColor               = pointColor.startsWith("#") ? pointColor : colors[0];
+        const colors          = defaultColors();
+        let { width, height } = canvasElement.getBoundingClientRect();
+        const pointSize       = 2;
+        let pointColor        = getComputedStyle(canvasElement).getPropertyValue("--data-point-color").trim();
+        pointColor            = pointColor.startsWith("#") ? pointColor : colors[0];
 
         width  = width === 0 ? 500 : width;
         height = height === 0 ? 85 : height;

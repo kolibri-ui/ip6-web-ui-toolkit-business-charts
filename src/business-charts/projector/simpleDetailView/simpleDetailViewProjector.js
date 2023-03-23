@@ -27,9 +27,9 @@ const SimpleDetailView = (controller) => {
         for (const entry of controller.getSelectedElements()) {
             const entryViewElement = dom(`
                 <div class="simple-detail-view-entry">
-                    <span class="detail-view-name">${entry.name}</span>
-                    <span class="detail-view-value">X: ${entry.xValue}</span>
-                    <span class="detail-view-value">Y: ${entry.yValue}</span>
+                    <span class="detail-view-name">${ entry.name }</span>
+                    <span class="detail-view-value">X: ${ entry.xValue }</span>
+                    <span class="detail-view-value">Y: ${ entry.yValue }</span>
                 </div>
             `);
 

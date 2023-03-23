@@ -21,7 +21,7 @@ export { SimpleChartProjector }
  * @return { HTMLDivElement }
  * @example
  * required controller: SimpleScatterChartController || SimpleLineChartController || SimpleAreaChartController
- * 
+ *
  * document.getElementById('container').append(SimpleChartProjector(controller));
  */
 const SimpleChartProjector = (controller) => {
@@ -49,10 +49,10 @@ const SimpleChartProjector = (controller) => {
         max: controller.getSeries()[0].yMax
     });
 
-    const getOptions = optionsFunc(canvasElement, controller);
-    const redraw = redrawFunc(canvasElement, controller, getOptions);
-    const getDataPointsForPosition = getDataPointsForPositionFunc(controller, getOptions);
-    const setCanvasBoundaries = setCanvasBoundariesFunc(controller, getOptions);
+    const getOptions                = optionsFunc(canvasElement, controller);
+    const redraw                    = redrawFunc(canvasElement, controller, getOptions);
+    const getDataPointsForPosition  = getDataPointsForPositionFunc(controller, getOptions);
+    const setCanvasBoundaries       = setCanvasBoundariesFunc(controller, getOptions);
     const getCanvasPositionForPoint = getCanvasPositionForPointFunc(controller, getOptions);
 
     const toolBar = ToolBarProjector(
@@ -60,7 +60,7 @@ const SimpleChartProjector = (controller) => {
         {
             getOptions,
             getDataPointsForPosition,
-            selectDataPoints: controller.setSelectedElements,
+            selectDataPoints     : controller.setSelectedElements,
             getSelectedDataPoints: controller.getSelectedElements,
             getCanvasPositionForPoint,
             setCanvasBoundaries,

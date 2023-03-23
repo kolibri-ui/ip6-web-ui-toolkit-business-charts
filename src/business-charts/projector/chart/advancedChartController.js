@@ -7,7 +7,11 @@ import {
     SCATTER_CHART
 } from "./chartController.js";
 
-export { ScatterChartController, LineChartController, AreaChartController }
+export {
+    ScatterChartController,
+    LineChartController,
+    AreaChartController
+}
 
 /**
  * @description scatter chart controller for more than one data serie
@@ -26,7 +30,10 @@ export { ScatterChartController, LineChartController, AreaChartController }
  * });
  * Required projector: AdvancedChartProjector(controller);
  */
-const ScatterChartController = (data, opts) => ChartController(data.map((d) => ({ type: SCATTER_CHART, data: d })), opts);
+const ScatterChartController = (data, opts) => ChartController(data.map((d) => ({
+    type: SCATTER_CHART,
+    data: d
+})), opts);
 
 /**
  * @description line chart controller for more than one data serie

@@ -5,7 +5,7 @@ import {
     drawTick,
     measureText,
     TICK_ORIENTATION
-}                                from "../../util/chartLabelingFunctions.js";
+}                                from "../../util/chartFunctions.js";
 import {
     calcXRatio,
     xCanvasToDomain,
@@ -87,10 +87,10 @@ const XAxisLabelingBarProjector = (controller) => {
         xTick     = xTick < -5 ? xTick + xRatio * xEvery : xTick;
 
         while (xTick < (options.width + 5)) {
-            let text        = Math.round(
+            let text = Math.round(
                 xCanvasToDomain(options.width, controller.xMin.getValue(), controller.xMax.getValue(), xTick)
             );
-            text = controller.xAxisLabeling ? controller.xAxisLabeling.get(text) || text : text;
+            text     = controller.xAxisLabeling ? controller.xAxisLabeling.get(text) || text : text;
 
             /** @type { CanvasPoint2D } */
             const pointTick = { xValue: xTick, yValue: 0 };

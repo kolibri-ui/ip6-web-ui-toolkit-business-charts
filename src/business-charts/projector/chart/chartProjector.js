@@ -1,9 +1,11 @@
 // noinspection SpellCheckingInspection
 
-import { drawGrid }              from "../../util/chartGridFunctions.js";
-import { drawScatterplotPoints } from "../../util/scatterChartFunctions.js";
-import { drawLinechartLine }     from "../../util/lineChartFunctions.js";
-import { drawAreachartArea }     from "../../util/areaChartFunctions.js";
+import {
+    drawGrid,
+    drawAreachartArea,
+    drawScatterplotPoints,
+    drawLinechartLine
+}                                from "../../util/chartFunctions.js";
 import {
     pointCanvasToDomain,
     pointDomainToCanvas
