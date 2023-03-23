@@ -287,7 +287,7 @@ const ChartController = (dataSeries, opts) => {
         toolBarController
     };
 
-    if (opts.xAxisLabeling) {
+    if (opts && opts.xAxisLabeling) {
         controller.xAxisLabeling = opts.xAxisLabeling;
     }
 
