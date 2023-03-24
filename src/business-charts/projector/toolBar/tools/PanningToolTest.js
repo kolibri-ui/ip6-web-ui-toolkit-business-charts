@@ -48,10 +48,10 @@ const initValues = () => {
     yMaximum    = 0;
     redrawCount = 0;
 
-    const root                          = document.createElement("div");
+    const root = document.createElement("div");
 
-    let selectedDataPoints              = [];
-    const toolBarController             = ToolBarController({
+    let selectedDataPoints  = [];
+    const toolBarController = ToolBarController({
             getData              : () => [],
             selectDataPoints     : (elements) => selectedDataPoints = elements,
             getSelectedDataPoints: () => selectedDataPoints
@@ -60,7 +60,7 @@ const initValues = () => {
             panningTool,
         ]
     );
-    const toolBar                       = ToolBarProjector(
+    const toolBar           = ToolBarProjector(
         toolBarController,
         {
             getOptions,
@@ -81,7 +81,7 @@ const panningToolTestSuite = TestSuite("src/business-charts/projector/toolBar/to
 
 panningToolTestSuite.add("test PanningTool", assert => {
     const { toolBarController } = initValues();
-    const tool = toolBarController.selectedTool();
+    const tool                  = toolBarController.selectedTool();
     assert.is(tool.title, "Panning");
     assert.is(tool.tooltip, "panning");
     assert.isTrue(Object.prototype.hasOwnProperty.call(tool, "mouseDown"));
