@@ -30,13 +30,13 @@ simpleDetailViewControllerTestSuite.add("test simpleDetailViewProjector", assert
     const list = root.querySelector(".simple-detail-view-list");
     assert.is(list.children.length, 0);
 
-    controller.setSelectedElements([dataSerie.data[0]]);
+    controller.setSelectedElements([ dataSerie.data[0] ]);
     assert.is(list.children.length, 1);
     assert.is(list.children.item(0).querySelector(".detail-view-name").innerText, "A");
     assert.is(list.children.item(0).querySelectorAll(".detail-view-value")[0].innerText, "X: 1");
     assert.is(list.children.item(0).querySelectorAll(".detail-view-value")[1].innerText, "Y: 2");
 
-    controller.setSelectedElements([dataSerie.data[0], dataSerie.data[3]]);
+    controller.setSelectedElements([ dataSerie.data[0], dataSerie.data[3] ]);
     assert.is(list.children.length, 2);
 });
 
