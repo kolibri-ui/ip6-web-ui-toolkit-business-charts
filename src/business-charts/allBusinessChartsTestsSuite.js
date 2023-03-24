@@ -1,16 +1,42 @@
+// noinspection SpellCheckingInspection
+
+import { total } from "../Kolibri/docs/src/kolibri/util/test.js";
+
 //util tests
-import "./util/geometryFunctionsTest.js"
+import "./util/functionsTest.js";
+import "./util/geometryFunctionsTest.js";
 
-//projector tests
-import "./projector/simpleScatterChart/simpleScatterChartProjectorTest.js"
-import "./projector/simpleLineChart/simpleLineChartProjectorTest.js"
+// chart tests
+import "./projector/chart/chartControllerTest.js";
+import "./projector/chart/chartProjectorTest.js";
+import "./projector/chart/advancedChartControllerTest.js";
+import "./projector/chart/advancedChartProjectorTest.js";
+import "./projector/chart/simpleChartControllerTest.js";
+import "./projector/chart/simpleChartProjectorTest.js";
 
-//model tests
+// axis control bar tests
+import "./projector/axisControlBar/advancedXAxisControlBarProjectorTest.js";
+import "./projector/axisControlBar/simpleAxisControlBarProjectorTest.js";
 
-//controller tests
-import "./projector/simpleScatterChart/simpleScatterChartControllerTest.js"
-import "./projector/simpleLineChart/simpleLineChartControllerTest.js"
+// axis control bar tests
+import "./projector/axisLabelingBar/xAxisLabelingBarProjectorTest.js";
+import "./projector/axisLabelingBar/yAxisLabelingBarProjectorTest.js";
 
-//demo tests
-// import "../../demo/simple-bar-chart/simple-bar-chart-demoTest.js"
-// import "../../demo/simple-scatterplot-chart/area-chart-demoTest.js"
+// toolbar tests
+import "./projector/toolBar/toolBarControllerTest.js";
+import "./projector/toolBar/toolBarProjectorTest.js";
+import "./projector/toolBar/tools/PanningToolTest.js";
+import "./projector/toolBar/tools/RubberbandToolTest.js";
+import "./projector/toolBar/tools/SelectionToolTest.js";
+import "./projector/toolBar/tools/selectionToolTooltipProjectorTest.js";
+import "./projector/toolBar/tools/ZoomInToolTest.js";
+import "./projector/toolBar/tools/ZoomOutToolTest.js";
+
+// data table view tests
+import "./projector/dataTableView/dataTableViewControllerTest.js";
+import "./projector/dataTableView/dataTableViewProjectorTest.js";
+
+// simple detail view tests
+import "./projector/simpleDetailView/simpleDetailViewProjectorTest.js";
+
+total.onChange( value => document.getElementById('grossTotal').textContent = "" + value + " tests done.");
