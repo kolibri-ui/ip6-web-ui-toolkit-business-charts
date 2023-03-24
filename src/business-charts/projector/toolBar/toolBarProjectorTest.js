@@ -17,6 +17,7 @@ const getDataPointsForPosition  = () => [];
 const getCanvasPositionForPoint = (_) => ({ xValue: 200, yValue: 100 });
 /** @type { (xMin: Number, xMax: Number, yMin: Number, yMax: Number) => void } */
 const setCanvasBoundaries       = () => undefined;
+/** @type { () => void } */
 const redraw                    = () => undefined;
 
 
