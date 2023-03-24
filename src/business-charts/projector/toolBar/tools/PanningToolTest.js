@@ -75,6 +75,16 @@ const initValues = () => {
 
 const panningToolTestSuite = TestSuite("src/business-charts/projector/toolBar/tools/PanningTool");
 
+panningToolTestSuite.add("test PanningTool", assert => {
+    const tool = toolBarController.selectedTool();
+    assert.is(tool.title, "Panning");
+    assert.is(tool.tooltip, "panning");
+    assert.isTrue(Object.prototype.hasOwnProperty.call(tool, "mouseDown"));
+    assert.isTrue(Object.prototype.hasOwnProperty.call(tool, "mouseMove"));
+    assert.isTrue(Object.prototype.hasOwnProperty.call(tool, "mouseUp"));
+    assert.isTrue(Object.prototype.hasOwnProperty.call(tool, "mouseEnter"));
+});
+
 panningToolTestSuite.add("test PanningTool mouse move", assert => {
     initValues();
 
