@@ -26,9 +26,6 @@ export { ToolBarProjector }
  * @property { () => ChartOptions }                                               getOptions get chart options
  * @property { (mouseX: Number, mouseY: Number) => Array<ChartDataElement> }      getDataPointsForPosition get data
  *     elements for given position on canvas
- * @property { (elements: Array<ChartDataElement>) => void }                      selectDataPoints select data elements
- * @property { () => Array<ChartDataElement> }                                    getSelectedDataPoints get selected
- *     data elements
  * @property { ( DomainPoint2D ) => CanvasPoint2D }                               getCanvasPositionForPoint get
  *     position on canvas for given element
  * @property { (xMin: Number, xMax: Number, yMin: Number, yMax: Number) => void } setCanvasBoundaries set new
