@@ -1,11 +1,11 @@
 // noinspection SpellCheckingInspection
 
-import { TestSuite }                        from "../../../Kolibri/docs/src/kolibri/util/test.js";
+import { TestSuite }                 from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import {
     ChartController,
     SCATTER_CHART
-}                                           from "../chart/chartController.js";
-import { XAxisLabelingBarProjector }        from "./xAxisLabelingBarProjector.js";
+}                                    from "../chart/chartController.js";
+import { XAxisLabelingBarProjector } from "./xAxisLabelingBarProjector.js";
 
 /** @type { ChartDataSerie } */
 const dataSerie = {

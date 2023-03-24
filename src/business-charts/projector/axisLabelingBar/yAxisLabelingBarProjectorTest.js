@@ -1,12 +1,12 @@
 // noinspection SpellCheckingInspection
 
-import { TestSuite }                        from "../../../Kolibri/docs/src/kolibri/util/test.js";
+import { TestSuite }                 from "../../../Kolibri/docs/src/kolibri/util/test.js";
 import {
     ChartController,
     LINE_CHART,
     SCATTER_CHART
-} from "../chart/chartController.js";
-import { YAxisLabelingBarProjector }        from "./yAxisLabelingBarProjector.js";
+}                                    from "../chart/chartController.js";
+import { YAxisLabelingBarProjector } from "./yAxisLabelingBarProjector.js";
 
 /** @type { ChartDataSerie } */
 const dataSerie1 = {
