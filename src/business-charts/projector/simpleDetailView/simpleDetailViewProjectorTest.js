@@ -18,9 +18,9 @@ const dataSerie = {
     ]
 };
 
-const dataTableViewControllerTestSuite = TestSuite("src/business-charts/projector/dataTableView/dataTableViewProjector");
+const simpleDetailViewControllerTestSuite = TestSuite("src/business-charts/projector/simpleDetailView/simpleDetailViewProjector");
 
-dataTableViewControllerTestSuite.add("test dataTableViewProjector", assert => {
+simpleDetailViewControllerTestSuite.add("test simpleDetailViewProjector", assert => {
     const root       = document.createElement("div");
     const controller = ChartController([ dataSerie ]);
     const detailView = SimpleDetailView(controller);
@@ -40,4 +40,4 @@ dataTableViewControllerTestSuite.add("test dataTableViewProjector", assert => {
     assert.is(list.children.length, 2);
 });
 
-dataTableViewControllerTestSuite.run();
+simpleDetailViewControllerTestSuite.run();
