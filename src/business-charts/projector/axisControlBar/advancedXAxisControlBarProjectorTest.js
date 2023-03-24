@@ -20,7 +20,7 @@ const dataSerie = {
 
 const advancedXAxisControlBarProjectorTestSuite = TestSuite("src/business-charts/projector/axisControlBar/advancedXAxisControlBarProjector");
 
-advancedXAxisControlBarProjectorTestSuite.add("test advancedAxisControlBarProjector for x-axis", assert => {
+advancedXAxisControlBarProjectorTestSuite.add("test advancedXAxisControlBarProjector", assert => {
     const root       = document.createElement("div");
     const controller = ChartController([ dataSerie ]);
     const chart      = AdvancedXAxisControlBarProjector(controller);
