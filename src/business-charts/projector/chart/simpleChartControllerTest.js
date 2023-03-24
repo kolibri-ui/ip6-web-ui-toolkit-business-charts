@@ -63,12 +63,20 @@ simpleChartControllerTestSuite.add("test min-max rule", assert => {
 
     assert.is(serieController.yMin.getValue(), -5);
     assert.is(serieController.yMax.getValue(), 3);
+    assert.is(controller.xMin.getValue(), 1);
+    assert.is(controller.xMax.getValue(), 4);
 
     serieController.yMax.setValue(-6);
     assert.is(serieController.yMin.getValue(), -7);
 
     serieController.yMin.setValue(-2);
     assert.is(serieController.yMax.getValue(), -1);
+
+    controller.xMax.setValue(1);
+    assert.is(controller.xMin.getValue(), 0);
+
+    controller.xMin.setValue(3);
+    assert.is(controller.xMax.getValue(), 4);
 });
 
 simpleChartControllerTestSuite.run();
