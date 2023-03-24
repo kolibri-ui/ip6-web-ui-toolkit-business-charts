@@ -30,7 +30,7 @@ const dataSerie2 = {
     ]
 };
 
-const advancedChartProjectorTestSuite = TestSuite("src/business-charts/projector/chart/chartProjector");
+const advancedChartProjectorTestSuite = TestSuite("src/business-charts/projector/chart/advancedChartProjector");
 
 advancedChartProjectorTestSuite.add("test advanced chart projector with single data serie", assert => {
     const root = document.createElement("div");
