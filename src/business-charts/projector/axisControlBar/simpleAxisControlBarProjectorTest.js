@@ -1,7 +1,7 @@
 // noinspection SpellCheckingInspection
 
 import { TestSuite }                     from "../../../Kolibri/docs/src/kolibri/util/test.js";
-import { SimpleInputController } from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputController.js";
+import { SimpleInputController }         from "../../../Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputController.js";
 import { SimpleAxisControlBarProjector } from "./simpleAxisControlBarProjector.js";
 
 const simpleAxisControlBarProjectorTestSuite = TestSuite("src/business-charts/projector/axisControlBar/simpleAxisControlBarProjector");
