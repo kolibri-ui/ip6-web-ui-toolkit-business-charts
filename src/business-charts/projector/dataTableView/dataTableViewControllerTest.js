@@ -21,20 +21,20 @@ const dataSerie = {
 const dataTableViewControllerTestSuite = TestSuite("src/business-charts/projector/dataTableView/dataTableViewController");
 
 dataTableViewControllerTestSuite.add("test dataTableViewController", assert => {
-    const chartController = ChartController([ dataSerie ]);
+    const chartController     = ChartController([ dataSerie ]);
     const tableViewController = DataTableViewController(chartController, chartController.getSeries()[0]);
-    let count = 0;
+    let count                 = 0;
     tableViewController.onSelectedElementsChanged(() => count++);
 
     assert.is(tableViewController.getData(), dataSerie.data);
 
     assert.is(tableViewController.getSelectedElements().length, 0);
-    chartController.setSelectedElements([dataSerie.data[0]]);
+    chartController.setSelectedElements([ dataSerie.data[0] ]);
     assert.is(tableViewController.getSelectedElements().length, 1);
     assert.isTrue(tableViewController.getSelectedElements().includes(dataSerie.data[0]));
     assert.is(count, 2);
 
-    tableViewController.setSelectedElements([dataSerie.data[1]]);
+    tableViewController.setSelectedElements([ dataSerie.data[1] ]);
     assert.is(tableViewController.getSelectedElements().length, 1);
     assert.isTrue(tableViewController.getSelectedElements().includes(dataSerie.data[1]));
     assert.is(count, 3);
