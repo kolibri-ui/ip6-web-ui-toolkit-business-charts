@@ -48,9 +48,9 @@ const initValues = () => {
     yMaximum    = 0;
     redrawCount = 0;
 
-    const root                          = document.createElement("div");
-    let selectedDataPoints              = [];
-    const toolBarController             = ToolBarController({
+    const root              = document.createElement("div");
+    let selectedDataPoints  = [];
+    const toolBarController = ToolBarController({
             getData              : () => [],
             selectDataPoints     : (elements) => selectedDataPoints = elements,
             getSelectedDataPoints: () => selectedDataPoints
@@ -59,7 +59,7 @@ const initValues = () => {
             rubberBandTool,
         ]
     );
-    const toolBar                       = ToolBarProjector(
+    const toolBar           = ToolBarProjector(
         toolBarController,
         {
             getOptions,
@@ -80,7 +80,7 @@ const panningToolTestSuite = TestSuite("src/business-charts/projector/toolBar/to
 
 panningToolTestSuite.add("test RubberbandTool", assert => {
     const { toolBarController } = initValues();
-    const tool = toolBarController.selectedTool();
+    const tool                  = toolBarController.selectedTool();
     assert.is(tool.title, "Rubberband Zoom");
     assert.is(tool.tooltip, "rubberband zooming");
     assert.isTrue(Object.prototype.hasOwnProperty.call(tool, "mouseDown"));
