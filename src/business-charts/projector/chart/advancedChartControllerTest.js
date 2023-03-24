@@ -12,8 +12,6 @@ import {
     SCATTER_CHART
 } from "./chartController.js";
 
-const advancedChartControllerTestSuite = TestSuite("src/business-charts/projector/chart/advancedChartController");
-
 /** @type { Array<ChartDataElement> } */
 const data = [
     { name: 'A', xValue: 1, yValue: 2, },
@@ -21,6 +19,9 @@ const data = [
     { name: 'C', xValue: 3, yValue: 1, },
     { name: 'D', xValue: 4, yValue: -5, },
 ];
+
+const advancedChartControllerTestSuite = TestSuite("src/business-charts/projector/chart/advancedChartController");
+
 advancedChartControllerTestSuite.add("test ScatterChartController", assert => {
     const controller = ScatterChartController([data]);
     assert.is(controller.getSeries().length, 1);
