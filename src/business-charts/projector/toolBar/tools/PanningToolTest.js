@@ -28,7 +28,6 @@ const setCanvasBoundaries = (xMin, xMax, yMin, yMax) => {
 /** @type { () => void } */
 const redraw              = () => redrawCount++;
 
-const root                          = document.createElement("div");
 const canvasElement                 = document.createElement("canvas");
 // simulate getBoundingClientRect function
 canvasElement.getBoundingClientRect = () => ({
@@ -41,29 +40,6 @@ canvasElement.getBoundingClientRect = () => ({
     bottom: 110,
     left  : 10,
 });
-let selectedDataPoints              = [];
-const toolBarController             = ToolBarController({
-        getData              : () => [],
-        selectDataPoints     : (elements) => selectedDataPoints = elements,
-        getSelectedDataPoints: () => selectedDataPoints
-    },
-    [
-        panningTool,
-    ]
-);
-const toolBar                       = ToolBarProjector(
-    toolBarController,
-    {
-        getOptions,
-        getDataPointsForPosition,
-        getCanvasPositionForPoint,
-        setCanvasBoundaries,
-        redraw
-    },
-    canvasElement
-);
-
-root.append(toolBar);
 
 const initValues = () => {
     xMinimum    = 0;
@@ -71,11 +47,40 @@ const initValues = () => {
     yMinimum    = 0;
     yMaximum    = 0;
     redrawCount = 0;
+
+    const root                          = document.createElement("div");
+
+    let selectedDataPoints              = [];
+    const toolBarController             = ToolBarController({
+            getData              : () => [],
+            selectDataPoints     : (elements) => selectedDataPoints = elements,
+            getSelectedDataPoints: () => selectedDataPoints
+        },
+        [
+            panningTool,
+        ]
+    );
+    const toolBar                       = ToolBarProjector(
+        toolBarController,
+        {
+            getOptions,
+            getDataPointsForPosition,
+            getCanvasPositionForPoint,
+            setCanvasBoundaries,
+            redraw
+        },
+        canvasElement
+    );
+
+    root.append(toolBar);
+
+    return { root, toolBarController, toolBar };
 };
 
 const panningToolTestSuite = TestSuite("src/business-charts/projector/toolBar/tools/PanningTool");
 
 panningToolTestSuite.add("test PanningTool", assert => {
+    const { toolBarController } = initValues();
     const tool = toolBarController.selectedTool();
     assert.is(tool.title, "Panning");
     assert.is(tool.tooltip, "panning");
