@@ -9,18 +9,10 @@ import { rubberBandTool }             from "./tools/RubberbandTool.js";
 import { panningTool }                from "./tools/PanningTool.js";
 import { ToolBarProjector }           from "./toolBarProjector.js";
 
-/** @type { Array<ChartDataElement> } */
-const data = [
-    { name: 'A', xValue: 1, yValue: 2, },
-    { name: 'B', xValue: 2, yValue: 3, },
-    { name: 'C', xValue: 3, yValue: 1, },
-    { name: 'D', xValue: 4, yValue: -5, },
-];
-
 /** @type { () => ChartOptions } */
 const getOptions                = () => ({});
 /** @type { (mouseX: Number, mouseY: Number) => Array<ChartDataElement> } */
-const getDataPointsForPosition  = () => [ data[0] ];
+const getDataPointsForPosition  = () => [];
 /** @type { ( DomainPoint2D ) => CanvasPoint2D } */
 const getCanvasPositionForPoint = (_) => ({ xValue: 200, yValue: 100 });
 /** @type { (xMin: Number, xMax: Number, yMin: Number, yMax: Number) => void } */
@@ -35,7 +27,7 @@ toolBarProjectorTestSuite.add("test toolBarProjector", assert => {
     const canvasElement     = document.createElement("canvas");
     let selectedDataPoints  = [];
     const toolBarController = ToolBarController({
-            getData              : () => data,
+            getData              : () => [],
             selectDataPoints     : (elements) => selectedDataPoints = elements,
             getSelectedDataPoints: () => selectedDataPoints
         },
