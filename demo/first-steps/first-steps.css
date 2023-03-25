@@ -117,3 +117,6 @@ footer a {
 /*    flex-direction: row;*/
 /*    justify-content: stretch;*/
 /*}*/
+.containerDemoDetail > div {
+    margin: 0.5em;
+}

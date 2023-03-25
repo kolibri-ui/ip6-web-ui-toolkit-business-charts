@@ -12,32 +12,40 @@ Dies ermöglicht eine schnelle und kostengünstige Änderung des "Look and Feel"
 
 ## Baue Geschäftsapplikationen für die Datenanalyse mit wenigen Codezeilen
 
-Mit Kolibri Business Charts können Sie schnell interaktive Diagramme für individuelle Geschäftsanalyseanwendungen entwickeln.
-Es bietet Projektoren für die baukastenartige Erstellung von Charts.
-Dies gibt Entwickler*innen eine hohe Flexibilität.
+Mit Kolibri Business Charts können schnell interaktive Diagramme für Datenanalysen entwickelt werden.
+Es bietet Projektoren für den Aufbau von Diagrammen als Baukastensystem.
+Dies bietet eine hohe Flexibilität, um Datenanalyst*innen jene Anwendung bereitzustellen, die sie benötigen.
 
 ## Aufbau und Verwendung des Toolkits
 
-Es gibt verschiedene Wege das Toolkit zu verwenden. Die einfachste Möglichkeit ist, du kopierst den kompletten src-Ordner (/src) in dein Projekt und verwendest die verschiedenen Projektoren und css-Dateien. Da das Toolkit keine externen Abhängigkeiten besitzt, ist die Grösse minimal und hat somit praktisch keinen Einfluss auf die Performance.
-
-Das Toolkit braucht lediglich plain JavaScript, HTML5, CSS und eine IDE deines Vertrauens.
+Es gibt mehrere Möglichkeiten, das Toolkit zu verwenden.
+Der einfachste Weg ist den kompletten src-Ordner in das Projekt zu kopieren.
+Da das Toolkit keine externen Abhängigkeiten hat, ist die Größe minimal.
+Daher hat es praktisch keine Auswirkungen auf die Leistung.
+Das Toolkit erfordert plain JavaScript, HTML5, CSS und eine IDE.
 
 ### /src
 
-Kopiere den gesamten src-Ordner in dein Projekt und du hast Zugriff auf alle Projektoren des Kolibri UI Toolkits.
+Um auf alle Projektoren Zugriff zu haben, kann der gesamte src-Ordner des Kolibri UI Toolkits in das Projekt kopiert werden.
+Möglich ist auch das Herauskopieren einzelner Projektoren.
 
 #### /src/business-charts
 
-In diesem Ordner sind alle Projektoren (/src/business-charts/projector) und Styles (/src/business-charts/css) für den Aufbau einer Charts Web App enthalten. Im utils-Ordner (/src/business-charts/utils) sind Hilfsfunktionen abgelegt, welche für die Chartprojektoren notwendig sind.
+In diesem Ordner sind alle Projektoren (/src/business-charts/projector) 
+und Styles (/src/business-charts/css) für den Aufbau einer Charts Web App enthalten.
+Im utils-Ordner (/src/business-charts/utils) sind Hilfsfunktionen abgelegt, welche für die Chartprojektoren notwendig sind.
 
 #### /src/Kolibri
 
-Unter diesem Verzeichnis ist das gesamte [Kolibri Web UI Toolkit](https://github.com/webengineering-fhnw/Kolibri/) mit Beispielen und wiederverwendbaren Projektoren enthalten, welches für die Entwicklung der Kolibri Business Charts die Basis war. In den Business Charts Projektoren wurde zum Beispiel der [simpleInputProjector](src/Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputProjector.js) verwendet.
-
+Unter diesem Verzeichnis ist das gesamte [Kolibri Web UI Toolkit](https://github.com/webengineering-fhnw/Kolibri/) 
+mit Beispielen und wiederverwendbaren Projektoren enthalten, 
+welches für die Entwicklung der Kolibri Business Charts die Basis war. 
+In den Business Charts Projektoren wurde zum Beispiel der 
+[simpleInputProjector](src/Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputProjector.js) verwendet.
 
 ### /demo
 
-Im Demo-Ordner findest du Beispiele wie die Business Charts Projektoren verwendet werden können. 
+Im Demo-Ordner sind Beispiele für die Verwendung der Business Charts Projektoren abgelegt. 
 
 ### Anleitung
 

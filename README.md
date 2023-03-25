@@ -14,6 +14,9 @@ Erweiterung des bestehenden [Kolibri Web UI Toolkits](https://github.com/WebEngi
 
 ## Ergebnisse
 
+![Auscchnitt Demo App](demo/assets/images/multiSeries.png "DemoApp")
+![Auscchnitt Demo App](demo/assets/images/multiSeriesData.png "DemoApp")
+
 Technischer Bericht [TODO]()
 
 Technischer Beschrieb und Erste Schritte (EN):

@@ -166,3 +166,12 @@ tableViews.append(
 detailViewMulti.append(
     tableViews, 
     SimpleDetailView(multipleChartTypesController));
+
+
+document.getElementById('containerDemo').append(AdvancedChartProjector(advancedController));
+const detailViewDemo = document.getElementById('detailViewDemo');
+detailViewDemo.append(
+    DataTableViewProjector(DataTableViewController(advancedController, advancedController.getSeries()[0]), 'Serie 1'),
+    DataTableViewProjector(DataTableViewController(advancedController, advancedController.getSeries()[1]), 'Serie 2'),
+    SimpleDetailView(advancedController),
+);

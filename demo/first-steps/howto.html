@@ -93,15 +93,19 @@
             <h3>/demo</h3>
             <p>
                 Within the demo folder you can find examples how to use the Business Charts projectors.
-                Take a look at the short <a href="#first-steps">first steps tutorial</a> to create a chart in a few steps, as shown in the screenshots below.
-            </p>
-            <p><img src="../assets/images/first-steps_chart.png"
-                    alt="screenshot of the first steps chart with table and detail view">
-            </p>
-            <p><img src="../assets/images/first-steps_tableView_and_detailView.png"
-                    alt="screenshot of the first steps chart with table and detail view">
+                Take a look at the short
+                <a href="#first-steps">first steps tutorial</a>
+                to create a chart in a few steps as shown below.
             </p>
         </div>
+    </section>
+    <div class="containerSimple" id="containerDemo">
+    </div>
+    <section>
+        <div class="containerDemoDetail" id="detailViewDemo">
+        </div>
+    </section>
+    <section class="description">
         <div>
             <h3>JSDoc</h3>
             <p>
@@ -111,7 +115,6 @@
             </p>
         </div>
     </section>
-
     <!-------------------------------------- features ---------------------------------------------------->
 
     <section class="description">
@@ -226,6 +229,8 @@
                 </li>
                 <li>
                     Depending on the projectors you need, add the relevant links for the styling in the CSS section.
+                    To display the Projectors in a grid, you need grid.css.
+
                     <pre><code>&lt;!-&#45;&#45; css section -&#45;&#45;&gt;</code></pre>
                     <pre><code>&lt;link rel="stylesheet" href=".../kolibri-css-files..."&gt;</code></pre>
                     <pre><code>&lt;link rel="stylesheet" href=".../business-charts-css-files..."&gt;</code></pre>
@@ -285,14 +290,24 @@
                     to your html <code>container</code>.
                     <pre><code>document.getElementById('container').append(
                         SimpleChartProjector(simpleController));</code></pre>
+                    <h4>Avoid mishaps</h4>
+                    <div>Please make sure to import the corresponding scripts with .js extension.</div>
+                    <pre><code>import { ... }   from "../../scriptName.js";</code></pre>
                 </li>
             </ol>
         </div>
+
     </section>
     <section class="description">
         <div>
-            <h4>Setup .css</h4>
-            Make sure you have linked the appropriate css files in your html for the projectors you are using.
+            <h4>Minimal .css files</h4>
+            <div>For the arrangement of the chart projectors to be displayed correctly,
+                grid.css and charts-base.css are required at a minimum.</div>
+            <pre><code>&lt;link rel="stylesheet" href=".../src/business-charts/css/grid.css"&gt;</code></pre>
+            <pre><code>&lt;link rel="stylesheet" href=".../src/business-charts/css/charts-base.css"&gt;</code></pre>
+
+            <h4>Optional .css files</h4>
+            Take a look at <code>business-charts/css/</code> and <code>kolibri/css/</code>.
             As mentioned above, it is possible to override and extend the default CSS files with customized styles.
         </div>
         <div>
@@ -313,11 +328,11 @@
     <section class="description">
         <h3 id="change-simple-projector">Change Data representation for one data serie</h3>
         <p>
-            If you want to change the representation of the data, you only need to replace the corresponding controller.
+            If you want to change the representation of the data of your <code>SimpleChartProjector()</code>,
+            you only need to replace the corresponding controller.
         </p>
         <pre><code>const controller = Simple<s>Area</s>ChartController(data, {...});</code></pre>
         <pre><code>const controller = SimpleLineChartController(data, {...});</code></pre>
-    </section>
     <section class="description">
         <h3 id="advanced-projector">Projectors for more than one data serie</h3>
         <p>
@@ -327,18 +342,22 @@
         <pre><code>const controller = <s>Simple</s>LineChartController(data, {...});</code></pre>
         <pre><code>const controller = LineChartController([data, data2], {...});</code></pre>
         <p>
-            Now the AdvancedChartProjector() is used instead of the SimpleChartProjector().
+            Now the <code>AdvancedChartProjector()</code> is used instead of the <code>SimpleChartProjector()</code>.
         </p>
         <pre><code>document.getElementById('container').append(<s>SimpleChart</s>Projector(controller));</code></pre>
         <pre><code>document.getElementById('container').append(AdvancedChartProjector(controller));</code></pre>
     </section>
     <section class="description">
-        <h3 id="multi-projector">Different data represantations</h3>
+        <h3 id="multi-projector">Different data representations</h3>
         <p>
             The <code>AdvancedChartProjector()</code>
             may also be used if you want to visualise the data series differently.
             For this purpose you need the <code>ChartController()</code>.
+            The difference is that the first argument requires
+            objects with the chart type to be displayed and the respective data series.
         </p>
+        <pre><code>const controller = <s>SimpleArea</s>ChartController(<s>data</s>, {...});</code></pre>
+        <pre><code>const controller = <s>Line</s>ChartController([<s>data, data2</s>], {...});</code></pre>
         <pre><code>const controller = ChartController(
             [
             { type: SCATTER_CHART, data: data  },
@@ -353,8 +372,7 @@
     <section class="description">
         <h2 id="bindings">Data Binding of simple detail and data table view</h2>
         <p>
-            All chart controllers have a binding to the simpleDetailView and the dataTableView Projectors.
-            If you have created a controller, just put it to the data point view.
+            All chart controllers have a binding to the <code>SimpleDetailViewProjector()</code> and the <code>DataTableViewProjector()</code>.
         </p>
         <h3>Simple Detail View</h3>
         <p>
@@ -366,40 +384,52 @@
         </p>
         <pre><code>const detailView = document.getElementById('detail-view');</code></pre>
         <p>
-            If you already have a controller, just append it to the detail view element.
+            If you already have a simple controller for one data serie, just append it to the detail view element.
         </p>
-        <pre><code>detailView.append(
-            DataTableViewProjector(
-            DataTableViewController(controller, controller.getSeries()[0]), 'Data points'),
-            SimpleDetailView(controller));
-</code></pre>
+        <pre><code>detailView.append(SimpleDetailView(controller);</code></pre>
         <h3>Data Table View</h3>
         <p>
-            To see detailed information of the data points, create a new div element.
+            To display the data points as a table,
+            just append the <code>DataTableViewProjector()</code> with it's <code>DataTableViewController()</code>.
+        The <code>DataTableViewController()</code> needs the controller as first argument,
+            then the data serie and an optional title.
+<!--        <pre><code>detailView.append(<s>SimpleDetailView(controller)</s>;</code></pre>-->
+        <pre><code>detailView.append(
+        SimpleDetailView(controller),
+        DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[0]), 'Data points serie 1'),
+        DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[1]), 'Data points serie 2'),
+        );</code></pre>
+        </p>
+        <p>
+            You can also create a new div element in the classList for the table views and append it to the detail view.
+            Have a look at the following solution.
+        </p>
+        <h4>Add a new div element to classList for the table views</h4>
+        <p>
+            To put the table views in a new html element, create a new div element and add it to classList.
         </p>
         <pre><code>const tableViews = document.createElement("div");</code></pre>
-        <p>
-            Add the html element to classList.
-        </p>
         <pre><code>tableViews.classList.add("data-table-views");</code></pre>
         <p>
             Append the projectors with its controllers.
         </p>
         <pre><code>tableViews.classList.add("data-table-views");
 tableViews.append(
-    DataTableViewProjector(DataTableViewController(multipleChartTypesController,
-            multipleChartTypesController.getSeries()[0]), 'Data points serie 1'),
-    DataTableViewProjector(DataTableViewController(multipleChartTypesController,
-            multipleChartTypesController.getSeries()[1]), 'Data points serie 2'),
-    DataTableViewProjector(DataTableViewController(multipleChartTypesController,
-            multipleChartTypesController.getSeries()[2]), 'Data points serie 3')
-);</code></pre>
+    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[0]), 'Data points serie 1'),
+    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[1]), 'Data points serie 2'),
+    );</code></pre>
         <p>
-            Append the table view to the detail view.
+            For the last step, append the table view to the detail view.
         </p>
         <pre><code>detailViewMulti.append(
-    tableViews,
-    SimpleDetailView(multipleChartTypesController));</code></pre>
+            SimpleDetailView(controller),
+            tableViews
+            );</code></pre>
+        <p>
+            Since the table view has only a binding to the controller, it can also be used without any chart projector.
+            Try it out and delete the code line where you append a chart projector to the html element:
+        <pre><code><s>document.getElementById('container').append(AdvancedChartProjector(controller));</s></code></pre>
+        </p>
     </section>
 
     <!-------------------------------------- Examples ---------------------------------------------------->
