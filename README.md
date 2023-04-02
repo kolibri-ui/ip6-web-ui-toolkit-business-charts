@@ -19,11 +19,9 @@ Erweiterung des bestehenden [Kolibri Web UI Toolkits](https://github.com/WebEngi
 
 Technischer Bericht [TODO]()
 
-Technischer Beschrieb und Erste Schritte (EN):
-[howto.html](demo/first-steps/howto.html)
+Technischer Beschrieb und Erste Schritte (EN): [howto.html](demo/first-steps/howto.html)
 
-Technischer Beschrieb und Erste Schritte (DE): [TODO Text überarbeiten]()
-[HOWTO.md](HOWTO.md)
+Technischer Beschrieb und Erste Schritte (DE): [HOWTO.md](HOWTO.md)
 
 Implementation von Projektoren als wiederverwendbare Chart-Elemente:
 - Chart Projektoren
