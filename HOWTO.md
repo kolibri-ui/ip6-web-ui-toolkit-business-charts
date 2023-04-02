@@ -37,7 +37,6 @@ Der Inhalt des Business-Charts-Ordners wird im nächsten Abschnitt genauer besch
 In diesem Ordner sind alle Projektoren (/src/business-charts/projector) 
 und Styles (/src/business-charts/css) für den Aufbau einer Charts-Web-App enthalten.
 Im utils-Ordner (/src/business-charts/utils) sind Hilfsfunktionen abgelegt, welche für die Chart-Projektoren notwendig sind.
-Der aktuelle Stand der [Tests](src/business-charts/allBusinessChartsTests.html) ist ebenfalls verfügbar.
 
 #### /src/business-charts/util
 
@@ -55,6 +54,10 @@ Andernfalls befinden sich die Achsen nicht in der richtigen Rasteranordnung.
 Die restlichen Dateien sind optional und bieten eine Grundlage für das Styling.
 Es ist möglich, die .css Dateien zu erweitern, sie zu überschreiben oder durch eigene Dateien zu ersetzen.
 
+#### Live Tests
+
+Der aktuelle Stand der Tests ist im Root Verzeichnis der Business Charts im File [allBusinessChartsTests.html](src/business-charts/allBusinessChartsTests.html) abrufbar.
+
 ### /demo
 
 Im Demo-Ordner sind Beispiele für die Verwendung der Business Charts Projektoren enthalten. 
@@ -64,6 +67,19 @@ Das kurze Tutorial First Steps erklärt in wenigen Schritten die Verwendung.
 
 Für die Spezifikation der Objekte, Funktionen, etc. steht eine auf JSDoc basierende Dokumentation zur Verfügung.
 Allgemeine Informationen über JSDoc sind auf der [Website](https://jsdoc.app/index.html) verfügbar.
+
+## Features
+
+Dieser Abschnitt gibt einen kurzen Überblick über die Funktionalitäten des Business Charts Toolkits.
+
+|                     | Chart                                       | Toolbar  | Simple Axis        | Advanced Axis | Simple Detail View                   | Data Table View                        |
+|---------------------|---------------------------------------------|----------|--------------------|---------------|--------------------------------------|----------------------------------------|
+| Select Data Points  | Yes, has Detail View and Table View Binding | Standard | No                 | No            | No, has Chart and Table View Binding | Yes, has Chart and Detail View Binding |
+| Multi Selection     | No, has Table View Binding                  | No       | No                 | No            | No, has Table View Binding           | Yes, has Chart and Detail View Binding |
+| Zooming             | Yes                                         | Yes      | Input Fields       | Yes           | No                                   | No                                     |
+| Rubber Band Zooming | Yes                                         | Yes      | No                 | No            | No                                   | No                                     |
+| Panning             | Yes                                         | Yes      | Input Field Arrows | Yes           | No                                   | No                                     |
+| Tooltip             | Yes                                         | Yes      | No                 | No            | No, has Chart Binding                | No, has Chart Binding                  |
 
 ## First Steps
 
@@ -248,16 +264,3 @@ SimpleDetailView(controller),
 tableViews
 );
 ```
-
-## Features
-
-Dieser Abschnitt gibt einen kurzen Überblick über die Funktionalitäten des Business Charts Toolkits.
-
-|                     | Chart                                       | Toolbar  | Simple Axis        | Advanced Axis | Simple Detail View                   | Data Table View                        |
-|---------------------|---------------------------------------------|----------|--------------------|---------------|--------------------------------------|----------------------------------------|
-| Select Data Points  | Yes, has Detail View and Table View Binding | Standard | No                 | No            | No, has Chart and Table View Binding | Yes, has Chart and Detail View Binding |
-| Multi Selection     | No, has Table View Binding                  | No       | No                 | No            | No, has Table View Binding           | Yes, has Chart and Detail View Binding |
-| Zooming             | Yes                                         | Yes      | Input Fields       | Yes           | No                                   | No                                     |
-| Rubber Band Zooming | Yes                                         | Yes      | No                 | No            | No                                   | No                                     |
-| Panning             | Yes                                         | Yes      | Input Field Arrows | Yes           | No                                   | No                                     |
-| Tooltip             | Yes                                         | Yes      | No                 | No            | No, has Chart Binding                | No, has Chart Binding                  |
