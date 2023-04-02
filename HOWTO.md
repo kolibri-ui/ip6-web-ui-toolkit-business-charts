@@ -4,10 +4,10 @@ Bachelor Thesis von Valentina Giampa & Roger Kreienbühl
 
 ## Intro
 
-Kolibri Business Charts ist die Erweiterung des Kolibri Web UI Toolkit.
+Kolibri Business Charts ist die Erweiterung des [Kolibri Web UI Toolkit](https://github.com/WebEngineering-FHNW/Kolibri).
 Das Ziel ist ein "Sortiment von Elementen", die die Entwicklung von Webanwendungen vereinfachen.
 Geschäftsanwendungen haben oft eine große Anzahl von Clients.
-Der schlanke und strukturierte Aufbau des Toolkits verwendet das Projector Pattern in einer klassischen MVC-Architektur.
+Der schlanke und strukturierte Aufbau des Toolkits verwendet das [Projector Pattern](https://dierk.github.io/Home/projectorPattern/ProjectorPattern.html) in einer klassischen [MVC-Architektur](https://ieeexplore.ieee.org/abstract/document/950428).
 Dies ermöglicht eine schnelle und kostengünstige Änderung des "Look-and-Feel" der Geschäftsanwendung.
 
 ## Baue Geschäftsapplikationen für die Datenanalyse mit wenigen Codezeilen
@@ -55,28 +55,15 @@ Andernfalls befinden sich die Achsen nicht in der richtigen Rasteranordnung.
 Die restlichen Dateien sind optional und bieten eine Grundlage für das Styling.
 Es ist möglich, die .css Dateien zu erweitern, sie zu überschreiben oder durch eigene Dateien zu ersetzen.
 
-[//]: # (#### /src/Kolibri)
+### /demo
 
-[//]: # ()
-[//]: # (Unter diesem Verzeichnis ist das gesamte [Kolibri Web UI Toolkit]&#40;https://github.com/webengineering-fhnw/Kolibri/&#41; )
-
-[//]: # (mit Beispielen und wiederverwendbaren Projektoren enthalten, )
-
-[//]: # (welches für die Entwicklung der Kolibri Business Charts die Basis war. )
-
-[//]: # (In den Business Charts Projektoren wurde zum Beispiel der )
-
-[//]: # ([simpleInputProjector]&#40;src/Kolibri/docs/src/kolibri/projector/simpleForm/simpleInputProjector.js&#41; verwendet.)
+Im Demo-Ordner sind Beispiele für die Verwendung der Business Charts Projektoren enthalten. 
+Das kurze Tutorial First Steps erklärt in wenigen Schritten die Verwendung.
 
 #### JSDoc
 
 Für die Spezifikation der Objekte, Funktionen, etc. steht eine auf JSDoc basierende Dokumentation zur Verfügung.
 Allgemeine Informationen über JSDoc sind auf der [Website](https://jsdoc.app/index.html) verfügbar.
-
-### /demo
-
-Im Demo-Ordner sind Beispiele für die Verwendung der Business Charts Projektoren enthalten. 
-Das kurze Tutorial First Steps erklärt in wenigen Schritten die Verwendung.
 
 ## First Steps
 
@@ -120,20 +107,6 @@ Siehe [first-steps-demo.js](demo/first-steps/first-steps-demo.js)
 In diesem Beispiel werden Projektoren verwendet für die Erstellung einer Scatter Chart
 mit einer Tabellen-/Detailansicht für die Datenpunkte.
 
-[//]: # (Import der benötigten Module)
-
-[//]: # (``` js)
-
-[//]: # (import { SimpleScatterChart }           from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartProjector.js";)
-
-[//]: # (import { SimpleScatterChartController } from "../../src/business-charts/projector/simpleScatterChart/simpleScatterChartController.js";)
-
-[//]: # (import { DataTableView }                from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";)
-
-[//]: # (import { SimpleDetailView }             from "../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";)
-
-[//]: # (```)
-
 Ein Daten-Array vom Typ "ChartDataElement" erstellen
 ``` js
 /** @type { Array.<ChartDataElement> } */ const data = [ {
@@ -161,18 +134,6 @@ Den Projektor mit dem controller als Argument an das HTML anbinden.
 document.getElementById('container').append(
 SimpleChartProjector(controller));
 ```
-
-[//]: # ()
-[//]: # (``` js)
-
-[//]: # (document.getElementById&#40;'container'&#41;.append&#40;SimpleScatterChart&#40;controller&#41;&#41;;)
-
-[//]: # ()
-[//]: # (const detailView = document.getElementById&#40;'detail-view'&#41;;)
-
-[//]: # (detailView.append&#40;DataTableView&#40;controller, 'Datenpunkte'&#41;, SimpleDetailView&#40;controller&#41;&#41;;)
-
-[//]: # (```)
 
 ### 3. Styles einbinden
 
@@ -300,71 +261,3 @@ Dieser Abschnitt gibt einen kurzen Überblick über die Funktionalitäten des Bu
 | Rubber Band Zooming | Yes                                         | Yes      | No                 | No            | No                                   | No                                     |
 | Panning             | Yes                                         | Yes      | Input Field Arrows | Yes           | No                                   | No                                     |
 | Tooltip             | Yes                                         | Yes      | No                 | No            | No, has Chart Binding                | No, has Chart Binding                  |
-
-[//]: # ()
-[//]: # (### Zooming)
-
-[//]: # ()
-[//]: # (Schrittweises rein- und rauszoomen im Chart-Bereich ist via Toolbar &#40;zoom-in / zoom-out&#41; möglich.)
-
-[//]: # (Die "Advanced" Achse bietet das Zoomen mittels Veränderung des Bereichs.)
-
-[//]: # (Die "Simple" Achse bietet eine Veränderung des Ausschnittes via Input Felder.)
-
-[//]: # (Ebenfalls möglich ist das Zoomen via Chart-Ausschnitt &#40;rubber band zooming&#41;.)
-
-[//]: # ()
-[//]: # (### Panning)
-
-[//]: # ()
-[//]: # (Der Chart-Ausschnitt kann klassisch via Toolbar &#40;panning&#41; verschoben werden.)
-
-[//]: # (Alternativ kannst du via Achse &#40;im Beispiel ist es die horizontale Achse&#41; ebenfalls mit gedrückter Maustaste den Bereich horizontal verschieben.)
-
-[//]: # ()
-[//]: # ([//]: # &#40;### Min-Max Range on Axes&#41;)
-[//]: # ()
-[//]: # ([//]: # &#40;&#41;)
-[//]: # ([//]: # &#40;Direkteingabe des Ausschnitts auf der Achse. &#41;)
-[//]: # ()
-[//]: # ([//]: # &#40;Im Beispiel kannst du auf der vertikalen Achse via Inputfelder die Ober- und Untergrenze direkt ändern. Der Chart-Bereich ändert sich umgehend.&#41;)
-[//]: # ()
-[//]: # ([//]: # &#40;Auf der horizontalen Achse kannst du via Verschieben des linken oder rechten Bereichs die Grenzen ändern.&#41;)
-[//]: # ()
-[//]: # (### Tooltip / Bubble Tooltip)
-
-[//]: # ()
-[//]: # (Sobald der Mauszeiger auf einem Datenpunkt ist, erscheint ein Tooltip mit Informationen zum entsprechenden Punkt.)
-
-[//]: # ()
-[//]: # (### Select)
-
-[//]: # ()
-[//]: # (Selektiere einen Punkt in der Chart-Ansicht. Die Tabelle und die Detailansicht werden umgehend angepasst.)
-
-[//]: # ()
-[//]: # (### Multi Selection in Table View)
-
-[//]: # ()
-[//]: # (Selektiere mehrere Datenpunkte via Tabellenansicht &#40;⌘ Klick auf Datenpunkte&#41;.)
-
-[//]: # ()
-[//]: # (### Table View)
-
-[//]: # ()
-[//]: # (Beim Selektieren von Datenpunkten werden die selektierten Punkte in der Tabelle markiert.)
-
-[//]: # (Umgekehrt werden die in der Tabelle selektierten Punkte im Chart markiert und mit der Detailansicht synchronisiert.)
-
-[//]: # ()
-[//]: # (### Detail View)
-
-[//]: # ()
-[//]: # (Wie bereits erwähnt, werden die ausgewählten Datenpunkte sofort in der Detailansicht angezeigt.)
-
-[//]: # (### JSDoc)
-
-[//]: # ()
-[//]: # (Für die Spezifikation der Objekte, Funktionen, etc. steht eine auf JSDoc basierende Dokumentation zur Verfügung. )
-
-[//]: # (Allgemeine Informationen über den Dokumentengenerator findest du auf der Website von [JSDoc]&#40;https://jsdoc.app/index.html&#41;.)
