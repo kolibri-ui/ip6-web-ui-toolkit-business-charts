@@ -1,5 +1,5 @@
 :root {
-    --tooltip-width: 100px; /*TODO find out how to use max-content in projector*/
+    --tooltip-width: 100px;
     --tooltip-min-width: 50px;
     --tooltip-height: 100px;
     --tooltip-min-height: 50px;

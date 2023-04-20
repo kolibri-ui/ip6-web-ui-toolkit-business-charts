@@ -70,6 +70,7 @@ body {
 }
 
 /****************** item selection ********************/
+/** code from: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_custom_select */
 .chart-selector-form {
     margin: 0.5em;
     position: relative;
