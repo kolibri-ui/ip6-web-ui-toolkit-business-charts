@@ -37,21 +37,10 @@ section > div {
     flex-wrap: wrap;
 }
 
-/*section > div {*/
-/*    display: flex;*/
-/*    overflow: scroll;*/
-/*    padding: 1em;*/
-/*}*/
-
 .description > div {
     display: block;
 }
 
-/*detail-view {*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    max-width: 80%;*/
-/*}*/
 .data-table-views {
     display: flex;
     flex-direction: row;
@@ -97,41 +86,20 @@ footer {
     z-index: 10;
     flex-wrap: nowrap;
 }
-/*footer section div {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*}*/
-/*footer div {*/
-/*    display: flow;*/
-/*    align-items: stretch;*/
-/*    flex-wrap: nowrap;*/
-/*}*/
-/*footer span {*/
-/*    !*min-height: 5em;*!*/
-/*    !*align-content: baseline;*!*/
-/*}*/
+
 footer a {
     padding-right: 1em;
     min-width: max-content;
     align-self: stretch;
     text-align: left;
 }
-/*footer p {*/
-/*    align-content: end;*/
-/*    padding: 1em;*/
-/*    !*padding-left: 1em;*!*/
-/*    !*padding-top: 0.2em;*!*/
-/*}*/
+
 .flex-container {
     display: flex;
     flex-direction: column;
     padding: 1em;
 }
-/*.flex-container-row {*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: stretch;*/
-/*}*/
+
 .containerDemoDetail > div {
     margin: 0.5em;
 }
