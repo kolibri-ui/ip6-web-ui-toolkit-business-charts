@@ -22,11 +22,26 @@ main {
     max-width: 42em;
 }
 
+.description {
+    overflow: visible;
+}
+
 section > div {
     display: flex;
-    overflow: scroll;
+    overflow-x: auto;
+    overflow-wrap: break-word;
+    overflow-y: visible;
+
+    overflow-block: scroll;
     padding: 1em;
+    flex-wrap: wrap;
 }
+
+/*section > div {*/
+/*    display: flex;*/
+/*    overflow: scroll;*/
+/*    padding: 1em;*/
+/*}*/
 
 .description > div {
     display: block;
