@@ -328,7 +328,7 @@ It is possible to extend the .css files, overwrite them or replace them with you
 ### Live Tests
 
 The current status of the tests is available in the root directory of the Business Charts in the file
-[allBusinessChartsTests.html](src/business-charts/allBusinessChartsTests.html).
+[allBusinessChartsTests.html](../../src/business-charts/allBusinessChartsTests.html).
 
 ### JSDoc
 

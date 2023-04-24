@@ -25,10 +25,10 @@ Für die Datenpunkte existieren ebenfalls Projektoren, die mit den Charts ein Bi
 
 ## Business Charts Home Page
 
-Die [Homepage](https://lavaig.github.io/business-charts-usability-testing/) mit Live Demo und ausführlicher Anleitung.
+Die [Homepage](https://github.com/rkreienbuehl/FHNW_ip6_Kolibri-Business-Charts/blob/main/BusinessCharts/index.html) mit Live Demo und [ausführlicher Anleitung](demo/first-steps/first-steps.html).
 
 ## Technischer Kurzbeschrieb
-Der [technische Kurzbeschrieb](https://github.com/lavaig/business-charts-usability-testing/blob/master/docs/HOWTO.md)
+Der [technische Kurzbeschrieb](https://github.com/rkreienbuehl/FHNW_ip6_Kolibri-Business-Charts/blob/main/BusinessCharts/docs/TECHNICAL_OVERVIEW.md)
 gibt eine Übersicht über den groben Aufbau und die Features.
 
 ### Anwendungsideen
