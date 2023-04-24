@@ -56,7 +56,7 @@ Es ist möglich, die .css Dateien zu erweitern, sie zu überschreiben oder durch
 
 #### Live Tests
 
-Der aktuelle Stand der Tests ist im Root Verzeichnis der Business Charts im File [allBusinessChartsTests.html](src/business-charts/allBusinessChartsTests.html) abrufbar.
+Der aktuelle Stand der Tests ist im Root Verzeichnis der Business Charts im File [allBusinessChartsTests.html](../../src/business-charts/allBusinessChartsTests.html) abrufbar.
 
 ### /demo
 
@@ -85,18 +85,18 @@ Dieser Abschnitt gibt einen kurzen Überblick über die Funktionalitäten des Bu
 
 Hier ist eine kurze Anleitung zur Erstellung eines Diagramms, wie es in der folgenden Abbildung dargestellt ist.
 
-![Ausschnitt Demo App](demo/assets/images/first-steps-demo.png "DemoApp")
+![Ausschnitt Demo App](../../demo/assets/images/first-steps-demo.png "DemoApp")
 
 ### 1. HTML erstellen
 
-Siehe [demo/howto.html](demo/first-steps/first-steps-demo.js)
+Siehe [demo/howto.html](../../demo/first-steps/first-steps-demo.js)
 
 Um die Charts im Browser nutzen zu können, wird ein div benötigt.
 ``` html
 <!--- chart section --->
 <div class="container" id="container"></div>
 ```
-Die Charts werden in einer [Javascript-Datei im type "module"](demo/first-steps/first-steps-demo.js) erstellt.
+Die Charts werden in einer [Javascript-Datei im type "module"](../../demo/first-steps/first-steps-demo.js) erstellt.
 Das .js wird in der **Script-Section** eingebunden.
 ``` html
 <!--- script section --->
@@ -118,7 +118,7 @@ grid.css und charts-base.css für die korrekte Anordnung der Achsen benötigt.
 
 ### 2. Script erstellen
 
-Siehe [first-steps-demo.js](demo/first-steps/first-steps-demo.js)
+Siehe [first-steps-demo.js](../../demo/first-steps/first-steps-demo.js)
 
 In diesem Beispiel werden Projektoren verwendet für die Erstellung einer Scatter Chart
 mit einer Tabellen-/Detailansicht für die Datenpunkte.
@@ -156,7 +156,7 @@ SimpleChartProjector(controller));
 Wie bereits in der Strukturierung der Business Charts erwähnt, werden im Minimum grid.css und charts-base.css benötigt.
 
 Das Ausführen des HTML's sollte ein ähnliches Ergebnis haben wie unten angezeigt.
-![Ausschnitt Simple Scatter Chart](demo/assets/images/simple-scatter-chart.png "scatter chart example")
+![Ausschnitt Simple Scatter Chart](../../demo/assets/images/simple-scatter-chart.png "scatter chart example")
 
 ## Austauschbarkeit
 
