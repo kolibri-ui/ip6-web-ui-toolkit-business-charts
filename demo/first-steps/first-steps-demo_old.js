@@ -88,37 +88,10 @@ import {
     name: 'I-avg', xValue: 4, yValue: 14,
 },];
 
-const controller = ChartController([
-    {data: data, type: "area"},
-    {data: data2, type: "line"},
-    {data: data3, type: "scatter"},
-], {
-    tools: [
-        zoomInTool,
-        zoomOutTool,
-        bubbleTooltipSelectionTool,
-        rubberBandTool,
-        panningTool,
-    ]
-});
-
-const detailViewMulti = document.getElementById('detail-view-multi');
-
-const tableViews = document.createElement("div");
-tableViews.classList.add("data-table-views");
-tableViews.append(
-    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[0]), 'Data points serie 1'),
-    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[1]), 'Data points serie 2'),
-    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[2]), 'Data points serie 3')
-);
-detailViewMulti.append(
-    tableViews,
-    SimpleDetailView(controller));
-
 
 // at least pass on the data to your simple chart controller
 const simpleController = SimpleAreaChartController(data,
-    {
+    { //pass the optional toolbar
         tools: [
             zoomInTool,
             zoomOutTool,
@@ -130,10 +103,10 @@ const simpleController = SimpleAreaChartController(data,
 
 // append the projectors to your HTML bindings. 
 // Pass the controller for one data serie as parameter in your simple projector.
-document.getElementById('containerIntro').append(AdvancedChartProjector(controller));
+document.getElementById('containerSimple').append(SimpleChartProjector(simpleController));
 
 const simpleController2 = SimpleLineChartController(data,
-    {
+    { //pass the optional toolbar
         tools: [
             zoomInTool,
             zoomOutTool,
@@ -149,12 +122,12 @@ document.getElementById('containerSimple2').append(SimpleChartProjector(simpleCo
 
 const detailView = document.getElementById('detail-view-simple2');
 detailView.append(
-    DataTableViewProjector(DataTableViewController(simpleController2, simpleController2.getSeries()[0]), 'Data points'),
-    SimpleDetailView(simpleController2));
+    DataTableViewProjector(DataTableViewController(simpleController2, simpleController2.getSeries()[0]), 'Data points'), 
+    SimpleDetailView(simpleController));
 
 // see the sample for the advanced version below:
 const advancedController = LineChartController([data, data2],
-    {
+    { //pass the optional toolbar
         tools: [
             zoomInTool,
             zoomOutTool,
@@ -168,20 +141,31 @@ document.getElementById('containerAdvanced').append(AdvancedChartProjector(advan
 
 // see the sample for the advanced version with different chart types below:
 const multipleChartTypesController = ChartController(
-    [{ type: SCATTER_CHART, data: data }, { type: SCATTER_CHART, data: data2 }, { type: LINE_CHART, data: data3 }],
+    [{ type: SCATTER_CHART, data: data }, { type: SCATTER_CHART, data: data2 }, { type: LINE_CHART, data: data3 }], 
     {
-        tools:[
-            zoomInTool,
-            zoomOutTool,
-            bubbleTooltipSelectionTool, // you can choose other tooltips
-            rubberBandTool,
-            panningTool,
-        ]
-    });
+    tools:[
+        zoomInTool,
+        zoomOutTool,
+        bubbleTooltipSelectionTool, // you can choose other tooltips
+        rubberBandTool,
+        panningTool,
+    ]
+});
 // Pass the controller for different chart types as parameter in your advanced projector.
 document.getElementById('containerMultipleChartTypes').append(AdvancedChartProjector(multipleChartTypesController));
 
+const detailViewMulti = document.getElementById('detail-view-multi');
 
+const tableViews = document.createElement("div");
+tableViews.classList.add("data-table-views");
+tableViews.append(
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController, multipleChartTypesController.getSeries()[0]), 'Data points serie 1'),
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController, multipleChartTypesController.getSeries()[1]), 'Data points serie 2'),
+    DataTableViewProjector(DataTableViewController(multipleChartTypesController, multipleChartTypesController.getSeries()[2]), 'Data points serie 3')
+);
+detailViewMulti.append(
+    tableViews, 
+    SimpleDetailView(multipleChartTypesController));
 
 
 document.getElementById('containerDemo').append(AdvancedChartProjector(advancedController));

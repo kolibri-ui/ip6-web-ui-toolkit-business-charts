@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How to</title>
+
+    <!------------------------------------ css section ----------------------------------------------->
+    <link href="../../src/Kolibri/docs/css/kolibri-base.css" rel="stylesheet">
+    <link href="../../src/Kolibri/docs/css/kolibri-light-colors.css" rel="stylesheet">
+
+    <link href="../../src/business-charts/css/grid.css" rel="stylesheet"/>
+    <link href="../../src/business-charts/css/charts-base.css" rel="stylesheet"/>
+    <link href="../../src/business-charts/css/selectionTool.css" rel="stylesheet"/>
+    <link href="../../src/business-charts/css/dataTableView.css" rel="stylesheet"/>
+    <link href="../../src/business-charts/css/simpleDetailView.css" rel="stylesheet"/>
+
+    <link href="first-steps.css" rel="stylesheet"/>
+<body>
+
+<header>
+    <h1 id="howto">Kolibri Business Charts</h1>
+    <div class="subtitle">The Extension of the Kolibri Web UI Toolkit</div>
+</header>
+
+<main>
+
+    <!-------------------------------------- intro ---------------------------------------------------->
+
+    <section class="description">
+        <div>
+            <h2 id="intro">Intro</h2>
+            <p>
+                Kolibri Business Charts is the extension of the
+                <a href="https://github.com/WebEngineering-FHNW/Kolibri">Kolibri Web UI Toolkit</a>.
+                The goal is an "assortment of items" that simplify the development of web applications.
+                Business applications often have a significant amount of clients.
+                The lean and structured composition of the toolkit applies the
+                <a href="https://dierk.github.io/Home/projectorPattern/ProjectorPattern.html">Projector Pattern</a>
+                in a classical <a href="https://ieeexplore.ieee.org/abstract/document/950428">MVC architecture</a>.
+                This allows a quick and cost-effective modification of the "look and feel" of the business application.
+            </p>
+        </div>
+    </section>
+
+    <section class="description">
+        <div>
+            <h3>Build business applications for data analysis with minimal lines of code</h3>
+            <p>
+                Kolibri Business Charts lets you quickly develop interactive charts for custom business analysis
+                applications.
+                It provides projectors for building charts in a modular way.
+                This gives you high flexibility to provide data analysts the application they need.
+            </p>
+        </div>
+    </section>
+
+    <!-------------------------------------- structure ---------------------------------------------------->
+
+    <section class="description">
+        <div>
+            <h2 id="structure">Structure and usage of the toolkit</h2>
+            <p>
+                There are several ways to use the toolkit.
+                The easiest way is to copy the complete src folder in your project.
+                Since the toolkit has no external dependencies, the size is minimal.
+                Therefore, it has practically no impact on performance.
+                The toolkit requires plain JavaScript, HTML5, CSS and an IDE of your choice.
+            </p>
+        </div>
+        <div>
+            <h3>/src</h3>
+            <p>
+                This directory includes the entire Kolibri Web UI Toolkit (/src/Kolibri)
+                and the Kolibri Test Cases at root level.
+                It has been the base for the development of Kolibri Business Charts.
+                To use the actual Version of the Kolibri Web UI Toolkit visit the
+                <a href="https://webengineering-fhnw.github.io/Kolibri/index.html">Kolibri Website</a>.
+                The content of the business-charts folder is described more precisely in the next section.
+            </p>
+        </div>
+        <div>
+            <h3>/src/business-charts</h3>
+            <p>
+                This folder contains a
+                chart projectors folder (/src/business-charts/projector),
+                styles folder (/src/business-charts/css),
+                helper functions folder (/src/business-charts/util) and the test cases.
+            </p>
+            <h4>/src/business-charts/util</h4>
+            <p>
+                The util folder contains all helper functions for the respective calculations of the chart components.
+            </p>
+            <h4>/src/business-charts/projector</h4>
+            <p>
+                This folder contains all chart projectors and the controllers with the corresponding test suites.
+                The main folder is chart. For the simple usage of a chart please follow the first steps section below.
+                The structure provides a clear overview.
+                Thanks to the modular approach, the projectors can be exchanged easily.
+            </p>
+            <h4>/src/business-charts/css</h4>
+            <p>
+                To visualise the chart correctly, you need at the minimum the <b>gris.css</b> and <b>charts-base.css</b> files.
+                Otherwise, the axes are not in the correct grid order.
+                The other files are optional and offer also a base for styling.
+                It is possible to expand the style files, overwrite or replace them with your own files.
+            </p>
+            <h4>Live Test Cases</h4>
+            <p>
+                Below the tests of the business charts are shown.
+            </p>
+            <div class="content">
+                <iframe
+                        src="../../src/business-charts/allBusinessChartsTests.html"
+                        width="100%" height="1000vr" name="iFrame" title="Business Charts Tests"
+                        style="outline:1px solid var(--kb-color-rgb-lavender-200); border: transparent">>frame
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="description">
+        <div>
+            <h3>/demo</h3>
+            <p>
+                Within the demo folder you can find examples how to use the Business Charts projectors.
+                Take a look at the short
+                <a href="#first-steps">first steps tutorial</a>
+                to create a chart in a few steps as shown below.
+            </p>
+        </div>
+    </section>
+    <div class="containerSimple" id="containerDemo">
+    </div>
+    <div class="content">
+        <section>
+            <div class="containerDemoDetail" id="detailViewDemo">
+            </div>
+        </section>
+    </div>
+
+    <section class="description">
+        <div>
+            <h3>JSDoc</h3>
+            <p>
+                For the specification of the objects, functions, etc. a documentation based on JSDoc is available.
+                For general information concerning the document generator visit the website of
+                <a href="https://jsdoc.app/index.html" target="_blank">JSDoc</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-------------------------------------- features ---------------------------------------------------->
+
+    <section class="description">
+        <div>
+            <h2 id="features">Features</h2>
+            <p>
+                Below you will find a brief overview of the functionalities offered by the toolkit.
+            </p>
+        </div>
+        <div>
+            <h3>Zooming</h3>
+            <p>
+                Via toolbar you can zoom in and out of the chart area step by step.
+                If you want to see a specific area, you can select your desired section using Rubber Band Zooming.
+                The chart will immediately zoom into the chosen area while the axes will be adjusted.
+            </p>
+        </div>
+        <div>
+            <h3>Panning</h3>
+            <p>
+                Move the section of the chart via the toolbar (panning)
+                by holding down the mouse button and moving the section both horizontally and vertically.
+                Alternatively, you can also move the area horizontally
+                via the axis (in the example it is the horizontal axis) by holding down the mouse button.
+            </p>
+        </div>
+        <div>
+            <h3>Min-Max Ranges on Axes</h3>
+            <p>
+                Immediate input of the range on the axis.
+                In the tutorial you can directly change the upper and lower limits on the vertical axis via input
+                fields.
+                The chart area changes immediately.
+                On the horizontal axis, you can change the limits by moving the left or right area.
+            </p>
+        </div>
+        <div>
+            <h3>Tooltip / Bubble Tooltip</h3>
+            <p>
+                Whenever the mouse pointer is over a data point, a tooltip appears with information about the
+                corresponding point.
+            </p>
+        </div>
+        <div>
+            <h3>Select</h3>
+            <p>
+                Select a point in the chart view. The table and the detail view will be adjusted immediately.
+            </p>
+        </div>
+        <div>
+            <h3>Multi Selection in Table View</h3>
+            <p>
+                Select multiple data points via table view (⌘ click on data points).
+            </p>
+        </div>
+        <div>
+            <h3>Table View</h3>
+            <p>
+                By clicking on data points, the selected objects will be marked in the table.
+                Vice versa, the points selected in the table are highlighted in the chart and synchronized with the
+                detail view.
+            </p>
+        </div>
+        <div>
+            <h3>Detail View</h3>
+            <p>
+                As mentioned above, the selected data points are shown immediately in the detail view.
+            </p>
+        </div>
+    </section>
+
+    <!-------------------------------------- first steps ---------------------------------------------------->
+
+    <section class="description">
+        <div>
+            <h2 id="first-steps">First steps</h2>
+            <p>
+                First Steps Demo shows you how to create a chart with minimal lines of code.
+            </p>
+        </div>
+        <div>
+            <h3 id="simple">Simple Projector for one data serie</h3>
+            <p>
+                This example shows you how to create a chart step by step.
+            </p>
+        </div>
+        <div>
+            <h4>Setup .html</h4>
+            <ol>
+                <li>
+                    Create a basic HTML skeleton.
+                    A structured approach is recommended containing at least a style-, chart- and script section.
+                </li>
+                <li>
+                    In order to view the chart in the browser, create a div with the class / id "container" in the chart
+                    section.
+                    Each chart need a unique identification. Make sure you have an id for each chart.
+                    <div>
+                        <pre><code>&lt;!-&#45;&#45; chart section -&#45;&#45;&gt;</code></pre>
+                    </div>
+                    <div>
+                        <pre><code>&lt;div class="container" id="container"&gt;&lt;/div&gt;</code></pre>
+                    </div>
+                </li>
+                <li>
+                    Create your charts in a javascript file with type „module".
+                    Include your js file in the script section in your HTML.
+                    <div>
+                        <pre><code>&lt;!-&#45;&#45; script section -&#45;&#45;&gt;</code></pre>
+                        <pre><code>&lt;script src="your-chart-script.js" type="module"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </li>
+                <li>
+                    Depending on the projectors you need, add the relevant links for the styling in the CSS section.
+                    To display the Projectors in a grid, you need grid.css.
+
+                    <pre><code>&lt;!-&#45;&#45; css section -&#45;&#45;&gt;</code></pre>
+                    <pre><code>&lt;link rel="stylesheet" href=".../kolibri-css-files..."&gt;</code></pre>
+                    <pre><code>&lt;link rel="stylesheet" href=".../business-charts-css-files..."&gt;</code></pre>
+                    <pre><code>&lt;link rel="stylesheet" href=".../projector-specific-css-files..."&gt;</code></pre>
+                    <pre><code>&lt;link rel="stylesheet" href=".../your-own-css-files..."&gt;</code></pre>
+                </li>
+            </ol>
+        </div>
+        <div>
+            <h4>Setup .js</h4>
+            In this example, projectors are used for creating a Scatter Chart with a table/detail view for the data
+            points.
+            To do this, you will need the following:
+            <ol>
+                <li>
+                    A data array of type "ScatterChartDataElement"
+                    <div>
+                        <code>/** @type { Array.<</code><code>ChartDataElement> } */</code>
+                        <pre><code>const data = [ {
+    name: 'A1', xValue: -4, yValue: 3,
+}, {
+    name: 'B1', xValue: -3, yValue: 2,
+}, {
+    name: 'C1', xValue: -2, yValue: 0,
+}, {
+    name: 'D1', xValue: -1, yValue: -3,
+}, {
+    name: 'E1', xValue: 0, yValue: 1,
+}, {
+    name: 'F1', xValue: 1, yValue: -1,
+},{
+    name: 'G1', xValue: 2, yValue: 4,
+},{
+    name: 'H1', xValue: 3, yValue: 2,
+},{
+    name: 'I1', xValue: 4, yValue: 9,
+},];</code></pre>
+                    </div>
+                </li>
+                <li>
+                    Define a <code>simpleController</code>
+                    as <code>SimpleAreaChartController()</code>
+                    with your <code>data</code> and optional toolbar as arguments
+                    <pre><code>const simpleController = SimpleAreaChartController(data, {
+        tools: [
+            zoomInTool,
+            zoomOutTool,
+            bubbleTooltipSelectionTool,
+            rubberBandTool,
+            panningTool,
+        ]
+    });</code></pre>
+                </li>
+                <li>
+                    Append the <code>SimpleChartProjector()</code>
+                    with its <code>simpleController</code>
+                    to your html <code>container</code>.
+                    <pre><code>document.getElementById('container').append(
+                        SimpleChartProjector(simpleController));</code></pre>
+                    <h4>Avoid mishaps</h4>
+                    <div>Please make sure to import the corresponding scripts with .js extension.</div>
+                    <pre><code>import { ... }   from "../../scriptName.js";</code></pre>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="description">
+        <div>
+            <h4>Minimal .css files</h4>
+            <div>For the arrangement of the chart projectors to be displayed correctly,
+                grid.css and charts-base.css are required at a minimum.</div>
+            <pre><code>&lt;link rel="stylesheet" href=".../src/business-charts/css/grid.css"&gt;</code></pre>
+            <pre><code>&lt;link rel="stylesheet" href=".../src/business-charts/css/charts-base.css"&gt;</code></pre>
+
+            <h4>Optional .css files</h4>
+            Take a look at <code>business-charts/css/</code> and <code>kolibri/css/</code>.
+            As mentioned above, it is possible to override and extend the default CSS files with customized styles.
+        </div>
+        <div>
+            <h4>Run your html file. You should get a result similar to this</h4>
+        </div>
+    </section>
+
+    <div class="containerSimple" id="containerSimple">
+    </div>
+
+    <!-------------------------------------- interchangeability ---------------------------------------------------->
+
+    <section class="description">
+        <div>
+            <h2 id="interchangeability">Projector and controller interchangeability</h2>
+            <p>
+                This demonstrates the main feature of the Kolibri Web UI Toolkit.
+            </p>
+        </div>
+    </section>
+
+    <section class="description">
+        <div>
+            <h3 id="change-simple-projector">Change Data representation for one data serie</h3>
+            <p>
+                If you want to change the representation of the data of your <code>SimpleChartProjector()</code>,
+                you only need to replace the corresponding controller.
+            </p>
+            <pre><code>const controller = Simple<s>Area</s>ChartController(data, {...});</code></pre>
+            <pre><code>const controller = SimpleLineChartController(data, {...});</code></pre>
+        </div>
+    </section>
+
+    <section class="description">
+        <div>
+            <h3 id="advanced-projector">Projectors for more than one data serie</h3>
+            <p>
+                If you have more than one data serie, you need the controllers without the word "simple" in the front.
+                Your data series are now passed as an array <code>[data, data2]</code>.
+            </p>
+            <pre><code>const controller = <s>Simple</s>LineChartController(data, {...});</code></pre>
+            <pre><code>const controller = LineChartController([data, data2], {...});</code></pre>
+            <p>
+                Now the <code>AdvancedChartProjector()</code> is used instead of the <code>SimpleChartProjector()</code>.
+            </p>
+            <pre><code>document.getElementById('container').append(<s>SimpleChart</s>Projector(controller));</code></pre>
+            <pre><code>document.getElementById('container').append(AdvancedChartProjector(controller));</code></pre>
+        </div>
+    </section>
+
+    <section class="description">
+        <div>
+            <h3 id="multi-projector">Different data representations</h3>
+            <p>
+                The <code>AdvancedChartProjector()</code>
+                may also be used if you want to visualise the data series differently.
+                For this purpose you need the <code>ChartController()</code>.
+                The difference is that the first argument requires
+                objects with the chart type to be displayed and the respective data series.
+            </p>
+            <pre><code>const controller = <s>SimpleArea</s>ChartController(<s>data</s>, {...});</code></pre>
+            <pre><code>const controller = <s>Line</s>ChartController([<s>data, data2</s>], {...});</code></pre>
+            <pre><code>const controller = ChartController(
+            [
+            { type: SCATTER_CHART, data: data  },
+            { type: SCATTER_CHART, data: data2 },
+            { type: LINE_CHART,    data: data3 }
+            ],
+            {...});</code></pre>
+        </div>
+    </section>
+
+    <!-------------------------------------- Bindings ---------------------------------------------------->
+
+    <section class="description">
+        <div>
+            <h2 id="bindings">Data Binding of simple detail and data table view</h2>
+            <p>
+                All chart controllers have a binding to the <code>SimpleDetailViewProjector()</code> and the <code>DataTableViewProjector()</code>.
+            </p>
+        </div>
+    </section>
+    <section class="description">
+        <div>
+            <h3>Simple Detail View</h3>
+            <p>
+                To display the data points, first create a div with the class "detail-view" in your html-file.
+            </p>
+            <pre><code>&lt;div class="detail-view" id="detail-view"&gt;&lt;/div&gt;</code></pre>
+            <p>
+                In your javascript file, create a constant for the detail view div element.
+            </p>
+            <pre><code>const detailView = document.getElementById('detail-view');</code></pre>
+            <p>
+                If you already have a simple controller for one data serie, just append it to the detail view element.
+            </p>
+            <pre><code>detailView.append(SimpleDetailView(controller);</code></pre>
+        </div>
+    </section>
+    <section class="description">
+        <div>
+            <h3>Data Table View</h3>
+            <p>
+                To display the data points as a table,
+                just append the <code>DataTableViewProjector()</code> with it's <code>DataTableViewController()</code>.
+                The <code>DataTableViewController()</code> needs the controller as first argument,
+                then the data serie and an optional title.
+            </p>
+            <pre><code>detailView.append(
+        SimpleDetailView(controller),
+        DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[0]), 'Data points serie 1'),
+        DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[1]), 'Data points serie 2'),
+        );</code></pre>
+            <p>
+                You can also create a new div element in the classList for the table views and append it to the detail view.
+                Have a look at the following solution.
+            </p>
+        </div>
+    </section>
+    <section class="description">
+        <div>
+            <h4>Add a new div element to classList for the table views</h4>
+            <p>
+                To put the table views in a new html element, create a new div element and add it to classList.
+            </p>
+            <pre><code>const tableViews = document.createElement("div");</code></pre>
+            <pre><code>tableViews.classList.add("data-table-views");</code></pre>
+            <p>
+                Append the projectors with its controllers.
+            </p>
+            <pre><code>tableViews.classList.add("data-table-views");
+tableViews.append(
+    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[0]), 'Data points serie 1'),
+    DataTableViewProjector(DataTableViewController(controller, controller.getSeries()[1]), 'Data points serie 2'),
+    );</code></pre>
+            <p>
+                For the last step, append the table view to the detail view.
+            </p>
+            <pre><code>detailViewMulti.append(
+            SimpleDetailView(controller),
+            tableViews
+            );</code></pre>
+            <p>
+                Since the table view has only a binding to the controller, it can also be used without any chart projector.
+                Try it out and delete the code line where you append a chart projector to the html element:
+            </p>
+            <pre><code><s>document.getElementById('container').append(AdvancedChartProjector(controller));</s></code></pre>
+        </div>
+    </section>
+
+    <!-------------------------------------- Examples ---------------------------------------------------->
+
+    <section class="description">
+        <div>
+            <h2 id="examples">Examples</h2>
+            <p>
+                The next few samples explain how to create charts with minimal lines of code.
+            </p>
+        </div>
+    </section>
+
+    <!-------------------------------------- chart section --------------------------------------------->
+    <section class="description">
+        <div>
+            <h3>One data serie</h3>
+            <p>
+                All chart projectors provide a toolbar.
+            </p>
+            <p>
+                The projectors for one data serie contain axes with direct manipulation of the chart boundaries via
+                input fields.
+            </p>
+        </div>
+    </section>
+
+    <div class="content">
+        <div class="containerSimple" id="containerSimple2">
+        </div>
+    </div>
+    <section class="description">
+        <div>
+            <p>
+                Your data serie in the table has a binding with the data serie in the chart.
+            </p>
+        </div>
+    </section>
+    <div class="content">
+        <section>
+            <div class="detail-view" id="detail-view-simple2">
+            </div>
+        </section>
+    </div>
+    <section class="description">
+        <div>
+            <h3>More than one data serie</h3>
+            <p>
+                The projectors for multiple data series provide one y-axis for each data serie.
+            </p>
+            <p>
+                Press shift and mouse on the corresponding axis to shift the range of the data serie.
+                Press cmd/ctrl and mouse on the corresponding axis for zooming.
+            </p>
+            <p>
+                On the x-axis it is possible to manipulate the chart section via mouse.
+                Adjusting the left and right axis range boundary via mouse modifies the amount of the data points
+                displayed.
+                Shifting the axis range via mouse changes the first and the last data set displayed.
+            </p>
+        </div>
+    </section>
+    <div class="content">
+        <div class="containerAdvanced" id="containerAdvanced">
+        </div>
+    </div>
+    <section class="description">
+        <div>
+            <h3>Different representations per data series</h3>
+            <p>
+                The projectors for multiple data series provide one y-axis for each data serie.
+            </p>
+            <p>
+                Press shift and mouse on the corresponding axis to shift the range of the data serie.
+                Press cmd/ctrl and mouse on the corresponding axis for zooming.
+            </p>
+            <p>
+                On the x-axis it is possible to manipulate the chart section via mouse.
+                Adjusting the left and right axis range boundary via mouse modifies the amount of the data points
+                displayed.
+                Shifting the axis range via mouse changes the first and the last data set displayed.
+            </p>
+        </div>
+    </section>
+    <div class="content">
+        <div class="containerMultipleChartTypes" id="containerMultipleChartTypes">
+        </div>
+    </div>
+    <section class="description">
+        <div>
+            <p>
+                For the simple detail view, there is also a table view available.
+                By clicking on a point, detailed data point information are displayed.
+            </p>
+        </div>
+    </section>
+    <div class="content">
+        <section>
+            <div class="detail-view" id="detail-view-multi">
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-------------------------------------- footer section ---------------------------------------------------->
+
+<footer>
+    <section>
+        <div class="flex-container">
+        <span>
+            <a href="#howto">home</a>
+            <a href="#intro">intro</a>
+            <a href="#structure">structure</a>
+            <a href="#features">features</a>
+            <a href="#first-steps">first steps</a>
+            <a href="#interchangeability">interchangeability</a>
+            <a href="#bindings">data bindings</a>
+            <a href="#examples">examples</a>
+        </span>
+        </div>
+        <div class="flex-container">
+            FHNW Bachelor Thesis "Business Charts Toolkit" - made by Roger Kreienb&uumlhl and Valentina Giampa
+        </div>
+    </section>
+</footer>
+
+<!-------------------------------------- script section ---------------------------------------------------->
+
+<script src="first-steps-demo.js" type="module"></script>
+
+</body>
+</html>
