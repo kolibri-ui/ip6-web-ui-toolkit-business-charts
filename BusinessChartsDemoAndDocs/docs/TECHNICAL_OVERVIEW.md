@@ -4,7 +4,7 @@
 
 Bachelor Thesis of Valentina Giampa & Roger Kreienbühl
 
-![Ausschnitt Demo App](demo/assets/images/first-steps-demo.png "DemoApp")
+![Ausschnitt Demo App](../demo/assets/images/first-steps-demo.png "DemoApp")
 
 Image above: A chart created with the SimpleChartProjector() and the corresponding SimpleLineChartController().
 
@@ -33,7 +33,7 @@ To be able to display the charts in the browser, a div with the corresponding id
 <!--- chart section --->
 <div class="container" id="container"></div>
 ```
-The charts are created in a [Javascript file in type "module"](demo/first-steps/first-steps-demo.js).
+The charts are created in a [Javascript file in type "module"](../demo/first-steps/first-steps-demo.js).
 The .js is included in the **Script section**.
 ``` html
 <!--- script section --->
@@ -284,12 +284,12 @@ This section gives a brief overview of the functionalities of the Business Chart
 
 |                     | Chart                                       | Toolbar                                                                                       | Simple Axes*       | Advanced Axes*                                                                              | Simple Detail View                   | Data Table View                                      |
 |---------------------|---------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------|---------------------------------------------------------------------------------------------|--------------------------------------|------------------------------------------------------|
-| Select Data Points  | Yes, has Detail View and Table View Binding | ![select Icon](demo/assets/icons/selectIcon.png "select Icon")                          | No                 | No                                                                                          | No, has Chart and Table View Binding | Yes, has Chart and Detail View Binding               |
+| Select Data Points  | Yes, has Detail View and Table View Binding | ![select Icon](../demo/assets/icons/selectIcon.png "select Icon")                          | No                 | No                                                                                          | No, has Chart and Table View Binding | Yes, has Chart and Detail View Binding               |
 | Multi Selection     | No, has Table View Binding                  | No                                                                                            | No                 | No                                                                                          | No, has Table View Binding           | Yes, has Chart and Detail View Binding (Cmd + Click) |
-| Zoom In             | Yes                                         | ![zoomIn Icon](demo/assets/icons/zoomInIcon.png "zoom In Icon")                         | Input Fields       | Yes (Y-Axis: Cmd + MouseDraggedMoveUp), (X-Axis: MouseDown + MouseMove on left boundary)    | No                                   | No                                                   |
-| Zoom Out            | Yes                                         | ![zoomOut Icon](demo/assets/icons/zoomOutIcon.png "zoom Out Icon")                      | Input Fields       | Yes (Y-Axis: Cmd + MouseDraggedMoveDown), (X-Axis: MouseDown + MouseMove on right boundary) | No                                   | No                                                   |
-| Rubber Band Zooming | Yes                                         | ![rubberBand Icon](demo/assets/icons/rubberBandZoomIcon.png "rubber band zooming Icon") | No                 | No                                                                                          | No                                   | No                                                   |
-| Panning             | Yes                                         | ![panning Icon](demo/assets/icons/panIcon.png "panning Icon")                           | Input Field Arrows | Yes (Y-Axis: Alt + MouseDrag), (X-Axis: MouseDown + MouseMove on data range)                | No                                   | No                                                   |
+| Zoom In             | Yes                                         | ![zoomIn Icon](../demo/assets/icons/zoomInIcon.png "zoom In Icon")                         | Input Fields       | Yes (Y-Axis: Cmd + MouseDraggedMoveUp), (X-Axis: MouseDown + MouseMove on left boundary)    | No                                   | No                                                   |
+| Zoom Out            | Yes                                         | ![zoomOut Icon](../demo/assets/icons/zoomOutIcon.png "zoom Out Icon")                      | Input Fields       | Yes (Y-Axis: Cmd + MouseDraggedMoveDown), (X-Axis: MouseDown + MouseMove on right boundary) | No                                   | No                                                   |
+| Rubber Band Zooming | Yes                                         | ![rubberBand Icon](../demo/assets/icons/rubberBandZoomIcon.png "rubber band zooming Icon") | No                 | No                                                                                          | No                                   | No                                                   |
+| Panning             | Yes                                         | ![panning Icon](../demo/assets/icons/panIcon.png "panning Icon")                           | Input Field Arrows | Yes (Y-Axis: Alt + MouseDrag), (X-Axis: MouseDown + MouseMove on data range)                | No                                   | No                                                   |
 | Tooltip             | Yes                                         | Yes                                                                                           | No                 | No                                                                                          | No, has Chart Binding                | No, has Chart Binding                                |
 
 *Explanation of axes:

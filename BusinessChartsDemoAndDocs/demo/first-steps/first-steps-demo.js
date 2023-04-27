@@ -1,29 +1,29 @@
 // noinspection SpellCheckingInspection
 import {
     SimpleAreaChartController, SimpleLineChartController,
-}                                  from "../../../../src/business-charts/projector/chart/simpleChartController.js";
-import { SimpleChartProjector }    from "../../../../src/business-charts/projector/chart/simpleChartProjector.js";
-import { zoomInTool }              from "../../../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
-import { zoomOutTool }             from "../../../../src/business-charts/projector/toolBar/tools/ZoomOut.js";
+}                                  from "../../../src/business-charts/projector/chart/simpleChartController.js";
+import { SimpleChartProjector }    from "../../../src/business-charts/projector/chart/simpleChartProjector.js";
+import { zoomInTool }              from "../../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
+import { zoomOutTool }             from "../../../src/business-charts/projector/toolBar/tools/ZoomOut.js";
 import {
     bubbleTooltipSelectionTool
-}                                  from "../../../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
-import { rubberBandTool }          from "../../../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
-import { panningTool }             from "../../../../src/business-charts/projector/toolBar/tools/PanningTool.js";
-import { AdvancedChartProjector }  from "../../../../src/business-charts/projector/chart/advancedChartProjector.js";
+}                                  from "../../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
+import { rubberBandTool }          from "../../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
+import { panningTool }             from "../../../src/business-charts/projector/toolBar/tools/PanningTool.js";
+import { AdvancedChartProjector }  from "../../../src/business-charts/projector/chart/advancedChartProjector.js";
 import {
     LineChartController,
-}                                  from "../../../../src/business-charts/projector/chart/advancedChartController.js";
+}                                  from "../../../src/business-charts/projector/chart/advancedChartController.js";
 import {
     ChartController,
     LINE_CHART,
     SCATTER_CHART
-}                                  from "../../../../src/business-charts/projector/chart/chartController.js";
-import { DataTableViewProjector }  from "../../../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
-import { DataTableViewController } from "../../../../src/business-charts/projector/dataTableView/dataTableViewController.js";
+}                                  from "../../../src/business-charts/projector/chart/chartController.js";
+import { DataTableViewProjector }  from "../../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
+import { DataTableViewController } from "../../../src/business-charts/projector/dataTableView/dataTableViewController.js";
 import {
     SimpleDetailView
-}                                  from "../../../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
+}                                  from "../../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
 
 // Your data. These can be created directly here, for example.
 /** @type { Array.<ChartDataElement> } */ const data = [ {

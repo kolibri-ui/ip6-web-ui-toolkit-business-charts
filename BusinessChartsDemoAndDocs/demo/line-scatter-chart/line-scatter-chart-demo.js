@@ -1,19 +1,19 @@
 // noinspection SpellCheckingInspection
 
-import { AdvancedChartProjector }     from "../../../../src/business-charts/projector/chart/advancedChartProjector.js";
-import { zoomInTool }                 from "../../../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
-import { zoomOutTool }                from "../../../../src/business-charts/projector/toolBar/tools/ZoomOut.js";
-import { bubbleTooltipSelectionTool } from "../../../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
-import { rubberBandTool }             from "../../../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
-import { panningTool }                from "../../../../src/business-charts/projector/toolBar/tools/PanningTool.js";
+import { AdvancedChartProjector }     from "../../../src/business-charts/projector/chart/advancedChartProjector.js";
+import { zoomInTool }                 from "../../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
+import { zoomOutTool }                from "../../../src/business-charts/projector/toolBar/tools/ZoomOut.js";
+import { bubbleTooltipSelectionTool } from "../../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
+import { rubberBandTool }             from "../../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
+import { panningTool }                from "../../../src/business-charts/projector/toolBar/tools/PanningTool.js";
 import {
     ChartController,
     LINE_CHART,
     SCATTER_CHART
-}                                     from "../../../../src/business-charts/projector/chart/chartController.js";
-import { DataTableViewProjector }     from "../../../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
-import { DataTableViewController }    from "../../../../src/business-charts/projector/dataTableView/dataTableViewController.js";
-import { SimpleDetailView }           from "../../../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
+}                                     from "../../../src/business-charts/projector/chart/chartController.js";
+import { DataTableViewProjector }     from "../../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
+import { DataTableViewController }    from "../../../src/business-charts/projector/dataTableView/dataTableViewController.js";
+import { SimpleDetailView }           from "../../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
 
 /** @type { Array<ChartDataElement> } */ const dataSerie1 = [ {
     name: 'A1', xValue: -4, yValue: 2,

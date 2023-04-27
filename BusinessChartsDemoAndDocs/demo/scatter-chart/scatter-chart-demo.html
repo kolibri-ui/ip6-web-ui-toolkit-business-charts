@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simple Scatter Chart Demo</title>
+    <title>Scatter Chart Demo</title>
     <link rel="shortcut icon" type="image/png" href="../assets/images/kolibri.png"/>
-    <link rel="stylesheet"                     href="../../../../src/Kolibri/docs/css/kolibri-base.css">
-    <link rel="stylesheet"                     href="../../../../src/Kolibri/docs/css/kolibri-light-colors.css">
-    <link rel="stylesheet"                     href="../../../../src/business-charts/css/grid.css"/>
-    <link rel="stylesheet"                     href="../../../../src/business-charts/css/selectionTool.css"/>
-    <link rel="stylesheet"                     href="../../../../src/business-charts/css/dataTableView.css"/>
-    <link rel="stylesheet"                     href="../../../../src/business-charts/css/simpleDetailView.css"/>
-    <link rel="stylesheet"                     href="../../../../src/business-charts/css/charts-base.css"/>
+    <link rel="stylesheet"                     href="../../../src/Kolibri/docs/css/kolibri-base.css">
+    <link rel="stylesheet"                     href="../../../src/Kolibri/docs/css/kolibri-light-colors.css">
+    <link rel="stylesheet"                     href="../../../src/business-charts/css/grid.css"/>
+    <link rel="stylesheet"                     href="../../../src/business-charts/css/selectionTool.css"/>
+    <link rel="stylesheet"                     href="../../../src/business-charts/css/dataTableView.css"/>
+    <link rel="stylesheet"                     href="../../../src/business-charts/css/simpleDetailView.css"/>
+    <link rel="stylesheet"                     href="../../../src/business-charts/css/charts-base.css"/>
     <link rel="stylesheet"                     href="../css/demo.css"/>
 
 </head>
@@ -21,7 +21,7 @@
     <div class="title h1">
         <h1>Kolibri Business Charts</h1>
         <div class="subtitle h3">
-            <h3>Simple Scatter Chart</h3>
+            <h3>Scatter Chart</h3>
         </div>
     </div>
     <div class="kolibri-logo-anim">
@@ -42,6 +42,7 @@
         <div class="container" id="container">
         </div>
         <div class="detail-view" id="detail-view">
+
         </div>
     </div>
 
@@ -49,17 +50,25 @@
     <!-- bottom toolbar ---------------------------------------------->
     <div class="toolbar bottom">
         <div class="toolbar bottom left">
-            <label class="color-picker" for="data-point-color">Color of data points: </label>
-            <input type="color" id="data-point-color">
+            <label class="color-picker" for="data-point-color-1">Color of data points serie 1: </label>
+            <input type="color" id="data-point-color-1">
+            &nbsp;&nbsp;
+            <label class="color-picker" for="data-point-color-2">serie 2: </label>
+            <input type="color" id="data-point-color-2">
             &nbsp;&nbsp;
             <label class="color-picker" for="data-point-selected-color">selected: </label>
             <input type="color" id="data-point-selected-color">
         </div>
         <div class="toolbar bottom middle">
             <div class="slide-container">
-                <label for="data-point-size">Size of data points </label>
+                <label for="data-point-size-1">Size of data points serie 1: </label>
                 <input type="range" name="rangeInput" value="5" min="5" max="15" class="slider"
-                       id="data-point-size" oninput="this.nextElementSibling.value = this.value">
+                       id="data-point-size-1" oninput="this.nextElementSibling.value = this.value">
+                <output>5</output>
+                /
+                <label for="data-point-size-2">serie 2: </label>
+                <input type="range" name="rangeInput" value="5" min="5" max="15" class="slider"
+                       id="data-point-size-2" oninput="this.nextElementSibling.value = this.value">
                 <output>5</output>
             </div>
         </div>
@@ -72,7 +81,7 @@
     made by Roger Kreienb&uumlhl and Valentina Giampa
 </div>
 
-<script src="simple-scatter-chart-demo.js" type="module"></script>
+<script src="scatter-chart-demo.js" type="module"></script>
 
 </body>
 </html>
