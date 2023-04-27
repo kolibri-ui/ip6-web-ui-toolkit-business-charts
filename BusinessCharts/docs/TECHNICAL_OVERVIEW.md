@@ -33,7 +33,7 @@ To be able to display the charts in the browser, a div with the corresponding id
 <!--- chart section --->
 <div class="container" id="container"></div>
 ```
-The charts are created in a [Javascript file in type "module"](demo/first-steps/first-steps-demo.js).
+The charts are created in a [Javascript file in type "module"](../../demo/first-steps/first-steps-demo.js).
 The .js is included in the **Script section**.
 ``` html
 <!--- script section --->
@@ -112,7 +112,7 @@ SimpleChartProjector(controller));
 ```
 # Projector / Controller Combination
 
-This section provides an overview of the projectors, controllers and toolbar tools.
+This section provides an overview of the projectors, controllers and toolbar tools
 and describes where to find them (this is needed for the import).
 
 ## One Data Serie
@@ -144,13 +144,22 @@ If several data series are in use, the corresponding controller in the AdvancedC
 
 If the data series are displayed differently, the general ChartController with specification of the chart type is available for the AdvancedProjector.
 
-|                              | code                                                                                                                                                                                                                              | import from                        |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
-| data (min. 2 data series)    | ``` @type { Array.<ChartDataElement> } */ ``` <br/> ``` const data1 = [ {name: 'A', xValue: -4, yValue: 3,},]; ```                                                                                                                |                                    |
-|                              | ``` @type { Array.<ChartDataElement> } */ ``` <br/> ``` const data2 = [ {name: 'A', xValue: -1, yValue: 6,},]; ```                                                                                                                |                                    |
-|                              | ``` @type { Array.<ChartDataElement> } */ ``` <br/> ``` const data3 = [ {name: 'A', xValue: 1,  yValue: 9,},]; ```                                                                                                                |                                    |
-| Mixed Chart Types controller | ``` const controller = ChartController([ ``` <br/> ``` { type: SCATTER_CHART, data: data1 }, ``` <br/> ``` { type: LINE_CHART, data: data2 }, ``` <br/> ``` { type: AREA_CHART, data: data3 }], ``` <br/> ``` {...tools...}); ``` | ``` advancedChartController.js ``` |
-| Advanced Chart Projector     | ``` document.getElementById('container').append(AdvancedChartProjector(controller)); ```                                                                                                                                          | ``` advancedChartProjector.js ```  |
+|                           | code                                                                                                                                                                                                                                                         | import from                       |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| data (min. 2 data series) | ``` @type { Array.<ChartDataElement> } */ ``` <br/> ``` const data1 = [ {name: 'A', xValue: -4, yValue: 3,},]; ```                                                                                                                                           |                                   |
+|                           | ``` @type { Array.<ChartDataElement> } */ ``` <br/> ``` const data2 = [ {name: 'A', xValue: -1, yValue: 6,},]; ```                                                                                                                                           |                                   |
+|                           | ``` @type { Array.<ChartDataElement> } */ ``` <br/> ``` const data3 = [ {name: 'A', xValue: 1,  yValue: 9,},]; ```                                                                                                                                           |                                   |
+| general controller*       | ``` const controller = ChartController(``` <br/> ```[ ``` <br/> ``` { type: SCATTER_CHART, data: data1 }, ``` <br/> ``` { type: LINE_CHART, data: data2 }, ``` <br/> ``` { type: AREA_CHART, data: data3 } ``` <br/> ```], ``` <br/> ``` {...tools...}); ``` | ``` chartController.js ```        |
+| Advanced Chart Projector  | ``` document.getElementById('container').append(AdvancedChartProjector(controller)); ```                                                                                                                                                                     | ``` advancedChartProjector.js ``` |
+
+*needs also the import of the used chart types
+
+|               | import as                 | import from                |
+|---------------|---------------------------|----------------------------|
+| SCATTER_CHART | ``` { SCATTER_CHART } ``` | ``` chartController.js ``` | 
+| LINE_CHART    | ``` { LINE_CHART } ```    | ``` chartController.js ``` |
+| AREA_CHART    | ``` { AREA_CHART } ```    | ``` chartController.js ``` |
+
 
 ## Toolbar
 
