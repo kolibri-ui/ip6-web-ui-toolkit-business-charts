@@ -14,10 +14,10 @@ This file provides a general overview of the structure of the Business Charts To
 
 # Basic structure
 
-On the [home page](https://github.com/rkreienbuehl/FHNW_ip6_Kolibri-Business-Charts/blob/main/BusinessCharts/index.html)
+On the [home page](../index.html)
 you can test the examples.
 In addition, a detailed
-[First Steps Guide](https://github.com/rkreienbuehl/FHNW_ip6_Kolibri-Business-Charts/blob/main/demo/first-steps/first-steps.html)
+[First Steps Guide](../demo/first-steps/first-steps.html)
 is available.
 The sections below give a brief overview of the structure.
 To build your own charts, at least an HTML and a JavaScript file is required.
