@@ -1,17 +1,17 @@
 // noinspection SpellCheckingInspection
 
 import {
-    LineChartController,
-}                                     from "../../src/business-charts/projector/chart/advancedChartController.js";
-import { AdvancedChartProjector }     from "../../src/business-charts/projector/chart/advancedChartProjector.js";
-import { zoomInTool }                 from "../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
-import { zoomOutTool }                from "../../src/business-charts/projector/toolBar/tools/ZoomOut.js";
-import { bubbleTooltipSelectionTool } from "../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
-import { rubberBandTool }             from "../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
-import { panningTool }                from "../../src/business-charts/projector/toolBar/tools/PanningTool.js";
-import { DataTableViewProjector }     from "../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
-import { DataTableViewController }    from "../../src/business-charts/projector/dataTableView/dataTableViewController.js";
-import { SimpleDetailView }           from "../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
+    AreaChartController,
+}                                     from "../../../../src/business-charts/projector/chart/advancedChartController.js";
+import { AdvancedChartProjector }     from "../../../../src/business-charts/projector/chart/advancedChartProjector.js";
+import { zoomInTool }                 from "../../../../src/business-charts/projector/toolBar/tools/ZoomInTool.js";
+import { zoomOutTool }                from "../../../../src/business-charts/projector/toolBar/tools/ZoomOut.js";
+import { bubbleTooltipSelectionTool } from "../../../../src/business-charts/projector/toolBar/tools/SelectionTool.js";
+import { rubberBandTool }             from "../../../../src/business-charts/projector/toolBar/tools/RubberbandTool.js";
+import { panningTool }                from "../../../../src/business-charts/projector/toolBar/tools/PanningTool.js";
+import { DataTableViewProjector }     from "../../../../src/business-charts/projector/dataTableView/dataTableViewProjector.js";
+import { DataTableViewController }    from "../../../../src/business-charts/projector/dataTableView/dataTableViewController.js";
+import { SimpleDetailView }           from "../../../../src/business-charts/projector/simpleDetailView/simpleDetailViewProjector.js";
 
 /** @type { Array<ChartDataElement> } */ const dataSerie1 = [ {
     name: 'A1', xValue: -4, yValue: 2,
@@ -53,7 +53,7 @@ import { SimpleDetailView }           from "../../src/business-charts/projector/
     name: 'I2', xValue: 4, yValue: 9,
 },];
 
-const controller = LineChartController([dataSerie1, dataSerie2], {
+const controller = AreaChartController([dataSerie1, dataSerie2], {
         tools: [
             zoomInTool,
             zoomOutTool,
@@ -80,7 +80,7 @@ pointSizeSlider1.nextElementSibling.value = pointSizeSlider1.value;
 pointSizeSlider1.onchange = (_) => document.documentElement.style.setProperty("--data-point-size-1-1", pointSizeSlider1.value);
 
 const pointSizeSlider2 = document.getElementById("data-point-size-2");
-pointSizeSlider2.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-1-2")) || 5;
+pointSizeSlider2.value = Number(getComputedStyle(document.querySelector(".chart-canvas")).getPropertyValue("--data-point-size-2")) || 5;
 pointSizeSlider2.nextElementSibling.value = pointSizeSlider2.value;
 pointSizeSlider2.onchange = (_) => document.documentElement.style.setProperty("--data-point-size-1-2", pointSizeSlider2.value);
 
