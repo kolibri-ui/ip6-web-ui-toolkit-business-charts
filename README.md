@@ -25,10 +25,10 @@ Für die Datenpunkte existieren ebenfalls Projektoren, die mit den Charts ein Bi
 
 ## Business Charts Home Page
 
-Die [Homepage](docs/index.html) mit Live Demo und [ausführlicher Anleitung](docs/demo/first-steps/first-steps.html).
+Die [Homepage](https://kolibri-ui.github.io/ip6-web-ui-toolkit-business-charts/docs/index.html) mit Live Demo und [ausführlicher Anleitung](https://kolibri-ui.github.io/ip6-web-ui-toolkit-business-charts/docs/demo/first-steps/first-steps.html).
 
 ## Technischer Kurzbeschrieb
-Der [technische Kurzbeschrieb](https://github.com/kolibri-ui/ip6-web-ui-toolkit-business-charts/blob/main/BusinessCharts/docs/TECHNICAL_OVERVIEW.md)
+Der [technische Kurzbeschrieb](https://github.com/kolibri-ui/ip6-web-ui-toolkit-business-charts/blob/main/docs/docs/TECHNICAL_OVERVIEW.md)
 gibt eine Übersicht über den groben Aufbau und die Features.
 
 ### Anwendungsideen
