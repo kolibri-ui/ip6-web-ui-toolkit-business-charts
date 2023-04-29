@@ -28,7 +28,7 @@ Für die Datenpunkte existieren ebenfalls Projektoren, die mit den Charts ein Bi
 Die [Homepage](docs/index.html) mit Live Demo und [ausführlicher Anleitung](docs/demo/first-steps/first-steps.html).
 
 ## Technischer Kurzbeschrieb
-Der [technische Kurzbeschrieb](https://github.com/rkreienbuehl/FHNW_ip6_Kolibri-Business-Charts/blob/main/BusinessCharts/docs/TECHNICAL_OVERVIEW.md)
+Der [technische Kurzbeschrieb](https://github.com/kolibri-ui/ip6-web-ui-toolkit-business-charts/blob/main/BusinessCharts/docs/TECHNICAL_OVERVIEW.md)
 gibt eine Übersicht über den groben Aufbau und die Features.
 
 ### Anwendungsideen
