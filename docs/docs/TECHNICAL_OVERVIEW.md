@@ -14,15 +14,15 @@ This file provides a general overview of the structure of the Business Charts To
 
 # Basic structure
 
-On the [home page](../index.html)
+On the [home page](https://kolibri-ui.github.io/ip6-web-ui-toolkit-business-charts/docs/index.html)
 you can test the examples.
 In addition, a detailed
-[First Steps Guide](../demo/first-steps/first-steps.html)
+[First Steps Guide](https://kolibri-ui.github.io/ip6-web-ui-toolkit-business-charts/docs/demo/first-steps/first-steps.html)
 is available.
 The sections below give a brief overview of the structure.
 To build your own charts, at least an HTML and a JavaScript file is required.
 The easiest way to use the projectors is to make a copy of the entire
-[src folder](https://github.com/rkreienbuehl/FHNW_ip6_Kolibri-Business-Charts)
+[src folder](https://github.com/kolibri-ui/ip6-web-ui-toolkit-business-charts)
 in the respective project.
 
 
@@ -33,7 +33,7 @@ To be able to display the charts in the browser, a div with the corresponding id
 <!--- chart section --->
 <div class="container" id="container"></div>
 ```
-The charts are created in a [Javascript file in type "module"](../demo/first-steps/first-steps-demo.js).
+The charts are created in a [Javascript file in type "module"](https://kolibri-ui.github.io/ip6-web-ui-toolkit-business-charts/docs/demo/first-steps/first-steps-demo.js).
 The .js is included in the **Script section**.
 ``` html
 <!--- script section --->
@@ -337,7 +337,7 @@ It is possible to extend the .css files, overwrite them or replace them with you
 ### Live Tests
 
 The current status of the tests is available in the root directory of the Business Charts in the file
-[allBusinessChartsTests.html](../../src/business-charts/allBusinessChartsTests.html).
+[allBusinessChartsTests.html](https://kolibri-ui.github.io/ip6-web-ui-toolkit-business-charts/src/business-charts/allBusinessChartsTests.html).
 
 ### JSDoc
 
